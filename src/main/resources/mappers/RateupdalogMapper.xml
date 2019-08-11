@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.RateupdalogDao">
+
+    <select id="getRateupdalogById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Rateupdalog">
+        select
+                uplog_id as uplogId,
+                uplog_operaDate as uplogOperaDate,
+                uplog_before as uplogBefore,
+                uplog_after as uplogAfter,
+                uplog_pre_id as uplogPreId
+        from rateupdalog
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addRateupdalog" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Rateupdalog">
+        insert into rateupdalog(
+                    uplog_id,
+                    uplog_operaDate,
+                    uplog_before,
+                    uplog_after,
+                    uplog_pre_id)
+        values(
+                    #{uplogId},
+                    #{uplogOperaDate},
+                    #{uplogBefore},
+                    #{uplogAfter},
+                    #{uplogPreId})
+    </insert>
+
+    <update id="updateRateupdalog" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Rateupdalog">
+        update rateupdalog
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="uplogId != null and uplogId!=''">
+                            uplog_id=#{uplogId},
+                        </if>
+                        <if test="uplogOperaDate != null and uplogOperaDate!=''">
+                            uplog_operaDate=#{uplogOperaDate},
+                        </if>
+                        <if test="uplogBefore != null and uplogBefore!=''">
+                            uplog_before=#{uplogBefore},
+                        </if>
+                        <if test="uplogAfter != null and uplogAfter!=''">
+                            uplog_after=#{uplogAfter},
+                        </if>
+                        <if test="uplogPreId != null and uplogPreId!=''">
+                            uplog_pre_id=#{uplogPreId}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delRateupdalogById" parameterType="String">
+        delete from rateupdalog where id = #{id}
+    </delete>
+
+</mapper>

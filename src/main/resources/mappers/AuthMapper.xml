@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.AuthDao">
+
+    <select id="getAuthById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Auth">
+        select
+                auth_id as authId,
+                auth_name as authName,
+                auth_type as authType
+        from auth
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addAuth" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Auth">
+        insert into auth(
+                    auth_id,
+                    auth_name,
+                    auth_type)
+        values(
+                    #{authId},
+                    #{authName},
+                    #{authType})
+    </insert>
+
+    <update id="updateAuth" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Auth">
+        update auth
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="authId != null and authId!=''">
+                            auth_id=#{authId},
+                        </if>
+                        <if test="authName != null and authName!=''">
+                            auth_name=#{authName},
+                        </if>
+                        <if test="authType != null and authType!=''">
+                            auth_type=#{authType}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delAuthById" parameterType="String">
+        delete from auth where id = #{id}
+    </delete>
+
+</mapper>

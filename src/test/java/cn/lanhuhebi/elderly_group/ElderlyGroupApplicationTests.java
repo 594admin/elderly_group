@@ -1,4 +1,4 @@
-package cn.lenhuhebi.elderly_group;
+package cn.lanhuhebi.elderly_group;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

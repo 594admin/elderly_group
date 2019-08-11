@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.TeamDao">
+
+    <select id="getTeamById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Team">
+        select
+                tem_id as temId,
+                tem_name as temName,
+                tem_lead as temLead,
+                tem_creaDate as temCreaDate,
+                tem_creator as temCreator
+        from team
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addTeam" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Team">
+        insert into team(
+                    tem_id,
+                    tem_name,
+                    tem_lead,
+                    tem_creaDate,
+                    tem_creator)
+        values(
+                    #{temId},
+                    #{temName},
+                    #{temLead},
+                    #{temCreaDate},
+                    #{temCreator})
+    </insert>
+
+    <update id="updateTeam" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Team">
+        update team
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="temId != null and temId!=''">
+                            tem_id=#{temId},
+                        </if>
+                        <if test="temName != null and temName!=''">
+                            tem_name=#{temName},
+                        </if>
+                        <if test="temLead != null and temLead!=''">
+                            tem_lead=#{temLead},
+                        </if>
+                        <if test="temCreaDate != null and temCreaDate!=''">
+                            tem_creaDate=#{temCreaDate},
+                        </if>
+                        <if test="temCreator != null and temCreator!=''">
+                            tem_creator=#{temCreator}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delTeamById" parameterType="String">
+        delete from team where id = #{id}
+    </delete>
+
+</mapper>

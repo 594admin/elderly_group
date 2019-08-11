@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.PersonnelDao">
+
+    <select id="getPersonnelById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
+        select
+                pre_id as preId,
+                pre_name as preName,
+                pre_phone as prePhone,
+                pre_email as preEmail,
+                pre_gender as preGender,
+                pre_role_id as preRoleId,
+                pre_status as preStatus,
+                pre_creaDate as preCreaDate,
+                pre_updaDate as preUpdaDate
+        from personnel
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addPersonnel" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
+        insert into personnel(
+                    pre_id,
+                    pre_name,
+                    pre_phone,
+                    pre_email,
+                    pre_gender,
+                    pre_role_id,
+                    pre_status,
+                    pre_creaDate,
+                    pre_updaDate)
+        values(
+                    #{preId},
+                    #{preName},
+                    #{prePhone},
+                    #{preEmail},
+                    #{preGender},
+                    #{preRoleId},
+                    #{preStatus},
+                    #{preCreaDate},
+                    #{preUpdaDate})
+    </insert>
+
+    <update id="updatePersonnel" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
+        update personnel
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="preId != null and preId!=''">
+                            pre_id=#{preId},
+                        </if>
+                        <if test="preName != null and preName!=''">
+                            pre_name=#{preName},
+                        </if>
+                        <if test="prePhone != null and prePhone!=''">
+                            pre_phone=#{prePhone},
+                        </if>
+                        <if test="preEmail != null and preEmail!=''">
+                            pre_email=#{preEmail},
+                        </if>
+                        <if test="preGender != null and preGender!=''">
+                            pre_gender=#{preGender},
+                        </if>
+                        <if test="preRoleId != null and preRoleId!=''">
+                            pre_role_id=#{preRoleId},
+                        </if>
+                        <if test="preStatus != null and preStatus!=''">
+                            pre_status=#{preStatus},
+                        </if>
+                        <if test="preCreaDate != null and preCreaDate!=''">
+                            pre_creaDate=#{preCreaDate},
+                        </if>
+                        <if test="preUpdaDate != null and preUpdaDate!=''">
+                            pre_updaDate=#{preUpdaDate}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delPersonnelById" parameterType="String">
+        delete from personnel where id = #{id}
+    </delete>
+
+</mapper>

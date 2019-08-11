@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.AreaDao">
+
+    <select id="getAreaById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Area">
+        select
+                area_id as areaId,
+                area_name as areaName,
+                area_level as areaLevel,
+                area_parID as areaParID
+        from area
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addArea" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Area">
+        insert into area(
+                    area_id,
+                    area_name,
+                    area_level,
+                    area_parID)
+        values(
+                    #{areaId},
+                    #{areaName},
+                    #{areaLevel},
+                    #{areaParID})
+    </insert>
+
+    <update id="updateArea" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Area">
+        update area
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="areaId != null and areaId!=''">
+                            area_id=#{areaId},
+                        </if>
+                        <if test="areaName != null and areaName!=''">
+                            area_name=#{areaName},
+                        </if>
+                        <if test="areaLevel != null and areaLevel!=''">
+                            area_level=#{areaLevel},
+                        </if>
+                        <if test="areaParID != null and areaParID!=''">
+                            area_parID=#{areaParID}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delAreaById" parameterType="String">
+        delete from area where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.OrderDao">
+
+    <select id="getOrderById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Order">
+        select
+                or_id as orId,
+                or_ept_id as orEptId,
+                or_ept_num as orEptNum,
+                or_ept_price as orEptPrice,
+                or_purse_id as orPurseId
+        from order
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addOrder" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Order">
+        insert into order(
+                    or_id,
+                    or_ept_id,
+                    or_ept_num,
+                    or_ept_price,
+                    or_purse_id)
+        values(
+                    #{orId},
+                    #{orEptId},
+                    #{orEptNum},
+                    #{orEptPrice},
+                    #{orPurseId})
+    </insert>
+
+    <update id="updateOrder" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Order">
+        update order
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="orId != null and orId!=''">
+                            or_id=#{orId},
+                        </if>
+                        <if test="orEptId != null and orEptId!=''">
+                            or_ept_id=#{orEptId},
+                        </if>
+                        <if test="orEptNum != null and orEptNum!=''">
+                            or_ept_num=#{orEptNum},
+                        </if>
+                        <if test="orEptPrice != null and orEptPrice!=''">
+                            or_ept_price=#{orEptPrice},
+                        </if>
+                        <if test="orPurseId != null and orPurseId!=''">
+                            or_purse_id=#{orPurseId}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delOrderById" parameterType="String">
+        delete from order where id = #{id}
+    </delete>
+
+</mapper>

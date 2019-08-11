@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.DistDao">
+
+    <select id="getDistById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Dist">
+        select
+                dist_id as distId,
+                dist_fly_id as distFlyId,
+                dist_distDate as distDistDate,
+                dist_status as distStatus,
+                dist_installer as distInstaller
+        from dist
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addDist" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Dist">
+        insert into dist(
+                    dist_id,
+                    dist_fly_id,
+                    dist_distDate,
+                    dist_status,
+                    dist_installer)
+        values(
+                    #{distId},
+                    #{distFlyId},
+                    #{distDistDate},
+                    #{distStatus},
+                    #{distInstaller})
+    </insert>
+
+    <update id="updateDist" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Dist">
+        update dist
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="distId != null and distId!=''">
+                            dist_id=#{distId},
+                        </if>
+                        <if test="distFlyId != null and distFlyId!=''">
+                            dist_fly_id=#{distFlyId},
+                        </if>
+                        <if test="distDistDate != null and distDistDate!=''">
+                            dist_distDate=#{distDistDate},
+                        </if>
+                        <if test="distStatus != null and distStatus!=''">
+                            dist_status=#{distStatus},
+                        </if>
+                        <if test="distInstaller != null and distInstaller!=''">
+                            dist_installer=#{distInstaller}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delDistById" parameterType="String">
+        delete from dist where id = #{id}
+    </delete>
+
+</mapper>

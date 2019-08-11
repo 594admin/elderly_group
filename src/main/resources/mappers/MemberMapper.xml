@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.MemberDao">
+
+    <select id="getMemberById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Member">
+        select
+                mem_id as memId,
+                mem_mem as memMem,
+                mem_tem_id as memTemId
+        from member
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addMember" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Member">
+        insert into member(
+                    mem_id,
+                    mem_mem,
+                    mem_tem_id)
+        values(
+                    #{memId},
+                    #{memMem},
+                    #{memTemId})
+    </insert>
+
+    <update id="updateMember" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Member">
+        update member
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="memId != null and memId!=''">
+                            mem_id=#{memId},
+                        </if>
+                        <if test="memMem != null and memMem!=''">
+                            mem_mem=#{memMem},
+                        </if>
+                        <if test="memTemId != null and memTemId!=''">
+                            mem_tem_id=#{memTemId}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delMemberById" parameterType="String">
+        delete from member where id = #{id}
+    </delete>
+
+</mapper>

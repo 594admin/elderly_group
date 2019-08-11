@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.BindlogDao">
+
+    <select id="getBindlogById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Bindlog">
+        select
+                bind_id as bindId,
+                bind_sh_id as bindShId,
+                bind_creaDate as bindCreaDate,
+                bind_fly_id as bindFlyId,
+                bind_tem_ept_id as bindTemEptId,
+                bind_pre_id as bindPreId
+        from bindlog
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addBindlog" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Bindlog">
+        insert into bindlog(
+                    bind_id,
+                    bind_sh_id,
+                    bind_creaDate,
+                    bind_fly_id,
+                    bind_tem_ept_id,
+                    bind_pre_id)
+        values(
+                    #{bindId},
+                    #{bindShId},
+                    #{bindCreaDate},
+                    #{bindFlyId},
+                    #{bindTemEptId},
+                    #{bindPreId})
+    </insert>
+
+    <update id="updateBindlog" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Bindlog">
+        update bindlog
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="bindId != null and bindId!=''">
+                            bind_id=#{bindId},
+                        </if>
+                        <if test="bindShId != null and bindShId!=''">
+                            bind_sh_id=#{bindShId},
+                        </if>
+                        <if test="bindCreaDate != null and bindCreaDate!=''">
+                            bind_creaDate=#{bindCreaDate},
+                        </if>
+                        <if test="bindFlyId != null and bindFlyId!=''">
+                            bind_fly_id=#{bindFlyId},
+                        </if>
+                        <if test="bindTemEptId != null and bindTemEptId!=''">
+                            bind_tem_ept_id=#{bindTemEptId},
+                        </if>
+                        <if test="bindPreId != null and bindPreId!=''">
+                            bind_pre_id=#{bindPreId}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delBindlogById" parameterType="String">
+        delete from bindlog where id = #{id}
+    </delete>
+
+</mapper>

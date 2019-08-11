@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.CaDao">
+
+    <select id="getCaById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Ca">
+        select
+                ca_id as caId,
+                ca_creaDate as caCreaDate,
+                ca_ept_num as caEptNum,
+                ca_status as caStatus,
+                ca_temp as caTemp,
+                ca_ele as caEle,
+                ca_energy as caEnergy
+        from ca
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addCa" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Ca">
+        insert into ca(
+                    ca_id,
+                    ca_creaDate,
+                    ca_ept_num,
+                    ca_status,
+                    ca_temp,
+                    ca_ele,
+                    ca_energy)
+        values(
+                    #{caId},
+                    #{caCreaDate},
+                    #{caEptNum},
+                    #{caStatus},
+                    #{caTemp},
+                    #{caEle},
+                    #{caEnergy})
+    </insert>
+
+    <update id="updateCa" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Ca">
+        update ca
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="caId != null and caId!=''">
+                            ca_id=#{caId},
+                        </if>
+                        <if test="caCreaDate != null and caCreaDate!=''">
+                            ca_creaDate=#{caCreaDate},
+                        </if>
+                        <if test="caEptNum != null and caEptNum!=''">
+                            ca_ept_num=#{caEptNum},
+                        </if>
+                        <if test="caStatus != null and caStatus!=''">
+                            ca_status=#{caStatus},
+                        </if>
+                        <if test="caTemp != null and caTemp!=''">
+                            ca_temp=#{caTemp},
+                        </if>
+                        <if test="caEle != null and caEle!=''">
+                            ca_ele=#{caEle},
+                        </if>
+                        <if test="caEnergy != null and caEnergy!=''">
+                            ca_energy=#{caEnergy}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delCaById" parameterType="String">
+        delete from ca where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.EquipmentDao">
+
+    <select id="getEquipmentById" resultType="cn.lanhuhebi.elderly_group.model.pojo.Equipment">
+        select
+                ept_id as eptId,
+                ept_type as eptType,
+                ept_facty as eptFacty,
+                ept_model as eptModel,
+                ept_price as eptPrice,
+                ept_stock as eptStock,
+                ept_num as eptNum
+        from equipment
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="addEquipment" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Equipment">
+        insert into equipment(
+                    ept_id,
+                    ept_type,
+                    ept_facty,
+                    ept_model,
+                    ept_price,
+                    ept_stock,
+                    ept_num)
+        values(
+                    #{eptId},
+                    #{eptType},
+                    #{eptFacty},
+                    #{eptModel},
+                    #{eptPrice},
+                    #{eptStock},
+                    #{eptNum})
+    </insert>
+
+    <update id="updateEquipment" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Equipment">
+        update equipment
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="eptId != null and eptId!=''">
+                            ept_id=#{eptId},
+                        </if>
+                        <if test="eptType != null and eptType!=''">
+                            ept_type=#{eptType},
+                        </if>
+                        <if test="eptFacty != null and eptFacty!=''">
+                            ept_facty=#{eptFacty},
+                        </if>
+                        <if test="eptModel != null and eptModel!=''">
+                            ept_model=#{eptModel},
+                        </if>
+                        <if test="eptPrice != null and eptPrice!=''">
+                            ept_price=#{eptPrice},
+                        </if>
+                        <if test="eptStock != null and eptStock!=''">
+                            ept_stock=#{eptStock},
+                        </if>
+                        <if test="eptNum != null and eptNum!=''">
+                            ept_num=#{eptNum}
+                        </if>
+        </trim>
+    </update>
+
+    <delete id="delEquipmentById" parameterType="String">
+        delete from equipment where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,6 +1,4 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @ClassName 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,7 +64,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="index_v1.html" data-index="0">户信息列表</a>
+                            <a class="J_menuItem" href="/tofamilylist" data-index="0">户信息列表</a>
                         </li>
                         <li>
                             <a class="J_menuItem" href="index_v2.html">新增户信息</a>
@@ -344,7 +344,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="table_basic.html">工程小组列表</a>
                         </li>
-                        <!--<li><a class="J_menuItem" href="table_data_tables.html">DataTables</a>-->
+                        <!--<li><a class="J_menuItem" href="familylist.ftl">DataTables</a>-->
                         <!--</li>-->
                         <!--<li><a class="J_menuItem" href="table_jqgrid.html">jqGrid</a>-->
                         <!--</li>-->

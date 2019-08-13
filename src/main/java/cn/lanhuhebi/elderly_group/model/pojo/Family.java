@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @ClassName 
+ * @ClassName Family
  * @Author Oblivion
  * @Date 2019/8/11
  * @Version 1.0
@@ -44,10 +44,10 @@ public class Family {
     private Integer flyTemId;
 
     //建筑面积
-    private Integer flyBuldArea;
+    private Double flyBuldArea;
 
     //采暖面积
-    private Integer flyHeatArea;
+    private Double flyHeatArea;
 
     //状态
     private Integer flyStatus;
@@ -173,21 +173,21 @@ public class Family {
         return this.flyTemId;
     }
 
-    public Family setFlyBuldArea (Integer flyBuldArea){
+    public Family setFlyBuldArea (Double flyBuldArea){
         this.flyBuldArea=flyBuldArea;
         return this;
     }
 
-    public Integer getFlyBuldArea(){
+    public Double getFlyBuldArea(){
         return this.flyBuldArea;
     }
 
-    public Family setFlyHeatArea (Integer flyHeatArea){
+    public Family setFlyHeatArea (Double flyHeatArea){
         this.flyHeatArea=flyHeatArea;
         return this;
     }
 
-    public Integer getFlyHeatArea(){
+    public Double getFlyHeatArea(){
         return this.flyHeatArea;
     }
 

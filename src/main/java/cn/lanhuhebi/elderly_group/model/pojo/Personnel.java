@@ -37,6 +37,16 @@ public class Personnel {
     //修改时间
     private Date preUpdaDate;
 
+    private String prePassword;
+
+    public String getPrePassword() {
+        return prePassword;
+    }
+
+    public void setPrePassword(String prePassword) {
+        this.prePassword = prePassword;
+    }
+
     //get set 方法
     public Personnel setPreId (Integer preId){
         this.preId=preId;

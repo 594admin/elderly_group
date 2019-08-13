@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.UserMapper">
+
+    <sql id="selectUserVo">
+        select
+            p.pre_id,p.pre_name,p.pre_phone,p.pre_email,p.pre_password,p.pre_gender,p.pre_role_id,p.pre_status,p.pre_creaDate,p.pre_updaDate,
+            r.role_id,r.role_name,
+            a.auth_id,a.auth_name,a.auth_type
+        from personnel p
+            left join role as r on p.pre_role_id = r.role_id
+            left join sys_role_auth as ra on p.pre_role_id = ra.role_id
+            left join auth as a on a.auth_id = ra.auth_id
+    </sql>
+
+    <select id="selectUserByPhone" resultMap="UserResult" >
+        <include refid="selectUserVo"/>
+        where p.pre_phone = #{phone}
+    </select>
+
+    <select id="selectUserByEmail" resultMap="UserResult">
+        <include refid="selectUserVo"/>
+        where p.pre_email = #{email}
+    </select>
+
+    <resultMap id="UserResult" type="cn.lanhuhebi.elderly_group.model.pojo.domain.User">
+        <id property="preId" column="pre_id"/>
+        <result property="preName" column="pre_name"/>
+        <result property="prePhone" column="pre_phone"/>
+        <result property="preEmail" column="pre_email"/>
+        <result property="prePassword" column="pre_password"/>
+        <result property="preGender" column="pre_gender"/>
+        <result property="preRoleId" column="pre_role_id"/>
+        <result property="preStatus" column="pre_status"/>
+        <result property="preCreaDate" column="pre_creaDate"/>
+        <result property="preUpdaDate" column="pre_updaDate"/>
+        <association property="role" javaType="cn.lanhuhebi.elderly_group.model.pojo.Role" resultMap="roleResult"/>
+        <collection property="auths" resultMap="authResult"/>
+    </resultMap>
+
+    <resultMap id="roleResult" type="cn.lanhuhebi.elderly_group.model.pojo.Role">
+        <id property="roleId" column="role_id"/>
+        <result property="roleName" column="role_name"/>
+    </resultMap>
+
+    <resultMap id="authResult" type="cn.lanhuhebi.elderly_group.model.pojo.Auth">
+        <id property="authId" column="auth_id"/>
+        <result property="authName" column="auth_name"/>
+        <result property="authType" column="auth_type"/>
+    </resultMap>
+
+</mapper>

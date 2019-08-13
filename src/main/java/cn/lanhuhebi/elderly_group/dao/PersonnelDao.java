@@ -1,5 +1,10 @@
 package cn.lanhuhebi.elderly_group.dao;
 
+import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 /**
  * @ClassName PersonnelDao
  * @Author Oblivion
@@ -8,4 +13,5 @@ package cn.lanhuhebi.elderly_group.dao;
  **/
 public interface PersonnelDao {
 
+    List<Personnel> getAllPersonnel(@Param("personnel") Personnel personnel, @Param("page") int page);
 }

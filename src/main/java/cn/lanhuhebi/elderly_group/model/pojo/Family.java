@@ -1,6 +1,6 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
-import java.io.Serializable;
-import java.util.Date;
+
+import java.sql.Date;
 
 /**
  * @ClassName Family
@@ -10,257 +10,164 @@ import java.util.Date;
  **/
 public class Family {
 
-    //户信息ID
-    private Integer flyId;
 
-    //户主
-    private String flyName;
+    private Integer fly_id,fly_area_id,fly_ispoor,fly_tem_id,fly_status,
+            fly_purse_id;
+    private  String fly_name,fly_phone,fly_IDcard,fly_address,fly_doorNum,fly_notes,
+            fly_data1,fly_data2,fly_data3,fly_data4,fly_data5,fly_data6;
+    private Date fly_birthday;
 
-    //地域ID
-    private Integer flyAreaId;
 
-    //联系电话
-    private String flyPhone;
-
-    //身份证
-    private String flyIDcard;
-
-    //住址
-    private String flyAddress;
-
-    //门牌号
-    private String flyDoorNum;
-
-    //出生日期
-    private Date flyBirthday;
-
-    //是否贫困
-    private Integer flyIspoor;
-
-    //备注
-    private String flyNotes;
-
-    //小组ID
-    private Integer flyTemId;
-
-    //建筑面积
-    private Double flyBuldArea;
-
-    //采暖面积
-    private Double flyHeatArea;
-
-    //状态
-    private Integer flyStatus;
-
-    //采购ID
-    private Integer flyPurseId;
-
-    //身份证正面
-    private String flyData1;
-
-    //身份证反面
-    private String flyData2;
-
-    //户口本主页
-    private String flyData3;
-
-    //户口本其他页
-    private String flyData4;
-
-    //付款收据
-    private String flyData5;
-
-    //安装协议
-    private String flyData6;
-
-    //get set 方法
-    public Family setFlyId (Integer flyId){
-        this.flyId=flyId;
-        return this;
+    public Integer getFly_id() {
+        return fly_id;
     }
 
-    public Integer getFlyId(){
-        return this.flyId;
+    public void setFly_id(Integer fly_id) {
+        this.fly_id = fly_id;
     }
 
-    public Family setFlyName (String flyName){
-        this.flyName=flyName;
-        return this;
+    public Integer getFly_area_id() {
+        return fly_area_id;
     }
 
-    public String getFlyName(){
-        return this.flyName;
+    public void setFly_area_id(Integer fly_area_id) {
+        this.fly_area_id = fly_area_id;
     }
 
-    public Family setFlyAreaId (Integer flyAreaId){
-        this.flyAreaId=flyAreaId;
-        return this;
+    public Integer getFly_ispoor() {
+        return fly_ispoor;
     }
 
-    public Integer getFlyAreaId(){
-        return this.flyAreaId;
+    public void setFly_ispoor(Integer fly_ispoor) {
+        this.fly_ispoor = fly_ispoor;
     }
 
-    public Family setFlyPhone (String flyPhone){
-        this.flyPhone=flyPhone;
-        return this;
+    public Integer getFly_tem_id() {
+        return fly_tem_id;
     }
 
-    public String getFlyPhone(){
-        return this.flyPhone;
+    public void setFly_tem_id(Integer fly_tem_id) {
+        this.fly_tem_id = fly_tem_id;
     }
 
-    public Family setFlyIDcard (String flyIDcard){
-        this.flyIDcard=flyIDcard;
-        return this;
+    public Integer getFly_status() {
+        return fly_status;
     }
 
-    public String getFlyIDcard(){
-        return this.flyIDcard;
+    public void setFly_status(Integer fly_status) {
+        this.fly_status = fly_status;
     }
 
-    public Family setFlyAddress (String flyAddress){
-        this.flyAddress=flyAddress;
-        return this;
+    public Integer getFly_purse_id() {
+        return fly_purse_id;
     }
 
-    public String getFlyAddress(){
-        return this.flyAddress;
+    public void setFly_purse_id(Integer fly_purse_id) {
+        this.fly_purse_id = fly_purse_id;
     }
 
-    public Family setFlyDoorNum (String flyDoorNum){
-        this.flyDoorNum=flyDoorNum;
-        return this;
+    public String getFly_name() {
+        return fly_name;
     }
 
-    public String getFlyDoorNum(){
-        return this.flyDoorNum;
+    public void setFly_name(String fly_name) {
+        this.fly_name = fly_name;
     }
 
-    public Family setFlyBirthday (Date flyBirthday){
-        this.flyBirthday=flyBirthday;
-        return this;
+    public String getFly_phone() {
+        return fly_phone;
     }
 
-    public Date getFlyBirthday(){
-        return this.flyBirthday;
+    public void setFly_phone(String fly_phone) {
+        this.fly_phone = fly_phone;
     }
 
-    public Family setFlyIspoor (Integer flyIspoor){
-        this.flyIspoor=flyIspoor;
-        return this;
+    public String getFly_IDcard() {
+        return fly_IDcard;
     }
 
-    public Integer getFlyIspoor(){
-        return this.flyIspoor;
+    public void setFly_IDcard(String fly_IDcard) {
+        this.fly_IDcard = fly_IDcard;
     }
 
-    public Family setFlyNotes (String flyNotes){
-        this.flyNotes=flyNotes;
-        return this;
+    public String getFly_address() {
+        return fly_address;
     }
 
-    public String getFlyNotes(){
-        return this.flyNotes;
+    public void setFly_address(String fly_address) {
+        this.fly_address = fly_address;
     }
 
-    public Family setFlyTemId (Integer flyTemId){
-        this.flyTemId=flyTemId;
-        return this;
+    public String getFly_doorNum() {
+        return fly_doorNum;
     }
 
-    public Integer getFlyTemId(){
-        return this.flyTemId;
+
+    public void setFly_doorNum(String fly_doorNum) {
+        this.fly_doorNum = fly_doorNum;
     }
 
-    public Family setFlyBuldArea (Double flyBuldArea){
-        this.flyBuldArea=flyBuldArea;
-        return this;
+    public String getFly_notes() {
+        return fly_notes;
     }
 
-    public Double getFlyBuldArea(){
-        return this.flyBuldArea;
+    public void setFly_notes(String fly_notes) {
+        this.fly_notes = fly_notes;
     }
 
-    public Family setFlyHeatArea (Double flyHeatArea){
-        this.flyHeatArea=flyHeatArea;
-        return this;
+    public String getFly_data1() {
+        return fly_data1;
     }
 
-    public Double getFlyHeatArea(){
-        return this.flyHeatArea;
+    public void setFly_data1(String fly_data1) {
+        this.fly_data1 = fly_data1;
     }
 
-    public Family setFlyStatus (Integer flyStatus){
-        this.flyStatus=flyStatus;
-        return this;
+    public String getFly_data2() {
+        return fly_data2;
     }
 
-    public Integer getFlyStatus(){
-        return this.flyStatus;
+    public void setFly_data2(String fly_data2) {
+        this.fly_data2 = fly_data2;
     }
 
-    public Family setFlyPurseId (Integer flyPurseId){
-        this.flyPurseId=flyPurseId;
-        return this;
+    public String getFly_data3() {
+        return fly_data3;
     }
 
-    public Integer getFlyPurseId(){
-        return this.flyPurseId;
+    public void setFly_data3(String fly_data3) {
+        this.fly_data3 = fly_data3;
     }
 
-    public Family setFlyData1 (String flyData1){
-        this.flyData1=flyData1;
-        return this;
+    public String getFly_data4() {
+        return fly_data4;
     }
 
-    public String getFlyData1(){
-        return this.flyData1;
+    public void setFly_data4(String fly_data4) {
+        this.fly_data4 = fly_data4;
     }
 
-    public Family setFlyData2 (String flyData2){
-        this.flyData2=flyData2;
-        return this;
+    public String getFly_data5() {
+        return fly_data5;
     }
 
-    public String getFlyData2(){
-        return this.flyData2;
+    public void setFly_data5(String fly_data5) {
+        this.fly_data5 = fly_data5;
     }
 
-    public Family setFlyData3 (String flyData3){
-        this.flyData3=flyData3;
-        return this;
+    public String getFly_data6() {
+        return fly_data6;
     }
 
-    public String getFlyData3(){
-        return this.flyData3;
+    public void setFly_data6(String fly_data6) {
+        this.fly_data6 = fly_data6;
     }
 
-    public Family setFlyData4 (String flyData4){
-        this.flyData4=flyData4;
-        return this;
+    public Date getFly_birthday() {
+        return fly_birthday;
     }
 
-    public String getFlyData4(){
-        return this.flyData4;
+    public void setFly_birthday(Date fly_birthday) {
+        this.fly_birthday = fly_birthday;
     }
-
-    public Family setFlyData5 (String flyData5){
-        this.flyData5=flyData5;
-        return this;
-    }
-
-    public String getFlyData5(){
-        return this.flyData5;
-    }
-
-    public Family setFlyData6 (String flyData6){
-        this.flyData6=flyData6;
-        return this;
-    }
-
-    public String getFlyData6(){
-        return this.flyData6;
-    }
-
 }

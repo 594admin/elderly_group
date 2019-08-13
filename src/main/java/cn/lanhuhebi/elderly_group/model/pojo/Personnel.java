@@ -2,7 +2,7 @@ package cn.lanhuhebi.elderly_group.model.pojo;
 import java.util.Date;
 
 /**
- * @ClassName 
+ * @ClassName Personnel
  * @Author Oblivion
  * @Date 2019/8/11
  * @Version 1.0
@@ -20,6 +20,9 @@ public class Personnel {
 
     //邮箱
     private String preEmail;
+
+    //密码
+    private String prePassword;
 
     //性别
     private Integer preGender;
@@ -71,6 +74,15 @@ public class Personnel {
 
     public String getPreEmail(){
         return this.preEmail;
+    }
+
+    public Personnel setPrePassword (String prePassword){
+        this.prePassword=prePassword;
+        return this;
+    }
+
+    public String getPrePassword(){
+        return this.prePassword;
     }
 
     public Personnel setPreGender (Integer preGender){

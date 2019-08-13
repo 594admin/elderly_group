@@ -1,8 +1,9 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @ClassName 
+ * @ClassName TeamLiblog
  * @Author Oblivion
  * @Date 2019/8/11
  * @Version 1.0

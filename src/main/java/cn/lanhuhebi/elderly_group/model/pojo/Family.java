@@ -3,18 +3,20 @@ package cn.lanhuhebi.elderly_group.model.pojo;
 import java.sql.Date;
 
 /**
- * @ClassName 
+ * @ClassName Family
  * @Author Oblivion
  * @Date 2019/8/11
  * @Version 1.0
  **/
 public class Family {
 
+
     private Integer fly_id,fly_area_id,fly_ispoor,fly_tem_id,fly_status,
             fly_purse_id;
     private  String fly_name,fly_phone,fly_IDcard,fly_address,fly_doorNum,fly_notes,
             fly_data1,fly_data2,fly_data3,fly_data4,fly_data5,fly_data6;
     private Date fly_birthday;
+
 
     public Integer getFly_id() {
         return fly_id;
@@ -99,6 +101,7 @@ public class Family {
     public String getFly_doorNum() {
         return fly_doorNum;
     }
+
 
     public void setFly_doorNum(String fly_doorNum) {
         this.fly_doorNum = fly_doorNum;

@@ -2,7 +2,7 @@ package cn.lanhuhebi.elderly_group.model.pojo;
 import java.util.Date;
 
 /**
- * @ClassName 
+ * @ClassName Dist
  * @Author Oblivion
  * @Date 2019/8/11
  * @Version 1.0

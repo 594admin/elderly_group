@@ -1,7 +1,7 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
 
 /**
- * @ClassName 
+ * @ClassName Equipment
  * @Author Oblivion
  * @Date 2019/8/11
  * @Version 1.0

@@ -6,9 +6,15 @@
 <mapper namespace="cn.lanhuhebi.elderly_group.dao.PersonnelDao">
     <select id="login" resultMap="personnel">
         select pre_id,pre_name,pre_phone,pre_email,pre_password,pre_gender,pre_role_id
-         ,pre_status, pre_creaDate,pre_updaDate from personnel where pre_phone = #{account} or pre_email = #{account} limit 1
+         ,pre_status, pre_creaDate,pre_updaDate from personnel where pre_phone = #{account} or pre_email = #{account} and pre_status = 1 limit 1
     </select>
 
+    <select id="listPersonnel" resultMap="personnel">
+        select pre_id,pre_name,pre_phone,pre_email,pre_password,pre_gender,pre_role_id
+         ,pre_status, pre_creaDate,pre_updaDate from personnel
+         where pre_status = 1
+         order by pre_creaDate desc
+    </select>
 
     <resultMap id="personnel" type="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
         <id column="pre_id" property="preId"/>

@@ -3,6 +3,8 @@ package cn.lanhuhebi.elderly_group.dao;
 import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @ClassName PersonnelDao
  * @Author Oblivion
@@ -16,4 +18,10 @@ public interface PersonnelDao {
      * @return
      */
     Personnel login(@Param("account")String account);
+
+    /**
+     * 查询全部状态等于1 的员工
+     * @return
+     */
+    List<Personnel> listPersonnel();
 }

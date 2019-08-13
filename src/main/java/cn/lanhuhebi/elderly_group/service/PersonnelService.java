@@ -2,6 +2,8 @@ package cn.lanhuhebi.elderly_group.service;
 
 import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
 
+import java.util.List;
+
 /**
  * @ClassName PersonnelService
  * @Author Oblivion
@@ -15,4 +17,10 @@ public interface PersonnelService {
      * @return
      */
     Personnel login(String account);
+
+    /**
+     * 查询全部状态等于1 的员工
+     * @return
+     */
+    List<Personnel> listPersonnel();
 }

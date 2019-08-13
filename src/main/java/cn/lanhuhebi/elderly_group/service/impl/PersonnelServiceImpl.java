@@ -6,6 +6,8 @@ import cn.lanhuhebi.elderly_group.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName PersonnelServiceImpl
  * @Author Oblivion
@@ -22,5 +24,10 @@ public class PersonnelServiceImpl implements PersonnelService {
     @Override
     public Personnel login(String account) {
         return personnelDao.login(account);
+    }
+
+    @Override
+    public List<Personnel> listPersonnel() {
+        return personnelDao.listPersonnel();
     }
 }

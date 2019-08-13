@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @ClassName 
+ * @ClassName Switches
  * @Author Oblivion
  * @Date 2019/8/11
  * @Version 1.0

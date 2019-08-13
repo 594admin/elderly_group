@@ -21,7 +21,7 @@ public class Personnel {
     //邮箱
     private String preEmail;
 
-    //
+    //密码
     private String prePassword;
 
     //性别

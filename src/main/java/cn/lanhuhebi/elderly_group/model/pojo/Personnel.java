@@ -1,5 +1,4 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -21,6 +20,9 @@ public class Personnel {
 
     //邮箱
     private String preEmail;
+
+    //
+    private String prePassword;
 
     //性别
     private Integer preGender;
@@ -72,6 +74,15 @@ public class Personnel {
 
     public String getPreEmail(){
         return this.preEmail;
+    }
+
+    public Personnel setPrePassword (String prePassword){
+        this.prePassword=prePassword;
+        return this;
+    }
+
+    public String getPrePassword(){
+        return this.prePassword;
     }
 
     public Personnel setPreGender (Integer preGender){

@@ -14,4 +14,5 @@ import java.util.List;
 public interface PersonnelDao {
 
     List<Personnel> getAllPersonnel(@Param("personnel") Personnel personnel, @Param("page") int page);
+
 }

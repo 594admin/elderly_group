@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.PersonnelDao">
+    <select id="login" resultMap="personnel">
+        select pre_id,pre_name,pre_phone,pre_email,pre_password,pre_gender,pre_role_id
+         ,pre_status, pre_creaDate,pre_updaDate from personnel where pre_phone = #{account} or pre_email = #{account} limit 1
+    </select>
+
+
+    <resultMap id="personnel" type="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
+        <id column="pre_id" property="preId"/>
+        <result column="pre_name" property="preName"/>
+        <result column="pre_phone" property="prePhone"/>
+        <result column="pre_email" property="preEmail"/>
+        <result column="pre_password" property="prePassword"/>
+        <result column="pre_gender" property="preGender"/>
+        <result column="pre_role_id" property="preRoleId"/>
+        <result column="pre_status" property="preStatus"/>
+        <result column="pre_creaDate" property="preCreaDate"/>
+        <result column="pre_updaDate" property="preUpdaDate"/>
+    </resultMap>
+</mapper>

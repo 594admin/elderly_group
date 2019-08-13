@@ -1,6 +1,4 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @ClassName Equipment
@@ -14,10 +12,10 @@ public class Equipment {
     private Integer eptId;
 
     //类型
-    private Integer eptType;
+    private String eptType;
 
     //厂家
-    private Integer eptFacty;
+    private String eptFacty;
 
     //型号
     private String eptModel;
@@ -32,66 +30,66 @@ public class Equipment {
     private String eptNum;
 
     //get set 方法
-    public Equipment setEptId (Integer eptId){
-        this.eptId=eptId;
+    public Equipment setEptId(Integer eptId) {
+        this.eptId = eptId;
         return this;
     }
 
-    public Integer getEptId(){
+    public Integer getEptId() {
         return this.eptId;
     }
 
-    public Equipment setEptType (Integer eptType){
-        this.eptType=eptType;
+    public Equipment setEptType(String eptType) {
+        this.eptType = eptType;
         return this;
     }
 
-    public Integer getEptType(){
+    public String getEptType() {
         return this.eptType;
     }
 
-    public Equipment setEptFacty (Integer eptFacty){
-        this.eptFacty=eptFacty;
+    public Equipment setEptFacty(String eptFacty) {
+        this.eptFacty = eptFacty;
         return this;
     }
 
-    public Integer getEptFacty(){
+    public String getEptFacty() {
         return this.eptFacty;
     }
 
-    public Equipment setEptModel (String eptModel){
-        this.eptModel=eptModel;
+    public Equipment setEptModel(String eptModel) {
+        this.eptModel = eptModel;
         return this;
     }
 
-    public String getEptModel(){
+    public String getEptModel() {
         return this.eptModel;
     }
 
-    public Equipment setEptPrice (Double eptPrice){
-        this.eptPrice=eptPrice;
+    public Equipment setEptPrice(Double eptPrice) {
+        this.eptPrice = eptPrice;
         return this;
     }
 
-    public Double getEptPrice(){
+    public Double getEptPrice() {
         return this.eptPrice;
     }
 
-    public Equipment setEptStock (Integer eptStock){
-        this.eptStock=eptStock;
+    public Equipment setEptStock(Integer eptStock) {
+        this.eptStock = eptStock;
         return this;
     }
 
-    public Integer getEptStock(){
+    public Integer getEptStock() {
         return this.eptStock;
     }
 
-    public Equipment setEptNum (String eptNum){
-        this.eptNum=eptNum;
+    public Equipment setEptNum(String eptNum) {
+        this.eptNum = eptNum;
         return this;
     }
 
-    public String getEptNum(){
+    public String getEptNum() {
         return this.eptNum;
     }
 

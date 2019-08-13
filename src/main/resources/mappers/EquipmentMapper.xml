@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.EquipmentDao">
+
+    <select id="getAllEquipment" resultMap="ept">
+        <bind name="page" value="(page - 1) * 5"/>
+        SELECT ept_id, ept_type, ept_facty, ept_model, ept_price, ept_stock FROM equipment LIMIT #{page}, 5
+    </select>
+
+    <insert id="addEquipment" parameterType="Equipment">
+        INSERT INTO equipment VALUES(DEFAULT, #{eptType}, #{eptFacty}, #{eptModel}, #{eptPrice}, #{eptStock}, #{eptNum})
+    </insert>
+    
+    <resultMap id="ept" type="Equipment">
+        <result column="ept_id" property="eptId"/>
+        <result column="ept_type" property="eptType"/>
+        <result column="ept_facty" property="eptFacty"/>
+        <result column="ept_model" property="eptModel"/>
+        <result column="ept_price" property="eptPrice"/>
+        <result column="ept_stock" property="eptStock"/>
+        <result column="ept_num" property="eptNum"/>
+    </resultMap>
+</mapper>

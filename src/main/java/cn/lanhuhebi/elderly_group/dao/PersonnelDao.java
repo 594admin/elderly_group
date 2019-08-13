@@ -12,7 +12,16 @@ import java.util.List;
  * @Version 1.0
  **/
 public interface PersonnelDao {
+    /**
+     * 登录方法， 根据员工手机号或邮箱查询一条信息，手机号是唯一不重复的
+     * @param account
+     * @return
+     */
+    Personnel login(@Param("account")String account);
 
-    List<Personnel> getAllPersonnel(@Param("personnel") Personnel personnel, @Param("page") int page);
-
+    /**
+     * 查询全部状态等于1 的员工
+     * @return
+     */
+    List<Personnel> listPersonnel();
 }

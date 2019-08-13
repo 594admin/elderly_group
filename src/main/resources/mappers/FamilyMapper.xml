@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.FamilyDao">
+
+    <select id="queryAllFamily" resultType="cn.lanhuhebi.elderly_group.model.dto.Family_team_area">
+        SELECT f.`fly_name`,q.cunweihui ,q.jiedao,q.qu,f.`fly_phone`,f.`fly_IDcard`,t.`tem_name`  FROM family f ,team t ,(SELECT a5.`area_id`, a3.`area_name` qu,a4.`area_name` jiedao,a5.`area_name` cunweihui FROM
+        `area` a1,`area` a2,`area` a3 ,`area` a4,`area` a5 WHERE a1.`area_id`=a2.`area_parID` AND a2.`area_id`=a3.`area_parID` AND a3.`area_id`=a4.`area_parID`
+        AND a4.`area_id`=a5.`area_parID`) q WHERE f.`fly_tem_id`=t.`tem_id` AND f.`fly_status`=1 AND q.`area_id`= f.`fly_area_id` ORDER BY f.`fly_id` DESC
+    </select>
+
+    <update id="updateFamilyStatus" parameterType="java.lang.Integer">
+        update family set fly_status=0 and fly_id=#{fly_id}
+    </update>
+
+    <insert id="addFamily" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Family">
+        insert into family values (default ,#{fly_name},#{fly_area_id},#{fly_phone},#{fly_IDcard},#{fly_address},#{fly_doorNum}
+        #{fly_birthday},#{fly_ispoor},#{fly_notes},#{fly_tem_id},#{fly_buldArea},#{fly_heatArea},default ,#{fly_purse_id}
+        #{fly_data1},#{fly_data2},#{fly_data3},#{fly_data4},#{fly_data5},#{fly_data6})
+    </insert>
+
+
+</mapper>

@@ -39,6 +39,22 @@ public class Personnel {
     //修改时间
     private Date preUpdaDate;
 
+    @Override
+    public String toString() {
+        return "Personnel{" +
+                "preId=" + preId +
+                ", preName='" + preName + '\'' +
+                ", prePhone='" + prePhone + '\'' +
+                ", preEmail='" + preEmail + '\'' +
+                ", prePassword='" + prePassword + '\'' +
+                ", preGender=" + preGender +
+                ", preRoleId=" + preRoleId +
+                ", preStatus=" + preStatus +
+                ", preCreaDate=" + preCreaDate +
+                ", preUpdaDate=" + preUpdaDate +
+                '}';
+    }
+
     //get set 方法
     public Personnel setPreId (Integer preId){
         this.preId=preId;

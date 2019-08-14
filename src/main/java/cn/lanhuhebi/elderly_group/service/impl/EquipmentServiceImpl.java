@@ -29,8 +29,8 @@ public class EquipmentServiceImpl implements EquipmentService {
     private LiblogsDao liblogsDao;
 
     @Override
-    public List<Equipment> getAllEquipment(Equipment equipment, int page) {
-        return equipmentDao.getAllEquipment(equipment, page);
+    public List<Equipment> getAllEquipment() {
+        return equipmentDao.getAllEquipment();
     }
 
     @Override

@@ -27,7 +27,7 @@ public class EquipmentController {
 
     @RequestMapping("/eptlist")
     public String eptList(Model model) {
-        List<Equipment> listEpt = equipmentService.getAllEquipment(null, 1);
+        List<Equipment> listEpt = equipmentService.getAllEquipment();
         model.addAttribute("elist", listEpt);
         return "equipment/eptlist";
     }

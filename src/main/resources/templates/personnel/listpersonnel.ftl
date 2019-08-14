@@ -84,7 +84,7 @@
                                 </td>
                                 <td class="center">
                                     <a data-toggle="modal"  class="btn btn-info btn-xs" href="/toUpdatePersonnel?preId=${personnel.preId}">编辑</a>
-                                   &nbsp;&nbsp;&nbsp;<a data-toggle="modal"  class="btn btn-primary btn-sm"
+                                   &nbsp;&nbsp;&nbsp;<a data-toggle="modal"  class="btn btn-info btn-xs"
                                                         onclick="addPerRole(${personnel.preId}, ${personnel.preRoleId});"
                                                         href="#modal-form-role">用户角色</a>
                                 </td>

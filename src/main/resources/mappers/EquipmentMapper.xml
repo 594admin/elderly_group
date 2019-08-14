@@ -9,8 +9,12 @@
     </select>
 
     <insert id="addEquipment" parameterType="Equipment">
-        INSERT INTO equipment VALUES(DEFAULT, #{eptType}, #{eptFacty}, #{eptModel}, #{eptPrice}, #{eptStock}, #{eptNum})
+        INSERT INTO equipment VALUES (DEFAULT, #{eptType}, #{eptFacty}, #{eptModel}, #{eptPrice}, #{eptStock}, #{eptNum})
     </insert>
+
+    <update id="updateStock" parameterType="Equipment">
+        UPDATE equipment SET ept_stock = #{eptStock} WHERE ept_id = #{eptId}
+    </update>
     
     <resultMap id="ept" type="Equipment">
         <result column="ept_id" property="eptId"/>

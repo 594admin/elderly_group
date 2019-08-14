@@ -1,13 +1,15 @@
 package cn.lanhuhebi.elderly_group.controller;
 
 import cn.lanhuhebi.elderly_group.model.pojo.Equipment;
+import cn.lanhuhebi.elderly_group.model.pojo.Liblogs;
+import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
 import cn.lanhuhebi.elderly_group.service.EquipmentService;
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -24,9 +26,16 @@ public class EquipmentController {
     private EquipmentService equipmentService;
 
     @RequestMapping("/eptlist")
-    @ResponseBody
-    public String eptList() {
+    public String eptList(Model model) {
         List<Equipment> listEpt = equipmentService.getAllEquipment(null, 1);
-        return JSON.toJSONString(listEpt);
+        model.addAttribute("elist", listEpt);
+        return "equipment/eptlist";
+    }
+
+    @RequestMapping("/upstock")
+    public String upStock(Equipment equipment, Liblogs liblogs, HttpSession session) {
+        Personnel personnel = (Personnel) session.getAttribute("personnel");
+        equipmentService.updateStock(equipment, liblogs, personnel);
+        return "redirect:/eptlist";
     }
 }

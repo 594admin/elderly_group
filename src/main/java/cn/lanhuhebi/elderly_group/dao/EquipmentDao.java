@@ -10,4 +10,6 @@ public interface EquipmentDao {
     List<Equipment> getAllEquipment(@Param("ept") Equipment equipment, @Param("page") int page);
 
     int addEquipment(Equipment equipment);
+
+    int updateStock(Equipment equipment);
 }

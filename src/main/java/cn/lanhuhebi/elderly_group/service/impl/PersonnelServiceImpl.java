@@ -30,4 +30,46 @@ public class PersonnelServiceImpl implements PersonnelService {
     public List<Personnel> listPersonnel() {
         return personnelDao.listPersonnel();
     }
+
+    @Override
+    public boolean addPersonnel(Personnel personnel) {
+        return personnelDao.addPersonnel(personnel)>0;
+    }
+
+    @Override
+    public boolean checkPhone(String prePhone) {
+        String checkPhone = personnelDao.checkPhone(prePhone);
+        return checkPhone != null && !checkPhone.equals("");
+    }
+
+    @Override
+    public boolean checkEmail(String preEmail) {
+        String checkEmail = personnelDao.checkEmail(preEmail);
+        return  checkEmail != null && !checkEmail.equals("");
+    }
+
+    @Override
+    public Personnel getPersonnelOne(Integer preId) {
+        return personnelDao.getPersonnelOne(preId);
+    }
+
+    @Override
+    public boolean updatePersonnel(Personnel personnel) {
+        return personnelDao.updatePersonnel(personnel)>0;
+    }
+
+    @Override
+    public Integer checkPhoneByPreId(String prePhone, Integer preId) {
+        return personnelDao.checkPhoneByPreId(prePhone, preId);
+    }
+
+    @Override
+    public Integer checkEmailByPreId(String preEmail, Integer preId) {
+       return personnelDao.checkEmailByPreId(preEmail, preId);
+    }
+
+    @Override
+    public boolean addPerRole(Integer roleId, Integer preId) {
+        return personnelDao.addPerRole(roleId, preId)>0;
+    }
 }

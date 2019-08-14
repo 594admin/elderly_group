@@ -19,8 +19,72 @@ public interface PersonnelService {
     Personnel login(String account);
 
     /**
-     * 查询全部状态等于1 的员工
+     * 查询全部状态的员工
      * @return
      */
     List<Personnel> listPersonnel();
+
+    /**
+     * 新增员工信息
+     * @param personnel
+     * @return
+     */
+    boolean addPersonnel(Personnel personnel);
+
+    /**
+     * 查询手机号是否重复
+     * @param prePhone
+     * @return
+     */
+    boolean checkPhone(String prePhone);
+
+    /**
+     * 查询email是否重复
+     * @param preEmail
+     * @return
+     */
+    boolean checkEmail(String preEmail);
+
+    /**
+     * 根据主键查询一条员工信息
+     * @param preId
+     * @return
+     */
+    Personnel getPersonnelOne(Integer preId);
+
+    /**
+     * 修改员工信息
+     * @param personnel
+     * @return
+     */
+    boolean updatePersonnel(Personnel personnel);
+    /**
+     * 查询除我以外的手机号是否重复，返回值为重复账号状态
+     * 返回 0 重复并且账号已经注销
+     * 返回 1 重复并且账号正在使用
+     * 返回 2 不重复
+     * @param prePhone
+     * @param preId
+     * @return
+     */
+    Integer checkPhoneByPreId(String prePhone, Integer preId);
+
+    /**
+     * 查询除我以外的邮箱是否重复，返回值为重复账号状态
+     * 返回 0 重复并且账号已经注销
+     * 返回 1 重复并且账号正在使用
+     * 返回 2 不重复
+     * @param preEmail
+     * @param preId
+     * @return
+     */
+    Integer checkEmailByPreId(String preEmail,Integer preId);
+
+    /**
+     * 给一个员工修改权限
+     * @param roleId
+     * @param preId
+     * @return
+     */
+    boolean addPerRole(Integer roleId,Integer preId );
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface EquipmentService {
 
-    List<Equipment> getAllEquipment(Equipment equipment, int page);
+    List<Equipment> getAllEquipment();
 
     boolean addEquipment(Equipment equipment);
 

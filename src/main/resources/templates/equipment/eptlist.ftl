@@ -107,7 +107,7 @@
                             <h5>库存管理</h5>
                         </div>
                         <div class="ibox-content">
-                            <form action="/upstock" method="post">
+                            <form id="upform" action="/upstock" method="post">
                                 <input type="hidden" name="eptId">
                                 <input type="hidden" name="eptStock">
                                 <div>
@@ -133,11 +133,11 @@
                                 </div>
                                 <br>
                                 <div>
-                                    <button id="cloze" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button"
+                                    <button id="cloze" onclick="cloze();" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button"
                                             style="margin-left: 30px;">
                                         <strong>关闭</strong></button>
 
-                                    <button id="sub" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit">
+                                    <button id="sub" onclick="sub();" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit">
                                         <strong>保存</strong></button>
                                 </div>
                                 <br>
@@ -206,6 +206,14 @@
     function stockMgr(eptid, eptstock) {
         $("input[name='eptId']").val(eptid)
         $("input[name='eptStock']").val(eptstock)
+    }
+
+    function cloze() {
+        $("#cloze").attr("display", "none")
+    }
+
+    function sub() {
+        $("#upform").submit()
     }
 </script>
 

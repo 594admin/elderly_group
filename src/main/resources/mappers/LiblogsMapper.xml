@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.LiblogsDao">
+
+    <insert id="addLiblogs" parameterType="Liblogs">
+        INSERT INTO liblogs VALUES (DEFAULT, #{libType}, SYSDATE(), #{libOperator}, #{libEptId}, #{libNum})
+    </insert>
+
+    <resultMap id="lib" type="Liblogs">
+        <result column="lib_id" property="libeptId"/>
+        <result column="lib_type" property="libType"/>
+        <result column="lib_creatDate" property="libCreatDate"/>
+        <result column="lib_operator" property="libOperator"/>
+        <result column="lib_ept_id" property="libEptId"/>
+        <result column="lib_num" property="libNum"/>
+    </resultMap>
+</mapper>

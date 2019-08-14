@@ -49,6 +49,13 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+
+
         <!--Shiro权限认证 qyy-->
         <dependency>
             <groupId>org.apache.shiro</groupId>

@@ -16,6 +16,10 @@
          order by pre_creaDate desc
     </select>
 
+    <select id="queryTeamId" parameterType="java.lang.Integer" resultType="int">
+        SELECT m.`mem_id` FROM member m ,personnel p,team t WHERE m.`mem_tem_id`=t.`tem_id` AND p.`pre_id`=m.`mem_mem` AND p.`pre_id`=#{pre_id}
+    </select>
+
     <resultMap id="personnel" type="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
         <id column="pre_id" property="preId"/>
         <result column="pre_name" property="preName"/>

@@ -1,6 +1,7 @@
 package cn.lanhuhebi.elderly_group.controller;
 
 import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
+import cn.lanhuhebi.elderly_group.service.PersonnelService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -26,6 +28,9 @@ import javax.servlet.http.HttpSession;
 public class loginController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Resource
+    private PersonnelService personnelService;
 
     /**
      * 去登录页面
@@ -55,8 +60,10 @@ public class loginController {
         if (subject.isAuthenticated()) {
             //这个是shiro认证凭证
             session.setAttribute("shiro", token);
+
             //将员工对象传给页面
             Personnel personnel = (Personnel) subject.getPrincipal();
+            session.setAttribute("team_id",this.personnelService.queryTeamId(personnel.getPreId()));
             //将员工对象从Shiro内取出然后传给页面
             session.setAttribute("personnel", personnel);
             //登录成功

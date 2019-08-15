@@ -6,6 +6,7 @@ import cn.lanhuhebi.elderly_group.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -29,5 +30,10 @@ public class PersonnelServiceImpl implements PersonnelService {
     @Override
     public List<Personnel> listPersonnel() {
         return personnelDao.listPersonnel();
+    }
+
+    @Override
+    public int queryTeamId(Integer pre_id) {
+        return personnelDao.queryTeamId(pre_id);
     }
 }

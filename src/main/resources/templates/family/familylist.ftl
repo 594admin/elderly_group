@@ -12,14 +12,14 @@
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
-    <link rel="shortcut icon" href="favicon.ico"> <link href="static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
 
     <!-- Data Tables -->
-    <link href="static/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
 
-    <link href="static/css/animate.css" rel="stylesheet">
-    <link href="static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
 
 </head>
 
@@ -30,6 +30,7 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>基本 <small>分类，查找</small></h5>
+                        <div align="center"><span style="color: red"><#if deletemsg??><h3>${deletemsg}</h3></#if></span></div>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -51,6 +52,7 @@
                     <div class="ibox-content">
 
                         <table class="table table-striped table-bordered table-hover dataTables-example">
+                            <a href="/toaddfamily"><button type="button" class="btn btn-w-m btn-primary">添加用户</button></a>
                             <thead>
                             <tr>
                                 <th>户主</th>
@@ -60,12 +62,14 @@
                                 <th>手机号</th>
                                 <th>身份证</th>
                                 <th>工程组名</th>
+                                <th>状态</th>
                                 <th >操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             <#list flist as fl>
                             <tr class="gradeX">
+
                                 <td>${fl.fly_name}</td>
                                 <td>${fl.cunweihui}</td>
                                 <td>${fl.jiedao}</td>
@@ -73,9 +77,14 @@
                                 <td >${fl.fly_phone}</td>
                                 <td >${fl.fly_IDcard}</td>
                                 <td>${fl.tem_name}</td>
+                                <td><#if fl.fly_status==1><span style="color: green">完成</span>
+                                    <#elseif fl.fly_status==2><span style="color: red">已录入户基本信息</span>
+                                    <#elseif fl.fly_status==3><span style="color: red">已录入采购信息</span>
+                                </#if>
+                                </td>
                                 <td>
                                     <a href="">编辑</a>
-                                    <a href="">删除</a>
+                                    <a onclick="return confirm('确认要删除该户吗?')" href="/deletefamily?fly_id=${fl.fly_id}">删除</a>
                                 </td>
                             </tr>
                             </#list>
@@ -89,6 +98,7 @@
                                 <th>手机号</th>
                                 <th>身份证</th>
                                 <th>工程组名</th>
+                                <th>状态</th>
                                 <th >操作</th>
                             </tr>
                             </tfoot>
@@ -102,16 +112,16 @@
     </div>
 
     <!-- 全局js -->
-    <script src="static/js/jquery.min.js?v=2.1.4"></script>
-    <script src="static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
 
 
 
-    <script src="static/js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
 
     <!-- Data Tables -->
-    <script src="static/js/plugins/dataTables/jquery.dataTables.js"></script>
-    <script src="static/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
     <!-- 自定义js -->
     <script src="js/content.js?v=1.0.0"></script>

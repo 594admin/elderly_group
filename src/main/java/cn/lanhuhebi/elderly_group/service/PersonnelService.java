@@ -1,6 +1,7 @@
 package cn.lanhuhebi.elderly_group.service;
 
 import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,4 +24,6 @@ public interface PersonnelService {
      * @return
      */
     List<Personnel> listPersonnel();
+    //查询所属小组id
+    int queryTeamId(@Param("pre_id")Integer pre_id);
 }

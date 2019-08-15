@@ -285,26 +285,6 @@
               $("#userroles").append("当前用户没用分配角色");
               $("input[name='roleId'][value='0']").attr("checked",true);
           }
-
-
-
-         /* $("#userroles").html("");
-          if(preRoleId == 1){
-              $("#userroles").append("ID["+preId+"]:管理员");
-          }else if(preRoleId == 2){
-              $("#userroles").append("ID["+preId+"]:工程组长");
-          }else if(preRoleId == 3){
-              $("#userroles").append("ID["+preId+"]:信息员");
-          }else if(preRoleId == 4){
-              $("#userroles").append("ID["+preId+"]:安装工");
-          }else if(preRoleId == 5){
-              $("#userroles").append("ID["+preId+"]:库管员");
-          }else if(preRoleId == 6){
-              $("#userroles").append("ID["+preId+"]:政府人员");
-          }else {
-
-          }*/
-
       }
     </script>
 

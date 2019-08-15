@@ -20,458 +20,87 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css?v=4.1.0" rel="stylesheet">
 
+
 </head>
 
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>账户 <small>列表</small></h5>
+                    <#if "addmsg??">
+                        <p style="color:blue;">${addmsg}</p>
+                    </#if>
+                </div>
+                <div class="ibox-content">
+                    <div class="text-left">
+                        <a data-toggle="modal"  class="btn btn-primary" href="#modal-form">新增账户</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>基本 <small>分类，查找</small></h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="table_data_tables.html#">选项1</a>
-                                </li>
-                                <li><a href="table_data_tables.html#">选项2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
                     </div>
                     <div class="ibox-content">
 
                         <table class="table table-striped table-bordered table-hover dataTables-example">
                             <thead>
                                 <tr>
-                                    <th>渲染引擎</th>
-                                    <th>浏览器</th>
-                                    <th>平台</th>
-                                    <th>引擎版本</th>
-                                    <th>CSS等级</th>
+                                    <th>ID</th>
+                                    <th>手机号</th>
+                                    <th>姓名</th>
+                                    <th>邮箱</th>
+                                    <th>性别</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeX">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td class="center">4</td>
-                                    <td class="center">X</td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td class="center">5</td>
-                                    <td class="center">C</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td class="center">5.5</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 6
-                                    </td>
-                                    <td>Win 98+</td>
-                                    <td class="center">6</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 7</td>
-                                    <td>Win XP SP2+</td>
-                                    <td class="center">7</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Trident</td>
-                                    <td>AOL browser (AOL desktop)</td>
-                                    <td>Win XP</td>
-                                    <td class="center">6</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Firefox 1.0</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td class="center">1.7</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Firefox 1.5</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td class="center">1.8</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Firefox 2.0</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td class="center">1.8</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Firefox 3.0</td>
-                                    <td>Win 2k+ / OSX.3+</td>
-                                    <td class="center">1.9</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Camino 1.0</td>
-                                    <td>OSX.2+</td>
-                                    <td class="center">1.8</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Camino 1.5</td>
-                                    <td>OSX.3+</td>
-                                    <td class="center">1.8</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Netscape 7.2</td>
-                                    <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                    <td class="center">1.7</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Netscape Browser 8</td>
-                                    <td>Win 98SE+</td>
-                                    <td class="center">1.7</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Netscape Navigator 9</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td class="center">1.8</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.0</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td class="center">1</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.1</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td class="center">1.1</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.2</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td class="center">1.2</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.3</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td class="center">1.3</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.4</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td class="center">1.4</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.5</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td class="center">1.5</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.6</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td class="center">1.6</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.7</td>
-                                    <td>Win 98+ / OSX.1+</td>
-                                    <td class="center">1.7</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Mozilla 1.8</td>
-                                    <td>Win 98+ / OSX.1+</td>
-                                    <td class="center">1.8</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Seamonkey 1.1</td>
-                                    <td>Win 98+ / OSX.2+</td>
-                                    <td class="center">1.8</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Gecko</td>
-                                    <td>Epiphany 2.20</td>
-                                    <td>Gnome</td>
-                                    <td class="center">1.8</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Webkit</td>
-                                    <td>Safari 1.2</td>
-                                    <td>OSX.3</td>
-                                    <td class="center">125.5</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Webkit</td>
-                                    <td>Safari 1.3</td>
-                                    <td>OSX.3</td>
-                                    <td class="center">312.8</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Webkit</td>
-                                    <td>Safari 2.0</td>
-                                    <td>OSX.4+</td>
-                                    <td class="center">419.3</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Webkit</td>
-                                    <td>Safari 3.0</td>
-                                    <td>OSX.4+</td>
-                                    <td class="center">522.1</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Webkit</td>
-                                    <td>OmniWeb 5.5</td>
-                                    <td>OSX.4+</td>
-                                    <td class="center">420</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Webkit</td>
-                                    <td>iPod Touch / iPhone</td>
-                                    <td>iPod</td>
-                                    <td class="center">420.1</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Webkit</td>
-                                    <td>S60</td>
-                                    <td>S60</td>
-                                    <td class="center">413</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Opera 7.0</td>
-                                    <td>Win 95+ / OSX.1+</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Opera 7.5</td>
-                                    <td>Win 95+ / OSX.2+</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Opera 8.0</td>
-                                    <td>Win 95+ / OSX.2+</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Opera 8.5</td>
-                                    <td>Win 95+ / OSX.2+</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Opera 9.0</td>
-                                    <td>Win 95+ / OSX.3+</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Opera 9.2</td>
-                                    <td>Win 88+ / OSX.3+</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Opera 9.5</td>
-                                    <td>Win 88+ / OSX.3+</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Opera for Wii</td>
-                                    <td>Wii</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Nokia N800</td>
-                                    <td>N800</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Presto</td>
-                                    <td>Nintendo DS browser</td>
-                                    <td>Nintendo DS</td>
-                                    <td class="center">8.5</td>
-                                    <td class="center">C/A<sup>1</sup>
-                                    </td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>KHTML</td>
-                                    <td>Konqureror 3.1</td>
-                                    <td>KDE 3.1</td>
-                                    <td class="center">3.1</td>
-                                    <td class="center">C</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>KHTML</td>
-                                    <td>Konqureror 3.3</td>
-                                    <td>KDE 3.3</td>
-                                    <td class="center">3.3</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>KHTML</td>
-                                    <td>Konqureror 3.5</td>
-                                    <td>KDE 3.5</td>
-                                    <td class="center">3.5</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>Tasman</td>
-                                    <td>Internet Explorer 4.5</td>
-                                    <td>Mac OS 8-9</td>
-                                    <td class="center">-</td>
-                                    <td class="center">X</td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>Tasman</td>
-                                    <td>Internet Explorer 5.1</td>
-                                    <td>Mac OS 7.6-9</td>
-                                    <td class="center">1</td>
-                                    <td class="center">C</td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>Tasman</td>
-                                    <td>Internet Explorer 5.2</td>
-                                    <td>Mac OS 8-X</td>
-                                    <td class="center">1</td>
-                                    <td class="center">C</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Misc</td>
-                                    <td>NetFront 3.1</td>
-                                    <td>Embedded devices</td>
-                                    <td class="center">-</td>
-                                    <td class="center">C</td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Misc</td>
-                                    <td>NetFront 3.4</td>
-                                    <td>Embedded devices</td>
-                                    <td class="center">-</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>Misc</td>
-                                    <td>Dillo 0.8</td>
-                                    <td>Embedded devices</td>
-                                    <td class="center">-</td>
-                                    <td class="center">X</td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>Misc</td>
-                                    <td>Links</td>
-                                    <td>Text only</td>
-                                    <td class="center">-</td>
-                                    <td class="center">X</td>
-                                </tr>
-                                <tr class="gradeX">
-                                    <td>Misc</td>
-                                    <td>Lynx</td>
-                                    <td>Text only</td>
-                                    <td class="center">-</td>
-                                    <td class="center">X</td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>Misc</td>
-                                    <td>IE Mobile</td>
-                                    <td>Windows Mobile 6</td>
-                                    <td class="center">-</td>
-                                    <td class="center">C</td>
-                                </tr>
-                                <tr class="gradeC">
-                                    <td>Misc</td>
-                                    <td>PSP browser</td>
-                                    <td>PSP</td>
-                                    <td class="center">-</td>
-                                    <td class="center">C</td>
-                                </tr>
-                                <tr class="gradeU">
-                                    <td>Other browsers</td>
-                                    <td>All others</td>
-                                    <td>-</td>
-                                    <td class="center">-</td>
-                                    <td class="center">U</td>
-                                </tr>
+                            <#list listPersonnel as personnel >
+                            <tr class="gradeX">
+                                <td>${personnel.preId}</td>
+                                <td>${personnel.prePhone}</td>
+                                <td>${personnel.preName}
+                                </td>
+                                <td>${personnel.preEmail}</td>
+                                <td class="center">
+                                   <#if personnel.preGender ==1>
+                                       男
+                                       <#else >
+                                         女
+                                   </#if>
+                                </td>
+                                <td class="center">
+                                     <#if personnel.preStatus ==1>
+                                       正常
+                                     <#else >
+                                        注销
+                                     </#if>
+                                </td>
+                                <td class="center">
+                                    <a data-toggle="modal"  class="btn btn-info btn-xs" href="/toUpdatePersonnel?preId=${personnel.preId}">编辑</a>
+                                   &nbsp;&nbsp;&nbsp;<a data-toggle="modal"  class="btn btn-info btn-xs"
+                                                        onclick="addPerRole(${personnel.preId}, ${personnel.preRoleId});"
+                                                        href="#modal-form-role">用户角色</a>
+                                </td>
+                            </tr>
+                            </#list>
+
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>渲染引擎</th>
-                                    <th>浏览器</th>
-                                    <th>平台</th>
-                                    <th>引擎版本</th>
-                                    <th>CSS等级</th>
+                                    <th>ID</th>
+                                    <th>手机号</th>
+                                    <th>姓名</th>
+                                    <th>邮箱</th>
+                                    <th>性别</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -480,34 +109,105 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>可编辑表格</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="table_data_tables.html#">选项1</a>
-                                </li>
-                                <li><a href="table_data_tables.html#">选项2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
+
+    </div>
+    <div id="modal-form" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h1>新增用户</h1>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm" action="/doAddPersonnels" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>手机号：</label>
+                            <div class="col-sm-8">
+                                <input name="prePhone" minlength="2" type="text" class="form-control" pattern="0?(13|14|15|18|17)[0-9]{9}" required="" aria-required="true">
+                            </div>
                         </div>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="">
-                            <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">添加行</a>
+                        <p align="center"  style="color: red" id="prePhones"></p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>密码：</label>
+                            <div class="col-sm-8">
+                                <input name="prePassword" minlength="2" type="password" class="form-control"  required="" aria-required="true">
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>姓名：</label>
+                            <div class="col-sm-8">
+                                <input name="preName" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">E-mail：</label>
+                            <div class="col-sm-8">
+                                <input id="cemail" type="email" class="form-control" name="preEmail"  aria-required="true">
+                            </div>
+                        </div>
+                        <p align="center"  style="color: red" id="preEmails"></p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">性别：</label>
+                            <div class="col-sm-8">
+                                <div class="radio">
+                                    <label><input type="radio" checked  value="1"  name="preGender">男</label>
+                                    <label><input type="radio" value="0" name="preGender">女</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状态：</label>
+                            <div class="col-sm-8">
+                                <div class="radio">
+                                    <label><input type="radio" checked  value="1" name="preStatus">正常</label>
+                                    <label><input type="radio" value="0"  name="preStatus">注销</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="modal-form-role" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h1>用户角色设置: <small id="userroles"></small></h1>
+                    <span style="color: red">如不选择权限，将会将角色默认为无</span>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t"  action="/doAddPerRole" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">请选择角色
+                            </label>
+                            <input type="hidden" name="preId" value="">
+                            <div class="col-sm-10">
+                                <#list listRole as role>
+                                    <div class="radio i-checks">
+                                        <label>
+                                            <input type="radio" name="roleId" value="${role.roleId}" > ${role.roleName}</label>
+                                    </div>
+                                </#list>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -516,8 +216,82 @@
     <!-- 全局js -->
     <script src="js/jquery.min.js?v=2.1.4"></script>
     <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript">
+        $(function(){
+                //验证手机号
+                $("[name='prePhone']").focus(function(){
+                    $("#prePhones").html('');
+                }).blur(function(){
+                    var prePhone = $("[name='prePhone']").val();
+                    if(prePhone !='' && prePhone !=null){
+                        var a = /0?(13|14|15|18|17)[0-9]{9}/;
+                       if(!a.test(prePhone)){
+                           $("#prePhones").append("请输入正确格式的手机号");
+                           $("[name='prePhone']").val('');
+                       }else {
+                           $.post("/ajaxCheckPhone",{"prePhone":prePhone},
+                                   function(prePhone){
+                                       if(prePhone){
+                                           $("#prePhones").append("手机号重复");
+                                           $("[name='prePhone']").val('');
+                                       }else{
+                                           $("#prePhones").append("手机号可以使用");
+                                       }
+                                   }
+                           )
+                       }
+                    }
+                });
+            //验证邮箱
+            $("[name='preEmail']").focus(function(){
+                $("#preEmails").html('');
+            }).blur(function(){
+                var preEmail = $("[name='preEmail']").val();
+                if(preEmail !='' && preEmail !=null){
+                    var a = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+                    if(!a.test(preEmail)){
+                        $("#preEmails").append("请输入正确格式的邮箱");
+                        $("[name='preEmail']").val('');
+                    }else {
+                        $.post("/ajaxCheckEmail",{"preEmail":preEmail},
+                                function(preEmail){
+                                    if(preEmail){
+                                        $("#preEmails").append("邮箱重复");
+                                        $("[name='preEmail']").val('');
+                                    }else{
+                                        $("#preEmails").append("邮箱可以使用");
+                                    }
+                                }
+                        )
+                    }
+                }
+            });
+        })
+    </script>
+    <script type="text/javascript">
+      function addPerRole(preId,preRoleId){
+          $("input[name='preId']").val(preId);
+          $("#userroles").html("");
+          if(preRoleId == 1){
+              $("#userroles").append("ID["+preId+"]:管理员");
+          }else if(preRoleId == 2){
+              $("#userroles").append("ID["+preId+"]:工程组长");
+          }else if(preRoleId == 3){
+              $("#userroles").append("ID["+preId+"]:信息员");
+          }else if(preRoleId == 4){
+              $("#userroles").append("ID["+preId+"]:安装工");
+          }else if(preRoleId == 5){
+              $("#userroles").append("ID["+preId+"]:库管员");
+          }else if(preRoleId == 6){
+              $("#userroles").append("ID["+preId+"]:政府人员");
+          }else {
+              $("#userroles").append("当前用户没用分配角色");
+          }
 
 
+         // $("#userroles").apend(preName);
+      }
+    </script>
 
     <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
 

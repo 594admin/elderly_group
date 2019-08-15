@@ -17,6 +17,7 @@ import java.util.List;
 
 @Service("PersonnelServiceImpl")
 public class PersonnelServiceImpl implements PersonnelService {
+
     @Autowired
     private PersonnelDao personnelDao;
 
@@ -33,7 +34,7 @@ public class PersonnelServiceImpl implements PersonnelService {
 
     @Override
     public boolean addPersonnel(Personnel personnel) {
-        return personnelDao.addPersonnel(personnel)>0;
+        return personnelDao.addPersonnel(personnel) > 0;
     }
 
     @Override
@@ -45,7 +46,7 @@ public class PersonnelServiceImpl implements PersonnelService {
     @Override
     public boolean checkEmail(String preEmail) {
         String checkEmail = personnelDao.checkEmail(preEmail);
-        return  checkEmail != null && !checkEmail.equals("");
+        return checkEmail != null && !checkEmail.equals("");
     }
 
     @Override
@@ -55,7 +56,7 @@ public class PersonnelServiceImpl implements PersonnelService {
 
     @Override
     public boolean updatePersonnel(Personnel personnel) {
-        return personnelDao.updatePersonnel(personnel)>0;
+        return personnelDao.updatePersonnel(personnel) > 0;
     }
 
     @Override
@@ -65,13 +66,14 @@ public class PersonnelServiceImpl implements PersonnelService {
 
     @Override
     public Integer checkEmailByPreId(String preEmail, Integer preId) {
-       return personnelDao.checkEmailByPreId(preEmail, preId);
+        return personnelDao.checkEmailByPreId(preEmail, preId);
     }
 
     @Override
     public boolean addPerRole(Integer roleId, Integer preId) {
         return personnelDao.addPerRole(roleId, preId) > 0;
     }
+
     @Override
     public int queryTeamId(Integer pre_id) {
         return personnelDao.queryTeamId(pre_id);

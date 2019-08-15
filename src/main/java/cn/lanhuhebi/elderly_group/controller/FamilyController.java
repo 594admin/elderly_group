@@ -33,7 +33,7 @@ public class FamilyController {
     public String initfamilylist(Model model){
         List<Family_team_area> family_teams = familyService.queryAllFamily();
         model.addAttribute("flist",family_teams);
-        return "familylist";
+        return "family/familylist";
     }
     //到查询所有户信息页面
     @RequestMapping("/tofamilylist")
@@ -44,14 +44,14 @@ public class FamilyController {
     @RequestMapping("/toaddfamily")
     public String toaddfamily(Model model){
         model.addAttribute("areas",areaService.queryAllXiaJiByShang(386910));
-        return "familyadd";
+        return "family/familyadd";
     }
     //添加户基础信息
     @RequestMapping(value = "/doaddfamilyfirst",method = RequestMethod.POST)
     public String doaddfamilyfirst(Family family,Model model,RedirectAttributes redirectAttributes){
         if(familyService.addFamFirst(family)>0){
             model.addAttribute("addmsg","添加户基础信息成功");
-            return "familyadd_equiment";
+            return "family/familyadd_equiment";
         }else{
             redirectAttributes.addFlashAttribute("addmsg","添加户基础信息失败");
             return "redirect:/toaddfamily";
@@ -74,11 +74,26 @@ public class FamilyController {
     }
     //ajax动态返回区域
     @RequestMapping(value = "/ajaxArea",method = RequestMethod.POST)
-    public void ajax(@RequestParam("area_id")Integer area_id, HttpServletResponse response){
-        List<Area> areas = areaService.queryAllXiaJiByShang(area_id);
-        AjaxUtils.jsonforward(areas,response);
+    public void ajax(@RequestParam(value = "area_id",required = false)Integer area_id,@RequestParam(value = "fly_name",required = false)String fly_name, HttpServletResponse response){
+       if(area_id!=null){
+           List<Area> areas = areaService.queryAllXiaJiByShang(area_id);
+           AjaxUtils.jsonforward(areas,response);
+       }
+       if(fly_name!=null){
+           Family family = this.familyService.queryOneByName(fly_name);
+           System.out.println(family+"*******************");
+           boolean flag;
+           if(family!=null){
+               flag=true;
+           }else{
+               flag=false;
+           }
+           AjaxUtils.jsonforward(flag,response);
+
+       }
+
     }
-    //ajax查询户名是否已经添加
+  /*  //ajax查询户名是否已经添加
     @RequestMapping(value ="/ajaxflyname",method = RequestMethod.POST)
     public void ajaxflyname(@RequestParam("fly_name")String fly_name,HttpServletResponse response){
         Family family = this.familyService.queryOneByName(fly_name);
@@ -92,7 +107,7 @@ public class FamilyController {
         AjaxUtils.jsonforward(flag,response);
 
 
-    }
+    }*/
 
 
 

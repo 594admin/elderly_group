@@ -12,7 +12,7 @@
     </select>
 
     <select id="queryOneByName" parameterType="java.lang.String" resultType="cn.lanhuhebi.elderly_group.model.pojo.Family">
-        select * from family where fly_name=3{fly_name}
+        select * from family where fly_name=#{fly_name}
     </select>
 
     <update id="updateFamilyStatus" parameterType="java.lang.Integer">

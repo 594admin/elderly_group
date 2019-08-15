@@ -18,7 +18,6 @@ import java.util.List;
  * @Date 2019/8/13
  * @Version 1.0
  **/
-
 @Controller
 public class EquipmentController {
 
@@ -38,4 +37,5 @@ public class EquipmentController {
         equipmentService.updateStock(equipment, liblogs, personnel);
         return "redirect:/eptlist";
     }
+
 }

@@ -125,7 +125,7 @@
                                 <br>
                                 <div>
                                     <span><b>数量: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
-                                    <div class="m-r-md inline" style="position: absolute; top: 90px;">
+                                    <div id="aa" class="m-r-md inline" style="position: absolute; top: 90px;">
                                         <input type="text" value="0" class="dial m-r-sm" data-fgColor="#1AB394"
                                                data-width="40" data-height="40" name="libNum"/>
                                         <span id="infos" class="help-block m-b-none"></span>
@@ -133,11 +133,8 @@
                                 </div>
                                 <br>
                                 <div>
-                                    <button id="cloze" onclick="cloze();" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button"
-                                            style="margin-left: 30px;">
-                                        <strong>关闭</strong></button>
-
-                                    <button id="sub" onclick="sub();" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit">
+                                    <button id="sub1" onclick="sub();" class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                                            type="button">
                                         <strong>保存</strong></button>
                                 </div>
                                 <br>
@@ -208,13 +205,17 @@
         $("input[name='eptStock']").val(eptstock)
     }
 
-    function cloze() {
-        $("#cloze").attr("display", "none")
-    }
-
     function sub() {
+        if ($("input[name='libNum']").val() == 0) {
+            $("#infos").html("请输入数值")
+            return;
+        }
         $("#upform").submit()
     }
+
+    $("aa").click(function () {
+        $("#infos").html("")
+    })
 </script>
 
 <!-- Chosen -->

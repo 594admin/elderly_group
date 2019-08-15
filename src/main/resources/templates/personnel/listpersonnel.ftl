@@ -191,7 +191,12 @@
                             <label class="col-sm-2 control-label">请选择角色
                             </label>
                             <input type="hidden" name="preId" value="">
+
                             <div class="col-sm-10">
+                                <div class="radio i-checks">
+                                    <label>
+                                        <input type="radio" name="roleId" value="0" >请选择</label>
+                                </div>
                                 <#list listRole as role>
                                     <div class="radio i-checks">
                                         <label>
@@ -271,7 +276,19 @@
     <script type="text/javascript">
       function addPerRole(preId,preRoleId){
           $("input[name='preId']").val(preId);
-          $("#userroles").html("");
+          $("#userroles").html('');
+          if(preRoleId!=null && preRoleId!=""){
+              $.post("/ajaxGetRole",{"preRoleId":preRoleId},function (result) {
+                  $("input[name='roleId'][value="+result+"]").attr("checked",true);
+              })
+          }else {
+              $("#userroles").append("当前用户没用分配角色");
+              $("input[name='roleId'][value='0']").attr("checked",true);
+          }
+
+
+
+         /* $("#userroles").html("");
           if(preRoleId == 1){
               $("#userroles").append("ID["+preId+"]:管理员");
           }else if(preRoleId == 2){
@@ -285,11 +302,9 @@
           }else if(preRoleId == 6){
               $("#userroles").append("ID["+preId+"]:政府人员");
           }else {
-              $("#userroles").append("当前用户没用分配角色");
-          }
 
+          }*/
 
-         // $("#userroles").apend(preName);
       }
     </script>
 

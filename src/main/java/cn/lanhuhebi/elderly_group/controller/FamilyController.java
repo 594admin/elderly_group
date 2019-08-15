@@ -73,7 +73,7 @@ public class FamilyController {
         return "redirect:/tofamilylist";
     }
     //ajax动态返回区域
-    @RequestMapping(value = "/ajaxArea",method = RequestMethod.POST)
+    @RequestMapping(value = "/ajax",method = RequestMethod.POST)
     public void ajax(@RequestParam(value = "area_id",required = false)Integer area_id,@RequestParam(value = "fly_name",required = false)String fly_name, HttpServletResponse response){
        if(area_id!=null){
            List<Area> areas = areaService.queryAllXiaJiByShang(area_id);
@@ -93,27 +93,6 @@ public class FamilyController {
        }
 
     }
-  /*  //ajax查询户名是否已经添加
-    @RequestMapping(value ="/ajaxflyname",method = RequestMethod.POST)
-    public void ajaxflyname(@RequestParam("fly_name")String fly_name,HttpServletResponse response){
-        Family family = this.familyService.queryOneByName(fly_name);
-        System.out.println(family+"*******************");
-        boolean flag;
-        if(family!=null){
-            flag=true;
-        }else{
-            flag=false;
-        }
-        AjaxUtils.jsonforward(flag,response);
-
-
-    }*/
-
-
-
-
-
-
 
 
 }

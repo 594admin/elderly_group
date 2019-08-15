@@ -132,4 +132,10 @@ public class PersonnelController {
         }
         return "redirect:/listPersonnels";
     }
+
+    @PostMapping(value = "/ajaxGetRole")
+    @ResponseBody
+    public Integer ajaxGetRole(Integer preRoleId){
+        return roleService.getRole(preRoleId).getRoleId();
+    }
 }

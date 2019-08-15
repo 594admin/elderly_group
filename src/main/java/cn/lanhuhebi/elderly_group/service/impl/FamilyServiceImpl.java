@@ -38,4 +38,14 @@ public class FamilyServiceImpl implements FamilyService {
         return false;
         }
     }
+
+    @Override
+    public int addFamFirst(Family family) {
+        return familyDao.addFamFirst(family);
+    }
+
+    @Override
+    public Family queryOneByName(String fly_name) {
+        return familyDao.queryOneByName(fly_name);
+    }
 }

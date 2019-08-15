@@ -2,8 +2,24 @@ package cn.lanhuhebi.elderly_group.model.dto;
 
 public class Family_team_area {
     private String fly_name,fly_phone,fly_IDcard,tem_name;
-    private  Integer fly_area_id;
+    private  Integer fly_area_id,fly_id,fly_status;
     private String cunweihui,jiedao,qu;
+
+    public Integer getFly_status() {
+        return fly_status;
+    }
+
+    public void setFly_status(Integer fly_status) {
+        this.fly_status = fly_status;
+    }
+
+    public Integer getFly_id() {
+        return fly_id;
+    }
+
+    public void setFly_id(Integer fly_id) {
+        this.fly_id = fly_id;
+    }
 
     public String getCunweihui() {
         return cunweihui;

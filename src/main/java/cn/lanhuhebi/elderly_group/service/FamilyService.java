@@ -12,7 +12,11 @@ public interface FamilyService {
     //删除用户
     boolean updateFamilyStatus(@Param("fly_id")Integer fly_id);
     //添加一条记录
-    boolean addFamily(@Param("family") Family family);
+    boolean addFamily( Family family);
+    //添加户基础信息
+    int addFamFirst(Family family);
+    //根据名字查询一条数据
+    Family queryOneByName(@Param("fly_name")String fly_name);
 
 
 }

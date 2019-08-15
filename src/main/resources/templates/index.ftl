@@ -65,10 +65,10 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="index_v1.html" data-index="0">户信息列表</a>
+                            <a class="J_menuItem" href="tofamilylist" >户信息列表</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v2.html">新增户信息</a>
+                            <a class="J_menuItem" href="/toaddfamily">新增户信息</a>
                         </li>
                         <!--<li>-->
                         <!--<a class="J_menuItem" href="index_v3.html">主页示例三</a>-->

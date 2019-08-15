@@ -6,6 +6,7 @@ import cn.lanhuhebi.elderly_group.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -71,5 +72,8 @@ public class PersonnelServiceImpl implements PersonnelService {
     @Override
     public boolean addPerRole(Integer roleId, Integer preId) {
         return personnelDao.addPerRole(roleId, preId)>0;
+
+    public int queryTeamId(Integer pre_id) {
+        return personnelDao.queryTeamId(pre_id);
     }
 }

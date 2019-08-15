@@ -7,8 +7,15 @@
     <select id="queryAllSheng" resultType="cn.lanhuhebi.elderly_group.model.pojo.Area">
         select * from area where area_level=1
     </select>
-    <select id="queryAllXiaByShang" parameterType="java.lang.Integer"  resultType="cn.lanhuhebi.elderly_group.model.pojo.Area">
-        SELECT * FROM AREA a, AREA b WHERE a.`areaid`=b.`parentid` AND a.`areaid`=#{areaid}
+    <select id="queryAllXiaByShang" parameterType="java.lang.Integer"  resultMap="Area">
+        SELECT * FROM AREA  WHERE area_parID =#{areaid}
     </select>
+
+    <resultMap id="Area" type="cn.lanhuhebi.elderly_group.model.pojo.Area">
+        <id column="area_id" property="areaId"/>
+        <result column="area_name" property="areaName"/>
+        <result column="area_level" property="areaLevel"/>
+        <result column="area_parID" property="areaParID"/>
+    </resultMap>
 
 </mapper>

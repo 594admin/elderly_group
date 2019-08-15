@@ -1,6 +1,7 @@
 package cn.lanhuhebi.elderly_group.dao;
 
 import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @Date 2019/8/12
  * @Version 1.0
  **/
+@Mapper
 public interface PersonnelDao {
     /**
      * 登录方法， 根据员工手机号或邮箱查询一条信息，手机号是唯一不重复的
@@ -86,5 +88,8 @@ public interface PersonnelDao {
      * @return
      */
     int addPerRole(@Param("roleId") Integer roleId,@Param("preId")Integer preId );
+
+    //查询所属小组id
+    int queryTeamId(@Param("pre_id")Integer pre_id);
 
 }

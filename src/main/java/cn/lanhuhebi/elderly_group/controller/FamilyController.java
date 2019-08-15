@@ -4,8 +4,8 @@ import cn.lanhuhebi.elderly_group.model.dto.Family_team_area;
 import cn.lanhuhebi.elderly_group.model.pojo.Area;
 import cn.lanhuhebi.elderly_group.model.pojo.Family;
 import cn.lanhuhebi.elderly_group.service.AreaService;
-import cn.lanhuhebi.elderly_group.service.EquipmentService;
 import cn.lanhuhebi.elderly_group.service.FamilyService;
+import cn.lanhuhebi.elderly_group.service.TeamService;
 import cn.lanhuhebi.elderly_group.util.AjaxUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +25,8 @@ public class FamilyController {
     @Resource
     private AreaService areaService;
     @Resource
-    private EquipmentService equipmentService;
+    private TeamService teamService;
+
 
 
     //初始化list页面
@@ -43,12 +44,14 @@ public class FamilyController {
     //去添加户信息第一步，添加户基础信息
     @RequestMapping("/toaddfamily")
     public String toaddfamily(Model model){
+        model.addAttribute("teams",this.teamService.queryAllTeam());
         model.addAttribute("areas",areaService.queryAllXiaJiByShang(386910));
         return "family/familyadd";
     }
     //添加户基础信息
     @RequestMapping(value = "/doaddfamilyfirst",method = RequestMethod.POST)
-    public String doaddfamilyfirst(Family family,Model model,RedirectAttributes redirectAttributes){
+    public String doaddfamilyfirst(Family family, Model model,RedirectAttributes redirectAttributes){
+        System.out.println(family.getFly_ispoor());
         if(familyService.addFamFirst(family)>0){
             model.addAttribute("addmsg","添加户基础信息成功");
             return "family/familyadd_equiment";
@@ -59,7 +62,6 @@ public class FamilyController {
 
 
     }
-
 
 
     //删除一条户信息
@@ -81,7 +83,6 @@ public class FamilyController {
        }
        if(fly_name!=null){
            Family family = this.familyService.queryOneByName(fly_name);
-           System.out.println(family+"*******************");
            boolean flag;
            if(family!=null){
                flag=true;
@@ -89,7 +90,6 @@ public class FamilyController {
                flag=false;
            }
            AjaxUtils.jsonforward(flag,response);
-
        }
 
     }

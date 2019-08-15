@@ -83,7 +83,9 @@
                                 </#if>
                                 </td>
                                 <td>
-                                    <a href="">编辑</a>
+                                    <a href=""><#if fl.fly_status==1>编辑
+                                                <#else >继续录入
+                                    </#if></a>
                                     <a onclick="return confirm('确认要删除该户吗?')" href="/deletefamily?fly_id=${fl.fly_id}">删除</a>
                                 </td>
                             </tr>

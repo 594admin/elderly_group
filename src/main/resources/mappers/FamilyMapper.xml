@@ -25,11 +25,21 @@
         #{fly_data1},#{fly_data2},#{fly_data3},#{fly_data4},#{fly_data5},#{fly_data6})
     </insert>
 
-    <insert id="addFamFirst" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Family">
+   <!-- <insert id="addFamFirst" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Family">
         insert into family (fly_id,fly_name,fly_area_id,fly_phone,fly_IDcard,fly_address,fly_doorNum,fly_birthday,fly_ispoor,fly_notes,fly_buldArea,fly_heatArea,fly_status,fly_tem_id) values
         (default ,#{fly_name},#{fly_area_id},#{fly_phone},#{fly_IDcard},#{fly_address},#{fly_doorNum},#{fly_birthday},#{fly_ispoor},#{fly_notes},#{fly_buldArea},
         #{fly_heatArea},2,#{fly_tem_id})
+    </insert>-->
+    <insert id="addFamFirst" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Family">
+        insert into family
+        <set>
+            <if test="fly_doorNum !=null and fly_doorNum!=''"> fly_doorNum=#{fly_doorNum},</if>
+            <if test="fly_ispoor !=null "> fly_ispoor=#{fly_ispoor},</if>
+            <if test="fly_notes !=null and fly_notes!=''"> fly_notes= #{fly_notes},</if>
+            fly_buldArea=#{fly_buldArea},
+            fly_heatArea=#{fly_heatArea},
+            fly_name=#{fly_name},fly_area_id=#{fly_area_id},fly_phone=#{fly_phone},fly_IDcard=#{fly_IDcard},
+            fly_address=#{fly_address},fly_birthday=#{fly_birthday},fly_tem_id=#{fly_tem_id},fly_status=2
+        </set>
     </insert>
-
-
 </mapper>

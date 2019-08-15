@@ -75,7 +75,7 @@
                                 <option value="DZW40" hassubinfo="true">DZW40</option>
                             </select>
                             &nbsp;
-                            <button value="确定" onclick="add()"></button>
+                            <button  onclick="add()">确定</button>
                         </div>
                     </div>
                     <table class="footable table table-stripped footable-loaded" data-page-size="8" data-filter="#filter">

@@ -72,8 +72,8 @@ public class PersonnelServiceImpl implements PersonnelService {
 
     @Override
     public boolean addPerRole(Integer roleId, Integer preId) {
-        return personnelDao.addPerRole(roleId, preId) > 0;
-    }
+        return personnelDao.addPerRole(roleId, preId)>0;
+}
 
     @Override
     public int queryTeamId(Integer pre_id) {

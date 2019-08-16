@@ -5,7 +5,6 @@ import cn.lanhuhebi.elderly_group.service.FeedbackService;
 import cn.lanhuhebi.elderly_group.util.TencentCOS;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,7 +42,7 @@ public class FeedbackController {
     //执行添加操作
     @RequestMapping("doAddFeedback")
     public String doAddStaff(Feedback feedback, @RequestParam("url") List<MultipartFile> url, Map<String, Object> map) throws Exception {
-        System.out.println("========");
+//        System.out.println("========");
         StringBuffer sb = new StringBuffer();
         String pic = "";
         File excelFile = null;
@@ -76,33 +75,36 @@ public class FeedbackController {
     }
 
     //修改
-    @RequestMapping("doUpdateStaff")
-    public String doUpdateStaff(@ModelAttribute Feedback feedback, @RequestParam(value = "file") MultipartFile multfile, Map<String, Object> map) throws Exception {
-
-        // 获取文件名
-        String fileName = multfile.getOriginalFilename();
-        if(fileName!=null&&!fileName.equals("")){
-            // 获取文件后缀
-            String prefix = fileName.substring(fileName.lastIndexOf("."));
-            // 用uuid作为文件名，防止生成的临时文件重复
-            final File excelFile = File.createTempFile("imagesFile-" + System.currentTimeMillis(), prefix);
-            // 将MultipartFile转为File
-            multfile.transferTo(excelFile);
-
-            //调用腾讯云工具上传文件
-            fileName = TencentCOS.uploadfile(excelFile);
-            feedback.setFbk_pic(fileName);
-
-            //程序结束时，删除临时文件
-            deleteFile(excelFile);
-            //存入图片名称，用于网页显示
-            map.put("imageName", fileName);
+    /*@RequestMapping("doUpdateStaff")
+    public String doUpdateStaff(@ModelAttribute Feedback feedback, @RequestParam(value = "file") List<MultipartFile> url, Map<String, Object> map) throws Exception {
+        StringBuffer sb = new StringBuffer();
+        String pic = "";
+        File excelFile = null;
+        for (int i=0;i<url.size();i++) {
+            if (url.get(i)!=null&&!url.get(i).isEmpty()) {
+                // 获取文件名
+                String fileName = url.get(i).getOriginalFilename();
+                // 获取文件后缀
+                String prefix = fileName.substring(fileName.lastIndexOf("."));
+                // 用uuid作为文件名，防止生成的临时文件重复
+                excelFile = File.createTempFile(String.valueOf(System.currentTimeMillis()),prefix);
+                // 将MultipartFile转为File
+                url.get(i).transferTo(excelFile);
+                //调用腾讯云工具上传文件
+                fileName = TencentCOS.uploadfile(excelFile);
+                sb.append(purl).append(fileName).append(",");
+            }
         }
+        pic = sb.substring(0, sb.length() - 1);
+        feedback.setFbk_pic(pic);
+        //程序结束时，删除临时文件
+        deleteFile(excelFile);
+        //存入图片名称，用于网页显示
+        map.put("imageName", pic);
         feedbackService.updateFeedback(feedback);
         //返回图片名称
-
         return "redirect:doListFeedback";
-    }
+    }*/
 
     /**
      * 删除临时文件

@@ -312,20 +312,6 @@
 
 </script>
 
-
-
-  <#--  <script>
-        var list=${'pic'};
-        alert(list);
-        if (list.size() > 0) {
-            $.each(list, function (i, p) {
-        for(var i=0;i<list.size();i++){
-        var p="https://sxd-1258987597.cos.ap-chengdu.myqcloud.com/dsBuffer.jpg";
-                document.getElementById("pic").src = p;
-        })
-        }
-    </script>-->
-
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function () {

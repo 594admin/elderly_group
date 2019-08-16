@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.PlanDao">
+
+    <!--查询到所有的年度计划 -->
+    <select id="queryAllAnnPlan" resultType="cn.lanhuhebi.elderly_group.model.dto.AnnPlan">
+        select anp_id,
+                area_name as anp_area,
+                anp_area_id,
+                anp_year,
+                anp_Rept_num,
+                anp_Sept_num
+              from annual_plan ap ,area a
+              where ap.anp_status=1
+              and ap.anp_area_id=a.area_id
+    </select>
+
+    <!-- 添加年度计划-->
+    <insert id="addAnnPlan" parameterType="cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan">
+        insert into annual_plan(anp_area_id,anp_year,anp_Sept_num,anp_Rept_num)
+          values (
+            #{anpAreaId},#{anpYear},#{anpSeptNum},#{anpReptNum}
+          )
+    </insert>
+
+    <!-- 添加月度计划-->
+    <insert id="addMonPlan" parameterType="cn.lanhuhebi.elderly_group.model.pojo.MonthlyPlan">
+        insert into monthly_plan values (
+          null,#{monYear},#{monCount},#{monSeptNum},#{monReptNum},SYSDATE(),1,#{monAreaId}
+        )
+    </insert>
+
+    <!--根据年度计划id查询年度计划-->
+    <select id="queryById" resultType="cn.lanhuhebi.elderly_group.model.dto.AnnPlan">
+        select anp_id,
+                area_name as anp_area,
+                anp_area_id,
+                anp_year,
+                anp_Rept_num,
+                anp_Sept_num
+              from annual_plan ap ,area a
+              where ap.anp_status=1
+              and ap.anp_area_id=a.area_id
+              and anp_id=#{anpId}
+    </select>
+
+    <!-- 修改年度计划-->
+    <update id="updateAnnPlan" parameterType="cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan" >
+        update annual_plan set anp_area_id =#{anpAreaId},
+        anp_year=#{anpYear},
+        anp_Rept_num=#{anpReptNum},
+        anp_Sept_num=#{anpSeptNum}
+        where anp_id=#{anpId}
+    </update>
+
+    <!--删除年度计划 -->
+    <update id="delAnnPlan">
+        update annual_plan set anp_status=0 where anp_year=#{anpYear} and anp_area_id=#{anpAreaId}
+    </update>
+
+    <!-- 删除月度计划-->
+    <update id="delMonPlan">
+        update monthly_plan set mon_status=0 where mon_year=#{monYear} and mon_area_id=#{monAreaId}
+    </update>
+
+    <!-- 查询某年某区的月度计划-->
+    <select id="queryAllMonPlan" resultType="cn.lanhuhebi.elderly_group.model.pojo.MonthlyPlan">
+        select mon_id,mon_Rept_num,mon_Sept_num from monthly_plan
+          where mon_area_id=#{monAreaId} and mon_year=#{anpYear}
+    </select>
+
+    <!-- 修改月度计划-->
+    <update id="updateMonPlan" parameterType="cn.lanhuhebi.elderly_group.model.pojo.MonthlyPlan">
+        update monthly_plan set mon_Sept_num=#{monSeptNum} ,mon_Rept_num=#{monReptNum}
+          where mon_id=#{monId}
+    </update>
+
+    <!--查询鹤壁市的区 -->
+    <select id="queryAllArea">
+        select * from `area` where  area_parID=386709
+    </select>
+
+</mapper>

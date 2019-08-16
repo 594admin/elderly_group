@@ -3,7 +3,7 @@ package cn.lanhuhebi.elderly_group.controller;
 import cn.lanhuhebi.elderly_group.model.dto.FeedbackVo;
 import cn.lanhuhebi.elderly_group.model.pojo.Feedback;
 import cn.lanhuhebi.elderly_group.service.FeedbackService;
-import cn.lanhuhebi.elderly_group.utils.TencentCOS;
+import cn.lanhuhebi.elderly_group.util.TencentCOS;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;

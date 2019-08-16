@@ -1,4 +1,4 @@
-package cn.lanhuhebi.elderly_group.utils;
+package cn.lanhuhebi.elderly_group.util;
 
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;

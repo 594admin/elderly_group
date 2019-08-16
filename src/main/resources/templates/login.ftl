@@ -9,7 +9,7 @@
 
 
     <title>鹤壁清洁能源管理平台</title>
-    <meta name="keywords" content="">
+    <meta name="keywords" content="鹤壁，清洁取暖，清洁能源，鹤壁清洁能源">
     <meta name="description" content="">
 
     <link rel="shortcut icon" href="img/logo.ico">

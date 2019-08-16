@@ -1,3 +1,4 @@
+<#--noinspection ALL-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
@@ -54,14 +55,14 @@
                     <div class="form-group" style="margin-left: 80px">
                         <div class="col-sm-12">
                             &nbsp;
-                            <select class="chosen-select" style="width:120px;height: 34px">
+                            <select class="chosen-select" style="width:120px;height: 34px" name="leixing">
                                 <option value="" hassubinfo="true">请选择产品类型</option>
                                 <option value="热风机" hassubinfo="true">热风机</option>
                                 <option value="生物质炉具" hassubinfo="true">生物质炉具</option>
                                 <option value="水机" hassubinfo="true">水机</option>
                             </select>
                             &nbsp;
-                            <select class="chosen-select" style="width:120px;height: 34px">
+                            <select class="chosen-select" style="width:120px;height: 34px" name="changjia">
                                 <option value="" hassubinfo="true">请选择厂家</option>
                                 <option value="海尔" hassubinfo="true">海尔</option>
                                 <option value="格力" hassubinfo="true">格力</option>
@@ -69,41 +70,48 @@
                                 <option value="中能北方" hassubinfo="true">中能北方</option>
                             </select>
                             &nbsp;
-                            <select class="chosen-select" style="width:120px;height: 34px">
+                            <select class="chosen-select" style="width:120px;height: 34px" name="xinghao">
                                 <option value="" hassubinfo="true">请选择型号</option>
                                 <option value="DZW39" hassubinfo="true">DZW39</option>
                                 <option value="DZW40" hassubinfo="true">DZW40</option>
                             </select>
                             &nbsp;
-                            <button  onclick="add()">确定</button>
                         </div>
                     </div>
-                    <table class="footable table table-stripped footable-loaded" data-page-size="8" data-filter="#filter">
-                        <thead>
-                        <tr>
-                            <th class="footable-sortable">产品类型<span class="footable-sort-indicator"></span></th>
-                            <th class="footable-sortable">厂家<span class="footable-sort-indicator"></span></th>
-                            <th class="footable-sortable">型号<span class="footable-sort-indicator"></span></th>
-                            <th class="footable-sortable">单价<span class="footable-sort-indicator"></span></th>
-                            <th class="footable-sortable">数量<span class="footable-sort-indicator"></span></th>
-                            <th class="footable-sortable">操作<span class="footable-sort-indicator"></span></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="gradeX footable-even" style="display: table-row;">
-                            <td><span class="footable-toggle"></span>Trident</td>
-                            <td>Internet Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td class="center">4</td>
-                            <td class="center">X</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div class="ibox-content">
+                        <div class="">
+                            <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">添加所选设备</a>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                            <tr>
+                                <th>类型</th>
+                                <th>厂家</th>
+                                <th>型号</th>
+                                <th>单价</th>
+                                <th>数量</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>类型</th>
+                                <th>厂家</th>
+                                <th>型号</th>
+                                <th>单价</th>
+                                <th>数量</th>
+                                <th>操作</th>
 
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-3">
-                        <button class="btn btn-primary" type="submit"><下一步></button>
+                        <button class="btn btn-primary" type="submit"><保存，下一步></button>
                     </div>
                 </div>
             </form>
@@ -191,24 +199,28 @@
 
         });
 
-        function fnClickAddRow() {
-            $('#editable').dataTable().fnAddData([
-                "Custom row",
-                "New row",
-                "New row",
-                "New row",
-                "New row"]);
-
-        }
     </script>
 
 
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
     <!--统计代码，可删除-->
 <script>
-    function add() {
+    function fnClickAddRow() {
+        var leixing=$("select[name=leixing]").val()
+        var changjia=$("select[name=changjia]").val()
+        var xinghao=$("select[name=xinghao]").val()
+        $('#editable').dataTable().fnAddData([
+            leixing,
+            changjia,
+            xinghao,
+            "12000",
+            '<input type="text"/>',
+            '<a onclick="$(\'#editable\').dataTable().Rows[this].Delete();" href="javascript:void(0);" class="btn btn-primary ">删除</a>']);
 
     }
+</script>
+<script>
+
 </script>
 
 </body>

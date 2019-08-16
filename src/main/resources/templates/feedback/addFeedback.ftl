@@ -125,11 +125,7 @@
                             </tr>
                             <tr>
                                 <th>手机号：</th>
-                                <td><input type="text" name="" maxlength="11" placeholder="手机号(必填)" style="width: 395px;height: 35px;" required></td>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <td></td>
+                                <td><input type="text" name=""  placeholder="手机号(必填)" pattern="[1]([3]|[5]|[6]|[7]|[8}|[9])[0-9]{9}" title="13、15、16、17、18或19开头的手机号码" style="width: 395px;height: 35px;" required></td>
                             </tr>
                             <tr>
                                 <th>上传图片</th>

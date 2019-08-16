@@ -525,15 +525,12 @@
                                     <td>${f.pre_phone}</td>
                                     <td>${f.fbk_data}</td>
                                     <td class="center">
-                                        <#list pic?keys as pk>
-                                            <#--<#assign map=pic[pk]>-->
-                                            <#--<#list map as p>-->
+                                        <#list f.fbk_pic?split(',') as pk>
                                             <#if f.fbk_pic??>
                                                 <img id="pic" src="${pk}" style="height: 45px; width: 80px;">
                                             <#else>
                                                 <img id="pic" src="">
                                             </#if>
-                                            <#--</#list>-->
                                         </#list>
                                     </td>
                                     <td class="center">${f.pre_name}</td>

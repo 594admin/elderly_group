@@ -1,6 +1,5 @@
 package cn.lanhuhebi.elderly_group.controller;
 
-import cn.lanhuhebi.elderly_group.model.dto.FeedbackVo;
 import cn.lanhuhebi.elderly_group.model.pojo.Feedback;
 import cn.lanhuhebi.elderly_group.service.FeedbackService;
 import cn.lanhuhebi.elderly_group.util.TencentCOS;
@@ -14,7 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import java.io.File;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class FeedbackController {
@@ -30,21 +30,7 @@ public class FeedbackController {
 //        if (fbk_person != null) {
 //            model.addAttribute("pageInfo", feedbackService.queryAllFeedbackByPage(pageNo, pageSize,fbk_person));
 //        }
-        List<String> sp = new ArrayList<>();
-        Map<Integer, List<String>> mpic = new HashMap<>();
-        List<FeedbackVo> fList = feedbackService.queryAllFeedback(fbk_person);
-        model.addAttribute("pageInfo", fList);
-        for (FeedbackVo f : fList) {
-            if (f.getFbk_pic()!=null) {
-                mpic.put(f.getFbk_id(), Arrays.asList(f.getFbk_pic().split(",")));
-//                List<String> pic = Arrays.asList(f.getFbk_pic().split(","));
-//                for (String s : pic) {
-//                    f.setFbk_pic(s);
-//                    sp.add(f.getFbk_pic());
-//                }
-            }
-        }
-        model.addAttribute("pic", mpic);
+        model.addAttribute("pageInfo", feedbackService.queryAllFeedback(fbk_person));
         return "feedback/listFeedback";
     }
 

@@ -1,6 +1,7 @@
 package cn.lanhuhebi.elderly_group.service;
 
 import cn.lanhuhebi.elderly_group.model.dto.Family_team_area;
+import cn.lanhuhebi.elderly_group.model.pojo.Equipment;
 import cn.lanhuhebi.elderly_group.model.pojo.Family;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,6 +18,8 @@ public interface FamilyService {
     int addFamFirst(Family family);
     //根据名字查询一条数据
     Family queryOneByName(@Param("fly_name")String fly_name);
+    //获得指定设备的价格
+    Equipment getEptPrice(Equipment equipment);
 
 
 }

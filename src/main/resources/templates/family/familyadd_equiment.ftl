@@ -46,34 +46,34 @@
                     <i class="fa fa-times"></i>
                 </a>
             </div>
+            <h3>设备采购信息</h3>
         </div>
-
         <div class="ibox-content">
-            <h5>设备采购信息</h5>
-            <form class="form-horizontal m-t" id="signupForm">
+            <form action="/dofamilyadd_img" class="form-horizontal m-t" id="signupForm">
+                <table id="caigou"></table>
+                <table id="price"></table>
                 <div class="form-group">
                     <div class="form-group" style="margin-left: 80px">
                         <div class="col-sm-12">
                             &nbsp;
-                            <select class="chosen-select" style="width:120px;height: 34px" name="leixing">
+                            <select class="chosen-select" style="width:120px;height: 34px" name="ept_type">
                                 <option value="" hassubinfo="true">请选择产品类型</option>
                                 <option value="热风机" hassubinfo="true">热风机</option>
                                 <option value="生物质炉具" hassubinfo="true">生物质炉具</option>
-                                <option value="水机" hassubinfo="true">水机</option>
                             </select>
                             &nbsp;
-                            <select class="chosen-select" style="width:120px;height: 34px" name="changjia">
+                            <select class="chosen-select" style="width:120px;height: 34px" name="ept_facty">
                                 <option value="" hassubinfo="true">请选择厂家</option>
-                                <option value="海尔" hassubinfo="true">海尔</option>
+                                <option value="长虹" hassubinfo="true">长虹</option>
                                 <option value="格力" hassubinfo="true">格力</option>
                                 <option value="美的" hassubinfo="true">美的</option>
-                                <option value="中能北方" hassubinfo="true">中能北方</option>
                             </select>
                             &nbsp;
-                            <select class="chosen-select" style="width:120px;height: 34px" name="xinghao">
+                            <select class="chosen-select" style="width:120px;height: 34px" name="ept_model" id="xinghao">
                                 <option value="" hassubinfo="true">请选择型号</option>
-                                <option value="DZW39" hassubinfo="true">DZW39</option>
-                                <option value="DZW40" hassubinfo="true">DZW40</option>
+                                <option value="DZW40(大)" hassubinfo="true">DZW40(大)</option>
+                                <option value="DZW40(小)" hassubinfo="true">DZW40(小)</option>
+                                <option value="DZW39(小)" hassubinfo="true">DZW39(小)</option>
                             </select>
                             &nbsp;
                         </div>
@@ -85,6 +85,7 @@
                         <table class="table table-striped table-bordered table-hover " id="editable">
                             <thead>
                             <tr>
+                                <th>设备Id</th>
                                 <th>类型</th>
                                 <th>厂家</th>
                                 <th>型号</th>
@@ -95,19 +96,44 @@
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>类型</th>
-                                <th>厂家</th>
-                                <th>型号</th>
-                                <th>单价</th>
-                                <th>数量</th>
-                                <th>操作</th>
-
-                            </tr>
-                            </tfoot>
                         </table>
-
+                    </div>
+                    <h3>付款及协议信息</h3>
+                    <div class="ibox-content">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>付款方式：</label>
+                            <div class="radio radio-info radio-inline">
+                                <input type="radio" id="inlineRadio1" value="0" name="purse_payMethod" checked="">
+                                <label for="inlineRadio1"> 现金 </label>
+                            </div>
+                            <div class="radio radio-inline">
+                                <input type="radio" id="inlineRadio2" value="1" name="purse_payMethod">
+                                <label for="inlineRadio2"> 转账 </label>
+                            </div>
+                            <div class="radio radio-inline">
+                                <input type="radio" id="inlineRadio2" value="2 name="purse_payMethod">
+                                <label for="inlineRadio2"> 支付宝 </label>
+                            </div>
+                        </div>
+                        <div class="form-group" id="data_1">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>付款时间：</label>
+                            <div class="input-group date">
+                                &nbsp;<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" name="purse_payDate" class="form-control" style="width: auto">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>收据编号：</label>
+                            <div class="col-sm-8">
+                                <input id="username" name="purse_receipt" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>安装协议：</label>
+                            <div class="col-sm-8">
+                                <input id="username" name="purse_instPtl" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                        </div>
                     </div>
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-3">
@@ -204,24 +230,45 @@
 
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
     <!--统计代码，可删除-->
-<script>
+    <script>
+        $("#xinghao").change(function() {
+            $("#price").empty()
+            var ept_type=$("select[name=ept_type]").val()
+            var ept_facty=$("select[name=ept_facty]").val()
+            var ept_model=$("select[name=ept_model]").val()
+            $.ajax({
+                type:"post",
+                url:"/ajax",
+                data:{"ept_type":ept_type,"ept_facty":ept_facty,"ept_model":ept_model},
+                success:function(returnData){
+                    $("#price").append("<tr><td><input type='hidden' name='ept_price' value='"+returnData.eptPrice+"'/></td></tr>")
+                    $("#price").append("<tr><td><input type='hidden' name='ept_id' value='"+returnData.eptId+"'/></td></tr>")
+                }
+            })
+        })
+    </script>
+    <script>
+
     function fnClickAddRow() {
-        var leixing=$("select[name=leixing]").val()
-        var changjia=$("select[name=changjia]").val()
-        var xinghao=$("select[name=xinghao]").val()
+        var ept_type=$("select[name=ept_type]").val()
+        var ept_facty=$("select[name=ept_facty]").val()
+        var ept_model=$("select[name=ept_model]").val()
+        var table = $('#editable').dataTable
+        var ept_price=$("input[name=ept_price]").val()
+        var ept_id=$("input[name=ept_id]").val()
         $('#editable').dataTable().fnAddData([
-            leixing,
-            changjia,
-            xinghao,
-            "12000",
-            '<input type="text"/>',
-            '<a onclick="$(\'#editable\').dataTable().Rows[this].Delete();" href="javascript:void(0);" class="btn btn-primary ">删除</a>']);
-
+            '<input style="border: 0;background-color: #f5f5f5" type="text" name="ept_id" value="'+ept_id+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_type" value="'+ept_type+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_facty" value="'+ept_facty+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_model" value="'+ept_model+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_price" value="'+ept_price+'"/>',
+            '<input  style="border: 0.5;background-color: #f5f5f5" type="number" name="mount"/>',
+            '<a onclick= "table.row($(this).parents(\'tr\')).remove().draw();" href="javascript:void(0);" class="btn btn-primary ">删除</a>']);
     }
-</script>
-<script>
 
 </script>
+
+
 
 </body>
 

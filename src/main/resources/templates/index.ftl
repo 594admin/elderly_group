@@ -359,7 +359,7 @@
                     <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">意见反馈管理</span><span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="basic_gallery.html">意见反馈列表</a>
+                        <li><a class="J_menuItem" href="/doListFeedback">意见反馈列表</a>
                         </li>
                         <!--<li><a class="J_menuItem" href="carousel.html">图片切换</a>-->
                         <!--</li>-->
@@ -473,7 +473,7 @@
                         </ul>
                     </li>
                     <li class="hidden-xs">
-                        <a href="index_v1.html" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i>
+                        <a href="#" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i>
                             购买</a>
                     </li>
                     <li class="dropdown hidden-xs">
@@ -489,7 +489,7 @@
             </button>
             <nav class="page-tabs J_menuTabs">
                 <div class="page-tabs-content">
-                    <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">首页</a>
+                    <a href="javascript:;" class="active J_menuTab" data-id="#">首页</a>
                 </div>
             </nav>
             <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
@@ -511,8 +511,8 @@
             <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="./html/index_v1.html?v=4.0"
-                    frameborder="0" data-id="index_v1.html" seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="./index_v1.html?v=4.0"
+                    frameborder="0" data-id="#" seamless></iframe>
         </div>
         <div class="footer">
             <div class="pull-right">&copy; 2014-2017 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>

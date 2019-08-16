@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.FeedbackDao">
+
+    <!--查询所有意见反馈-->
+    <select id="queryAllFeedback" resultType="FeedbackVo">
+        SELECT * FROM personnel p, feedback f WHERE p.`pre_id`=f.`fbk_person`
+        <if test="fbk_person!=null and fbk_person>0">
+            and f.fbk_person=#{fbk_person}
+        </if>
+        ORDER BY f.`fbk_creaDate` DESC
+    </select>
+
+    <!--根据用户编号查询意见反馈-->
+    <!--<select id="detailFeedback" resultType="FeedbackVo">-->
+        <!--select * from feedback-->
+        <!--<where>-->
+           <!---->
+        <!--</where>-->
+        <!--order by fbk_creaDate desc-->
+    <!--</select>-->
+
+    <!--添加意见反馈-->
+    <insert id="addFeedback">
+        insert into feedback values(default,#{fbk_person},#{fbk_data},#{fbk_pic},NOW())
+    </insert>
+
+    <!--修改意见反馈-->
+    <update id="updateFeedback">
+        update feedback
+        <trim prefix="set" suffixOverrides="," suffix="fbk_creaDate=NOW() where fbk_id=#{fbk_id}">
+            <if test="fbk_data!=null and fbk_data!=''">
+                fbk_data=#{fbk_data},
+            </if>
+            <if test="fbk_pic!=''">
+                fbk_pic=#{fbk_pic},
+            </if>
+        </trim>
+    </update>
+
+    <!--删除意见反馈-->
+    <delete id="deleteFeedback">
+        delete * from feedback where fbk_id=#{fbk_id}
+    </delete>
+
+    <!--根据编号查询意见反馈-->
+    <select id="detailFeedbackById" resultType="FeedbackVo">
+        select * from feedback where fbk_id=#{fbk_id}
+    </select>
+
+</mapper>

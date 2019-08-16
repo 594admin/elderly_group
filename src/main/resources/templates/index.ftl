@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +16,11 @@
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
 
-    <link rel="shortcut icon" href="../static/favicon.ico">
-    <link href="../static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="../static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="../static/css/animate.css" rel="stylesheet">
-    <link href="../static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -32,7 +33,7 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <span><img alt="image" class="img-circle" src="../static/img/profile_small.jpg"/></span>
+                        <span><img alt="image" class="img-circle" src="/img/profile_small.jpg"/></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
@@ -49,7 +50,7 @@
                             <li><a class="J_menuItem" href="mailbox.html">信箱</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="login.html">安全退出</a>
+                            <li><a href="login.ftl">安全退出</a>
                             </li>
                         </ul>
                     </div>
@@ -64,10 +65,10 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="/tofamilylist" data-index="0">户信息列表</a>
+                            <a class="J_menuItem" href="tofamilylist" >户信息列表</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v2.html">新增户信息</a>
+                            <a class="J_menuItem" href="/toaddfamily">新增户信息</a>
                         </li>
                         <!--<li>-->
                         <!--<a class="J_menuItem" href="index_v3.html">主页示例三</a>-->
@@ -92,7 +93,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="graph_echarts.html">设备列表</a>
+                            <a class="J_menuItem" href="/eptlist">设备列表</a>
                         </li>
                         <!--<li>-->
                         <!--<a class="J_menuItem" href="graph_flot.html">Flot</a>-->
@@ -246,7 +247,7 @@
                         <!--<li>-->
                             <!--<a href="#">登录注册相关 <span class="fa arrow"></span></a>-->
                             <!--<ul class="nav nav-third-level">-->
-                                <!--<li><a href="login.html" target="_blank">登录页面</a>-->
+                                <!--<li><a href="login.ftl" target="_blank">登录页面</a>-->
                                 <!--</li>-->
                                 <!--<li><a href="login_v2.html" target="_blank">登录页面v2</a>-->
                                 <!--</li>-->
@@ -268,7 +269,7 @@
                     <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">账号管理</span><span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="typography.html">账号列表</a>
+                        <li><a class="J_menuItem" href="/listPersonnels">账号列表</a>
                         </li>
                         <!--<li>-->
                             <!--<a href="#">字体图标 <span class="fa arrow"></span></a>-->
@@ -344,7 +345,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="table_basic.html">工程小组列表</a>
                         </li>
-                        <!--<li><a class="J_menuItem" href="familylist.ftl">DataTables</a>-->
+                        <!--<li><a class="J_menuItem" href="table_data_tables.html">DataTables</a>-->
                         <!--</li>-->
                         <!--<li><a class="J_menuItem" href="table_jqgrid.html">jqGrid</a>-->
                         <!--</li>-->
@@ -405,7 +406,7 @@
                             <li class="m-t-xs">
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="../static/img/a7.jpg">
+                                        <img alt="image" class="img-circle" src="/img/a7.jpg">
                                     </a>
                                     <div class="media-body">
                                         <small class="pull-right">46小时前</small>
@@ -419,7 +420,7 @@
                             <li>
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="../static/img/a4.jpg">
+                                        <img alt="image" class="img-circle" src="/img/a4.jpg">
                                     </a>
                                     <div class="media-body ">
                                         <small class="pull-right text-navy">25小时前</small>
@@ -508,11 +509,16 @@
                     </li>
                 </ul>
             </div>
-            <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            <a href="login.ftl" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
+<<<<<<< HEAD
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="./index_v1.html?v=4.0"
                     frameborder="0" data-id="#" seamless></iframe>
+=======
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/index_v1.html?v=4.0"
+                    frameborder="0" data-id="index_v1.html" seamless></iframe>
+>>>>>>> b76af5197d0b2e37dcc363a070966801b8947420
         </div>
         <div class="footer">
             <div class="pull-right">&copy; 2014-2017 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>
@@ -628,7 +634,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="../static/img/a1.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="/img/a1.jpg">
 
                                     <div class="m-t-xs">
                                         <i class="fa fa-star text-warning"></i>
@@ -646,7 +652,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="../static/img/a2.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="/img/a2.jpg">
                                 </div>
                                 <div class="media-body">
                                     HCY48之音乐大魔王会员专属皮肤已上线，快来一键换装拥有他，宣告你对华晨宇的爱吧！
@@ -658,7 +664,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="../static/img/a3.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="/img/a3.jpg">
 
                                     <div class="m-t-xs">
                                         <i class="fa fa-star text-warning"></i>
@@ -676,7 +682,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="../static/img/a4.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="/img/a4.jpg">
                                 </div>
 
                                 <div class="media-body">
@@ -689,7 +695,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="../static/img/a8.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="/img/a8.jpg">
                                 </div>
                                 <div class="media-body">
 
@@ -702,7 +708,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="../static/img/a7.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="/img/a7.jpg">
                                 </div>
                                 <div class="media-body">
                                     这哥们的新视频又来了，创意杠杠滴，帅炸了！
@@ -714,7 +720,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="../static/img/a3.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="/img/a3.jpg">
 
                                     <div class="m-t-xs">
                                         <i class="fa fa-star text-warning"></i>
@@ -732,7 +738,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="../static/img/a4.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="/img/a4.jpg">
                                 </div>
                                 <div class="media-body">
                                     我发起了一个投票 【你认为下午大盘会翻红吗？】
@@ -937,19 +943,18 @@
 </div>
 
 <!-- 全局js -->
-<script src="../static/js/jquery.min.js?v=2.1.4"></script>
-<script src="../static/js/bootstrap.min.js?v=3.3.6"></script>
-<script src="../static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="../static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="../static/js/plugins/layer/layer.min.js"></script>
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/js/plugins/layer/layer.min.js"></script>
 
 <!-- 自定义js -->
-<script src="../static/js/hplus.js?v=4.1.0"></script>
-<script type="text/javascript" src="../static/js/contabs.js"></script>
+<script src="/js/hplus.js?v=4.1.0"></script>
+<script type="text/javascript" src="/js/contabs.js"></script>
 
 <!-- 第三方插件 -->
-<script src="../static/js/plugins/pace/pace.min.js"></script>
-
+<script src="/js/plugins/pace/pace.min.js"></script>
 </body>
 
 </html>

@@ -17,6 +17,23 @@ public class Family {
             fly_data1,fly_data2,fly_data3,fly_data4,fly_data5,fly_data6;
     private Date fly_birthday;
 
+    private double fly_buldArea,fly_heatArea;
+
+    public double getFly_buldArea() {
+        return fly_buldArea;
+    }
+
+    public void setFly_buldArea(double fly_buldArea) {
+        this.fly_buldArea = fly_buldArea;
+    }
+
+    public double getFly_heatArea() {
+        return fly_heatArea;
+    }
+
+    public void setFly_heatArea(double fly_heatArea) {
+        this.fly_heatArea = fly_heatArea;
+    }
 
     public Integer getFly_id() {
         return fly_id;

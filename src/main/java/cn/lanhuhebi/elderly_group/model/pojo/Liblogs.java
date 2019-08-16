@@ -12,7 +12,7 @@ public class Liblogs {
     //出入库日志ID
     private Integer libId;
 
-    //操作类型
+    //操作类型 1: 出库; 2: 入库
     private Integer libType;
 
     //操作时间

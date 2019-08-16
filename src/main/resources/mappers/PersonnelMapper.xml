@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.PersonnelDao">
+    <select id="login" resultMap="personnel">
+        select pre_id,pre_name,pre_phone,pre_email,pre_password,pre_gender,pre_role_id
+         ,pre_status, pre_creaDate,pre_updaDate from personnel where pre_phone = #{account} or pre_email = #{account} and pre_status = 1 limit 1
+    </select>
+   <select id="getPersonnelOne" resultMap="personnel">
+        select pre_id,pre_name,pre_phone,pre_email,pre_password,pre_gender,pre_role_id
+         ,pre_status, pre_creaDate,pre_updaDate from personnel where pre_id = #{preId} limit 1
+    </select>
+
+    <select id="checkPhone" resultType="String">
+        select pre_id from personnel where pre_phone = #{prePhone}  limit 1
+    </select>
+
+    <select id="checkEmail" resultType="String">
+        select pre_id from personnel where pre_email = #{preEmail}  limit 1
+    </select>
+
+    <select id="checkPhoneByPreId" resultType="int">
+
+        SELECT IFNULL(
+        (select pre_status from personnel where pre_phone = #{prePhone}
+        and pre_id <![CDATA[!= ]]> #{preId} limit 1),2)
+
+
+
+
+    </select>
+
+    <select id="checkEmailByPreId" resultType="int">
+       SELECT IFNULL(
+        ( select pre_status from personnel where pre_email = #{preEmail}
+        and pre_id <![CDATA[!= ]]> #{preId} limit 1),2)
+
+    </select>
+
+
+
+
+    <select id="listPersonnel" resultMap="personnel">
+        select pre_id,pre_name,pre_phone,pre_email,pre_password,pre_gender,pre_role_id
+         ,pre_status, pre_creaDate,pre_updaDate from personnel
+         order by pre_creaDate desc
+    </select>
+
+    <insert id="addPersonnel" parameterType="Personnel">
+        insert into personnel
+          <set>
+              <if test="preName != null and preName !='' ">pre_name=#{preName},</if>
+              <if test="prePhone != null and prePhone !=''" >pre_phone=#{prePhone},</if>
+              <if test="preEmail != null and preEmail !=''">pre_email=#{preEmail},</if>
+              <if test="prePassword != null and prePassword !=''">pre_password=#{prePassword},</if>
+              <if test="preGender == 0 or preGender  == 1">pre_gender=#{preGender},</if>
+              <if test="preRoleId != null and preRoleId !=''">pre_role_id=#{preRoleId},</if>
+              <if test="preStatus == 0 or preStatus == 1 ">pre_status=#{preStatus},</if>
+              pre_creaDate = NOW()
+          </set>
+    </insert>
+
+
+    <insert id="updatePersonnel" parameterType="Personnel">
+        update  personnel
+        <set>
+            <if test="preName != null and preName !='' ">pre_name=#{preName},</if>
+            <if test="prePhone != null and prePhone !=''" >pre_phone=#{prePhone},</if>
+            <if test="preEmail != null and preEmail !=''">pre_email=#{preEmail},</if>
+            <if test="prePassword != null and prePassword !=''">pre_password=#{prePassword},</if>
+            <if test="preGender == 0 or preGender  == 1">pre_gender=#{preGender},</if>
+            <if test="preRoleId != null and preRoleId !=''">pre_role_id=#{preRoleId},</if>
+            <if test="preStatus == 0 or preStatus == 1 ">pre_status=#{preStatus},</if>
+            pre_updaDate = NOW()
+        </set>
+        where pre_id = #{preId}
+    </insert>
+
+    <update id="addPerRole">
+        update personnel set pre_role_id = #{roleId} where pre_id=#{preId} and pre_status = 1
+    </update>
+
+    <select id="queryTeamId" parameterType="java.lang.Integer" resultType="int">
+        SELECT m.`mem_id` FROM member m ,personnel p,team t WHERE m.`mem_tem_id`=t.`tem_id` AND p.`pre_id`=m.`mem_mem` AND p.`pre_id`=#{pre_id}
+    </select>
+
+    <resultMap id="personnel" type="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
+        <id column="pre_id" property="preId"/>
+        <result column="pre_name" property="preName"/>
+        <result column="pre_phone" property="prePhone"/>
+        <result column="pre_email" property="preEmail"/>
+        <result column="pre_password" property="prePassword"/>
+        <result column="pre_gender" property="preGender"/>
+        <result column="pre_role_id" property="preRoleId"/>
+        <result column="pre_status" property="preStatus"/>
+        <result column="pre_creaDate" property="preCreaDate"/>
+        <result column="pre_updaDate" property="preUpdaDate"/>
+    </resultMap>
+</mapper>

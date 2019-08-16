@@ -14,7 +14,11 @@
     <update id="updateStock" parameterType="Equipment">
         UPDATE equipment SET ept_stock = #{eptStock} WHERE ept_id = #{eptId}
     </update>
-    
+
+    <select id="getEptPrice" parameterType="Equipment" resultType="java.lang.String">
+        SELECT ept_price FROM equipment WHERE ept_type=#{eptType} AND ept_facty=#{eptFacty} AND ept_model=#{eptModel}
+    </select>
+
     <resultMap id="ept" type="Equipment">
         <result column="ept_id" property="eptId"/>
         <result column="ept_type" property="eptType"/>

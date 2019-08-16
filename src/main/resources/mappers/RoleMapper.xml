@@ -11,7 +11,9 @@
         select  <include refid="rol"/> from role
     </select>
 
-
+    <select id="getRole"  resultMap="role" >
+        select  <include refid="rol"/> from role where role_id = #{roleId}
+    </select>
 
 
     <resultMap id="role" type="Role" >

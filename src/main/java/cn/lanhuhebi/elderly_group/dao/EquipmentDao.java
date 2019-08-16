@@ -11,4 +11,6 @@ public interface EquipmentDao {
     int addEquipment(Equipment equipment);
 
     int updateStock(Equipment equipment);
+
+    double getEptPrice(Equipment equipment);
 }

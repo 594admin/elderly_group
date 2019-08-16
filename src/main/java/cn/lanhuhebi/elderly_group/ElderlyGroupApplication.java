@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @SpringBootApplication
 public class ElderlyGroupApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ElderlyGroupApplication.class, args);
     }

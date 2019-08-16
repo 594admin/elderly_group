@@ -29,8 +29,7 @@ public class loginController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Resource
-    private PersonnelService personnelService;
+
 
     /**
      * 去登录页面
@@ -63,7 +62,6 @@ public class loginController {
 
             //将员工对象传给页面
             Personnel personnel = (Personnel) subject.getPrincipal();
-            session.setAttribute("team_id",this.personnelService.queryTeamId(personnel.getPreId()));
             //将员工对象从Shiro内取出然后传给页面
             session.setAttribute("personnel", personnel);
             //登录成功

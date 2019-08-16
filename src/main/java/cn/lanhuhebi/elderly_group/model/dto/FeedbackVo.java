@@ -1,4 +1,5 @@
-package cn.lanhuhebi.elderly_group.model.pojo;
+package cn.lanhuhebi.elderly_group.model.dto;
+
 import java.sql.Timestamp;
 
 /**
@@ -7,7 +8,7 @@ import java.sql.Timestamp;
  * @Date 2019/8/11
  * @Version 1.0
  **/
-public class Feedback {
+public class FeedbackVo {
 
     //反馈ID
     private Integer fbk_id;
@@ -16,10 +17,10 @@ public class Feedback {
     private Integer fbk_person;
 
     //联系方式
-    private String fbk_phone;
+    private String pre_phone;
 
     //反馈人姓名
-    private String fbk_name;
+    private String pre_name;
 
     //反馈信息1
     private String fbk_data;
@@ -31,6 +32,7 @@ public class Feedback {
     private Timestamp fbk_creaDate;
 
     //get set 方法
+
     public Integer getFbk_id() {
         return fbk_id;
     }
@@ -47,20 +49,20 @@ public class Feedback {
         this.fbk_person = fbk_person;
     }
 
-    public String getFbk_phone() {
-        return fbk_phone;
+    public String getPre_phone() {
+        return pre_phone;
     }
 
-    public void setFbk_phone(String fbk_phone) {
-        this.fbk_phone = fbk_phone;
+    public void setPre_phone(String pre_phone) {
+        this.pre_phone = pre_phone;
     }
 
-    public String getFbk_name() {
-        return fbk_name;
+    public String getPre_name() {
+        return pre_name;
     }
 
-    public void setFbk_name(String fbk_name) {
-        this.fbk_name = fbk_name;
+    public void setPre_name(String pre_name) {
+        this.pre_name = pre_name;
     }
 
     public String getFbk_data() {
@@ -87,3 +89,4 @@ public class Feedback {
         this.fbk_creaDate = fbk_creaDate;
     }
 }
+

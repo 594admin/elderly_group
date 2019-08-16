@@ -48,7 +48,6 @@
             <scope>test</scope>
         </dependency>
 
-<<<<<<< HEAD
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -87,10 +86,7 @@
                     <artifactId>slf4j-log4j12</artifactId>
                 </exclusion>
             </exclusions>
-=======
-
-
-
+        </dependency>
 
         <!--Shiro权限认证 qyy-->
         <dependency>
@@ -98,12 +94,17 @@
             <artifactId>shiro-core</artifactId>
             <version>1.4.0</version>
         </dependency>
+
         <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.4.0</version>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>thymeleaf-extras-shiro</artifactId>
+            <version>1.2.1</version>
         </dependency>
-        <!--Shiro权限认证-->
+        <dependency>
+            <groupId>net.mingsoft</groupId>
+            <artifactId>shiro-freemarker-tags</artifactId>
+            <version>0.1</version>
+        </dependency>
 
         <!--腾讯短信认证 qyy-->
         <dependency>
@@ -119,13 +120,6 @@
             <optional>true</optional>
         </dependency>
         <!--ConfigurationProperties依赖 qyy-->
-        <!--json-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.41</version>
->>>>>>> b76af5197d0b2e37dcc363a070966801b8947420
-        </dependency>
     </dependencies>
 
     <build>

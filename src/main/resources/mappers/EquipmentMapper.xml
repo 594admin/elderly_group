@@ -15,8 +15,8 @@
         UPDATE equipment SET ept_stock = #{eptStock} WHERE ept_id = #{eptId}
     </update>
 
-    <select id="getEptPrice" parameterType="Equipment" resultType="java.lang.String">
-        SELECT ept_price FROM equipment WHERE ept_type=#{eptType} AND ept_facty=#{eptFacty} AND ept_model=#{eptModel}
+    <select id="getEptPrice" parameterType="Equipment" resultMap="ept">
+        SELECT ept_id, ept_price FROM equipment WHERE ept_type=#{eptType} AND ept_facty=#{eptFacty} AND ept_model=#{eptModel}
     </select>
 
     <resultMap id="ept" type="Equipment">

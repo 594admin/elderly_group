@@ -93,4 +93,16 @@ public class Equipment {
         return this.eptNum;
     }
 
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "eptId=" + eptId +
+                ", eptType='" + eptType + '\'' +
+                ", eptFacty='" + eptFacty + '\'' +
+                ", eptModel='" + eptModel + '\'' +
+                ", eptPrice=" + eptPrice +
+                ", eptStock=" + eptStock +
+                ", eptNum='" + eptNum + '\'' +
+                '}';
+    }
 }

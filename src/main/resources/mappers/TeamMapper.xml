@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.TeamDao">
+    <select id="queryAllTeam" resultMap="team">
+        SELECT t.`tem_id`,t.`tem_name` FROM team  t ORDER BY tem_id
+    </select>
+
+    <resultMap id="team" type="cn.lanhuhebi.elderly_group.model.pojo.Team">
+        <id property="temId" column="tem_id"/>
+        <result property="temName" column="tem_name"/>
+        <result property="temLead" column="tem_lead"/>
+        <result property="temCreaDate" column="tem_creaDate"/>
+        <result property="temCreator" column="tem_creator"/>
+    </resultMap>
+
+
+</mapper>

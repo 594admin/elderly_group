@@ -1,7 +1,9 @@
 package cn.lanhuhebi.elderly_group.service.impl;
 
+import cn.lanhuhebi.elderly_group.dao.EquipmentDao;
 import cn.lanhuhebi.elderly_group.dao.FamilyDao;
 import cn.lanhuhebi.elderly_group.model.dto.Family_team_area;
+import cn.lanhuhebi.elderly_group.model.pojo.Equipment;
 import cn.lanhuhebi.elderly_group.model.pojo.Family;
 import cn.lanhuhebi.elderly_group.service.FamilyService;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ public class FamilyServiceImpl implements FamilyService {
 
     @Resource
     private FamilyDao familyDao;
+    @Resource
+    private EquipmentDao equipmentDao;
     @Override
     public List<Family_team_area> queryAllFamily() {
 
@@ -47,5 +51,10 @@ public class FamilyServiceImpl implements FamilyService {
     @Override
     public Family queryOneByName(String fly_name) {
         return familyDao.queryOneByName(fly_name);
+    }
+
+    @Override
+    public Equipment getEptPrice(Equipment equipment) {
+        return equipmentDao.getEptPrice(equipment);
     }
 }

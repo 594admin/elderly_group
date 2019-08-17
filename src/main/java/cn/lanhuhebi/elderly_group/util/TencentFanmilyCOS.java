@@ -15,24 +15,24 @@ import com.qcloud.cos.region.Region;
 import java.io.File;
 import java.util.Random;
 
-public class TencentCOS {
+public class TencentFanmilyCOS {
     // 此处填写的存储桶名称
-   //private static final String bucketName = "five-1258991825";
-   private static final String bucketName = "sxd-1258987597";
+   private static final String bucketName = "five-1258991825";
+   // private static final String bucketName = "sxd-1258987597";
     // secretId
-    //private static final String secretId = "AKIDEl8oOptp9JONHGoSZjQ8bG5mJkawuRnz";
-    private static final String secretId = "AKID0rhIdkTJlzeGdlnojPqc9QSEhurYkA8r";
+    private static final String secretId = "AKIDEl8oOptp9JONHGoSZjQ8bG5mJkawuRnz";
+    //private static final String secretId = "AKID0rhIdkTJlzeGdlnojPqc9QSEhurYkA8r";
     // secretKey
-    private static final String secretKey = "gM1QwiKuELFtISVMzMTSCD7lBPQBk8GA";
-   //private static final String secretKey = "Fvb7W3f8a3Sl0DUukdaL4qfYWVRJEA4w";
+    //private static final String secretKey = "gM1QwiKuELFtISVMzMTSCD7lBPQBk8GA";
+   private static final String secretKey = "Fvb7W3f8a3Sl0DUukdaL4qfYWVRJEA4w";
 
     // 1 初始化用户身份信息(secretId, secretKey，可在腾讯云后台中的API密钥管理中查看！
     private static COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
 
     // 2 设置bucket的区域, COS地域的简称请参照
     // https://cloud.tencent.com/document/product/436/6224，根据自己创建的存储桶选择地区
-    //private static ClientConfig clientConfig = new ClientConfig(new Region("ap-beijing"));
-    private static ClientConfig clientConfig = new ClientConfig(new Region("ap-chengdu"));
+    private static ClientConfig clientConfig = new ClientConfig(new Region("ap-beijing"));
+    //private static ClientConfig clientConfig = new ClientConfig(new Region("ap-chengdu"));
 
 
     /**

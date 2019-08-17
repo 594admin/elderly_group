@@ -83,8 +83,8 @@
                                 </#if>
                                 </td>
                                 <td>
-                                    <a href="/tosecond?fly_status=${fl.fly_status}"><#if fl.fly_status!=1>编辑
-                                                继续录入
+                                    <a href="/tosecond?fly_status=${fl.fly_status}&&fly_id=${fl.fly_id}"><#if fl.fly_status==1>编辑
+                                                <#else >继续录入
                                     </#if></a>
                                     <a onclick="return confirm('确认要删除该户吗?')" href="/deletefamily?fly_id=${fl.fly_id}">删除</a>
                                 </td>

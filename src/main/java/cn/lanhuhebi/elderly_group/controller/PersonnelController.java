@@ -133,6 +133,11 @@ public class PersonnelController {
         return "redirect:/listPersonnels";
     }
 
+    /**
+     * 判断用具是否重复
+     * @param preRoleId
+     * @return
+     */
     @PostMapping(value = "/ajaxGetRole")
     @ResponseBody
     public Integer ajaxGetRole(Integer preRoleId){

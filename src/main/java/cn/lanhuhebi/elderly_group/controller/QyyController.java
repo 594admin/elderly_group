@@ -1,40 +1,38 @@
 package cn.lanhuhebi.elderly_group.controller;
 
-import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
 /**
- * 登录
- * 除了登录页面“/” 、执行登录页面"/doLogin" shiro都拦截判断用户是否登录
- * 暂时没写权限认证
- * /logout 是shiro 做好的退出方法
+ * 以后可以删除
  */
 @Controller
-public class loginController {
+public class QyyController {
 
-    /**
-     * 去登录页面
-     *
-     * @return
-     */
-    @GetMapping(value = "/")
-    public String toLogin() {
+    @RequiresRoles(value = "1")
+    @RequestMapping("/testShiro")
+    public String testShiro(){
         return "login";
     }
 
+    @RequestMapping("/test")
+    public String textAuth(){
+        return "role/auth";
+    }
 
-    @PostMapping(value = "/doLogin")
+
+    @PostMapping(value = "/doAuth")
     public String doLogin(RedirectAttributes redirectAttributes,
                           @RequestParam(value = "account") String account,
                           @RequestParam(value = "password") String password, HttpSession session) {
@@ -50,22 +48,11 @@ public class loginController {
             redirectAttributes.addFlashAttribute("msg", "密码不正确");
         }
         if (subject.isAuthenticated()) {
-           if(subject.isPermitted("46")||subject.isPermitted("47")|| subject.isPermitted("48")||subject.isPermitted("49")
-                    ||subject.isPermitted("50")
-                ||subject.isPermitted("51")){
-                //将员工对象传给页面
-                Personnel personnel = (Personnel) subject.getPrincipal();
-                //将员工对象从Shiro内取出然后传给页面
-                session.setAttribute("personnel", personnel);
-                //登录成功
-                return "redirect:/info";
-            }else{
-                return "redirect:/notauth";
-            }
+            return "testAuto";
         } else {
             token.clear();
             //登录失败
-            return "redirect:/";
+            return "redirect:/test";
         }
     }
 

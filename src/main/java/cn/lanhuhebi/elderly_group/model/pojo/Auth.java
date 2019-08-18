@@ -16,6 +16,28 @@ public class Auth {
 
     //权限类型
     private Integer authType;
+    //权限平台  1、PC端 2、移动端
+    private Integer authDuan;
+    //上级菜单
+    private Integer authModel;
+
+    public Integer getAuthDuan() {
+        return authDuan;
+    }
+
+    public Auth setAuthDuan(Integer authDuan) {
+        this.authDuan = authDuan;
+        return this;
+    }
+
+    public Integer getAuthModel() {
+        return authModel;
+    }
+
+    public Auth setAuthModel(Integer authModel) {
+        this.authModel = authModel;
+        return this;
+    }
 
     //get set 方法
     public Auth setAuthId (Integer authId){

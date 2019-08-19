@@ -8,6 +8,7 @@ import cn.lanhuhebi.elderly_group.service.AreaService;
 import cn.lanhuhebi.elderly_group.service.FamilyService;
 import cn.lanhuhebi.elderly_group.service.TeamService;
 import cn.lanhuhebi.elderly_group.util.AjaxUtils;
+import cn.lanhuhebi.elderly_group.util.IdWorker;
 import cn.lanhuhebi.elderly_group.util.TencentFanmilyCOS;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,27 +51,39 @@ public class FamilyController {
     //去添加户信息第一步，添加户基础信息
     @RequestMapping("/toaddfamily")
     public String toaddfamily(Model model){
+        model.addAttribute("purse_num", IdWorker.getId());
         model.addAttribute("teams",this.teamService.queryAllTeam());
         model.addAttribute("areas",areaService.queryAllXiaJiByShang(386910));
         return "family/familyadd";
+    }
+    //去修改户信息
+    @RequestMapping("/toupdateFamily")
+    public String toupdateFamily(Model model,@RequestParam("fly_id")Integer fly_id){
+        model.addAttribute("teams",this.teamService.queryAllTeam());
+        model.addAttribute("family",this.familyService.queryOneById(fly_id));
+        return "family/familydetail";
     }
     //继续录入信息或者编辑已经完成录入信息
     @RequestMapping("/tosecond")
     public String tosecond(@RequestParam("fly_status")Integer fly_status,Model model,@RequestParam("fly_id")Integer fly_id){
         model.addAttribute("fly_id",fly_id);
         if(fly_status==2){
+
+            model.addAttribute("purse_num",IdWorker.getId());
             return "family/familyadd_equiment";
         }else if(fly_status==3){
+
             return "family/familyadd_img";
         }else{
-            return "";
+            return "/toupdateFamily";
         }
     }
     //添加户基础信息
     @RequestMapping(value = "/doaddfamilyfirst",method = RequestMethod.POST)
     public String doaddfamilyfirst(Family family, Model model,RedirectAttributes redirectAttributes){
-        System.out.println(family.getFly_ispoor());
         if(familyService.addFamFirst(family)>0){
+            model.addAttribute("fly_id",family.getFly_id());
+            model.addAttribute("purse_num",IdWorker.getId());
             model.addAttribute("addmsg","添加户基础信息成功");
             return "family/familyadd_equiment";
         }else{

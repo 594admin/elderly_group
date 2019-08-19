@@ -85,7 +85,7 @@
 </style>
 
 
-<form action="dofamilyadd_img" method="post" enctype="multipart/form-data">
+<form action="/dofamilyadd_img" method="post" enctype="multipart/form-data">
     <div class="wrapper wrapper-content animated fadeInRight">
 
         <div class="row">

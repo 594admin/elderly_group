@@ -32,7 +32,6 @@ public class PurchaseController {
 
         int i1 = this.purchaseService.addOnePurchase(purchase);
         Integer or_purse_id=purchase.getPurseId();
-        System.out.println(or_purse_id + "*************");
         Order order=new Order();
         for(int i=0;i<orEptId.size();i++){
             order.setOrEptId(orEptId.get(i));

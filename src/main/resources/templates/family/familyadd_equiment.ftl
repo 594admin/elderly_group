@@ -49,7 +49,7 @@
             <h3>设备采购信息</h3>
         </div>
         <div class="ibox-content">
-            <form action="/dofamilyadd_img" class="form-horizontal m-t" id="signupForm">
+            <form action="/tofamilyadd_img" class="form-horizontal m-t" id="signupForm">
                 <table id="caigou"></table>
                 <table id="price"></table>
                 <div class="form-group">

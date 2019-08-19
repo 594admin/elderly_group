@@ -8,16 +8,21 @@ import cn.lanhuhebi.elderly_group.service.AreaService;
 import cn.lanhuhebi.elderly_group.service.FamilyService;
 import cn.lanhuhebi.elderly_group.service.TeamService;
 import cn.lanhuhebi.elderly_group.util.AjaxUtils;
+import cn.lanhuhebi.elderly_group.util.TencentFanmilyCOS;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class FamilyController {
@@ -51,7 +56,8 @@ public class FamilyController {
     }
     //继续录入信息或者编辑已经完成录入信息
     @RequestMapping("/tosecond")
-    public String tosecond(@RequestParam("fly_status")Integer fly_status){
+    public String tosecond(@RequestParam("fly_status")Integer fly_status,Model model,@RequestParam("fly_id")Integer fly_id){
+        model.addAttribute("fly_id",fly_id);
         if(fly_status==2){
             return "family/familyadd_equiment";
         }else if(fly_status==3){
@@ -73,7 +79,70 @@ public class FamilyController {
         }
     }
     //添加资料
+    //执行添加操作
     @RequestMapping("/dofamilyadd_img")
+    public String doAddStaff( @RequestParam("fly_data1") MultipartFile fly_data1,
+                              @RequestParam("fly_data2") MultipartFile fly_data2,
+                              @RequestParam("fly_data3") MultipartFile fly_data3,
+                              @RequestParam("fly_data4") MultipartFile fly_data4,
+                              @RequestParam("fly_data5") MultipartFile fly_data5,
+                              @RequestParam("fly_data6") MultipartFile fly_data6,
+                              @RequestParam("fly_id")Integer fly_id,
+                              Map<String, Object> map) throws Exception {
+        List<MultipartFile> fly_datas=new ArrayList<>();
+        List<String> returnfileName=new ArrayList<>();
+        fly_datas.add(fly_data1);
+        fly_datas.add(fly_data2);
+        fly_datas.add(fly_data3);
+        fly_datas.add(fly_data4);
+        fly_datas.add(fly_data5);
+        fly_datas.add(fly_data6);
+        for(int i=0;i<fly_datas.size();i++){
+            // 获取文件名
+            String fileName = fly_datas.get(i).getOriginalFilename();
+            if(fileName!=null&&!fileName.equals("")){
+                // 获取文件后缀
+                String prefix = fileName.substring(fileName.lastIndexOf("."));
+                // 用uuid作为文件名，防止生成的临时文件重复
+                final File excelFile = File.createTempFile("imagesFile-" + System.currentTimeMillis(), prefix);
+                // 将MultipartFile转为File
+                fly_datas.get(i).transferTo(excelFile);
+                //调用腾讯云工具上传文件
+                fileName = TencentFanmilyCOS.uploadfile(excelFile);
+                fileName="https://five-1258991825.cos.ap-beijing.myqcloud.com/"+fileName;
+                returnfileName.add(fileName);
+                //程序结束时，删除临时文件
+                deleteFile(excelFile);
+                //存入图片名称，用于网页显示
+                map.put("imageName", fileName); }
+        }
+        Family family=new Family();
+        family.setFly_id(fly_id);
+        family.setFly_data1(returnfileName.get(0));
+        family.setFly_data2(returnfileName.get(1));
+        family.setFly_data3(returnfileName.get(2));
+        family.setFly_data4(returnfileName.get(3));
+        family.setFly_data5(returnfileName.get(4));
+        family.setFly_data6(returnfileName.get(5));
+        this.familyService.updateFamilyData(family);
+        return "redirect/initfamilylist";
+    }
+
+    /**
+     * 删除临时文件
+     *
+     * @param files
+     */
+    private void deleteFile(File... files) {
+        for (File file : files) {
+            if (file.exists()) {
+                file.delete();
+            }
+        }
+    }
+
+
+    @RequestMapping("/tofamilyadd_img")
     public String dofamilyadd_img(){
 
         return "family/familyadd_img";

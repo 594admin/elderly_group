@@ -85,7 +85,7 @@
 </style>
 
 
-<form action="doAddFeedback" method="post" enctype="multipart/form-data">
+<form action="dofamilyadd_img" method="post" enctype="multipart/form-data">
     <div class="wrapper wrapper-content animated fadeInRight">
 
         <div class="row">
@@ -126,7 +126,8 @@
                                                 <svg class="icon addImg" aria-hidden="true">
                                                     <use xlink:href="#icon-tianjiatupian"></use>
                                                 </svg>
-                                                <input name="url" type="file" class="upload_input" id="url1" onChange="preview(this)" >
+                                                <input required style="display: none" name="fly_data1" type="file" class="upload_input" id="url1"  onChange="preview(this)" >
+                                                <input type="hidden" name="fly_id" value="${fly_id}">
                                                 <div class="preview"></div>
                                                 <div class="click" onClick="loadImg(this)"></div>
                                                 <div class="delete" onClick="deleteImg(this)">
@@ -134,12 +135,13 @@
                                                         <use xlink:href="#icon-shanchu4"></use>
                                                     </svg>
                                                 </div>
+                                                <div align="center">身份证正面</div>
                                             </div>
                                             <div class="item">
                                                 <svg class="icon addImg" aria-hidden="true">
                                                     <use xlink:href="#icon-tianjiatupian"></use>
                                                 </svg>
-                                                <input name="url" type="file" id="url2" class="upload_input" onChange="preview(this)" >
+                                                <input required style="display: none" name="fly_data2" type="file" id="url2" class="upload_input" onChange="preview(this)" >
                                                 <div class="preview"></div>
                                                 <div class="click" onClick="loadImg(this)"></div>
                                                 <div class="delete" onClick="deleteImg(this)">
@@ -147,12 +149,13 @@
                                                         <use xlink:href="#icon-shanchu4"></use>
                                                     </svg>
                                                 </div>
+                                                <div align="center">身份证反面</div>
                                             </div>
                                             <div class="item">
                                                 <svg class="icon addImg" aria-hidden="true">
                                                     <use xlink:href="#icon-tianjiatupian"></use>
                                                 </svg>
-                                                <input name="url" type="file" id="url3" class="upload_input" onChange="preview(this)" >
+                                                <input required style="display: none" name="fly_data3" type="file" id="url3" class="upload_input" onChange="preview(this)" >
                                                 <div class="preview"></div>
                                                 <div class="click" onClick="loadImg(this)"></div>
                                                 <div class="delete" onClick="deleteImg(this)">
@@ -160,12 +163,13 @@
                                                         <use xlink:href="#icon-shanchu4"></use>
                                                     </svg>
                                                 </div>
+                                                <div align="center">户口本其他业</div>
                                             </div>
                                             <div class="item">
                                                 <svg class="icon addImg" aria-hidden="true">
                                                     <use xlink:href="#icon-tianjiatupian"></use>
                                                 </svg>
-                                                <input name="url" type="file" id="url4" class="upload_input" onChange="preview(this)" >
+                                                <input required style="display: none" name="fly_data4" type="file" id="url4" class="upload_input" onChange="preview(this)" >
                                                 <div class="preview"></div>
                                                 <div class="click" onClick="loadImg(this)"></div>
                                                 <div class="delete" onClick="deleteImg(this)">
@@ -173,12 +177,13 @@
                                                         <use xlink:href="#icon-shanchu4"></use>
                                                     </svg>
                                                 </div>
+                                                <div align="center">户口本主页</div>
                                             </div>
                                             <div class="item">
                                                 <svg class="icon addImg" aria-hidden="true">
                                                     <use xlink:href="#icon-tianjiatupian"></use>
                                                 </svg>
-                                                <input name="url" type="file" id="url5" class="upload_input" onChange="preview(this)" >
+                                                <input required style="display: none" name="fly_data5" type="file" id="url5" class="upload_input" onChange="preview(this)" >
                                                 <div class="preview"></div>
                                                 <div class="click" onClick="loadImg(this)"></div>
                                                 <div class="delete" onClick="deleteImg(this)">
@@ -186,12 +191,13 @@
                                                         <use xlink:href="#icon-shanchu4"></use>
                                                     </svg>
                                                 </div>
+                                                <div align="center">付款收据</div>
                                             </div>
                                             <div class="item">
                                                 <svg class="icon addImg" aria-hidden="true">
                                                     <use xlink:href="#icon-tianjiatupian"></use>
                                                 </svg>
-                                                <input name="url" type="file" id="url6" class="upload_input" onChange="preview(this)" >
+                                                <input required style="display: none" name="fly_data6" type="file" id="url6" class="upload_input" onChange="preview(this)" >
                                                 <div class="preview"></div>
                                                 <div class="click" onClick="loadImg(this)"></div>
                                                 <div class="delete" onClick="deleteImg(this)">
@@ -199,6 +205,7 @@
                                                         <use xlink:href="#icon-shanchu4"></use>
                                                     </svg>
                                                 </div>
+                                                <div align="center">安装协议</div>
                                             </div>
                                             <div style="clear: left;"></div>
                                         </article>
@@ -237,9 +244,7 @@
                             </tr>
                         </table>
                             <div class="" align="center">
-                                <#--<a &lt;#&ndash;onclick="fnClickAddRow();"&ndash;&gt; href="/doAddFeedback" class="btn btn-primary ">提交</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                                     <input type="submit" value="提交" id="tj" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a onclick="window.history.go(-1)" class="btn btn-primary ">返回</a>
                             </div>
 
                     </div>
@@ -286,13 +291,31 @@
         var u4 = $("#url4").val();
         var u5 = $("#url5").val();
         var u6 = $("#url6").val();
-        if (u1 === "") {
-            alert("图片不能为空！");
-            return false;
-        } /*else {
-            var msg=JSON.stringify({"u1":u1,"u2":u2,"u3":u3,"u4":u4,"u5":u5,"u6":u6});
-            $("form").attr("action", "doAddFeedback?url="+msg).submit();
-        }*/
+        if(u1 ==""){
+            alert("身份证正面不能为空")
+            return false
+        }
+        if(u2 ==""){
+            alert("身份证反面不能为空")
+            return false
+        }
+        if(u3 ==""){
+            alert("户口本其他页不能为空")
+            return false
+        }
+        if(u4 ==""){
+            alert("户口本主页不能为空")
+            return false
+        }
+        if(u5 ==""){
+            alert("付款收据不能为空")
+            return false
+        }
+        if(u6 ==""){
+            alert("安装协议不能为空")
+            return false
+        }
+
     })
 
 </script>

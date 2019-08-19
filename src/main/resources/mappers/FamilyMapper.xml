@@ -24,12 +24,6 @@
         #{fly_birthday},#{fly_ispoor},#{fly_notes},#{fly_tem_id},#{fly_buldArea},#{fly_heatArea},default ,#{fly_purse_id}
         #{fly_data1},#{fly_data2},#{fly_data3},#{fly_data4},#{fly_data5},#{fly_data6})
     </insert>
-
-   <!-- <insert id="addFamFirst" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Family">
-        insert into family (fly_id,fly_name,fly_area_id,fly_phone,fly_IDcard,fly_address,fly_doorNum,fly_birthday,fly_ispoor,fly_notes,fly_buldArea,fly_heatArea,fly_status,fly_tem_id) values
-        (default ,#{fly_name},#{fly_area_id},#{fly_phone},#{fly_IDcard},#{fly_address},#{fly_doorNum},#{fly_birthday},#{fly_ispoor},#{fly_notes},#{fly_buldArea},
-        #{fly_heatArea},2,#{fly_tem_id})
-    </insert>-->
     <insert id="addFamFirst" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Family">
         insert into family
         <set>
@@ -42,4 +36,10 @@
             fly_address=#{fly_address},fly_birthday=#{fly_birthday},fly_tem_id=#{fly_tem_id},fly_status=2
         </set>
     </insert>
+    <update id="updateFamilyData" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Family">
+        update family set  fly_data1=#{fly_data1},fly_data2=#{fly_data2},fly_data3=#{fly_data3},
+        fly_data4=#{fly_data4},fly_data5=#{fly_data5},fly_data6=#{fly_data6} ,fly_status=1 where fly_id=#{fly_id}
+    </update>
+
+
 </mapper>

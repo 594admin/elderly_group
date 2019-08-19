@@ -18,6 +18,9 @@ public interface FamilyDao {
     int addFamily(Family family);
     //添加户基础信息
     int addFamFirst(Family family);
+    //户资料上传
+    int updateFamilyData(Family family);
+
 
 
 

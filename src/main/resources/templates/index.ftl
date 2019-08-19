@@ -294,7 +294,7 @@
                                 <!--</li>-->
                             <!--</ul>-->
                         <!--</li>-->
-                        <li><a class="J_menuItem" href="buttons.html">角色列表</a>
+                        <li><a class="J_menuItem" href="/tolistrole">角色列表</a>
                         </li>
                         <!--<li><a class="J_menuItem" href="tabs_panels.html">选项卡 &amp; 面板</a>-->
                         <!--</li>-->

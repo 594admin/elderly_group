@@ -69,12 +69,12 @@
             <version>1.2.55</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.google.code.gson</groupId>-->
-            <!--<artifactId>gson</artifactId>-->
-            <!--<version>2.6.2</version>-->
-            <!--<scope>compile</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.6.2</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <groupId>com.qcloud</groupId>
@@ -91,19 +91,14 @@
         <!--Shiro权限认证 qyy-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
+            <artifactId>shiro-spring</artifactId>
             <version>1.4.0</version>
         </dependency>
 
         <dependency>
-            <groupId>com.github.theborakompanioni</groupId>
-            <artifactId>thymeleaf-extras-shiro</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-        <dependency>
             <groupId>net.mingsoft</groupId>
             <artifactId>shiro-freemarker-tags</artifactId>
-            <version>0.1</version>
+            <version>1.0.0</version>
         </dependency>
 
         <!--腾讯短信认证 qyy-->

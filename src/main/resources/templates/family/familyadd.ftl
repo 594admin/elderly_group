@@ -155,7 +155,9 @@
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-3">
                         <button class="btn btn-primary" type="submit"><保存,下一步></button>
+                        <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回主页></button></a>
                     </div>
+
                 </div>
             </form>
         </div>

@@ -57,4 +57,13 @@ public class Area {
         return this.areaParID;
     }
 
+    @Override
+    public String toString() {
+        return "Area{" +
+                "areaId=" + areaId +
+                ", areaName='" + areaName + '\'' +
+                ", areaLevel=" + areaLevel +
+                ", areaParID=" + areaParID +
+                '}';
+    }
 }

@@ -177,7 +177,7 @@
                     <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">计划任务管理</span><span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="contacts.html">计划任务分配</a>
+                        <li><a class="J_menuItem" href="/toAnpList">计划任务分配</a>
                         </li>
                         <li><a class="J_menuItem" href="profile.html">进度完成图表</a>
                         <!--</li>-->

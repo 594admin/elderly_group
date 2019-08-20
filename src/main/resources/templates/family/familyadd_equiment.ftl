@@ -49,7 +49,7 @@
             <h3>设备采购信息</h3>
         </div>
         <div class="ibox-content">
-            <form action="/dofamilyadd_img" class="form-horizontal m-t" id="signupForm">
+            <form action="/doAddPurchase" method="post" class="form-horizontal m-t" id="signupForm">
                 <table id="caigou"></table>
                 <table id="price"></table>
                 <div class="form-group">
@@ -60,6 +60,7 @@
                                 <option value="" hassubinfo="true">请选择产品类型</option>
                                 <option value="热风机" hassubinfo="true">热风机</option>
                                 <option value="生物质炉具" hassubinfo="true">生物质炉具</option>
+                                <option value="水机" hassubinfo="true">水机</option>
                             </select>
                             &nbsp;
                             <select class="chosen-select" style="width:120px;height: 34px" name="ept_facty">
@@ -67,13 +68,13 @@
                                 <option value="长虹" hassubinfo="true">长虹</option>
                                 <option value="格力" hassubinfo="true">格力</option>
                                 <option value="美的" hassubinfo="true">美的</option>
+                                <option value="中能北方" hassubinfo="true">中能北方</option>
                             </select>
                             &nbsp;
                             <select class="chosen-select" style="width:120px;height: 34px" name="ept_model" id="xinghao">
                                 <option value="" hassubinfo="true">请选择型号</option>
-                                <option value="DZW40(大)" hassubinfo="true">DZW40(大)</option>
-                                <option value="DZW40(小)" hassubinfo="true">DZW40(小)</option>
-                                <option value="DZW39(小)" hassubinfo="true">DZW39(小)</option>
+                                <option value="DZW40" hassubinfo="true">DZW40</option>
+                                <option value="DZW39" hassubinfo="true">DZW39</option>
                             </select>
                             &nbsp;
                         </div>
@@ -103,15 +104,15 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>付款方式：</label>
                             <div class="radio radio-info radio-inline">
-                                <input type="radio" id="inlineRadio1" value="0" name="purse_payMethod" checked="">
+                                <input type="radio" id="inlineRadio1" value="0" name="pursePayMethod" >
                                 <label for="inlineRadio1"> 现金 </label>
                             </div>
                             <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio2" value="1" name="purse_payMethod">
+                                <input type="radio" id="inlineRadio2" value="1" name="pursePayMethod">
                                 <label for="inlineRadio2"> 转账 </label>
                             </div>
                             <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio2" value="2 name="purse_payMethod">
+                                <input type="radio" id="inlineRadio2" value="2" name="pursePayMethod">
                                 <label for="inlineRadio2"> 支付宝 </label>
                             </div>
                         </div>
@@ -119,25 +120,31 @@
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>付款时间：</label>
                             <div class="input-group date">
                                 &nbsp;<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" name="purse_payDate" class="form-control" style="width: auto">
+                                <input type="text" name="pursePayDate" class="form-control" style="width: auto">
+
+
                             </div>
+                            <input type="hidden" name="purseFlyId" value="${fly_id}">
+                            <input type="hidden" name="purseNum" value="${purse_num}">
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>收据编号：</label>
                             <div class="col-sm-8">
-                                <input id="username" name="purse_receipt" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                <input id="username" name="purseReceipt" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>安装协议：</label>
                             <div class="col-sm-8">
-                                <input id="username" name="purse_instPtl" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                <input id="username" name="purseInstPtl" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                             </div>
                         </div>
                     </div>
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-3">
                         <button class="btn btn-primary" type="submit"><保存，下一步></button>
+                        <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回主页></button></a>
                     </div>
                 </div>
             </form>
@@ -257,12 +264,12 @@
         var ept_price=$("input[name=ept_price]").val()
         var ept_id=$("input[name=ept_id]").val()
         $('#editable').dataTable().fnAddData([
-            '<input style="border: 0;background-color: #f5f5f5" type="text" name="ept_id" value="'+ept_id+'"/>',
+            '<input style="border: 0;background-color: #f5f5f5" type="text" name="orEptId" value="'+ept_id+'"/>',
             '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_type" value="'+ept_type+'"/>',
             '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_facty" value="'+ept_facty+'"/>',
             '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_model" value="'+ept_model+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_price" value="'+ept_price+'"/>',
-            '<input  style="border: 0.5;background-color: #f5f5f5" type="number" name="mount"/>',
+            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="orEptPrice" value="'+ept_price+'"/>',
+            '<input  style="border: 0.5;background-color: #f5f5f5" type="number" name="orEptNum"/>',
             '<a onclick= "table.row($(this).parents(\'tr\')).remove().draw();" href="javascript:void(0);" class="btn btn-primary ">删除</a>']);
     }
 

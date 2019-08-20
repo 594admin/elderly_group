@@ -12,13 +12,75 @@
     </select>
 
     <select id="getRole"  resultMap="role" >
-        select  <include refid="rol"/> from role where role_id = #{roleId}
+        select  <include refid="rol"/> from role where role_id = #{roleId} limit 1
     </select>
+
+    <select id="getRoleByroleName"  resultMap="role" >
+        select  <include refid="rol"/> from role where role_name = #{roleName} limit 1
+    </select>
+
+    <insert id="addRole">
+        insert into role set role_name = #{roleName}
+    </insert>
+    
+    <select id="getAuthByRoleID" resultMap="auth">
+      SELECT sr.`role_id`,a.auth_id,a.`auth_name`,a.`auth_type`,a.`auth_duan`,a.`auth_model`
+              FROM sys_role_auth sr,auth a  WHERE  sr.`auth_id`=a.`auth_id`
+                AND sr.`role_id` = #{rlId} and a.auth_type = 1
+    </select>
+
+    <select id="getSysRoleAuthByRoleId" resultMap="auth">
+        SELECT a.`auth_id`,a.`auth_name`,a.`auth_type`,a.`auth_duan`,a.`auth_duan` FROM
+            sys_role_auth sr INNER JOIN auth a ON sr.`auth_id`=a.`auth_id`
+                WHERE role_id = #{rlId}
+    </select>
+
+
+    <insert id="addAuthsByRoleId" parameterType="java.util.Set" >
+        insert into sys_role_auth(role_id,auth_id)values
+        <foreach collection="collection" item="item" separator="," index="index">
+            (#{roleId},#{item})
+        </foreach>
+    </insert>
+
+    <delete id="deleteAuthsByRoleId" parameterType="java.util.Set">
+        delete from sys_role_auth where role_id=#{roleId} and auth_id in
+        <foreach collection="collection" item="item" open="(" separator="," close=")">
+               #{item}
+        </foreach>
+    </delete>
+
+
+
+    <select id="repeatSysRoleAuthByRoleId" resultType="int" >
+         SELECT auth_id FROM sys_role_auth WHERE role_id =#{roleId}
+    </select>
+
+
+
+
 
 
     <resultMap id="role" type="Role" >
         <id property="roleId" column="role_id"/>
         <result property="roleName" column="role_name" />
+        <collection property="listAuth"  ofType="Auth" resultMap="auth"/>
     </resultMap>
+    
+    <resultMap id="auth" type="Auth">
+        <id column="auth_id" property="authId"/>
+        <result column="auth_name" property="authName"/>
+        <result column="auth_type" property="authType"/>
+        <result column="auth_duan" property="authDuan"/>
+        <result column="auth_model" property="authModel"/>
+    </resultMap>
+
+    <resultMap id="sysRoleAuth" type="SysRoleAuth">
+        <result column="role_id" property="roleId"/>
+        <result column="auth_id" property="authId"/>
+    </resultMap>
+
+
+
 
 </mapper>

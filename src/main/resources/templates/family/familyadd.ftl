@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <title>H+ 后台主题UI框架 - 数据表格</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
-
     <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-
     <!-- Data Tables -->
     <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css?v=4.1.0" rel="stylesheet">
-
 </head>
-
 <body class="gray-bg">
     <div class="col-sm-12">
     <div class="ibox float-e-margins">
@@ -52,7 +43,7 @@
             <form class="form-horizontal m-t" id="signupForm" action="/doaddfamilyfirst" method="post">
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">区域：</label>
+                   <label class="col-sm-3 control-label"><span style="color: red">*</span>区域：</label>
                     <div class="col-sm-8">
                         &nbsp;
                         <select class="chosen-select" style="width:80px;height: 34px">
@@ -63,24 +54,24 @@
                             <option value="386709" hassubinfo="true">鹤壁市</option>
                         </select>
                         &nbsp;
-                        <select class="chosen-select" style="width:80px;height: 34px">
-                            <option value="386910" hassubinfo="true">淇滨区</option>
+                        <select class="chosen-select" style="width:80px;height: 34px" >
+                            <option value="386910" hassubinfo="true" >淇滨区</option>
                         </select>
                         &nbsp;
-                        <select  id='jiedao'class="chosen-select" style="width:80px;height: 34px">
+                        <select  id='jiedao'class="chosen-select" style="width:80px;height: 34px" required>
                             <option value="" hassubinfo="true">--请选择--</option>
                             <#list areas as a>
                                 <option value="${a.areaId?c}" name="jiedao" jiedaoname="${a.areaId?c}" hassubinfo="true">${a.areaName}</option>
                             </#list>
                         </select>
                         &nbsp;
-                        <select id='juweihui'class="chosen-select" name="fly_area_id" style="width:80px;height: 34px">
+                        <select id='juweihui'class="chosen-select" name="fly_area_id" style="width:80px;height: 34px" required>
                             <option value="" hassubinfo="true">--请选择--</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                <label class="col-sm-3 control-label">住址：</label>
+                   <label class="col-sm-3 control-label"><span style="color: red">*</span>住址：</label>
                     <div class="col-sm-8">
                         <input id="firstname" name="fly_address" class="form-control" type="text">
                     </div>
@@ -93,22 +84,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">户主姓名：</label>
+                    <label class="col-sm-3 control-label"><span style="color: red">*</span>户主姓名：</label>
                     <div class="col-sm-8">
-                        <input id="lastname" name="fly_name" class="form-control" type="text"  class="valid">
-                        <input type="hidden" name="fly_tem_id" value="${team_id}">
+                        <input id="lastname" name="fly_name" class="form-control" type="text" required class="valid">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">身份证号：</label>
+                   <label class="col-sm-3 control-label"><span style="color: red">*</span>身份证号：</label>
                     <div class="col-sm-8">
-                        <input id="username" name="fly_IDcard" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                        <input id="username" name="fly_IDcard" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                     </div>
                 </div>
 
 
                 <div class="form-group" id="data_1">
-                    <label class="col-sm-3 control-label">出生日期：</label>
+                  <label class="col-sm-3 control-label"><span style="color: red">*</span>出生日期：</label>
                     <div class="input-group date">
                         &nbsp;<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         <input type="text" name="fly_birthday" class="form-control" style="width: auto">
@@ -116,33 +106,45 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">联系电话：</label>
+                     <label class="col-sm-3 control-label"><span style="color: red">*</span>联系电话：</label>
                     <div class="col-sm-8">
-                        <input id="confirm_password" name="fly_phone" class="form-control" type="text">
+                        <input id="confirm_password" name="fly_phone" class="form-control" required type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">建筑面积：</label>
+                    <label class="col-sm-3 control-label"><span style="color: red">*</span>建筑面积：</label>
                     <div class="col-sm-8">
-                        <input id="confirm_password" placeholder="平方米" name="fly_buldArea" class="form-control" type="text">
+                        <input required id="confirm_password" placeholder="平方米" name="fly_buldArea" class="form-control" type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">采暖面积：</label>
+                    <label class="col-sm-3 control-label"><span style="color: red">*</span>采暖面积：</label>
                     <div class="col-sm-8">
-                        <input id="confirm_password" placeholder="平方米" name="fly_heatArea" class="form-control" type="text">
+                        <input required id="confirm_password" placeholder="平方米" name="fly_heatArea" class="form-control" type="text">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">是否贫困：</label>
-                <div class="radio radio-info radio-inline">
-                    <input type="radio" id="inlineRadio1" value="0" name="fly_ispoor" checked="">
-                    <label for="inlineRadio1"> 否 </label>
+                        <label class="col-sm-3 control-label">是否贫困：</label>
+                    <div class="radio radio-info radio-inline">
+                        <input type="radio" id="inlineRadio1" value="0" name="fly_ispoor" checked="">
+                        <label for="inlineRadio1"> 否 </label>
+                    </div>
+                    <div class="radio radio-inline">
+                        <input type="radio" id="inlineRadio2" value="1" name="fly_ispoor">
+                        <label for="inlineRadio2"> 是 </label>
+                    </div>
                 </div>
-                <div class="radio radio-inline">
-                    <input type="radio" id="inlineRadio2" value="1" name="fly_ispoor">
-                    <label for="inlineRadio2"> 是 </label>
-                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"><span style="color: red">*</span>工程小组：</label>
+                    <div class="col-sm-8">
+                        &nbsp;
+                        <select class="chosen-select" style="width:160px;height: 34px" name="fly_tem_id"">
+                            <option value="" hassubinfo="true">--请选择小组--</option>
+                            <#list teams as t>
+                                <option value="${t.temId}" hassubinfo="true">${t.temName}</option>
+                            </#list>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">备注：</label>
@@ -153,7 +155,9 @@
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-3">
                         <button class="btn btn-primary" type="submit"><保存,下一步></button>
+                        <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回主页></button></a>
                     </div>
+
                 </div>
             </form>
         </div>

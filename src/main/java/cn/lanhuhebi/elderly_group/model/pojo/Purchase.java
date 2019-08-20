@@ -1,4 +1,8 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -22,6 +26,8 @@ public class Purchase {
     private Integer pursePayMethod;
 
     //付款时间
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date pursePayDate;
 
     //收据单号
@@ -37,6 +43,7 @@ public class Purchase {
     private Integer purseDistId;
 
     //安装时间
+
     private Date purseInstDate;
 
     //设备编码
@@ -52,130 +59,117 @@ public class Purchase {
     private String pursePhoto;
 
     //get set 方法
-    public Purchase setPurseId (Integer purseId){
-        this.purseId=purseId;
-        return this;
+
+
+    public Integer getPurseId() {
+        return purseId;
     }
 
-    public Integer getPurseId(){
-        return this.purseId;
+    public void setPurseId(Integer purseId) {
+        this.purseId = purseId;
     }
 
-    public Purchase setPurseNum (String purseNum){
-        this.purseNum=purseNum;
-        return this;
+    public String getPurseNum() {
+        return purseNum;
     }
 
-    public String getPurseNum(){
-        return this.purseNum;
+    public void setPurseNum(String purseNum) {
+        this.purseNum = purseNum;
     }
 
-    public Purchase setPursePurseDate (Date pursePurseDate){
-        this.pursePurseDate=pursePurseDate;
-        return this;
+    public Date getPursePurseDate() {
+        return pursePurseDate;
     }
 
-    public Date getPursePurseDate(){
-        return this.pursePurseDate;
+    public void setPursePurseDate(Date pursePurseDate) {
+        this.pursePurseDate = pursePurseDate;
     }
 
-    public Purchase setPursePayMethod (Integer pursePayMethod){
-        this.pursePayMethod=pursePayMethod;
-        return this;
+    public Integer getPursePayMethod() {
+        return pursePayMethod;
     }
 
-    public Integer getPursePayMethod(){
-        return this.pursePayMethod;
+    public void setPursePayMethod(Integer pursePayMethod) {
+        this.pursePayMethod = pursePayMethod;
     }
 
-    public Purchase setPursePayDate (Date pursePayDate){
-        this.pursePayDate=pursePayDate;
-        return this;
+    public Date getPursePayDate() {
+        return pursePayDate;
     }
 
-    public Date getPursePayDate(){
-        return this.pursePayDate;
+    public void setPursePayDate(Date pursePayDate) {
+        this.pursePayDate = pursePayDate;
     }
 
-    public Purchase setPurseReceipt (String purseReceipt){
-        this.purseReceipt=purseReceipt;
-        return this;
+    public String getPurseReceipt() {
+        return purseReceipt;
     }
 
-    public String getPurseReceipt(){
-        return this.purseReceipt;
+    public void setPurseReceipt(String purseReceipt) {
+        this.purseReceipt = purseReceipt;
     }
 
-    public Purchase setPurseInstPtl (String purseInstPtl){
-        this.purseInstPtl=purseInstPtl;
-        return this;
+    public String getPurseInstPtl() {
+        return purseInstPtl;
     }
 
-    public String getPurseInstPtl(){
-        return this.purseInstPtl;
+    public void setPurseInstPtl(String purseInstPtl) {
+        this.purseInstPtl = purseInstPtl;
     }
 
-    public Purchase setPurseOutlibDate (Date purseOutlibDate){
-        this.purseOutlibDate=purseOutlibDate;
-        return this;
+    public Date getPurseOutlibDate() {
+        return purseOutlibDate;
     }
 
-    public Date getPurseOutlibDate(){
-        return this.purseOutlibDate;
+    public void setPurseOutlibDate(Date purseOutlibDate) {
+        this.purseOutlibDate = purseOutlibDate;
     }
 
-    public Purchase setPurseDistId (Integer purseDistId){
-        this.purseDistId=purseDistId;
-        return this;
+    public Integer getPurseDistId() {
+        return purseDistId;
     }
 
-    public Integer getPurseDistId(){
-        return this.purseDistId;
+    public void setPurseDistId(Integer purseDistId) {
+        this.purseDistId = purseDistId;
     }
 
-    public Purchase setPurseInstDate (Date purseInstDate){
-        this.purseInstDate=purseInstDate;
-        return this;
+    public Date getPurseInstDate() {
+        return purseInstDate;
     }
 
-    public Date getPurseInstDate(){
-        return this.purseInstDate;
+    public void setPurseInstDate(Date purseInstDate) {
+        this.purseInstDate = purseInstDate;
     }
 
-    public Purchase setPurseEptNo (String purseEptNo){
-        this.purseEptNo=purseEptNo;
-        return this;
+    public String getPurseEptNo() {
+        return purseEptNo;
     }
 
-    public String getPurseEptNo(){
-        return this.purseEptNo;
+    public void setPurseEptNo(String purseEptNo) {
+        this.purseEptNo = purseEptNo;
     }
 
-    public Purchase setPurseFlyId (Integer purseFlyId){
-        this.purseFlyId=purseFlyId;
-        return this;
+    public Integer getPurseFlyId() {
+        return purseFlyId;
     }
 
-    public Integer getPurseFlyId(){
-        return this.purseFlyId;
+    public void setPurseFlyId(Integer purseFlyId) {
+        this.purseFlyId = purseFlyId;
     }
 
-    public Purchase setPurseStatus (Integer purseStatus){
-        this.purseStatus=purseStatus;
-        return this;
+    public Integer getPurseStatus() {
+        return purseStatus;
     }
 
-    public Integer getPurseStatus(){
-        return this.purseStatus;
+    public void setPurseStatus(Integer purseStatus) {
+        this.purseStatus = purseStatus;
     }
 
-    public Purchase setPursePhoto (String pursePhoto){
-        this.pursePhoto=pursePhoto;
-        return this;
+    public String getPursePhoto() {
+        return pursePhoto;
     }
 
-    public String getPursePhoto(){
-        return this.pursePhoto;
+    public void setPursePhoto(String pursePhoto) {
+        this.pursePhoto = pursePhoto;
     }
-
 }

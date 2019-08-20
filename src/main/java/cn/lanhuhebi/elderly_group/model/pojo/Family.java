@@ -1,6 +1,9 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
 
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 /**
  * @ClassName Family
@@ -10,14 +13,16 @@ import java.sql.Date;
  **/
 public class Family {
 
-
+    //fly_status状态说明:0删除1完成2录入户基础信息3录入设备采购信息
     private Integer fly_id,fly_area_id,fly_ispoor,fly_tem_id,fly_status,
             fly_purse_id;
     private  String fly_name,fly_phone,fly_IDcard,fly_address,fly_doorNum,fly_notes,
             fly_data1,fly_data2,fly_data3,fly_data4,fly_data5,fly_data6;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fly_birthday;
 
-    private double fly_buldArea,fly_heatArea;
+    private Double fly_buldArea,fly_heatArea;
 
     public double getFly_buldArea() {
         return fly_buldArea;

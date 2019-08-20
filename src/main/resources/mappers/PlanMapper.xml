@@ -17,16 +17,16 @@
 
     <!-- 添加年度计划-->
     <insert id="addAnnPlan" parameterType="cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan">
-        insert into annual_plan(anp_area_id,anp_year,anp_Sept_num,anp_Rept_num)
+        insert into annual_plan(anp_area_id,anp_year,anp_Sept_num,anp_Rept_num,anp_updateDate)
           values (
-            #{anpAreaId},#{anpYear},#{anpSeptNum},#{anpReptNum}
+            #{anp_area_id},#{anp_year},#{anp_Sept_num},#{anp_Rept_num},SYSDATE()
           )
     </insert>
 
     <!-- 添加月度计划-->
     <insert id="addMonPlan" parameterType="cn.lanhuhebi.elderly_group.model.pojo.MonthlyPlan">
         insert into monthly_plan values (
-          null,#{monYear},#{monCount},#{monSeptNum},#{monReptNum},SYSDATE(),1,#{monAreaId}
+          null,#{mon_year},#{mon_count},default,default,SYSDATE(),1,#{mon_area_id}
         )
     </insert>
 
@@ -41,43 +41,50 @@
               from annual_plan ap ,area a
               where ap.anp_status=1
               and ap.anp_area_id=a.area_id
-              and anp_id=#{anpId}
+              and anp_id=#{anp_id}
     </select>
 
     <!-- 修改年度计划-->
     <update id="updateAnnPlan" parameterType="cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan" >
-        update annual_plan set anp_area_id =#{anpAreaId},
-        anp_year=#{anpYear},
-        anp_Rept_num=#{anpReptNum},
-        anp_Sept_num=#{anpSeptNum}
-        where anp_id=#{anpId}
+        update annual_plan set anp_area_id =#{anp_area_id},
+        anp_year=#{anp_year},
+        anp_Rept_num=#{anp_Rept_num},
+        anp_Sept_num=#{anp_Sept_num},
+        anp_updateDate=SYSDATE()
+        where anp_id=#{anp_id}
+    </update>
+    <!-- 修改年度计划的同时修改月度计划的部分参数-->
+    <update id="updateMplans" parameterType="cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan">
+        update monthly_plan set mon_year=#{year},mon_area_id=#{area_id},mon_updateDate=SYSDATE()
+        where mon_area_id=#{oldareaid} and mon_year=#{oldyear}
     </update>
 
     <!--删除年度计划 -->
     <update id="delAnnPlan">
-        update annual_plan set anp_status=0 where anp_year=#{anpYear} and anp_area_id=#{anpAreaId}
+        update annual_plan set anp_status=0 where anp_year=#{anp_year} and anp_area_id=#{anp_area_id}
     </update>
 
     <!-- 删除月度计划-->
     <update id="delMonPlan">
-        update monthly_plan set mon_status=0 where mon_year=#{monYear} and mon_area_id=#{monAreaId}
+        update monthly_plan set mon_status=0 where mon_year=#{mon_year} and mon_area_id=#{mon_area_id}
     </update>
 
     <!-- 查询某年某区的月度计划-->
     <select id="queryAllMonPlan" resultType="cn.lanhuhebi.elderly_group.model.pojo.MonthlyPlan">
-        select mon_id,mon_Rept_num,mon_Sept_num from monthly_plan
-          where mon_area_id=#{monAreaId} and mon_year=#{anpYear}
+        select mon_count,mon_id,mon_Rept_num,mon_Sept_num from monthly_plan
+          where mon_area_id=#{mon_area_id} and mon_year=#{anp_year}
     </select>
 
     <!-- 修改月度计划-->
     <update id="updateMonPlan" parameterType="cn.lanhuhebi.elderly_group.model.pojo.MonthlyPlan">
-        update monthly_plan set mon_Sept_num=#{monSeptNum} ,mon_Rept_num=#{monReptNum}
-          where mon_id=#{monId}
+        update monthly_plan set mon_Sept_num=#{mon_Sept_num} ,mon_Rept_num=#{mon_Rept_num},mon_updateDate=SYSDATE()
+          where mon_id=#{mon_id}
     </update>
 
     <!--查询鹤壁市的区 -->
-    <select id="queryAllArea">
-        select * from `area` where  area_parID=386709
+    <select id="queryAllArea" resultType="cn.lanhuhebi.elderly_group.model.pojo.Area">
+        select area_id as areaId ,area_name as areaName
+         from `area` where  area_parID=386709
     </select>
 
 </mapper>

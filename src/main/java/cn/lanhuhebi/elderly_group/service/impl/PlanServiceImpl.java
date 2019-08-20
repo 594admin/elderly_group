@@ -36,21 +36,25 @@ public class PlanServiceImpl implements PlanService {
         try{
             int n =planDao.addAnnPlan(annualPlan);
             if (n<1) {
+                System.out.println("年度计划添加异常");
                 throw  new Exception("年度计划添加异常");
             }
             for (int i = 1; i <13 ; i++) {
                 MonthlyPlan monthlyPlan=new MonthlyPlan();
-                monthlyPlan.setMonYear(annualPlan.getAnpYear());
-                monthlyPlan.setMonAreaId(annualPlan.getAnpAreaId());
-                monthlyPlan.setMonCount(i);
+                monthlyPlan.setMon_year(annualPlan.getAnp_year());
+                monthlyPlan.setMon_area_id(annualPlan.getAnp_area_id());
+                monthlyPlan.setMon_count(i);
                 int m=planDao.addMonPlan(monthlyPlan);
                 if (m<1){
-                    throw  new Exception("年度计划添加异常");
+                    System.out.println("月度计划添加异常");
+                    throw  new Exception("月度计划添加异常");
                 }
             }
             return 1;
         }catch (Exception e){
+
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            e.printStackTrace();
         }
         return -1;
     }
@@ -61,8 +65,20 @@ public class PlanServiceImpl implements PlanService {
     }
     @Override
     //修改年度计划
-    public int updateAnnPlan(AnnualPlan annualPlan) {
-        return planDao.updateAnnPlan(annualPlan);
+    @Transactional
+    public int updateAnnPlan(AnnualPlan annualPlan,String oleyear,Integer oldareaid) {
+        try{
+            int n =planDao.updateAnnPlan(annualPlan);
+            int m=planDao.updateMplans(oleyear,oldareaid,annualPlan.getAnp_year(),annualPlan.getAnp_area_id());
+            if(n<1||m<1){
+                throw new Exception("修改失败");
+            }
+            return 1;
+        }catch (Exception e){
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     /**

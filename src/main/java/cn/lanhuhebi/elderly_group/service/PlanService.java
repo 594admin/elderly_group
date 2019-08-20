@@ -21,7 +21,7 @@ public interface PlanService {
     AnnPlan queryById(Integer anp_id);
 
     //修改年度计划
-    int updateAnnPlan(AnnualPlan annualPlan);
+    int updateAnnPlan(AnnualPlan annualPlan,String oleyear,Integer oldareaid);
 
     //删除年度计划(事务处理),删除年度计划之后，对应年份的月度计划也删除
     int delAnnPlan(String anp_year, Integer anp_area_id);

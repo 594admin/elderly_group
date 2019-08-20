@@ -6,76 +6,76 @@ import java.util.Date;
 
 public class MonthlyPlan  {
 
-  private Integer monId;
-  private String monYear;
-  private Integer monCount;
-  private Integer monSeptNum;
-  private Integer monReptNum;
-  private Date monUpdateDate;
-  private Integer monStatus;
-  private Integer monAreaId;
+  private Integer mon_id;
+  private String mon_year;
+  private Integer mon_count;
+  private Integer mon_Sept_num;
+  private Integer mon_Rept_num;
+  private Date mon_updateDate;
+  private Integer mon_status;
+  private Integer mon_area_id;
 
-  public Integer getMonAreaId() {
-    return monAreaId;
+  public Integer getMon_id() {
+    return mon_id;
   }
 
-  public void setMonAreaId(Integer monAreaId) {
-    this.monAreaId = monAreaId;
+  public void setMon_id(Integer mon_id) {
+    this.mon_id = mon_id;
   }
 
-  public Integer getMonId() {
-    return monId;
+  public String getMon_year() {
+    return mon_year;
   }
 
-  public void setMonId(Integer monId) {
-    this.monId = monId;
+  public void setMon_year(String mon_year) {
+    this.mon_year = mon_year;
   }
 
-  public String getMonYear() {
-    return monYear;
+  public Integer getMon_count() {
+    return mon_count;
   }
 
-  public void setMonYear(String monYear) {
-    this.monYear = monYear;
+  public void setMon_count(Integer mon_count) {
+    this.mon_count = mon_count;
   }
 
-  public Integer getMonCount() {
-    return monCount;
+  public Integer getMon_Sept_num() {
+    return mon_Sept_num;
   }
 
-  public void setMonCount(Integer monCount) {
-    this.monCount = monCount;
+  public void setMon_Sept_num(Integer mon_Sept_num) {
+    this.mon_Sept_num = mon_Sept_num;
   }
 
-  public Integer getMonSeptNum() {
-    return monSeptNum;
+  public Integer getMon_Rept_num() {
+    return mon_Rept_num;
   }
 
-  public void setMonSeptNum(Integer monSeptNum) {
-    this.monSeptNum = monSeptNum;
+  public void setMon_Rept_num(Integer mon_Rept_num) {
+    this.mon_Rept_num = mon_Rept_num;
   }
 
-  public Integer getMonReptNum() {
-    return monReptNum;
+  public Date getMon_updateDate() {
+    return mon_updateDate;
   }
 
-  public void setMonReptNum(Integer monReptNum) {
-    this.monReptNum = monReptNum;
+  public void setMon_updateDate(Date mon_updateDate) {
+    this.mon_updateDate = mon_updateDate;
   }
 
-  public Date getMonUpdateDate() {
-    return monUpdateDate;
+  public Integer getMon_status() {
+    return mon_status;
   }
 
-  public void setMonUpdateDate(Date monUpdateDate) {
-    this.monUpdateDate = monUpdateDate;
+  public void setMon_status(Integer mon_status) {
+    this.mon_status = mon_status;
   }
 
-  public Integer getMonStatus() {
-    return monStatus;
+  public Integer getMon_area_id() {
+    return mon_area_id;
   }
 
-  public void setMonStatus(Integer monStatus) {
-    this.monStatus = monStatus;
+  public void setMon_area_id(Integer mon_area_id) {
+    this.mon_area_id = mon_area_id;
   }
 }

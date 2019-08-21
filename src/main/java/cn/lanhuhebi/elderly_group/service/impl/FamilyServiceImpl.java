@@ -2,9 +2,13 @@ package cn.lanhuhebi.elderly_group.service.impl;
 
 import cn.lanhuhebi.elderly_group.dao.EquipmentDao;
 import cn.lanhuhebi.elderly_group.dao.FamilyDao;
+import cn.lanhuhebi.elderly_group.dao.OrderDao;
+import cn.lanhuhebi.elderly_group.dao.PurchaseDao;
+import cn.lanhuhebi.elderly_group.model.dto.Family_purchase_order;
 import cn.lanhuhebi.elderly_group.model.dto.Family_team_area;
 import cn.lanhuhebi.elderly_group.model.pojo.Equipment;
 import cn.lanhuhebi.elderly_group.model.pojo.Family;
+import cn.lanhuhebi.elderly_group.model.pojo.Purchase;
 import cn.lanhuhebi.elderly_group.service.FamilyService;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +21,19 @@ public class FamilyServiceImpl implements FamilyService {
     private FamilyDao familyDao;
     @Resource
     private EquipmentDao equipmentDao;
+    @Resource
+    private PurchaseDao purchaseDao;
+    @Resource
+    private OrderDao orderDao;
     @Override
     public List<Family_team_area> queryAllFamily() {
 
         return familyDao.queryAllFamily();
+    }
+
+    @Override
+    public Family_team_area queryOneFamilyErea(Integer fly_id) {
+        return this.familyDao.queryOneFamilyErea(fly_id);
     }
 
     @Override
@@ -72,4 +85,15 @@ public class FamilyServiceImpl implements FamilyService {
     public int updateFamilyAddStatus(Integer fly_status, Integer fly_id) {
         return this.familyDao.updateFamilyAddStatus(fly_status,fly_id);
     }
+
+    @Override
+    public Purchase queryOneByPurchaseFlyId(Integer fly_id) {
+        return this.purchaseDao.queryOneByPurchaseFlyId(fly_id);
+    }
+
+    @Override
+    public  List<Family_purchase_order> queryAllOrder(Integer fly_id) {
+        return this.orderDao.queryAllOrder(fly_id);
+    }
+
 }

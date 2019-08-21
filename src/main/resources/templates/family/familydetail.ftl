@@ -118,14 +118,14 @@
                         </select>
                         &nbsp;
                         <select  id='jiedao'class="chosen-select" style="width:80px;height: 34px" required>
-                            <option value="" hassubinfo="true">--请选择--</option>
+                            <option value="" hassubinfo="true">${family_team.jiedao}</option>
                             <#list areas as a>
                                 <option value="${a.areaId?c}" name="jiedao" jiedaoname="${a.areaId?c}" hassubinfo="true">${a.areaName}</option>
                             </#list>
                         </select>
                         &nbsp;
                         <select id='juweihui'class="chosen-select" name="fly_area_id" style="width:80px;height: 34px" required>
-                            <option value="" hassubinfo="true">--请选择--</option>
+                            <option value="" hassubinfo="true">${family_team.cunweihui}</option>
                         </select>
                     </div>
                 </div>
@@ -197,7 +197,7 @@
                     <label class="col-sm-3 control-label"><span style="color: red">*</span>工程小组：</label>
                     <div class="col-sm-8">
                         &nbsp;
-                        <select class="chosen-select" style="width:160px;height: 34px" name="fly_tem_id"">
+                        <select class="chosen-select" style="width:160px;height: 34px"  name="fly_tem_id"">
                         <option value="" hassubinfo="true">--请选择小组--</option>
                             <#list teams as t>
                                 <option value="${t.temId}" hassubinfo="true" >${t.temName}</option>
@@ -256,6 +256,18 @@
                                     <th>数量</th>
                                     <th>操作</th>
                                 </tr>
+                                <#list listorder as lo>
+                                    <tr>
+                                        <th>${lo.oreptid}</th>
+                                        <th>${lo.epttype}</th>
+                                        <th>${lo.eptfacty}</th>
+                                        <th>${lo.eptmodel}</th>
+                                        <th>${lo.eptprice}</th>
+                                        <th>${lo.oreptnum}</th>
+                                        <th><a onclick= "" href="javascript:void(0);" class="btn btn-primary ">删除</a></th>
+
+                                    </tr>
+                                </#list>
                                 </thead>
                                 <tbody>
                                 </tbody>
@@ -266,15 +278,15 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span style="color: red">*</span>付款方式：</label>
                                 <div class="radio radio-info radio-inline">
-                                    <input type="radio" id="inlineRadio1" value="0" name="purse_payMethod" checked="">
+                                    <input type="radio" id="inlineRadio1" value="0" name="purse_payMethod"<#if purchase.pursePayMethod==0>checked</#if>>
                                     <label for="inlineRadio1"> 现金 </label>
                                 </div>
                                 <div class="radio radio-inline">
-                                    <input type="radio" id="inlineRadio2" value="1" name="purse_payMethod">
+                                    <input type="radio" id="inlineRadio2" value="1" name="purse_payMethod" <#if purchase.pursePayMethod==1>checked</#if>>
                                     <label for="inlineRadio2"> 转账 </label>
                                 </div>
                                 <div class="radio radio-inline">
-                                    <input type="radio" id="inlineRadio2" value="2 name="purse_payMethod">
+                                    <input type="radio" id="inlineRadio2" value="2 name="purse_payMethod" <#if purchase.pursePayMethod==2>checked</#if>>
                                     <label for="inlineRadio2"> 支付宝 </label>
                                 </div>
                             </div>
@@ -282,19 +294,19 @@
                                 <label class="col-sm-3 control-label"><span style="color: red">*</span>付款时间：</label>
                                 <div class="input-group date">
                                     &nbsp;<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    <input type="text" name="purse_payDate" class="form-control" style="width: auto">
+                                    <input type="text" name="purse_payDate" class="form-control" value="${purchase.pursePayDate?string('yyyy-MM-dd')}" style="width: auto">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span style="color: red">*</span>收据编号：</label>
                                 <div class="col-sm-8">
-                                    <input id="username" name="purse_receipt" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                    <input id="username" name="purse_receipt" required class="form-control" value="${purchase.purseReceipt}" type="text" aria-required="true" aria-invalid="true" class="error">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span style="color: red">*</span>安装协议：</label>
                                 <div class="col-sm-8">
-                                    <input id="username" name="purse_instPtl" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                                    <input id="username" name="purse_instPtl" required class="form-control" value="${purchase.purseInstPtl}" type="text" aria-required="true" aria-invalid="true" class="error">
                                 </div>
                             </div>
                         </div>
@@ -436,7 +448,7 @@
                     </tr>
                 </table>
                 <div class="" align="center">
-                    <input type="submit" value="提交" id="tj" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回列表></button></a>
                 </div>
 
             </div>
@@ -653,6 +665,13 @@
             '<a onclick= "table.row($(this).parents(\'tr\')).remove().draw();" href="javascript:void(0);" class="btn btn-primary ">删除</a>']);
     }
 </script>
+
+    <script>
+    //接收后台传递过来的数据页面回显
+    var param="${family.fly_tem_id}";
+    $("select[name=fly_tem_id]").find("option[value="+param+"]").attr('selected','selected');
+    </script>
+
 </body>
 
 </html>

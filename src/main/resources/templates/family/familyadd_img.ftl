@@ -245,7 +245,7 @@
                         </table>
                             <div class="" align="center">
                                     <input type="submit" value="提交" id="tj" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回主页></button></a>
+                                <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回列表></button></a>
                             </div>
 
                     </div>

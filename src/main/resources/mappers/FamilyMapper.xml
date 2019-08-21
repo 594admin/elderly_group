@@ -31,6 +31,8 @@
             fly_address=#{fly_address},fly_birthday=#{fly_birthday},fly_tem_id=#{fly_tem_id},fly_status=2
         </set>
     </insert>
+
+
     <update id="updateFamilyData" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Family">
         update family set  fly_data1=#{fly_data1},fly_data2=#{fly_data2},fly_data3=#{fly_data3},
         fly_data4=#{fly_data4},fly_data5=#{fly_data5},fly_data6=#{fly_data6} ,fly_status=1 where fly_id=#{fly_id}
@@ -39,6 +41,13 @@
     <select id="queryOneById" parameterType="java.lang.Integer" resultType="cn.lanhuhebi.elderly_group.model.pojo.Family">
         select * from family where fly_id=#{fly_id}
     </select>
+    <select id="queryOneFamilyErea" resultType="cn.lanhuhebi.elderly_group.model.dto.Family_team_area">
+        SELECT q.cunweihui ,q.jiedao,q.qu FROM family f ,team t ,(SELECT a5.`area_id`, a3.`area_name` qu,a4.`area_name` jiedao,a5.`area_name` cunweihui FROM
+        `area` a1,`area` a2,`area` a3 ,`area` a4,`area` a5 WHERE a1.`area_id`=a2.`area_parID` AND a2.`area_id`=a3.`area_parID` AND a3.`area_id`=a4.`area_parID`
+        AND a4.`area_id`=a5.`area_parID`) q WHERE f.`fly_tem_id`=t.`tem_id` AND f.`fly_status` in (1,2,3) AND q.`area_id`= f.`fly_area_id` and f.fly_id=#{fly_id}
+    </select>
+
+
 
     <update id="updateFamilyAddStatus" parameterType="java.lang.Integer">
         update family set fly_status=#{fly_status} where fly_id=#{fly_id}

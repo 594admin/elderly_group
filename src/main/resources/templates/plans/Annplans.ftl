@@ -106,7 +106,11 @@
                     <h3>新增区计划</h3>
                 </div>
                 <div class="ibox-content">
-                    <form class="form-horizontal m-t" id="commentForm" action="/doAddAnnPlan" method="post">
+                    <form class="form-horizontal m-t" id="commentFormaa" action="/doAddAnnPlan" method="post" >
+                        <div align="center">
+                            <p id="ams" style="color: red"></p>
+                            <input type="hidden" name="ccc" value="0"/>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">省</label>
                             <div class="col-sm-10">
@@ -166,8 +170,9 @@
                         <div align="center">
                             <#--<div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-3">-->
-                            <button class="btn btn-primary" type="submit">提交</button>
+                            <button class="btn btn-primary" type="button" onclick="checkAnnp()">提交</button>
                             <button class="btn btn-primary" type="reset">重置</button>
+                            <input type="submit" class="hidden" name="tijiao">
                             <#--    </div>
                             </div>-->
                         </div>
@@ -267,15 +272,6 @@
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
                         </a>
-                        <#--<a class="dropdown-toggle" data-toggle="dropdown" href="table_basic.html#">
-                            <i class="fa fa-wrench"></i>
-                        </a>-->
-                        <#--<ul class="dropdown-menu dropdown-user">
-                            <li><a href="table_basic.html#">选项1</a>
-                            </li>
-                            <li><a href="table_basic.html#">选项2</a>
-                            </li>
-                        </ul>-->
                         <a class="close-link">
                             <i class="fa fa-times"></i>
                         </a>
@@ -369,10 +365,29 @@
                     },"json"
                 );
             });
+
         })
+
 
     </script>
     <script type="text/javascript">
+        function checkAnnp() {
+            var anp_area_id=$("[name='anp_area_id']").val();
+            var anp_year=$("[name='anp_year']").val();
+            //alert(anp_area_id+"--"+anp_year);
+            $.post("/checkIsExistsAnnPlan",{"anp_area_id":anp_area_id,"anp_year":anp_year},
+                function(num){
+                    alert(num+"ffffffff");
+                    if(num == "0"){
+                        $("#ams").html("");
+                        $("[name='tijiao']").click();
+                        //$("form #commentFormaa").submit();
+                    }else{
+                        $("#ams").html("该计划已存在");
+                    }
+                },"json"
+            );
+        }
 
     </script>
 

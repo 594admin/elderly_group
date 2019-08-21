@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.PurchaseDao">
+
+    <insert id="addOnePurchase" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Purchase" useGeneratedKeys="true" keyProperty="purseId">
+        insert into purchase (purse_num,purse_purseDate,purse_payMethod,purse_payDate,purse_receipt,purse_instPtl,purse_fly_id) values (#{purseNum},Now(),#{pursePayMethod},#{pursePayDate},#{purseReceipt},#{purseInstPtl},#{purseFlyId})
+    </insert>
+
+
+</mapper>

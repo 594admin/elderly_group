@@ -57,6 +57,7 @@
                 </div>
                 <#if "msg??"><p class="text-muted text-center"><small style="color: red">${msg}</small></p></#if>
                 <button type="submit" name="login" class="btn btn-primary block full-width m-b">登 录</button>
+                <a href="/test">去测试权限页面</a>
             </form>
         </div>
     </div>

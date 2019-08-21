@@ -1,5 +1,7 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
 
+import java.util.List;
+
 /**
  * @ClassName Role
  * @Author Oblivion
@@ -13,6 +15,17 @@ public class Role {
 
     //角色名称
     private String roleName;
+
+    private List<Auth> listAuth;
+
+    public List<Auth> getListAuth() {
+        return listAuth;
+    }
+
+    public Role setListAuth(List<Auth> listAuth) {
+        this.listAuth = listAuth;
+        return this;
+    }
 
     //get set 方法
     public Role setRoleId (Integer roleId){

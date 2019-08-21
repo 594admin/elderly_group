@@ -57,4 +57,19 @@ public class FamilyServiceImpl implements FamilyService {
     public Equipment getEptPrice(Equipment equipment) {
         return equipmentDao.getEptPrice(equipment);
     }
+
+    @Override
+    public int updateFamilyData(Family family) {
+        return familyDao.updateFamilyData(family);
+    }
+
+    @Override
+    public Family queryOneById(Integer fly_id) {
+        return this.familyDao.queryOneById(fly_id);
+    }
+
+    @Override
+    public int updateFamilyAddStatus(Integer fly_status, Integer fly_id) {
+        return this.familyDao.updateFamilyAddStatus(fly_status,fly_id);
+    }
 }

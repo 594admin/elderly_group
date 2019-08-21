@@ -20,6 +20,12 @@ public interface FamilyService {
     Family queryOneByName(@Param("fly_name")String fly_name);
     //获得指定设备的价格
     Equipment getEptPrice(Equipment equipment);
+    //户资料上传
+    int updateFamilyData(Family family);
+    //根据主键id查询一个对象
+    Family queryOneById(@Param("fly_id")Integer fly_id);
+    //根据修改状态
+    int updateFamilyAddStatus(@Param("fly_status")Integer fly_status,@Param("fly_id")Integer fly_id);
 
 
 }

@@ -14,6 +14,9 @@ public interface PlanService {
     //查询所有的年度计划
     List<AnnPlan> queryAllAnnPlan();
 
+    //新增年度计划的时候，先查看有没有该区的该年的年度计划
+    int isExistsAnnplan(Integer anp_area_id,String anp_year);
+
     //添加年度计划（事务处理），新增年度计划的同时添加12个月份的月度计划，默认里面的是设备数量是0
     int addAnnPlan(AnnualPlan annualPlan);
 

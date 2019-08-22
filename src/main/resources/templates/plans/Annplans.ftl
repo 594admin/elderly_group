@@ -103,6 +103,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
+                    <div class="ibox-tools">
+                        <#--<a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>-->
+                        <#--  <a class="close-link" id="guanbi">
+                              <i class="fa fa-times"></i>
+                          </a>-->
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                    </div>
                     <h3>新增区计划</h3>
                 </div>
                 <div class="ibox-content">
@@ -186,6 +197,18 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
+
+                    <div class="ibox-tools">
+                        <#--<a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>-->
+                        <#--  <a class="close-link" id="guanbi">
+                              <i class="fa fa-times"></i>
+                          </a>-->
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                    </div>
                     <h3>更新区计划</h3>
                 </div>
                 <div class="ibox-content">
@@ -196,7 +219,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">省</label>
                             <div class="col-sm-10">
-                                <select class="form-control m-b" name="province">
+                                <select class="form-control m-b" name="province"  disabled="disabled">
                                     <option >河南省</option>
                                 </select>
                             </div>
@@ -205,7 +228,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">市</label>
                             <div class="col-sm-10">
-                                <select class="form-control m-b" name="city">
+                                <select class="form-control m-b" name="city"  disabled="disabled">
                                     <option>鹤壁市</option>
                                 </select>
                             </div>
@@ -214,7 +237,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">区</label>
                             <div class="col-sm-10">
-                                <select class="form-control m-b" name="xanp_area_id">
+                                <input type="hidden" name="xanp_area_id">
+                                <select class="form-control m-b" name="xanp_area_id1" disabled="disabled">
                                     <#list arealist as area >
                                         <option value="${area.areaId?c}">${area.areaName}</option>
                                     </#list>
@@ -225,7 +249,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">年度</label>
                             <div class="col-sm-10">
-                                <select class="form-control m-b" name="xanp_year">
+                                <input type="hidden" name="xanp_year">
+                                <select class="form-control m-b" name="xanp_year1" disabled="disabled">
                                     <option value="2019">2019</option>
                                     <option value="2020">2020</option>
                                     <option value="2021">2021</option>
@@ -252,7 +277,7 @@
                         <div align="center">
                             <#--<div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-3">-->
-                            <button class="btn btn-primary" type="submit">提交</button>
+                            <button class="btn btn-primary" type="submit"">提交</button>
                             <button class="btn btn-primary" type="reset">重置</button>
                             <#--    </div>
                             </div>-->
@@ -263,20 +288,24 @@
         </div>
     </div>
     <div id="modal-form2" class="modal fade" aria-hidden="true" align="center" >
-        <div class="ibox-content" >
+        <div align="center" style="padding-left: 28%">
         <div class="col-sm-6" style="width: auto" >
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>月度计划</h5>
                     <div class="ibox-tools">
-                        <a class="collapse-link">
+                        <#--<a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="close-link">
+                        </a>-->
+                      <#--  <a class="close-link" id="guanbi">
                             <i class="fa fa-times"></i>
-                        </a>
+                        </a>-->
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
                     </div>
                 </div>
+                <input type="hidden" ="quxiao" />
                 <div class="ibox-content"  style="text-align: center">
                     <form class="form-horizontal m-t" id="commentForm" action="/UpdateMonPlan" method="post">
                         <input type="hidden" name="annYear">
@@ -306,16 +335,19 @@
                 </div>
             </div>
         </div>
-
         </div>
     </div>
+
 
     <!-- 全局js -->
     <script src="js/jquery.min.js?v=2.1.4"></script>
     <script src="js/bootstrap.min.js?v=3.3.6"></script>
     <script type="text/javascript">
         $(function(){
-
+            $("#guanbi").click(function(){
+                alert("关闭");
+                $("#quxiao").click();$("#quxiao").click();
+            });
             $("[name ='shanchu']").click(function(){
                 if(confirm("确定要取消该年度计划吗?")){
                     var nian =$(this).attr("nian");
@@ -332,6 +364,8 @@
                     //alert(1);
                         $("[name='xanp_area_id']").val(xiugai.anp_area_id);
                         $("[name='xanp_year']").val(xiugai.anp_year);
+                        $("[name='xanp_area_id1']").val(xiugai.anp_area_id);
+                        $("[name='xanp_year1']").val(xiugai.anp_year);
                         $("[name='xanp_Sept_num']").val(xiugai.anp_Sept_num);
                         $("[name='xanp_Rept_num']").val(xiugai.anp_Rept_num);
                         $("[name='xanp_id']").val(xiugai.anp_id);
@@ -377,7 +411,6 @@
             //alert(anp_area_id+"--"+anp_year);
             $.post("/checkIsExistsAnnPlan",{"anp_area_id":anp_area_id,"anp_year":anp_year},
                 function(num){
-                    alert(num+"ffffffff");
                     if(num == "0"){
                         $("#ams").html("");
                         $("[name='tijiao']").click();
@@ -388,6 +421,7 @@
                 },"json"
             );
         }
+
 
     </script>
 

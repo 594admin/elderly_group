@@ -8,6 +8,16 @@
     <insert id="addOnePurchase" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Purchase" useGeneratedKeys="true" keyProperty="purseId">
         insert into purchase (purse_num,purse_purseDate,purse_payMethod,purse_payDate,purse_receipt,purse_instPtl,purse_fly_id) values (#{purseNum},Now(),#{pursePayMethod},#{pursePayDate},#{purseReceipt},#{purseInstPtl},#{purseFlyId})
     </insert>
+    <select id="queryOneByPurchaseFlyId" resultMap="Purchase">
+        SELECT p.`purse_payMethod`,p.`purse_receipt`,p.`purse_payDate`,p.`purse_instPtl`FROM purchase p,family f WHERE f.`fly_id`=p.`purse_fly_id` AND f.`fly_id`=#{fly_id}
+    </select>
 
+    <resultMap id="Purchase" type="cn.lanhuhebi.elderly_group.model.pojo.Purchase">
+        <id column="fly_id" property="purseId"/>
+        <result column="purse_payMethod" property="pursePayMethod"/>
+        <result column="purse_receipt" property="purseReceipt"/>
+        <result column="purse_payDate" property="pursePayDate"/>
+        <result column="purse_instPtl" property="purseInstPtl"/>
 
+    </resultMap>
 </mapper>

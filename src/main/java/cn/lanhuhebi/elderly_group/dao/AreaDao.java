@@ -10,4 +10,6 @@ public interface AreaDao {
     List<Area> queryAllSheng();
     //根据上级id查询所有下级
     List<Area> queryAllXiaByShang(@Param("areaid")Integer areaid);
+
+
 }

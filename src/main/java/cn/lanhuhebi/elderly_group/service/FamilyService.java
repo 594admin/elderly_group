@@ -32,6 +32,12 @@ public interface FamilyService {
     Purchase queryOneByPurchaseFlyId(@Param("fly_id")Integer fly_id);
 
     List<Family_purchase_order> queryAllOrder(@Param("fly_id") Integer fly_id);
+    //根据fly_if删除订单
+
+    int deleteOrderByFlyId(@Param("fly_id")Integer fly_id);
+    //根据fly_id删除一条记录
+
+    int deletePurchaseByFlyId(@Param("fly_id")Integer fly_id);
 
 
 }

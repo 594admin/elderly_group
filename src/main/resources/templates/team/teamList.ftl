@@ -302,7 +302,7 @@
                     "<input name=\"edt_installer\"  checked=\"checked\" type=\"checkbox\" value=\""+data[i].preId+"\"> <i></i> "+data[i].preName+"\n" +
                     "</label>\n" +
                     "</div>";
-                $("[name='anDiv']").append(obj);
+                $("[name='anDiv']").html(obj);
 
             }
         },"json");

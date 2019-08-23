@@ -10,6 +10,9 @@ public interface PurchaseDao {
     //查询一条数据
 
     Purchase queryOneByPurchaseFlyId(@Param("fly_id")Integer fly_id);
+    //根据fly_id删除一条记录
+
+    int deletePurchaseByFlyId(@Param("fly_id")Integer fly_id);
 
 
 }

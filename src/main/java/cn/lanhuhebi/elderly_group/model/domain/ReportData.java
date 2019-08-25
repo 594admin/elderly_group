@@ -22,31 +22,17 @@ public class ReportData {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date end;
 
+    /**
+     * 区域类型
+     */
+    private String areaType;
 
     /**
-     * 省ID
+     * 区域ID
      */
-    private Integer sheng;
+    private Integer areaId;
 
-    /**
-     * 市ID
-     */
-    private Integer shi;
 
-    /**
-     * 区ID
-     */
-    private Integer qv;
-
-    /**
-     * 街ID
-     */
-    private Integer jie;
-
-    /**
-     * 统计类型
-     */
-    private String areatype;
 
     public Date getStart() {
         return start;
@@ -64,44 +50,20 @@ public class ReportData {
         this.end = end;
     }
 
-    public Integer getSheng() {
-        return sheng;
+    public String getAreaType() {
+        return areaType;
     }
 
-    public void setSheng(Integer sheng) {
-        this.sheng = sheng;
+    public void setAreaType(String areaType) {
+        this.areaType = areaType;
     }
 
-    public Integer getShi() {
-        return shi;
+    public Integer getAreaId() {
+        return areaId;
     }
 
-    public void setShi(Integer shi) {
-        this.shi = shi;
-    }
-
-    public Integer getQv() {
-        return qv;
-    }
-
-    public void setQv(Integer qv) {
-        this.qv = qv;
-    }
-
-    public Integer getJie() {
-        return jie;
-    }
-
-    public void setJie(Integer jie) {
-        this.jie = jie;
-    }
-
-    public String getAreatype() {
-        return areatype;
-    }
-
-    public void setAreatype(String areatype) {
-        this.areatype = areatype;
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
     }
 
     @Override
@@ -109,11 +71,8 @@ public class ReportData {
         return "ReportData{" +
                 "start=" + start +
                 ", end=" + end +
-                ", sheng=" + sheng +
-                ", shi=" + shi +
-                ", qv=" + qv +
-                ", jie=" + jie +
-                ", areatype='" + areatype + '\'' +
+                ", areaType='" + areaType + '\'' +
+                ", areaId=" + areaId +
                 '}';
     }
 }

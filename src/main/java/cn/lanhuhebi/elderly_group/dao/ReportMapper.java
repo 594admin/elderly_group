@@ -1,6 +1,6 @@
 package cn.lanhuhebi.elderly_group.dao;
 
-import cn.lanhuhebi.elderly_group.model.pojo.Area;
+import cn.lanhuhebi.elderly_group.model.domain.ReportVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -28,8 +28,29 @@ public interface ReportMapper {
 
     /**
      * 安装户数
+     * @param id
+     * @param start
+     * @param end
      * @return
      */
     Integer aCount(@Param("area_id")Integer id, @Param("start")Date start,@Param("end")Date end);
+
+    /**
+     * 查询区级以下乡镇/街道统计
+     * @param start
+     * @param end
+     * @param id
+     * @return
+     */
+    List<ReportVo> selectFamilyByDate1(@Param("start")Date start, @Param("end")Date end,
+                                      @Param("areaid")Integer id);
+
+    List<ReportVo> selectFamilyByDate2(@Param("start")Date start, @Param("end")Date end,
+                                      @Param("areaid")Integer id);
+
+    List<ReportVo> selectFamilyByDate3(@Param("start")Date start, @Param("end")Date end,
+                                      @Param("areaid")Integer id);
+
+
 
 }

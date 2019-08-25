@@ -1,9 +1,10 @@
 package cn.lanhuhebi.elderly_group.controller;
 
-import cn.lanhuhebi.elderly_group.constant.AreaConstant;
+import cn.lanhuhebi.elderly_group.model.domain.AreaReport;
 import cn.lanhuhebi.elderly_group.model.domain.ReportData;
 import cn.lanhuhebi.elderly_group.model.pojo.Area;
 import cn.lanhuhebi.elderly_group.service.AreaService;
+import cn.lanhuhebi.elderly_group.service.ReportService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,9 @@ public class ReportController {
     @Resource
     private AreaService areaService;
 
+    @Resource
+    private ReportService reportService;
+
     @GetMapping("/toAreaReport")
     public String toAreaReport(HttpServletRequest request){
         List<Area> areas = areaService.queryAllSheng();
@@ -39,22 +43,17 @@ public class ReportController {
     }
 
     @PostMapping("/report")
-    public String report(ReportData reportData){
-        System.out.println("--------------------------");
+    public String report(ReportData reportData,HttpServletRequest request){
+        request.setAttribute("reportData",reportData);
+        List<AreaReport> areaReports = reportService.selectAreaReportBy(reportData);
+        request.setAttribute("areaReports",areaReports);
 
-        Integer areaId = -1;
+        request.setAttribute("jsondata",reportService.getJSONData(areaReports));
 
-        if (AreaConstant.ZONE.equals(reportData.getAreatype())){
-            areaId = reportData.getShi();
-        } else if (AreaConstant.COUNTY.equals(reportData.getAreatype())){
-            areaId = reportData.getQv();
-        } else if (AreaConstant.VILLAGE.equals(reportData.getAreatype())){
-            areaId = reportData.getJie();
-        }
-
-
-
-
-        return null;
+        AreaReport tongji = reportService.tongji(areaReports);
+        request.setAttribute("tongji",tongji);
+        List<Area> areas = areaService.queryAllSheng();
+        request.setAttribute("areas",areas);
+        return "report/areaReport";
     }
 }

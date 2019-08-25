@@ -47,23 +47,23 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">统计区域：</label>
                                     <div class="col-sm-11">
-                                        <select placeholder="选择省份..."  style="width: 129px;height: 31px;margin-right: 25px;" name="sheng" id="sheng">
+                                        <select placeholder="选择省份..."  style="width: 129px;height: 31px;margin-right: 25px;"  id="sheng">
                                             <option value="-1">请选择省份</option>
                                             <#list areas as a>
                                                 <option value="${a.areaId?c}">${a.areaName}</option>
                                             </#list>
                                         </select>
 
-                                        <select placeholder="请选择..."  style="width: 129px;height: 31px;margin-right: 25px;" name="shi" id="shi">
+                                        <select placeholder="请选择..."  style="width: 129px;height: 31px;margin-right: 25px;"  id="shi">
                                             <option value="-1">请选择</option>
                                         </select name=>
 
-                                        <select placeholder="请选择..."  style="width: 129px;height: 31px;margin-right: 25px;" name="qv" id="qv">
+                                        <select placeholder="请选择..."  style="width: 129px;height: 31px;margin-right: 25px;"  id="qv">
                                             <option value="-1">请选择</option>
 
                                         </select>
 
-                                        <select placeholder="请选择..."  style="width: 129px;height: 31px;margin-right: 25px;" name="jie" id="jie">
+                                        <select placeholder="请选择..."  style="width: 129px;height: 31px;margin-right: 25px;"  id="jie">
                                             <option value="-1">请选择</option>
 
                                         </select>
@@ -73,15 +73,15 @@
                                 <div class="form-group">
                                     <label class="col-sm-1 control-label">统计范围：</label>
                                     <div class="radio radio-info radio-inline" style="margin-left: 15px;">
-                                        <input type="radio" id="inlineRadio1" value="qv" name="areatype" >
-                                        <label for="inlineRadio1"> 区县 </label>
+                                        <input type="radio"  value="qv" name="area">
+                                        <label for="inlineRadio1">区县</label>
                                     </div>
                                     <div class="radio radio-info radio-inline" style="margin-left: 15px;">
-                                        <input type="radio" id="inlineRadio1" value="jie" name="areatype" >
+                                        <input type="radio"  value="jie" name="area" >
                                         <label for="inlineRadio1"> 乡镇/街道 </label>
                                     </div>
                                     <div class="radio radio-info radio-inline" style="margin-left: 15px;">
-                                        <input type="radio" id="inlineRadio1" value="cun" name="areatype" >
+                                        <input type="radio"  value="cun" name="area" >
                                         <label for="inlineRadio1"> 村 </label>
                                     </div>
 
@@ -92,6 +92,8 @@
                                     </div>
 
                                 </div>
+                                <input type="hidden" name="areaType">
+                                <input type="hidden" name="areaId" id="areaId">
 
                             </form>
                             <br><br>
@@ -113,18 +115,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                    <#list areaReports as a>
+                                        <tr>
+                                            <td>${a.area}</td>
+                                            <td>${a.hCount}</td>
+                                            <td>${a.tCount}</td>
+                                            <td>${a.rhCount}</td>
+                                            <td>${a.rtCount}</td>
+                                            <td>${a.shCount}</td>
+                                            <td>${a.stCount}</td>
+                                        </tr>
+                                    </#list>
                                 </tbody>
                                 <tfoot>
-                                <tr>
-                                    <th>统计</th>
-                                    <th >12</th>
-                                    <th>12</th>
-                                    <th>12</th>
-                                    <th>12</th>
-                                    <th>12</th>
-                                    <th>12</th>
-                                </tr>
+                                    <tr>
+                                        <th>总计</th>
+                                        <th>${tongji.hCount}</th>
+                                        <th>${tongji.tCount}</th>
+                                        <th>${tongji.rhCount}</th>
+                                        <th>${tongji.rtCount}</th>
+                                        <th>${tongji.shCount}</th>
+                                        <th>${tongji.stCount}</th>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -200,6 +212,37 @@
 
     $(document).ready(function () {
 
+
+
+        $("[name='area']").click(function () {
+            var areaType = $("[name='area']:checked").val();
+            $("[name='areaType']").val(areaType);
+            if (areaType == "qv"){
+                $("#areaId").val($("#shi").val());
+            } else if (areaType == "jie") {
+                $("#areaId").val($("#qv").val());
+            } else if (areaType == "cun"){
+                $("#areaId").val($("#jie").val());
+            }
+        });
+
+        [
+            {value:335, name:'祁县'},
+            {value:310, name:'淇滨区'},
+            {value:234, name:'市辖区'},
+            {value:135, name:'赫山区'},
+            {value:1548, name:'山城区'}
+        ]
+
+        var obj = eval('${jsondata}');
+        var series1 = new Array();
+        var datas = new Array();
+        for (var i = 0; i < obj.length;i++){
+            datas[i] = obj[i].name
+            series1[i] = obj[i]
+        }
+
+
         var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
         var pieoption = {
             title : {
@@ -214,7 +257,7 @@
             legend: {
                 orient : 'vertical',
                 x : 'left',
-                data:['祁县','淇滨区','市辖区','赫山区','山城区']
+                data: datas
             },
             calculable : true,
             series : [
@@ -224,13 +267,7 @@
                     radius : '55%',
                     center: ['50%', '60%'],
                     cursor: 'pointer',
-                    data:[
-                        {value:335, name:'祁县'},
-                        {value:310, name:'淇滨区'},
-                        {value:234, name:'市辖区'},
-                        {value:135, name:'赫山区'},
-                        {value:1548, name:'山城区'}
-                    ]
+                    data:series1
                 }
             ]
         };

@@ -11,6 +11,7 @@ import cn.lanhuhebi.elderly_group.util.AjaxUtils;
 import cn.lanhuhebi.elderly_group.util.IdWorker;
 import cn.lanhuhebi.elderly_group.util.TencentFanmilyCOS;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,14 +54,19 @@ public class FamilyController {
     public String toaddfamily(Model model){
         model.addAttribute("purse_num", IdWorker.getId());
         model.addAttribute("teams",this.teamService.queryAllTeam());
-        model.addAttribute("areas",areaService.queryAllXiaJiByShang(386910));
+        model.addAttribute("areas",areaService.queryAllXiaJiByShang(386709));
         return "family/familyadd";
     }
     //去修改户信息
     @RequestMapping("/toupdateFamily")
     public String toupdateFamily(Model model,@RequestParam("fly_id")Integer fly_id){
+        Family_team_area family_team= this.familyService.queryOneFamilyErea(fly_id);
+        model.addAttribute("family_team",family_team);
+        model.addAttribute("areas",areaService.queryAllXiaJiByShang(386910));
         model.addAttribute("teams",this.teamService.queryAllTeam());
         model.addAttribute("family",this.familyService.queryOneById(fly_id));
+        model.addAttribute("purchase",this.familyService.queryOneByPurchaseFlyId(fly_id));
+        model.addAttribute("listorder",this.familyService.queryAllOrder(fly_id));
         return "family/familydetail";
     }
     //继续录入信息或者编辑已经完成录入信息
@@ -163,12 +169,14 @@ public class FamilyController {
 
     //删除一条户信息
     @RequestMapping("/deletefamily")
-    public String deletefamily(@RequestParam("fly_id")Integer fly_id, RedirectAttributes model){
-        if(familyService.updateFamilyStatus(fly_id)){
-            model.addFlashAttribute("deletemsg","删除成功");
-        }else{
-            model.addFlashAttribute("deletemsg","删除失败");
-        }
+    @Transactional
+    public String deletefamily(@RequestParam("fly_id")Integer fly_id,RedirectAttributes model){
+     if(this.familyService.updateFamilyStatus(fly_id)){
+         model.addAttribute("deletemsg","删除成功");
+     }else{
+         model.addAttribute("deletemsg","删除失败");
+     }
+
         return "redirect:/tofamilylist";
     }
     //ajax动态返回区域
@@ -198,7 +206,6 @@ public class FamilyController {
            equipment.setEptType(ept_type);
            equipment.setEptFacty(ept_facty);
            equipment.setEptModel(ept_model);
-           System.out.println(this.familyService.getEptPrice(equipment)+"************************");
            AjaxUtils.jsonforward(this.familyService.getEptPrice(equipment),response);
        }
 

@@ -54,15 +54,16 @@
                             <option value="386709" hassubinfo="true">鹤壁市</option>
                         </select>
                         &nbsp;
-                        <select class="chosen-select" style="width:80px;height: 34px" >
-                            <option value="386910" hassubinfo="true" >淇滨区</option>
+                        <select required class="chosen-select" style="width:80px;height: 34px" id="qu" >
+                            <option value="" hassubinfo="true" >--请选择--</option>
+                            <#list areas as a>
+                                <option value="${a.areaId?c}" name="qu" quname="${a.areaId?c}" hassubinfo="true">${a.areaName}</option>
+                            </#list>
                         </select>
                         &nbsp;
                         <select  id='jiedao'class="chosen-select" style="width:80px;height: 34px" required>
                             <option value="" hassubinfo="true">--请选择--</option>
-                            <#list areas as a>
-                                <option value="${a.areaId?c}" name="jiedao" jiedaoname="${a.areaId?c}" hassubinfo="true">${a.areaName}</option>
-                            </#list>
+
                         </select>
                         &nbsp;
                         <select id='juweihui'class="chosen-select" name="fly_area_id" style="width:80px;height: 34px" required>
@@ -73,7 +74,7 @@
                 <div class="form-group">
                    <label class="col-sm-3 control-label"><span style="color: red">*</span>住址：</label>
                     <div class="col-sm-8">
-                        <input id="firstname" name="fly_address" class="form-control" type="text">
+                        <input required id="firstname" name="fly_address" class="form-control" type="text">
                     </div>
                 </div>
                 <div class="form-group">
@@ -138,7 +139,7 @@
                     <label class="col-sm-3 control-label"><span style="color: red">*</span>工程小组：</label>
                     <div class="col-sm-8">
                         &nbsp;
-                        <select class="chosen-select" style="width:160px;height: 34px" name="fly_tem_id"">
+                        <select required class="chosen-select" style="width:160px;height: 34px" name="fly_tem_id"">
                             <option value="" hassubinfo="true">--请选择小组--</option>
                             <#list teams as t>
                                 <option value="${t.temId}" hassubinfo="true">${t.temName}</option>
@@ -155,7 +156,7 @@
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-3">
                         <button class="btn btn-primary" type="submit"><保存,下一步></button>
-                        <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回主页></button></a>
+                        <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回列表></button></a>
                     </div>
 
                 </div>
@@ -281,6 +282,8 @@
             }
         })
 
+
+
         $("input[name=fly_name]").blur(function () {
             var fly_name=this.value
             $.ajax({
@@ -296,9 +299,32 @@
             })
 
         })
-
-
     </script>
+
+<script>
+    $("#qu").change(function() {
+        $("#jiedao").empty()
+        $("#juweihui").empty()
+        $("#jiedao").append("<option hassubinfo='true'>--请选择--</option>")
+        $("#juweihui").append("<option hassubinfo='true'>--请选择--</option>")
+        var area_id= this.options[this.selectedIndex].value
+        if(area_id!=""){
+            $.ajax({
+                type:"post",
+                url:"/ajax",
+                data:{"area_id":area_id},
+                success:function(returnData){
+                    //把获取的数据通过dom方式添加到下拉选择框中
+                    var province = $("#jiedao").first();
+                    $.each(returnData,function(index,a){
+                        province.append("<option value='"+a.areaId+"'>"+a.areaName+"</option>");
+                    });
+
+                }
+            })
+        }
+    })
+</script>
 
 </body>
 

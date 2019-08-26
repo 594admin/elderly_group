@@ -36,6 +36,15 @@ public class PlanController {
 
         return "/plans/Annplans";
     }
+    @RequestMapping(value="/checkIsExistsAnnPlan",produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String checkIsExistsAnnPlan(@RequestParam("anp_area_id")Integer anp_area_id,@RequestParam("anp_year")String anp_year){
+        System.out.println("ddddddddddddddddddddddddddddddd");
+        int n =planService.isExistsAnnplan(anp_area_id,anp_year);
+        System.out.println(n+"条");
+        String str=JSON.toJSONString(n, SerializerFeature.PrettyFormat);
+        return str;
+    }
 
     @RequestMapping("/doAddAnnPlan")
     public String toAddAnnpaln(AnnualPlan a, RedirectAttributes ra){

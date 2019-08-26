@@ -14,7 +14,7 @@ import java.util.Date;
 public class Purchase {
 
     //采购ID
-    private Integer purseId;
+        private Integer purseId;
 
     //采购单号
     private String purseNum;

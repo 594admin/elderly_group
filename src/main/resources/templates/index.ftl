@@ -7,16 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
 
-    <title>H+ 后台主题UI框架 - </title>
-
-    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
-    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+    <title>鹤壁工程管理系统</title>
 
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
 
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="img/logo.ico">
     <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
@@ -312,17 +309,9 @@
                     <a href="#"><i class="fa fa-table"></i> <span class="nav-label">工程小组管理</span><span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="table_basic.html">工程小组列表</a>
+                        <li>
+                            <a class="J_menuItem" href="/showTeamList">工程小组列表</a>
                         </li>
-                        <!--<li><a class="J_menuItem" href="table_data_tables.html">DataTables</a>-->
-                        <!--</li>-->
-                        <!--<li><a class="J_menuItem" href="table_jqgrid.html">jqGrid</a>-->
-                        <!--</li>-->
-                        <!--<li><a class="J_menuItem" href="table_foo_table.html">Foo Tables</a>-->
-                        <!--</li>-->
-                        <!--<li><a class="J_menuItem" href="table_bootstrap.html">Bootstrap Table-->
-                            <!--<span class="label label-danger pull-right">推荐</span></a>-->
-                        <!--</li>-->
                     </ul>
                 </li>
                 <li>
@@ -487,7 +476,7 @@
                     frameborder="0" data-id="index_v1.html" seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right">&copy; 2014-2017 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>
+            <div class="pull-right">Copyright &copy; 2019-2024 <a href="" target="_blank">中能北方科技有限公司</a>
             </div>
         </div>
     </div>

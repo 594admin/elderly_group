@@ -16,4 +16,9 @@ public class PurchaseServiceImpl implements PurchaseService {
     public int addOnePurchase(Purchase purchase) {
         return purchaseDao.addOnePurchase(purchase);
     }
+
+    @Override
+    public Purchase queryOneByFlyId(Integer fly_id) {
+        return this.purchaseDao.queryOneByPurchaseFlyId(fly_id);
+    }
 }

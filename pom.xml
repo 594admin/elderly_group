@@ -96,14 +96,19 @@
         <!--Shiro权限认证 qyy-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
+            <artifactId>shiro-core</artifactId>
             <version>1.4.0</version>
         </dependency>
 
         <dependency>
+            <groupId>com.github.theborakompanioni</groupId>
+            <artifactId>thymeleaf-extras-shiro</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
             <groupId>net.mingsoft</groupId>
             <artifactId>shiro-freemarker-tags</artifactId>
-            <version>1.0.0</version>
+            <version>0.1</version>
         </dependency>
 
         <!--腾讯短信认证 qyy-->
@@ -120,6 +125,11 @@
             <optional>true</optional>
         </dependency>
         <!--ConfigurationProperties依赖 qyy-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -17,4 +17,9 @@ public class AreaServiceImpl implements AreaService {
     public List<Area> queryAllXiaJiByShang(Integer areaid) {
         return areaDao.queryAllXiaByShang(areaid);
     }
+
+    @Override
+    public List<Area> queryAllSheng() {
+        return areaDao.queryAllSheng();
+    }
 }

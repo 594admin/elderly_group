@@ -85,9 +85,9 @@
                                 <td>
                                     <a data-toggle="modal" class="btn btn-info btn-xs" href="/tosecond?fly_status=${fl.fly_status}&&fly_id=${fl.fly_id}">
                                         <#if fl.fly_status==1>查看
-                                        <#else >继续录入
+                                        <#else >编辑
                                         </#if></a>
-                                    <#--<a data-toggle="modal" class="btn btn-info btn-xs"  href="/deletefamily?fly_id=${fl.fly_id}">删除</a>-->
+                                    <a data-toggle="modal" class="btn btn-info btn-xs"  href="/deletefamily?fly_id=${fl.fly_id}">删除</a>
 
                                 </td>
                             </tr>

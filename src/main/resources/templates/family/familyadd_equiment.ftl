@@ -49,7 +49,7 @@
             <h3>设备采购信息</h3>
         </div>
         <div class="ibox-content">
-            <form action="/doAddPurchase" method="post" class="form-horizontal m-t" id="signupForm">
+            <form action="/doAddPurchase" name="caigou" method="post" onsubmit="return check()" class="form-horizontal m-t" id="signupForm">
                 <table id="caigou"></table>
                 <table id="price"></table>
                 <div class="form-group">
@@ -104,15 +104,15 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>付款方式：</label>
                             <div class="radio radio-info radio-inline">
-                                <input type="radio" id="inlineRadio1" value="0" name="pursePayMethod" >
+                                <input required type="radio" id="inlineRadio1" value="0" name="pursePayMethod" >
                                 <label for="inlineRadio1"> 现金 </label>
                             </div>
                             <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio2" value="1" name="pursePayMethod">
+                                <input required type="radio" id="inlineRadio2" value="1" name="pursePayMethod">
                                 <label for="inlineRadio2"> 转账 </label>
                             </div>
                             <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio2" value="2" name="pursePayMethod">
+                                <input  required type="radio" id="inlineRadio2" value="2" name="pursePayMethod">
                                 <label for="inlineRadio2"> 支付宝 </label>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>付款时间：</label>
                             <div class="input-group date">
                                 &nbsp;<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" name="pursePayDate" class="form-control" style="width: auto">
+                                <input required type="text" name="pursePayDate" class="form-control" style="width: auto">
 
 
                             </div>
@@ -143,8 +143,8 @@
                     </div>
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-3">
-                        <button class="btn btn-primary" type="submit"><保存，下一步></button>
-                        <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回列表></button></a>
+                        <button class="btn btn-primary" type="submit" id="tijiao"><保存，下一步></button>
+                        <a href="/initfamilylist"> <button class="btn btn-primary"  type="button"><返回列表></button></a>
                     </div>
                 </div>
             </form>
@@ -259,9 +259,29 @@
             '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_model" value="'+ept_model+'"/>',
             '<input  style="border: 0;background-color: #f5f5f5" type="text" name="orEptPrice" value="'+ept_price+'"/>',
             '<input  style="border: 0.5;background-color: #f5f5f5" type="number" name="orEptNum"/>',
-            '<a onclick= "table.row($(this).parents(\'tr\')).remove().draw();" href="javascript:void(0);" class="btn btn-primary ">删除</a>']);
+            '<a id="shanchu" href="/" class="btn btn-primary ">删除</a>']);
        }
     }
+</script>
+
+<script>
+   function check() {
+
+       if($("input[name=orEptId]").size()==0){
+           alert("请选择设备")
+           return false;
+       }
+   }
+
+
+
+</script>
+<script>
+
+        $("#shanchu").click(function () {
+            var link = $(this).parents("tr");
+            link.remove();
+        });
 </script>
 
 

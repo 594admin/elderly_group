@@ -96,4 +96,15 @@ public class FamilyServiceImpl implements FamilyService {
         return this.orderDao.queryAllOrder(fly_id);
     }
 
+    @Override
+    public int deleteOrderByFlyId(Integer fly_id) {
+
+        return this.orderDao.deleteOrderByFlyId(fly_id);
+    }
+
+    @Override
+    public int deletePurchaseByFlyId(Integer fly_id) {
+        return this.purchaseDao.deletePurchaseByFlyId(fly_id);
+    }
+
 }

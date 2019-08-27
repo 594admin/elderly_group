@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
 
@@ -29,7 +30,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>年度计划 <small>列表</small></h5>
-                    <#if "addmsg??">
+                    <#if addmsg??>
                         <p style="color:blue;">${addmsg}</p>
                     </#if>
                 </div>

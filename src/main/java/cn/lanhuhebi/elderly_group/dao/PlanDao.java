@@ -46,8 +46,13 @@ public interface PlanDao {
     //查询所有的区域（本项目中锁定河南省鹤壁市）
     List<Area> queryAllArea();
 
-
-
+    /**
+     * 自此开始查询统计模块
+     * @param cann_year
+     * @return  AnnualPlan的集合
+     */
+    //查询某一年各区的年度计划
+    List<AnnualPlan> queryByAnnYear(@Param("cann_year")String cann_year);
 
 
 

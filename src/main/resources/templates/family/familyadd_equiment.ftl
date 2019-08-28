@@ -244,7 +244,9 @@
     </script>
 
     <script>
+        var count=-1;
     function fnClickAddRow() {
+        count++;
         var ept_type=$("select[name=ept_type]").val()
         var ept_facty=$("select[name=ept_facty]").val()
         var ept_model=$("select[name=ept_model]").val()
@@ -253,15 +255,24 @@
         var ept_id=$("input[name=ept_id]").val()
        if(ept_price!=null){
         $('#editable').dataTable().fnAddData([
-            '<input style="border: 0;background-color: #f5f5f5" type="text" name="orEptId" value="'+ept_id+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_type" value="'+ept_type+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_facty" value="'+ept_facty+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_model" value="'+ept_model+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5" type="text" name="orEptPrice" value="'+ept_price+'"/>',
+
+            '<input style="border: 0;background-color: #f5f5f5" disabled type="text" name="orEptId" value="'+ept_id+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5" disabled type="text" name="ept_type" value="'+ept_type+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5" disabled type="text" name="ept_facty" value="'+ept_facty+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5" disabled type="text" name="ept_model" value="'+ept_model+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5" disabled type="text" name="orEptPrice" value="'+ept_price+'"/>',
             '<input  style="border: 0.5;background-color: #f5f5f5" type="number" name="orEptNum"/>',
-            '<a id="shanchu" href="/" class="btn btn-primary ">删除</a>']);
+            '<a  data-toggle="modal" class="btn btn-info btn-xs" onclick="shanchu($(this).parents(\'tr\').index())" href="javascript:void(0)">删除</a>']);
        }
     }
+
+        function shanchu(rows){
+            if(confirm('确定要删除该设备吗?')){
+            $('#editable').dataTable().fnDeleteRow(rows)
+            }else{
+                return false
+            }
+        }
 </script>
 
 <script>
@@ -276,13 +287,8 @@
 
 
 </script>
-<script>
 
-        $("#shanchu").click(function () {
-            var link = $(this).parents("tr");
-            link.remove();
-        });
-</script>
+
 
 
 

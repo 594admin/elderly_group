@@ -506,7 +506,7 @@
                     </div>
                     <div class="ibox-content">
                         <div class="">
-                            <a <#--onclick="fnClickAddRow();"--> href="/toAddFeedback" class="btn btn-primary ">添加意见反馈</a>
+                            <#--<a &lt;#&ndash;onclick="fnClickAddRow();"&ndash;&gt; href="/toAddFeedback" class="btn btn-primary ">添加意见反馈</a>-->
                         </div>
                         <table class="table table-striped table-bordered table-hover " id="editable">
                             <thead>

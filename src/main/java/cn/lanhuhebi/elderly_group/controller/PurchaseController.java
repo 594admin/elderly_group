@@ -29,7 +29,7 @@ public class PurchaseController {
     @RequestMapping(value = "/doAddPurchase",method = RequestMethod.POST)
     @Transactional
     public String doAddPurchase(Purchase purchase, @RequestParam("orEptId") List<Integer> orEptId, @RequestParam("orEptNum")List<Integer> orEptNum, @RequestParam("orEptPrice")List<Double> orEptPrice , @RequestParam("purseFlyId")Integer purseFlyId , RedirectAttributes model){
-
+        System.out.println(orEptId+"*****************8");
         int i1 = this.purchaseService.addOnePurchase(purchase);
         Integer or_purse_id=purchase.getPurseId();
         Order order=new Order();

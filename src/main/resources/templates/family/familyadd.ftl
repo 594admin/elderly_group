@@ -16,7 +16,7 @@
 </head>
 <body class="gray-bg">
     <div class="col-sm-12">
-    <div class="ibox float-e-margins">
+    <div class="ibox float-e-margins">a'l
         <div align="center"><span style="color: red"><#if addmsg??><h3>${addmsg}</h3></#if></span></div>
         <div class="ibox-title">
             <div class="ibox-tools">
@@ -333,7 +333,7 @@
                 birthdaytemp=fly_birthday.substring(6,12)
                 birthdayno="19"+birthdaytemp
             }else{
-                alert("错误的身份证号码，请核对！")
+                // alert("错误的身份证号码，请核对！")
                 return false
             }
             var birthday=birthdayno.substring(0,4)+"-"+birthdayno.substring(4,6)+"-"+birthdayno.substring(6,8)
@@ -346,7 +346,7 @@
         var gr_tel = $('input[name="fly_phone"]').val();
         var re = /^1\d{10}$/;
         if (!re.test(gr_tel)) {
-            alert("请输入正确手机号码！");
+            // alert("请输入正确手机号码！");
             return false
         }
     })

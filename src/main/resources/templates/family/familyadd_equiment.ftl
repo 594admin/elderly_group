@@ -231,6 +231,7 @@
             var ept_type=$("select[name=ept_type]").val()
             var ept_facty=$("select[name=ept_facty]").val()
             var ept_model=$("select[name=ept_model]").val()
+            var eptid=$("input[name=orEptId]").val()
             $.ajax({
                 type:"post",
                 url:"/ajax",
@@ -244,26 +245,39 @@
     </script>
 
     <script>
-        var count=-1;
+
     function fnClickAddRow() {
-        count++;
+
         var ept_type=$("select[name=ept_type]").val()
         var ept_facty=$("select[name=ept_facty]").val()
         var ept_model=$("select[name=ept_model]").val()
         var table = $('#editable').dataTable
         var ept_price=$("input[name=ept_price]").val()
         var ept_id=$("input[name=ept_id]").val()
-       if(ept_price!=null){
-        $('#editable').dataTable().fnAddData([
 
-            '<input style="border: 0;background-color: #f5f5f5" disabled type="text" name="orEptId" value="'+ept_id+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5" disabled type="text" name="ept_type" value="'+ept_type+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5" disabled type="text" name="ept_facty" value="'+ept_facty+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5" disabled type="text" name="ept_model" value="'+ept_model+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5" disabled type="text" name="orEptPrice" value="'+ept_price+'"/>',
-            '<input  style="border: 0.5;background-color: #f5f5f5" type="number" name="orEptNum"/>',
+        var arr =[];
+        $("input[name='orEptId']").each(function(){
+            arr.push($(this).val());
+        })
+        if (arr.length != 0) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == ept_id) {
+                    ept_price = null;
+                }
+            }
+        }
+
+        if(ept_price!=null){
+        $('#editable').dataTable().fnAddData([
+            '<input style="border: 0;background-color: #f5f5f5" type="text" name="orEptId" value="'+ept_id+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="ept_type" value="'+ept_type+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="ept_facty" value="'+ept_facty+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="ept_model" value="'+ept_model+'"/>',
+            '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="orEptPrice" value="'+ept_price+'"/>',
+            '<input  style="border: 0.5;background-color: #f5f5f5" type="number" required name="orEptNum"/>',
             '<a  data-toggle="modal" class="btn btn-info btn-xs" onclick="shanchu($(this).parents(\'tr\').index())" href="javascript:void(0)">删除</a>']);
        }
+
     }
 
         function shanchu(rows){
@@ -273,20 +287,19 @@
                 return false
             }
         }
+
+
 </script>
 
 <script>
    function check() {
-
        if($("input[name=orEptId]").size()==0){
            alert("请选择设备")
            return false;
        }
    }
-
-
-
 </script>
+
 
 
 

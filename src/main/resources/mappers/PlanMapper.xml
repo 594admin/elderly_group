@@ -15,6 +15,13 @@
               and ap.anp_area_id=a.area_id
     </select>
 
+    <!-- 添加新的年度计划的时候，检查是否已存在-->
+    <select id="isExistsAnnplan" resultType="int">
+        select count(*)  from annual_plan
+          where anp_area_id=#{anp_area_id} and anp_year=#{anp_year} and anp_status=1
+    </select>
+
+
     <!-- 添加年度计划-->
     <insert id="addAnnPlan" parameterType="cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan">
         insert into annual_plan(anp_area_id,anp_year,anp_Sept_num,anp_Rept_num,anp_updateDate)
@@ -85,6 +92,11 @@
     <select id="queryAllArea" resultType="cn.lanhuhebi.elderly_group.model.pojo.Area">
         select area_id as areaId ,area_name as areaName
          from `area` where  area_parID=386709
+    </select>
+
+    <!-- 查询某一年所有的年度计划-->
+    <select id="queryByAnnYear" resultType="cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan">
+        select anp_area_id,anp_year from annual_plan where anp_year=#{cann_year} and `status`=1
     </select>
 
 </mapper>

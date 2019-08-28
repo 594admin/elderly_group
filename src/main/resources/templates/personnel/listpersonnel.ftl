@@ -44,7 +44,7 @@
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>基本 <small>分类，查找</small></h5>
+                        <h5>账户/<small>列表</small></h5>
                     </div>
                     <div class="ibox-content">
 
@@ -129,7 +129,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>密码：</label>
                             <div class="col-sm-8">
-                                <input name="prePassword" minlength="2" type="password" class="form-control"  required="" aria-required="true">
+                                <input name="prePassword" minlength="2" type="text" class="form-control"  required="" aria-required="true">
                             </div>
                         </div>
                         <div class="form-group">
@@ -183,7 +183,6 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <h1>用户角色设置: <small id="userroles"></small></h1>
-                    <span style="color: red">如不选择权限，将会将角色默认为无</span>
                 </div>
                 <div class="ibox-content">
                     <form class="form-horizontal m-t"  action="/doAddPerRole" method="post">
@@ -193,10 +192,6 @@
                             <input type="hidden" name="preId" value="">
 
                             <div class="col-sm-10">
-                                <div class="radio i-checks">
-                                    <label>
-                                        <input type="radio" name="roleId" value="0" >请选择</label>
-                                </div>
                                 <#list listRole as role>
                                     <div class="radio i-checks">
                                         <label>

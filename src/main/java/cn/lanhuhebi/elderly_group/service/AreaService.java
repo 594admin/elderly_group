@@ -9,5 +9,6 @@ public interface AreaService {
 
     List<Area> queryAllXiaJiByShang(@Param("areaid")Integer areaid);
 
+    List<Area> queryAllSheng();
 
 }

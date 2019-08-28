@@ -5,6 +5,7 @@ import cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan;
 import cn.lanhuhebi.elderly_group.model.pojo.Area;
 import cn.lanhuhebi.elderly_group.model.pojo.MonthlyPlan;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.List;
 
@@ -12,6 +13,9 @@ public interface PlanDao {
 
     //查询所有的年度计划
     List<AnnPlan>  queryAllAnnPlan();
+
+    //新增年度计划的时候，先查看有没有该区的该年的年度计划
+    int isExistsAnnplan(@Param("anp_area_id")Integer anp_area_id,@Param("anp_year")String anp_year);
 
     //新增年度计划
     int addAnnPlan(AnnualPlan annualPlan);
@@ -42,8 +46,13 @@ public interface PlanDao {
     //查询所有的区域（本项目中锁定河南省鹤壁市）
     List<Area> queryAllArea();
 
-
-
+    /**
+     * 自此开始查询统计模块
+     * @param cann_year
+     * @return  AnnualPlan的集合
+     */
+    //查询某一年各区的年度计划
+    List<AnnualPlan> queryByAnnYear(@Param("cann_year")String cann_year);
 
 
 

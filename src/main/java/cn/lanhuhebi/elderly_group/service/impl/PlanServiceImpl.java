@@ -25,6 +25,12 @@ public class PlanServiceImpl implements PlanService {
         return planDao.queryAllAnnPlan();
     }
 
+
+    //新增年度计划的时候，先查看有没有该区的该年的年度计划
+    public int isExistsAnnplan(Integer anp_area_id,String anp_year){
+        return planDao.isExistsAnnplan(anp_area_id,anp_year);
+    }
+
     /**
      * 添加年度计划，并且添加12个月的默认月度计划（以防对比月度计划时，查不到某个月的数据）
      * @param annualPlan
@@ -118,5 +124,10 @@ public class PlanServiceImpl implements PlanService {
     //查询所有的区域（本项目中锁定河南省鹤壁市）
    public List<Area> queryAllArea(){
         return planDao.queryAllArea();
+    }
+
+    //查询某一年各区的年度计划
+   public  List<AnnualPlan> queryByAnnYear(String cann_year){
+        return  planDao.queryByAnnYear(cann_year);
     }
 }

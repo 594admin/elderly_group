@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span style="color: red">*</span>密码：</label>
                                 <div class="col-sm-8">
-                                    <input name="prePassword" value="${personnel.prePassword}" minlength="2" type="password" class="form-control"  required="" aria-required="true">
+                                    <input name="prePassword" value="${personnel.prePassword}" minlength="2" type="text" class="form-control"  required="" aria-required="true">
                                 </div>
                             </div>
                             <div class="form-group">

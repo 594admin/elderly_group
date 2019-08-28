@@ -125,4 +125,9 @@ public class PlanServiceImpl implements PlanService {
    public List<Area> queryAllArea(){
         return planDao.queryAllArea();
     }
+
+    //查询某一年各区的年度计划
+   public  List<AnnualPlan> queryByAnnYear(String cann_year){
+        return  planDao.queryByAnnYear(cann_year);
+    }
 }

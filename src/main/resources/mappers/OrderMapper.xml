@@ -8,4 +8,24 @@
     <insert id="addOrder" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Order">
         insert into `order` (or_id,or_ept_id,or_ept_num,or_ept_price,or_purse_id)values (default ,#{orEptId},#{orEptNum},#{orEptPrice},#{orPurseId})
     </insert>
+    <delete id="deleteOrderByFlyId" parameterType="int">
+      DELETE FROM `order` WHERE or_id  IN (SELECT * FROM(SELECT o.`or_id`  FROM `order` o,purchase p ,family f WHERE o.`or_purse_id`=p.`purse_id` AND p.`purse_fly_id`=f.`fly_id` AND f.`fly_id`=#{fly_id}) oids)
+
+    </delete>
+    <select id="queryAllOrder" resultMap="Family_purchase_order">
+        SELECT o.*,e.`ept_price`,e.`ept_facty`,e.`ept_model`,e.`ept_type` FROM `ORDER` o ,purchase p,family f ,equipment e WHERE f.`fly_id`=p.`purse_fly_id` AND o.`or_ept_id`=e.`ept_id` AND o.`or_purse_id`=p.`purse_id` AND f.`fly_id`=#{fly_id}
+    </select>
+
+    <resultMap id="Family_purchase_order" type="cn.lanhuhebi.elderly_group.model.dto.Family_purchase_order">
+        <id property="orid" column="or_id"/>
+        <result column="or_ept_id" property="oreptid"/>
+        <result column="or_ept_num" property="oreptnum"/>
+        <result column="or_ept_price" property="orpurseid"/>
+        <result column="or_purse_id" property="oreptprice"/>
+        <result column="ept_facty" property="eptfacty"/>
+        <result column="ept_model" property="eptmodel"/>
+        <result column="ept_type" property="epttype"/>
+        <result column="ept_price" property="eptprice"/>
+
+    </resultMap>
 </mapper>

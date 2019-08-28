@@ -20,7 +20,23 @@ public class Family {
             fly_data1,fly_data2,fly_data3,fly_data4,fly_data5,fly_data6;
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date fly_birthday;
+    private Date fly_birthday,fly_date;
+
+    public Date getFly_date() {
+        return fly_date;
+    }
+
+    public void setFly_date(Date fly_date) {
+        this.fly_date = fly_date;
+    }
+
+    public void setFly_buldArea(Double fly_buldArea) {
+        this.fly_buldArea = fly_buldArea;
+    }
+
+    public void setFly_heatArea(Double fly_heatArea) {
+        this.fly_heatArea = fly_heatArea;
+    }
 
     private Double fly_buldArea,fly_heatArea;
 

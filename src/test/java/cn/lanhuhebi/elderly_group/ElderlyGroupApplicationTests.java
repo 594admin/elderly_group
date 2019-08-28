@@ -1,7 +1,9 @@
 package cn.lanhuhebi.elderly_group;
 
+import cn.lanhuhebi.elderly_group.dao.ReportMapper;
 import cn.lanhuhebi.elderly_group.dao.RoleDao;
 import cn.lanhuhebi.elderly_group.service.RoleService;
+import org.bouncycastle.asn1.cms.PasswordRecipientInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +23,9 @@ public class ElderlyGroupApplicationTests {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private ReportMapper reportMapper;
     @Test
     public void contextLoads() {
 
@@ -56,6 +62,10 @@ public class ElderlyGroupApplicationTests {
         }
 
 
+    }
+
+    @Test
+    public void Test(){
     }
 
 }

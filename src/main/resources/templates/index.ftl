@@ -67,21 +67,9 @@
                         <li>
                             <a class="J_menuItem" href="/toaddfamily">新增户信息</a>
                         </li>
-                        <!--<li>-->
-                        <!--<a class="J_menuItem" href="index_v3.html">主页示例三</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a class="J_menuItem" href="index_v4.html">主页示例四</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a href="index_v5.html" target="_blank">主页示例五</a>-->
-                        <!--</li>-->
                     </ul>
 
                 </li>
-                <!--<li>-->
-                <!--<a class="J_menuItem" href="layouts.html"  data-index="0"><i class="fa fa-columns"></i> <span class="nav-label">布局</span></a>-->
-                <!--</li>-->
                 <li>
                     <a href="#">
                         <i class="fa fa fa-bar-chart-o"></i>
@@ -92,34 +80,15 @@
                         <li>
                             <a class="J_menuItem" href="/eptlist">设备列表</a>
                         </li>
-                        <!--<li>-->
-                        <!--<a class="J_menuItem" href="graph_flot.html">Flot</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a class="J_menuItem" href="graph_morris.html">Morris.js</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a class="J_menuItem" href="graph_rickshaw.html">Rickshaw</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a class="J_menuItem" href="graph_peity.html">Peity</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a class="J_menuItem" href="graph_sparkline.html">Sparkline</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a class="J_menuItem" href="graph_metrics.html">图表组合</a>-->
-                        <!--</li>-->
                     </ul>
                 </li>
 
                 <li>
                     <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">统计</span>
-                        <!--<span class="label label-warning pull-right">16</span>-->
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="mailbox.html">区域统计</a>
+                        <li><a class="J_menuItem" href="/toAreaReport">区域统计</a>
                         </li>
                         <li><a class="J_menuItem" href="mail_detail.html">厂家统计</a>
                         </li>

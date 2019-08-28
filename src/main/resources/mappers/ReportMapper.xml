@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.ReportMapper">
+
+
+    <select id="aCount" resultType="java.lang.Integer">
+        select count(1) from family where fly_status = 1
+    </select>
+
+    <sql id="selectFamily">
+        SELECT *,count(*) FROM family
+        LEFT JOIN area a ON fly_area_id=a.area_id
+    </sql>
+
+    <select id="selectFamilyByDate1" resultMap="FamilyVoResult">
+        SELECT
+            c.area_id as qv,c.area_name as qvName,
+            d.area_id as shi,d.area_name as shiName,
+			family.fly_id,
+            `order`.or_ept_id,
+            `order`.or_ept_num,
+            equipment.ept_type
+        FROM area a
+			INNER JOIN family on family.fly_area_id = a.area_id
+            INNER JOIN area b on a.area_parID = b.area_id
+            INNER JOIN area c on b.area_parID = c.area_id
+            INNER JOIN area d on c.area_parID = d.area_id
+            INNER JOIN purchase on family.fly_id= purchase.purse_fly_id
+            INNER JOIN `order` on purchase.purse_id = `order`.or_purse_id
+            INNER JOIN equipment on equipment.ept_id = `order`.or_ept_id
+            where d.area_id = #{areaid}
+            and family.fly_status = 1
+            and family.fly_date &gt;= #{start}
+            and family.fly_date &lt;= #{end}
+    </select>
+
+    <select id="selectFamilyByDate2" resultMap="FamilyVoResult">
+        SELECT
+            b.area_id as qv,b.area_name as qvName,
+			family.fly_id,
+            `order`.or_ept_id,
+            `order`.or_ept_num,
+            equipment.ept_type
+        FROM area a
+			INNER JOIN family on family.fly_area_id = a.area_id
+            INNER JOIN area b on a.area_parID = b.area_id
+            INNER JOIN area c on b.area_parID = c.area_id
+            INNER JOIN purchase on family.fly_id= purchase.purse_fly_id
+            INNER JOIN `order` on purchase.purse_id = `order`.or_purse_id
+            INNER JOIN equipment on equipment.ept_id = `order`.or_ept_id
+            where c.area_id = #{areaid}
+            and family.fly_status = 1
+            and family.fly_date &gt;= #{start}
+            and family.fly_date &lt;= #{end}
+    </select>
+
+    <select id="selectFamilyByDate3" resultMap="FamilyVoResult">
+        SELECT
+            a.area_id as qv,a.area_name as qvName,
+
+						family.fly_id,
+            `order`.or_ept_id,
+            `order`.or_ept_num,
+            equipment.ept_type
+        FROM area a
+			INNER JOIN family on family.fly_area_id = a.area_id
+            INNER JOIN area b on a.area_parID = b.area_id
+
+
+            INNER JOIN purchase on family.fly_id= purchase.purse_fly_id
+            INNER JOIN `order` on purchase.purse_id = `order`.or_purse_id
+            INNER JOIN equipment on equipment.ept_id = `order`.or_ept_id
+            where b.area_id = #{areaid}
+            and family.fly_status = 1
+            and family.fly_date &gt;= #{start}
+            and family.fly_date &lt;= #{end}
+    </select>
+
+    <resultMap id="FamilyVoResult" type="cn.lanhuhebi.elderly_group.model.domain.ReportVo">
+        <result property="qvName" column="qvName"/>
+        <collection property="familys" ofType="cn.lanhuhebi.elderly_group.model.domain.FamilyVo">
+            <id property="flyId" column="fly_id"/>
+            <collection property="orders" ofType="cn.lanhuhebi.elderly_group.model.domain.OrderVo">
+                <result property="eptType" column="ept_type"/>
+                <result property="orEptNum" column="or_ept_num"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+
+</mapper>

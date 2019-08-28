@@ -49,21 +49,21 @@
             <h3>设备采购信息</h3>
         </div>
         <div class="ibox-content">
-            <form action="/doAddPurchase" method="post" class="form-horizontal m-t" id="signupForm">
+            <form action="/doAddPurchase" name="caigou" method="post" onsubmit="return check()" class="form-horizontal m-t" id="signupForm">
                 <table id="caigou"></table>
                 <table id="price"></table>
                 <div class="form-group">
                     <div class="form-group" style="margin-left: 80px">
                         <div class="col-sm-12">
                             &nbsp;
-                            <select class="chosen-select" style="width:120px;height: 34px" name="ept_type">
+                            <select class="chosen-select" style="width:120px;height: 34px" id="leixing" name="ept_type">
                                 <option value="" hassubinfo="true">请选择产品类型</option>
                                 <option value="热风机" hassubinfo="true">热风机</option>
                                 <option value="生物质炉具" hassubinfo="true">生物质炉具</option>
                                 <option value="水机" hassubinfo="true">水机</option>
                             </select>
                             &nbsp;
-                            <select class="chosen-select" style="width:120px;height: 34px" name="ept_facty">
+                            <select class="chosen-select" style="width:120px;height: 34px" id="changjia" name="ept_facty">
                                 <option value="" hassubinfo="true">请选择厂家</option>
                                 <option value="长虹" hassubinfo="true">长虹</option>
                                 <option value="格力" hassubinfo="true">格力</option>
@@ -104,15 +104,15 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>付款方式：</label>
                             <div class="radio radio-info radio-inline">
-                                <input type="radio" id="inlineRadio1" value="0" name="pursePayMethod" >
+                                <input required type="radio" id="inlineRadio1" value="0" name="pursePayMethod" >
                                 <label for="inlineRadio1"> 现金 </label>
                             </div>
                             <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio2" value="1" name="pursePayMethod">
+                                <input required type="radio" id="inlineRadio2" value="1" name="pursePayMethod">
                                 <label for="inlineRadio2"> 转账 </label>
                             </div>
                             <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio2" value="2" name="pursePayMethod">
+                                <input  required type="radio" id="inlineRadio2" value="2" name="pursePayMethod">
                                 <label for="inlineRadio2"> 支付宝 </label>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>付款时间：</label>
                             <div class="input-group date">
                                 &nbsp;<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" name="pursePayDate" class="form-control" style="width: auto">
+                                <input required type="text" name="pursePayDate" class="form-control" style="width: auto">
 
 
                             </div>
@@ -143,8 +143,8 @@
                     </div>
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-3">
-                        <button class="btn btn-primary" type="submit"><保存，下一步></button>
-                        <a href="/initfamilylist"> <button class="btn btn-primary" type="button"><返回主页></button></a>
+                        <button class="btn btn-primary" type="submit" id="tijiao"><保存，下一步></button>
+                        <a href="/initfamilylist"> <button class="btn btn-primary"  type="button"><返回列表></button></a>
                     </div>
                 </div>
             </form>
@@ -197,21 +197,15 @@
 
     <!-- Image cropper -->
     <script src="js/plugins/cropper/cropper.min.js"></script>
-
     <script src="js/demo/form-advanced-demo.js"></script>
-
     <!-- 自定义js -->
     <script src="js/content.js?v=1.0.0"></script>
-
-
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function () {
             $('.dataTables-example').dataTable();
-
             /* Init DataTables */
             var oTable = $('#editable').dataTable();
-
             /* Apply the jEditable handlers to the table */
             oTable.$('td').editable('../example_ajax.php', {
                 "callback": function (sValue, y) {
@@ -224,21 +218,15 @@
                         "column": oTable.fnGetPosition(this)[2]
                     };
                 },
-
                 "width": "90%",
                 "height": "100%"
             });
-
-
         });
-
     </script>
-
-
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
     <!--统计代码，可删除-->
     <script>
-        $("#xinghao").change(function() {
+        $("#xinghao,#leixing,#changjia").change(function() {
             $("#price").empty()
             var ept_type=$("select[name=ept_type]").val()
             var ept_facty=$("select[name=ept_facty]").val()
@@ -254,8 +242,8 @@
             })
         })
     </script>
-    <script>
 
+    <script>
     function fnClickAddRow() {
         var ept_type=$("select[name=ept_type]").val()
         var ept_facty=$("select[name=ept_facty]").val()
@@ -263,6 +251,7 @@
         var table = $('#editable').dataTable
         var ept_price=$("input[name=ept_price]").val()
         var ept_id=$("input[name=ept_id]").val()
+       if(ept_price!=null){
         $('#editable').dataTable().fnAddData([
             '<input style="border: 0;background-color: #f5f5f5" type="text" name="orEptId" value="'+ept_id+'"/>',
             '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_type" value="'+ept_type+'"/>',
@@ -270,9 +259,29 @@
             '<input  style="border: 0;background-color: #f5f5f5" type="text" name="ept_model" value="'+ept_model+'"/>',
             '<input  style="border: 0;background-color: #f5f5f5" type="text" name="orEptPrice" value="'+ept_price+'"/>',
             '<input  style="border: 0.5;background-color: #f5f5f5" type="number" name="orEptNum"/>',
-            '<a onclick= "table.row($(this).parents(\'tr\')).remove().draw();" href="javascript:void(0);" class="btn btn-primary ">删除</a>']);
+            '<a id="shanchu" href="/" class="btn btn-primary ">删除</a>']);
+       }
     }
+</script>
 
+<script>
+   function check() {
+
+       if($("input[name=orEptId]").size()==0){
+           alert("请选择设备")
+           return false;
+       }
+   }
+
+
+
+</script>
+<script>
+
+        $("#shanchu").click(function () {
+            var link = $(this).parents("tr");
+            link.remove();
+        });
 </script>
 
 

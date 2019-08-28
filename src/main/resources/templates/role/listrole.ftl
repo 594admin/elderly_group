@@ -103,7 +103,7 @@
                                     </span>
                                 </td>
                                 <td class="center">
-                                    <a data-toggle="modal"  class="btn btn-info btn-xs" href="#">编辑</a>
+                                   <#-- <a data-toggle="modal"  class="btn btn-info btn-xs" href="#">编辑</a>-->
                                    &nbsp;&nbsp;&nbsp;<a data-toggle="modal"  class="btn btn-info btn-xs" href="/toUpdateAuth?rlId=${role.rlId}&rlName=${role.rlName}">菜单及权限配置</a>
                                 </td>
                             </tr>

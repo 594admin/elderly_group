@@ -105,14 +105,9 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="ibox-tools">
-                        <#--<a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>-->
-                        <#--  <a class="close-link" id="guanbi">
-                              <i class="fa fa-times"></i>
-                          </a>-->
-                        <button type="button" class="close" data-dismiss="modal"><span
-                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
                         </button>
                     </div>
                     <h3>新增区计划</h3>
@@ -363,6 +358,7 @@
                 $.post("/toUpdateAnnPlan",{"anp_id":anpId},
                     function (xiugai) {
                     //alert(1);
+
                         $("[name='xanp_area_id']").val(xiugai.anp_area_id);
                         $("[name='xanp_year']").val(xiugai.anp_year);
                         $("[name='xanp_area_id1']").val(xiugai.anp_area_id);
@@ -385,6 +381,7 @@
                 $.post("/toUpdateMonPlan",{"anp_year":annYear,"mon_area_id":monAreaId},
                     function (yuejihua) {
                         //alert(yuejihua.length);
+                        $("[name='yuemain']").empty();
                         var str="";
                       for(var i=0;i<yuejihua.length;i++){
                             //alert(yuejihua[i].mon_count);

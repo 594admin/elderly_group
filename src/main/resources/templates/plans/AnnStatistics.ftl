@@ -20,12 +20,14 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css?v=4.1.0" rel="stylesheet">
 
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+
 
 </head>
 
 <body class="gray-bg">
-    <div class="wrapper wrapper-content animated fadeInRight" style="padding-right: 2.5%">
-        <div class="col-sm-8" style="width: 100%">
+    <div  style="margin: 1% 2%;padding-right: 2%;height: 20%">
+        <div  style="width: 100%">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>区进度完成情况</h5>
@@ -33,30 +35,31 @@
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
                         </a>
-                       <#-- <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
--->
                     </div>
                 </div>
                 <div class="ibox-content">
                     <form role="form" class="form-inline">
                         <div class="checkbox m-l m-r-xs">
-                                <div class="icheckbox_square-green" style="position: relative;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div><i></i>统计区域</label>
+                            <label class="i-checks">
+                                <#--<div class="icheckbox_square-green" style="position: relative;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>-->
+                                统计区域
+                            </label>
                         </div>
                         <div class="form-group">
-                            <label  class="sr-only">省</label>
+                            <#--<label  class="sr-only">省</label>-->
                             <div class="col-sm-10">
-                                <select class="form-control" name="province" >
-                                    <option >河南省</option>
+                                <select class="form-control " name="province" >
+                                    <option value="河南省" >河南省</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label  class="sr-only">市</label>
+                        <div class="form-group" >
+                            <#--<label  class="sr-only">市</label>-->
                             <div class="col-sm-10">
                                 <select class="form-control" name="city" >
-                                    <option >鹤壁市</option>
+                                    <option value="鹤壁市" >鹤壁市</option>
                                 </select>
                             </div>
                         </div>
@@ -64,13 +67,17 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="checkbox m-l m-r-xs">
                             <label class="i-checks">
-                                <div class="icheckbox_square-green" style="position: relative;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div><i></i> 统计年度</label>
+                                <#--<div class="icheckbox_square-green" style="position: relative;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>-->
+                                统计年度
+                            </label>
                         </div>
 
                         <div class="form-group">
-                            <label  class="sr-only">年度</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" name="anp_year">
+                            <#--<label  class="sr-only">年度</label>-->
+                            <div class="col-sm-10" >
+                                <select class="form-control " name="anp_year">
                                     <option value="2019">2019</option>
                                     <option value="2020">2020</option>
                                     <option value="2021">2021</option>
@@ -83,7 +90,12 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="checkbox m-l m-r-xs">
                             <label class="i-checks">
-                                <div class="icheckbox_square-green" style="position: relative;"><input type="button" style="position: absolute; opacity: 0;" value="统计"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div><input type="button" value="统计" style="font-family: 楷体 ;"></label>
+                                <#--<div class="icheckbox_square-green" style="position: relative;">
+                                    <input type="button" style="position: absolute; opacity: 0;" value="统计">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                </div>-->
+                                <input type="button" value="统计" style="font-family: 楷体 ;"/>
+                            </label>
                         </div>
                         <#--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <button class="btn btn-white" type="submit">统计</button>-->
@@ -103,9 +115,9 @@
         </div>
 
     </div>-->
-    <div class="wrapper wrapper-content animated fadeInRight" style="width: 100%;padding-left: 2.5%;" >
+    <div class="wrapper wrapper-content animated fadeInRight" style="width: 100%;padding: 2.1%;height: 100%;margin-bottom: 10%" >
         <div class="row" style="width: 100%">
-            <div class="col-sm-6" style="width: 100%">
+            <div class="col-sm-6" style="width: 100%;">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>折线图</h5>
@@ -129,6 +141,16 @@
     <script src="js/jquery.min.js?v=2.1.4"></script>
     <script src="js/bootstrap.min.js?v=3.3.6"></script>
 
+    <!-- iCheck -->
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
     <!-- ECharts  -->
     <script src="js/plugins/echarts/echarts-all.js"></script>
     <script type="text/javascript">
@@ -138,13 +160,13 @@
             var lineChart = echarts.init(document.getElementById("echarts-line-chart"));
             var lineoption = {
                 title : {
-                    text: '未来一周气温变化'
+                    text: '某年各区月度计划进度'
                 },
                 tooltip : {
                     trigger: 'axis'
                 },
                 legend: {
-                    data:['最高气温','最低气温']
+                    data:['鹤壁市','淇县','市辖区']
                 },
                 grid:{
                     x:40,
@@ -156,22 +178,22 @@
                     {
                         type : 'category',
                         boundaryGap : false,
-                        data : ['周一','周二','周三','周四','周五','周六','周日']
+                        data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
                     }
                 ],
                 yAxis : [
                     {
                         type : 'value',
                         axisLabel : {
-                            formatter: '{value} °C'
+                            formatter: '{value} '
                         }
                     }
                 ],
                 series : [
                     {
-                        name:'最高气温',
+                        name:'鹤壁市',
                         type:'line',
-                        data:[11, 11, 15, 13, 12, 13, 10],
+                        data:[11, 11, 15, 13, 12, 13, 10, 11, 25, 13, 12, 13],
                         markPoint : {
                             data : [
                                 {type : 'max', name: '最大值'},
@@ -185,9 +207,25 @@
                         }
                     },
                     {
-                        name:'最低气温',
+                        name:'淇县',
                         type:'line',
-                        data:[1, -2, 2, 5, 3, 2, 0],
+                        data:[1, 2, 2, 5, 3, 2, 0, 2, 2, 5, 3, 2],
+                        markPoint : {
+                            data : [
+                                {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                            ]
+                        },
+                        markLine : {
+                            data : [
+                                {type : 'average', name : '平均值'}
+                            ]
+                        }
+                    }
+                    ,
+                    {
+                        name:'市辖区',
+                        type:'line',
+                        data:[1, 6, 8, 5, 15, 2, 4, 8, 9, 14, 3, 12],
                         markPoint : {
                             data : [
                                 {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
@@ -236,7 +274,7 @@
 
 
     <!-- Page-Level Scripts -->
-    <script>
+   <#-- <script>
         $(document).ready(function () {
             $('.dataTables-example').dataTable();
 
@@ -272,7 +310,7 @@
                 "New row"]);
 
         }
-    </script>
+    </script>-->
 
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
     <!--统计代码，可删除-->

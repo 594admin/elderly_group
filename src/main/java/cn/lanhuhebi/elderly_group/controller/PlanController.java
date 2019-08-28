@@ -73,6 +73,8 @@ public class PlanController {
     public String toUpdateMonPlan(@RequestParam("anp_year")String anp_year,@RequestParam("mon_area_id")Integer mon_area_id,Model model ){
         List<MonthlyPlan> monthlyPlanList =planService.queryAllMonPlan(anp_year,mon_area_id);
         //model.addAttribute("monthlyPlanList",monthlyPlanList);
+        System.out.println(anp_year+"------"+mon_area_id);
+        System.out.println(monthlyPlanList.size());
         String str=JSON.toJSONString(monthlyPlanList, SerializerFeature.PrettyFormat);
         return str;//修改月度计划的页面
     }
@@ -222,4 +224,33 @@ public class PlanController {
     public String toAnnStatistics(){
         return "/plans/AnnStatistics";
     }
+
+
+    /**
+     * 思路：
+     * 页面提供一个年度年份的String
+     * return 判断该年度每个区的月度计划是不是都是0，如果是则提示先设置计划去
+     * 注意： 6个区的每个月度计划都是0的时候才返回false
+     */
+    @RequestMapping(value="/checkPlan",produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String checkPlan(@RequestParam("cann_year")String cann_year){
+        List<AnnualPlan> alist= planService.queryByAnnYear(cann_year);
+        if(alist.size()==0){
+            return JSON.toJSONString(-1);
+        }
+        for (int i = 0; i <alist.size() ; i++) {
+            List<MonthlyPlan> mlist=planService.queryAllMonPlan(alist.get(i).getAnp_year(),alist.get(i).getAnp_area_id());
+            for (int j = 0; j <mlist.size() ; j++) {
+
+            }
+        }
+        return "";
+    }
+    /**
+     * 页面提供一个年度年份的String
+     * return 返回每个区每个月的计划值，返回本年度每个区每个月的安装量
+     * 把安装率转给进入集合List<String,List<Ingeger>>
+     *
+     */
 }

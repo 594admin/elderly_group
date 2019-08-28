@@ -94,4 +94,9 @@
          from `area` where  area_parID=386709
     </select>
 
+    <!-- 查询某一年所有的年度计划-->
+    <select id="queryByAnnYear" resultType="cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan">
+        select anp_area_id,anp_year from annual_plan where anp_year=#{cann_year} and `status`=1
+    </select>
+
 </mapper>

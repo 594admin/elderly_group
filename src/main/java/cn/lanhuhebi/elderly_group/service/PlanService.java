@@ -36,4 +36,7 @@ public interface PlanService {
 
     //查询所有的区域（本项目中锁定河南省鹤壁市）
     List<Area> queryAllArea();
+
+    //查询某一年各区的年度计划
+    List<AnnualPlan> queryByAnnYear(String cann_year);
 }

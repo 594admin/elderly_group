@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.lanhuhebi.elderly_group.dao.AreaDao">
-    <select id="queryAllSheng" resultType="cn.lanhuhebi.elderly_group.model.pojo.Area">
+
+    <select id="queryAllSheng" resultMap="Area">
         select * from area where area_level=1
     </select>
 

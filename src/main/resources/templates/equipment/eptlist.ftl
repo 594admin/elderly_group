@@ -264,8 +264,6 @@
             $("#infos").html("请输入数值")
             return;
         }
-        alert("libNum" + $("input[name='libNum']").val())
-        alert("stock" + $("#stock").val())
         if ($("input[name='libType']:checked").val() == 1) {
             if ($("input[name='libNum']").val() > $("#stock").val()) {
                 $("#infos").html("库存不足")

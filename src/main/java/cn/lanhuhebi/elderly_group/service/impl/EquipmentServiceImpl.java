@@ -41,6 +41,8 @@ public class EquipmentServiceImpl implements EquipmentService {
     @Override
     @Transactional
     public boolean updateStock(Equipment equipment, Liblogs liblogs, Personnel personnel) {
+        System.out.println("库存:" + equipment.getEptStock());
+        System.out.println("操作:" + liblogs.getLibNum());
         equipment.setEptStock(equipment.getEptStock() + liblogs.getLibNum() * (liblogs.getLibType() == 1 ? -1 : 1));
         int i = equipmentDao.updateStock(equipment);
         liblogs.setLibOperator(personnel.getPreId());

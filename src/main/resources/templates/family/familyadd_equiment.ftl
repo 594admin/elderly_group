@@ -244,9 +244,8 @@
     </script>
 
     <script>
-        var count=-1;
     function fnClickAddRow() {
-        count++;
+
         var ept_type=$("select[name=ept_type]").val()
         var ept_facty=$("select[name=ept_facty]").val()
         var ept_model=$("select[name=ept_model]").val()

@@ -21,27 +21,31 @@
 
 </head>
 <style>
+    .table4_9 table {
+        width:100%;
+        margin:15px 0;
+        border:0;
+    }
+    .table4_9 th {
+        background-color:#13C7A3;
+        color:#FFFFFF
+    }
+    .table4_9,.table4_9 th,.table4_9 td {
+        font-size:15px;
+        text-align:center;
+        padding:4px;
+        border-collapse:collapse;
+    }
+    .table4_9 th,.table4_9 td {
+        border: 1px solid #78dfca;
+    }
+    .table4_9 tr {
+        border: 1px solid #78dfca;
+    }
 
-    table {
-            line-height: 2em;
-            border-collapse: collapse;
-         }
-     thead tr {
-               color: #ae1212;
-               border-bottom: 2px solid #980000;
-           }
-     tbody tr {
-                color: #bd3030;
-                border-bottom: 1px solid #ffaeae;
-            }
-     th {
-                font-weight: normal;
-                text-align: left;
-            }
-     th,td {
-                padding: 0 10px;
-            }
-
+    .table4_9 tr:nth-child(even){
+        background-color:#fdfdfd;
+    }
 </style>
 
 <body class="gray-bg">
@@ -61,7 +65,7 @@
                                 <input type="hidden" name="roleId" value="${rlId}">
                                 <input type="hidden" name="rlName" value="${rlName}">
                                 <div class="hr-line-dashed" align="center"></div>
-                                <table align="center" width="95%">
+                                <table align="center" width="95%" class="table4_9">
 
                                     <tr align="center">
                                         <th align="center" width="20%"><h1>模块</h1></th>
@@ -71,22 +75,23 @@
 
                                     <tr>
                                         <td rowspan="11" style="font-size: 30px" align="center">
-                                            移动端<label class="checkbox-primary">
+                                            <label class="checkbox-primary">
+                                            移动端&nbsp;
                                             <input type="checkbox" name="authId" value="52"></label></td>
                                         <td>
                                                 <div class="col-sm-10">
                                                     <label class="checkbox-primary">
-                                                        <input type="checkbox" name="authId" value="1">户信息</label>
+                                                        <input type="checkbox" name="authId" value="1">&nbsp;户信息</label>
                                                 </div>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="2">编辑</label>
+                                                    <input type="checkbox" name="authId" value="2">&nbsp;编辑</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="3">修改</label>
+                                                    <input type="checkbox" name="authId" value="3">&nbsp;修改</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="4">查看</label>
+                                                    <input type="checkbox" name="authId" value="4">&nbsp;查看</label>&nbsp;
                                             </div>
                                         </td>
                                     </tr>
@@ -95,7 +100,7 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="5">新增户</label>
+                                                    <input type="checkbox" name="authId" value="5">&nbsp;新增户</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
@@ -106,30 +111,15 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="6">出库</label>
+                                                    <input type="checkbox" name="authId" value="6">&nbsp;出库</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="21">出库</label>
+                                                    <input type="checkbox" name="authId" value="21">&nbsp;出库</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="7">查看</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>
-                                            <div class="col-sm-10">
-                                                <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="8">设备</label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-sm-10">
-                                                <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="9">入库</label>
+                                                    <input type="checkbox" name="authId" value="7">&nbsp;查看</label>&nbsp;
                                             </div>
                                         </td>
                                     </tr>
@@ -138,17 +128,13 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="10">分配</label>
+                                                    <input type="checkbox" name="authId" value="8">&nbsp;设备</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="11">分配</label>
-                                                <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="12">查看</label>
-                                                <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="13">修改</label>
+                                                    <input type="checkbox" name="authId" value="9">&nbsp;入库</label>&nbsp;
                                             </div>
                                         </td>
                                     </tr>
@@ -157,15 +143,17 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="14">安装</label>
+                                                    <input type="checkbox" name="authId" value="10">&nbsp;分配</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="15">安装</label>
+                                                    <input type="checkbox" name="authId" value="11">&nbsp;分配</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="16">查看</label>
+                                                    <input type="checkbox" name="authId" value="12">&nbsp;查看</label>&nbsp;
+                                                <label class="checkbox-primary">
+                                                    <input type="checkbox" name="authId" value="13">&nbsp;修改</label>&nbsp;
                                             </div>
                                         </td>
                                     </tr>
@@ -174,7 +162,24 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="17">区域统计</label>
+                                                    <input type="checkbox" name="authId" value="14">&nbsp;安装</label>&nbsp;
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-sm-10">
+                                                <label class="checkbox-primary">
+                                                    <input type="checkbox" name="authId" value="15">&nbsp;安装</label>&nbsp;
+                                                <label class="checkbox-primary">
+                                                    <input type="checkbox" name="authId" value="16">&nbsp;查看</label>&nbsp;
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            <div class="col-sm-10">
+                                                <label class="checkbox-primary">
+                                                    <input type="checkbox" name="authId" value="17">&nbsp;区域统计</label>&nbsp;
                                             </div>
                                         </td><td>
 
@@ -185,7 +190,7 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="18">厂家统计</label>
+                                                    <input type="checkbox" name="authId" value="18">&nbsp;厂家统计</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
@@ -196,7 +201,7 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="19">工程统计</label>
+                                                    <input type="checkbox" name="authId" value="19">&nbsp;工程统计</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
@@ -207,7 +212,7 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="20">我的</label>
+                                                    <input type="checkbox" name="authId" value="20">&nbsp;我的</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
@@ -218,7 +223,7 @@
                                 <br>
                                 <br>
                                 <br>
-                                <table align="center" width="95%">
+                                <table align="center" width="95%" class="table4_9">
 
                                     <tr align="center">
                                         <th align="center" width="20%"><h1>管理端模块</h1></th>
@@ -227,23 +232,23 @@
                                     </tr>
 
                                     <tr>
-                                        <td rowspan="2" style="font-size: 15px" align="center">户信息管理
-                                            <label class="checkbox-primary">
+                                        <td rowspan="2" style="font-size: 15px" align="center">
+                                            <label class="checkbox-primary">户信息管理&nbsp;
                                                 <input type="checkbox" name="authId" value="46"></label></td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="22">户信息列表</label>
+                                                    <input type="checkbox" name="authId" value="22">&nbsp;户信息列表</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="23">编辑</label>
+                                                    <input type="checkbox" name="authId" value="23">&nbsp;编辑</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="24">删除</label>
+                                                    <input type="checkbox" name="authId" value="24">&nbsp;删除</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="44">查看</label>
+                                                    <input type="checkbox" name="authId" value="44">&nbsp;查看</label>&nbsp;
                                             </div>
                                         </td>
                                     </tr>
@@ -252,42 +257,42 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="25">新增户信息</label>
+                                                    <input type="checkbox" name="authId" value="25">&nbsp;新增户信息</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="font-size: 15px" align="center">设备管理
-                                            <label class="checkbox-primary">
+                                        <td style="font-size: 15px" align="center">
+                                            <label class="checkbox-primary">设备管理&nbsp;
                                                 <input type="checkbox" name="authId" value="47"></label></td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="26">设备列表</label>
+                                                    <input type="checkbox" name="authId" value="26">&nbsp;设备列表</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="29">新增设备</label>
+                                                    <input type="checkbox" name="authId" value="29">&nbsp;新增设备</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="27">入库</label>
+                                                    <input type="checkbox" name="authId" value="27">&nbsp;入库</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="28">删除</label>
+                                                    <input type="checkbox" name="authId" value="28">&nbsp;删除</label>&nbsp;
                                             </div>
                                         </td>
                                     </tr>
 
                                     <tr>
-                                        <td rowspan="3" style="font-size: 15px" align="center">统计
-                                            <label class="checkbox-primary">
+                                        <td rowspan="3" style="font-size: 15px" align="center">
+                                            <label class="checkbox-primary">统计&nbsp;
                                                 <input type="checkbox" name="authId" value="48"></label></td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="30">区域统计</label>
+                                                    <input type="checkbox" name="authId" value="30">&nbsp;区域统计</label>&nbsp;
                                             </div>
                                         </td>
                                         <td></td>
@@ -297,7 +302,7 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="31">工程小组统计</label>
+                                                    <input type="checkbox" name="authId" value="31">&nbsp;工程小组统计</label>&nbsp;
                                             </div>
                                         </td>
                                         <td></td>
@@ -307,30 +312,30 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="32">厂家统计</label>
+                                                    <input type="checkbox" name="authId" value="32">&nbsp;厂家统计</label>&nbsp;
                                             </div>
                                         </td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="2" style="font-size: 15px" align="center">账号管理
-                                            <label class="checkbox-primary">
+                                        <td rowspan="2" style="font-size: 15px" align="center">
+                                            <label class="checkbox-primary">账号管理&nbsp;
                                                 <input type="checkbox" name="authId" value="49"></label></td>
 
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="33">账号列表</label>
+                                                    <input type="checkbox" name="authId" value="33">&nbsp;账号列表</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="36">新增账户</label>
+                                                    <input type="checkbox" name="authId" value="36">&nbsp;新增账户</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="34">编辑</label>
+                                                    <input type="checkbox" name="authId" value="34">&nbsp;编辑</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="35">账户角色分配</label>
+                                                    <input type="checkbox" name="authId" value="35">&nbsp;账户角色分配</label>&nbsp;
                                             </div>
                                         </td>
                                     </tr>
@@ -339,47 +344,47 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="37">角色列表</label>
+                                                    <input type="checkbox" name="authId" value="37">&nbsp;角色列表</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="38">菜单及权限配置</label>
+                                                    <input type="checkbox" name="authId" value="38">&nbsp;菜单及权限配置</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="39">新增角色</label>
+                                                    <input type="checkbox" name="authId" value="39">&nbsp;新增角色</label>&nbsp;
                                             </div>
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td  style="font-size: 15px" align="center">工程小组管理
-                                            <label class="checkbox-primary">
+                                        <td  style="font-size: 15px" align="center">
+                                            <label class="checkbox-primary">工程小组管理&nbsp;
                                                 <input type="checkbox" name="authId" value="50"></label></td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="40">工程小组列表</label>
+                                                    <input type="checkbox" name="authId" value="40">&nbsp;工程小组列表</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="42">新增小组</label>
+                                                    <input type="checkbox" name="authId" value="42">&nbsp;新增小组</label>&nbsp;
                                                 <label class="checkbox-primary">
-                                                    <input type="checkbox" name="authId" value="41">编辑</label>
+                                                    <input type="checkbox" name="authId" value="41">&nbsp;编辑</label>&nbsp;
                                             </div>
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td  style="font-size: 15px" align="center">意见反馈<label class="checkbox-primary">
+                                        <td  style="font-size: 15px" align="center"><label class="checkbox-primary">意见反馈&nbsp;
                                             <input type="checkbox"  name="authId" value="51"></label>
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
                                                 <label class="checkbox-primary">
-                                                    <input  type="checkbox"  name="authId" value="43">意见反馈列表</label>
+                                                    <input  type="checkbox"  name="authId" value="43">&nbsp;意见反馈列表</label>&nbsp;
                                             </div>
                                         </td>
                                         <td>

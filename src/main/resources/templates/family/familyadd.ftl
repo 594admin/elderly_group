@@ -74,26 +74,27 @@
                 <div class="form-group">
                    <label class="col-sm-3 control-label"><span style="color: red">*</span>住址：</label>
                     <div class="col-sm-8">
-                        <input required id="firstname" name="fly_address" class="form-control" type="text">
+                        <input required id="fly_address" name="fly_address" class="form-control" type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">门牌号：</label>
                     <div class="col-sm-8">
-                        <input id="firstname" name="fly_doorNum" class="form-control" type="text">
+                        <input id="fly_doorNum" name="fly_doorNum" class="form-control" type="text">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><span style="color: red">*</span>户主姓名：</label>
                     <div class="col-sm-8">
-                        <input id="lastname" name="fly_name" class="form-control" type="text" required class="valid">
+                        <input id="fly_name" name="fly_name" class="form-control" type="text" required class="valid">
                     </div>
                 </div>
+                <p align="center"  style="color: red" id="preFlyName"></p>
                 <div class="form-group">
                    <label class="col-sm-3 control-label"><span style="color: red">*</span>身份证号：</label>
                     <div class="col-sm-8">
-                        <input id="username" name="fly_IDcard" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                        <input id="fly_IDcard" placeholder="18位身份证号"  title="身份证号码格式错误" pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;" name="fly_IDcard" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                     </div>
                 </div>
 
@@ -102,14 +103,14 @@
                   <label class="col-sm-3 control-label"><span style="color: red">*</span>出生日期：</label>
                     <div class="input-group date">
                         &nbsp;<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" name="fly_birthday" class="form-control" style="width: auto">
+                        <input type="text" id="fly_birthday" name="fly_birthday" class="form-control" style="width: auto">
                     </div>
                 </div>
 
                 <div class="form-group">
                      <label class="col-sm-3 control-label"><span style="color: red">*</span>联系电话：</label>
                     <div class="col-sm-8">
-                        <input id="confirm_password" name="fly_phone" class="form-control" required type="text">
+                        <input id="fly_phone" name="fly_phone"  title="手机号码格式错误" pattern="(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)" class="form-control" required type="text">
                     </div>
                 </div>
                 <div class="form-group">
@@ -281,10 +282,8 @@
                 })
             }
         })
-
-
-
         $("input[name=fly_name]").blur(function () {
+            $("#preFlyName").html("")
             var fly_name=this.value
             $.ajax({
                 type:"post",
@@ -292,9 +291,9 @@
                 data:{"fly_name":fly_name},
                 success:function(returnData){
                     if(returnData){
-                        alert("已添加")
+                        $("#preFlyName").append("该用户已添加")
+                        $("[name=fly_name]").val("")
                     }
-
                 }
             })
 
@@ -326,6 +325,23 @@
     })
 </script>
 
+<script>
+    $("#fly_IDcard").blur(function () {
+
+            var birthdayno,birthdaytemp
+            var fly_birthday=this.value
+            if(fly_birthday.length==18){
+                birthdayno=fly_birthday.substring(6,14)
+            }else if(fly_birthday.length==15){
+                birthdaytemp=fly_birthday.substring(6,12)
+                birthdayno="19"+birthdaytemp
+            }
+            var birthday=birthdayno.substring(0,4)+"-"+birthdayno.substring(4,6)+"-"+birthdayno.substring(6,8)
+
+           $("#fly_birthday").val(birthday)
+    })
+
+</script>
 </body>
 
 </html>

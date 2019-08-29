@@ -186,6 +186,7 @@ public class FamilyController {
                       @RequestParam(value = "ept_model",required = false)String ept_model,
                       @RequestParam(value = "area_id",required = false)Integer area_id,
                       @RequestParam(value = "fly_name",required = false)String fly_name,
+
                       HttpServletResponse response){
         if(area_id!=null){
            List<Area> areas = areaService.queryAllXiaJiByShang(area_id);

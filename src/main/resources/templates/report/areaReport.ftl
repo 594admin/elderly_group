@@ -174,7 +174,6 @@
 <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
-
 <script>
     //外部js调用
     laydate({
@@ -309,10 +308,8 @@
 
     }
 </script>
-</script>
 
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
-<!--统计代码，可删除-->
+
 
 </body>
 

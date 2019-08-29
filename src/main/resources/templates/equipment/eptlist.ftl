@@ -179,7 +179,7 @@
                                 <div>
                                     <span><b>数量: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
                                     <div>
-                                        <input type="number" value="0" name="libNum"/>
+                                        <input type="number" value="0" name="libNum" />
                                         <span id="infos"></span>
                                     </div>
                                 </div>
@@ -260,17 +260,19 @@
     }
 
     function sub() {
-        if ($("input[name='libNum']").val() == 0) {
-            $("#infos").html("请输入数值")
+        var libNum = $("input[name='libNum']").val()
+        var stock = $("#stock").val()
+        var zhengze = /^\+?[1-9][0-9]*$/;
+        if (!zhengze.test(libNum)){
+            $("#infos").html("输入有误")
             return;
         }
         if ($("input[name='libType']:checked").val() == 1) {
-            if ($("input[name='libNum']").val() > $("#stock").val()) {
+            if (stock - libNum < 0) {
                 $("#infos").html("库存不足")
                 return;
             }
         }
-
         $("#upform").submit()
     }
 

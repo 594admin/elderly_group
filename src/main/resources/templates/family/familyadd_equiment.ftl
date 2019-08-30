@@ -309,7 +309,6 @@
 
         if (arr02.length != 0) {
             for (var i = 0; i < arr02.length; i++) {
-                alert(arr02[i])
                 if (arr02[i] <=0) {
                     alert("请输入正确的设备数量")
                     return false

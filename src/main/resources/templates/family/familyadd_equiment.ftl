@@ -143,7 +143,7 @@
                     </div>
                 <div class="form-group">
                     <div class="col-sm-8 col-sm-offset-3">
-                        <button class="btn btn-primary" type="submit" id="tijiao"><保存，下一步></button>
+                        <button class="btn btn-primary" type="submit"  id="tijiao"><保存，下一步></button>
                         <a href="/initfamilylist"> <button class="btn btn-primary"  type="button"><返回列表></button></a>
                     </div>
                 </div>
@@ -274,7 +274,7 @@
             '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="ept_facty" value="'+ept_facty+'"/>',
             '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="ept_model" value="'+ept_model+'"/>',
             '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="orEptPrice" value="'+ept_price+'"/>',
-            '<input  style="border: 0.5;background-color: #f5f5f5" type="number" required name="orEptNum"/>',
+            '<input  style="border: 0.5;background-color: #f5f5f5" type="number"  required name="orEptNum"/>',
             '<a  data-toggle="modal" class="btn btn-info btn-xs" onclick="shanchu($(this).parents(\'tr\').index())" href="javascript:void(0)">删除</a>']);
        }
 
@@ -298,6 +298,27 @@
            return false;
        }
    }
+</script>
+<script>
+    $("form").submit(function () {
+        var arr02 =[];
+
+        $("input[name=orEptNum]").each(function(){
+            arr02.push($(this).val());
+        })
+
+        if (arr02.length != 0) {
+            for (var i = 0; i < arr02.length; i++) {
+                alert(arr02[i])
+                if (arr02[i] <=0) {
+                    alert("请输入正确的设备数量")
+                    return false
+                }
+            }
+        }
+
+    })
+
 </script>
 
 

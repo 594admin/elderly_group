@@ -27,10 +27,5 @@ public interface FamilyDao {
     int updateFamilyData(Family family);
 
 
-
-
-
-
-
-
+    List<Family> queryFamilyByTeamId(@Param("teamId") Integer teamId);
 }

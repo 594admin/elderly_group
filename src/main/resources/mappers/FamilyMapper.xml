@@ -52,5 +52,8 @@
     </update>
 
 
+    <select id="queryFamilyByTeamId" resultType="cn.lanhuhebi.elderly_group.model.pojo.Family">
+        select * from family where fly_tem_id=#{teamId}
+    </select>
 
 </mapper>

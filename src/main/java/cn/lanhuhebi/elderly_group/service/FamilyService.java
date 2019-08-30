@@ -40,4 +40,5 @@ public interface FamilyService {
     int deletePurchaseByFlyId(@Param("fly_id")Integer fly_id);
 
 
+    List<Family> queryFamilyByTeamId(Integer teamId);
 }

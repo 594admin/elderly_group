@@ -56,4 +56,11 @@ public class ReportController {
         request.setAttribute("areas",areas);
         return "report/areaReport";
     }
+
+    @RequestMapping("/toTeamReport")
+    public String toTeamReport(){
+        return "report/teamReport";
+    }
+
+
 }

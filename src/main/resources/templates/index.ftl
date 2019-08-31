@@ -92,7 +92,7 @@
                         </li>
                         <li><a class="J_menuItem" href="mail_detail.html">厂家统计</a>
                         </li>
-                        <li><a class="J_menuItem" href="mail_compose.html">工程统计</a>
+                        <li><a class="J_menuItem" href="/toTeamReport">工程统计</a>
                         </li>
                     </ul>
                 </li>

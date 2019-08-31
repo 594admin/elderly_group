@@ -1,5 +1,7 @@
 package cn.lanhuhebi.elderly_group.controller;
 
+import cn.lanhuhebi.elderly_group.annotation.DataLog;
+import cn.lanhuhebi.elderly_group.enums.BusinessType;
 import cn.lanhuhebi.elderly_group.model.domain.AreaReport;
 import cn.lanhuhebi.elderly_group.model.domain.ReportData;
 import cn.lanhuhebi.elderly_group.model.pojo.Area;
@@ -29,11 +31,11 @@ public class ReportController {
     @GetMapping("/toAreaReport")
     public String toAreaReport(HttpServletRequest request){
         List<Area> areas = areaService.queryAllSheng();
-        areas.forEach(System.out::println);
         request.setAttribute("areas",areas);
         return "report/areaReport";
     }
 
+    @DataLog(businessType = BusinessType.GRANT,desc = "区域查询")
     @PostMapping("/getArea")
     @ResponseBody
     public String getArea(@RequestParam("areaId")Integer areaId){
@@ -42,6 +44,7 @@ public class ReportController {
         return  JSON.toJSONString(areas);
     }
 
+    @DataLog(businessType = BusinessType.GRANT,desc = "区域统计")
     @PostMapping("/report")
     public String report(ReportData reportData,HttpServletRequest request){
         request.setAttribute("reportData",reportData);

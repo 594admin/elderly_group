@@ -2,6 +2,7 @@ package cn.lanhuhebi.elderly_group.aspect;
 
 import cn.lanhuhebi.elderly_group.annotation.DataLog;
 import cn.lanhuhebi.elderly_group.enums.BusinessType;
+import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
 import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -10,12 +11,12 @@ import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
 
 /**
@@ -48,10 +49,13 @@ public class LogAspect {
     public void doBefore(JoinPoint joinPoint) throws Throwable{
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
+        HttpSession session = request.getSession();
+        Personnel personnel = (Personnel) session.getAttribute("personnel");
         DataLog dataLog = getAnnotation(joinPoint);
         BusinessType businessType = dataLog.businessType();
         String desc = dataLog.desc();
         logger.info("========================================== DataLog ==========================================");
+        logger.info("USER           :   {}",personnel.getPrePhone());
         logger.info("TYPE           :   {}", businessType.toString());
         logger.info("DESC           :   {}",desc);
         logger.info("URL            :   {}", request.getRequestURL().toString());

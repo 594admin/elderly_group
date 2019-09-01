@@ -16,7 +16,7 @@
 </head>
 <body class="gray-bg">
     <div class="col-sm-12">
-    <div class="ibox float-e-margins">
+    <div class="ibox float-e-margins">a'l
         <div align="center"><span style="color: red"><#if addmsg??><h3>${addmsg}</h3></#if></span></div>
         <div class="ibox-title">
             <div class="ibox-tools">
@@ -90,10 +90,11 @@
                         <input id="fly_name" name="fly_name" class="form-control" type="text" required class="valid">
                     </div>
                 </div>
+                <p align="center"  style="color: red" id="preFlyName"></p>
                 <div class="form-group">
                    <label class="col-sm-3 control-label"><span style="color: red">*</span>身份证号：</label>
                     <div class="col-sm-8">
-                        <input id="fly_IDcard" name="fly_IDcard" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                        <input id="fly_IDcard" placeholder="18位身份证号"  title="身份证号码格式错误" pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;" name="fly_IDcard" required class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
                     </div>
                 </div>
 
@@ -109,7 +110,7 @@
                 <div class="form-group">
                      <label class="col-sm-3 control-label"><span style="color: red">*</span>联系电话：</label>
                     <div class="col-sm-8">
-                        <input id="fly_phone" name="fly_phone" class="form-control" required type="text">
+                        <input id="fly_phone" name="fly_phone"  title="手机号码格式错误" pattern="(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)" class="form-control" required type="text">
                     </div>
                 </div>
                 <div class="form-group">
@@ -282,6 +283,7 @@
             }
         })
         $("input[name=fly_name]").blur(function () {
+            $("#preFlyName").html("")
             var fly_name=this.value
             $.ajax({
                 type:"post",
@@ -289,7 +291,8 @@
                 data:{"fly_name":fly_name},
                 success:function(returnData){
                     if(returnData){
-                        alert("已添加")
+                        $("#preFlyName").append("该用户已添加")
+                        $("[name=fly_name]").val("")
                     }
                 }
             })
@@ -332,29 +335,12 @@
             }else if(fly_birthday.length==15){
                 birthdaytemp=fly_birthday.substring(6,12)
                 birthdayno="19"+birthdaytemp
-            }else{
-                alert("错误的身份证号码，请核对！")
-                return false
             }
             var birthday=birthdayno.substring(0,4)+"-"+birthdayno.substring(4,6)+"-"+birthdayno.substring(6,8)
-
            $("#fly_birthday").val(birthday)
-
     })
-
-    $("#fly_phone").blur(function () {
-        var gr_tel = $('input[name="fly_phone"]').val();
-        var re = /^1\d{10}$/;
-        if (!re.test(gr_tel)) {
-            alert("请输入正确手机号码！");
-            return false
-        }
-    })
-
 
 </script>
-
-
 </body>
 
 </html>

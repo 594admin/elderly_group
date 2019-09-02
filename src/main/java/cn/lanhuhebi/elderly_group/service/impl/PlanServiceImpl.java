@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -129,5 +130,15 @@ public class PlanServiceImpl implements PlanService {
     //查询某一年各区的年度计划
    public  List<AnnualPlan> queryByAnnYear(String cann_year){
         return  planDao.queryByAnnYear(cann_year);
+    }
+
+    //由地区编号得到是地区名称
+    public String queryAreaNameByareaId(Integer anp_area_id){
+        return planDao.queryAreaNameByareaId(anp_area_id);
+    }
+
+    //查询每个区的月度安装数量
+    public Integer queryMonInstall(String beginTime,String endTime,Integer area_id){
+        return planDao.queryMonInstall(beginTime,endTime,area_id);
     }
 }

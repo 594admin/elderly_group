@@ -82,8 +82,8 @@
                     <div class="col-sm-8">
                         <input id="fly_doorNum" name="fly_doorNum" class="form-control" type="text">
                     </div>
-                </div>
 
+                </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"><span style="color: red">*</span>户主姓名：</label>
                     <div class="col-sm-8">

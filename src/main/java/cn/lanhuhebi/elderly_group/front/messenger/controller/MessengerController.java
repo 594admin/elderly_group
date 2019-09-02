@@ -5,11 +5,11 @@ import cn.lanhuhebi.elderly_group.model.pojo.Family;
 import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
 import cn.lanhuhebi.elderly_group.service.FamilyService;
 import cn.lanhuhebi.elderly_group.service.PersonnelService;
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,6 +51,15 @@ public class MessengerController {
         return code;
     }
 
+    @GetMapping("personl")
+    public ResponseEntity<Personnel> persol(@RequestParam("userId")Integer preId){
+        Personnel personnelOne = this.personnelService.getPersonnelOne(preId);
+        if (personnelOne == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(personnelOne);
+    }
+
 
     /**
      * 登录
@@ -58,16 +67,30 @@ public class MessengerController {
      * @param pwd
      * @return
      */
+//    @RequestMapping("/login")
+//    public String login(@RequestParam("uname")String uname, @RequestParam("pwd")String pwd){
+//        if (!this.phone.equals(uname) || !this.code.equals(pwd)){
+//            return "error";
+//        }
+//        Personnel personnel = this.personnelService.login(uname);
+//        String p = JSON.toJSONString(personnel);
+//        return p;
+//    }
     @RequestMapping("/login")
-    public String login(@RequestParam("uname")String uname, @RequestParam("pwd")String pwd){
+    public ResponseEntity<Personnel> login(@RequestParam("uname")String uname, @RequestParam("pwd")String pwd){
         if (!this.phone.equals(uname) || !this.code.equals(pwd)){
-            return "error";
+            return ResponseEntity.notFound().build();
         }
         Personnel personnel = this.personnelService.login(uname);
-        String p = JSON.toJSONString(personnel);
-        return p;
+        return ResponseEntity.ok(personnel);
     }
 
+
+    /**
+     * 查询当前组所有户信息
+     * @param teamId
+     * @return
+     */
     @RequestMapping("/listFamily")
     public ResponseEntity<List<FamiliesVo>> queryFamilyByTeamId(@RequestParam("teamId")Integer teamId){
         List<Family> families = this.familyService.queryFamilyByTeamId(teamId);

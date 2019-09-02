@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <a href="#" class="btn btn-primary">新增设备</a>
+                    <a href="#modal-form1" data-toggle="modal" class="btn btn-primary">新增设备</a>
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
                         <tr>
@@ -72,11 +72,11 @@
                                 <td>${ept.eptModel}</td>
                                 <td>${ept.eptType}</td>
                                 <td>${ept.eptFacty}</td>
-                                <td>${ept.eptPrice}</td>
-                                <td>${ept.eptStock}</td>
+                                <td>${ept.eptPrice?c}</td>
+                                <td>${ept.eptStock?c}</td>
                                 <td>
                                     <a href="#modal-form" data-toggle="modal" id="stockMagr"
-                                       onclick="stockMgr(${ept.eptId}, ${ept.eptStock});">库存管理</a>
+                                       onclick="stockMgr(${ept.eptId}, ${ept.eptStock?c});">库存管理</a>
                                 </td>
                             </tr>
                             </#list>
@@ -98,6 +98,59 @@
         </div>
     </div>
 
+
+    <div id="modal-form1" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h1>新增设备</h1>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm" action="/addept" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>类型：</label>
+                            <div class="col-sm-8">
+                                <input name="eptType" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <p align="center" style="color: red" id="prePhones"></p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>厂家：</label>
+                            <div class="col-sm-8">
+                                <input name="eptFacty" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>型号：</label>
+                            <div class="col-sm-8">
+                                <input name="eptModel" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>单价：</label>
+                            <div class="col-sm-8">
+                                <input name="eptPrice" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <p align="center" style="color: red" id="preEmails"></p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"><span style="color: red">*</span>数量：</label>
+                            <div class="col-sm-8">
+                                <input name="eptStock" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                                <button type="button" class="btn btn-white" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="modal-form" class="modal fade" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -109,7 +162,7 @@
                         <div class="ibox-content">
                             <form id="upform" action="/upstock" method="post">
                                 <input type="hidden" name="eptId">
-                                <input type="hidden" name="eptStock">
+                                <input type="hidden" name="eptStock" id="stock">
                                 <div>
                                     <span><b>操作: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
                                     <div class="radio radio-info radio-inline">
@@ -125,15 +178,16 @@
                                 <br>
                                 <div>
                                     <span><b>数量: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
-                                    <div id="aa" class="m-r-md inline" style="position: absolute; top: 90px;">
-                                        <input type="text" value="0" class="dial m-r-sm" data-fgColor="#1AB394"
-                                               data-width="40" data-height="40" name="libNum"/>
-                                        <span id="infos" class="help-block m-b-none"></span>
+                                    <div>
+                                        <input type="number" value="0" name="libNum" />
+                                        <span id="infos"></span>
                                     </div>
                                 </div>
                                 <br>
                                 <div>
-                                    <button id="sub1" onclick="sub();" class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                                    <button type="button" class="btn btn-white" data-dismiss="modal"><strong>取消</strong>
+                                    </button>
+                                    <button id="sub1" onclick="sub();" class="btn btn-primary"
                                             type="button">
                                         <strong>保存</strong></button>
                                 </div>
@@ -202,18 +256,27 @@
 <script>
     function stockMgr(eptid, eptstock) {
         $("input[name='eptId']").val(eptid)
-        $("input[name='eptStock']").val(eptstock)
+        $("#stock").val(eptstock)
     }
 
     function sub() {
-        if ($("input[name='libNum']").val() == 0) {
-            $("#infos").html("请输入数值")
+        var libNum = $("input[name='libNum']").val()
+        var stock = $("#stock").val()
+        var zhengze = /^\+?[1-9][0-9]*$/;
+        if (!zhengze.test(libNum)){
+            $("#infos").html("输入有误")
             return;
+        }
+        if ($("input[name='libType']:checked").val() == 1) {
+            if (stock - libNum < 0) {
+                $("#infos").html("库存不足")
+                return;
+            }
         }
         $("#upform").submit()
     }
 
-    $("aa").click(function () {
+    $("input[name='libNum']").click(function () {
         $("#infos").html("")
     })
 </script>

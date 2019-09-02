@@ -1,11 +1,11 @@
 /**
  * SmartdatatransmissionSoapBindingStub.java
- *
+ * <p>
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package cn.lanhuhebi.elderly_group.webservice;
+package cn.lanhuhebi.elderly_group.webservice.generator;
 
 public class SmartdatatransmissionSoapBindingStub extends org.apache.axis.client.Stub implements Smartdatatransmission_PortType {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
@@ -13,14 +13,14 @@ public class SmartdatatransmissionSoapBindingStub extends org.apache.axis.client
     private java.util.Vector cachedSerFactories = new java.util.Vector();
     private java.util.Vector cachedDeserFactories = new java.util.Vector();
 
-    static org.apache.axis.description.OperationDesc [] _operations;
+    static org.apache.axis.description.OperationDesc[] _operations;
 
     static {
         _operations = new org.apache.axis.description.OperationDesc[3];
         _initOperationDesc1();
     }
 
-    private static void _initOperationDesc1(){
+    private static void _initOperationDesc1() {
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
@@ -77,12 +77,12 @@ public class SmartdatatransmissionSoapBindingStub extends org.apache.axis.client
     }
 
     public SmartdatatransmissionSoapBindingStub() throws org.apache.axis.AxisFault {
-         this(null);
+        this(null);
     }
 
     public SmartdatatransmissionSoapBindingStub(java.net.URL endpointURL, javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
-         this(service);
-         super.cachedEndpoint = endpointURL;
+        this(service);
+        super.cachedEndpoint = endpointURL;
     }
 
     public SmartdatatransmissionSoapBindingStub(javax.xml.rpc.Service service) throws org.apache.axis.AxisFault {
@@ -91,7 +91,7 @@ public class SmartdatatransmissionSoapBindingStub extends org.apache.axis.client
         } else {
             super.service = service;
         }
-        ((org.apache.axis.client.Service)super.service).setTypeMappingVersion("1.1");
+        ((org.apache.axis.client.Service) super.service).setTypeMappingVersion("1.1");
     }
 
     protected org.apache.axis.client.Call createCall() throws java.rmi.RemoteException {
@@ -121,8 +121,7 @@ public class SmartdatatransmissionSoapBindingStub extends org.apache.axis.client
                 _call.setProperty(key, super.cachedProperties.get(key));
             }
             return _call;
-        }
-        catch (java.lang.Throwable _t) {
+        } catch (java.lang.Throwable _t) {
             throw new org.apache.axis.AxisFault("Failure trying to get the Call object", _t);
         }
     }
@@ -143,22 +142,21 @@ public class SmartdatatransmissionSoapBindingStub extends org.apache.axis.client
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {orgId, sequence, md5, smartEquNo, messsage});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (java.lang.String) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+        try {
+            java.lang.Object _resp = _call.invoke(new java.lang.Object[]{orgId, sequence, md5, smartEquNo, messsage});
+            if (_resp instanceof java.rmi.RemoteException) {
+                throw (java.rmi.RemoteException) _resp;
+            } else {
+                extractAttachments(_call);
+                try {
+                    return (java.lang.String) _resp;
+                } catch (java.lang.Exception _exception) {
+                    return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+                }
             }
+        } catch (org.apache.axis.AxisFault axisFaultException) {
+            throw axisFaultException;
         }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-  throw axisFaultException;
-}
     }
 
     public java.lang.String getsmartequrtdata(java.lang.String orgId, byte[] sequence, byte[] md5, java.lang.String smartEquNo) throws java.rmi.RemoteException {
@@ -177,22 +175,22 @@ public class SmartdatatransmissionSoapBindingStub extends org.apache.axis.client
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {orgId, sequence, md5, smartEquNo});
+        try {
+            java.lang.Object _resp = _call.invoke(new java.lang.Object[]{orgId, sequence, md5, smartEquNo});
 
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (java.lang.String) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+            if (_resp instanceof java.rmi.RemoteException) {
+                throw (java.rmi.RemoteException) _resp;
+            } else {
+                extractAttachments(_call);
+                try {
+                    return (java.lang.String) _resp;
+                } catch (java.lang.Exception _exception) {
+                    return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+                }
             }
+        } catch (org.apache.axis.AxisFault axisFaultException) {
+            throw axisFaultException;
         }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-  throw axisFaultException;
-}
     }
 
     public java.lang.String getsmartequlistdata(java.lang.String orgId, byte[] sequence, byte[] md5) throws java.rmi.RemoteException {
@@ -211,22 +209,22 @@ public class SmartdatatransmissionSoapBindingStub extends org.apache.axis.client
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {orgId, sequence, md5});
+        try {
+            java.lang.Object _resp = _call.invoke(new java.lang.Object[]{orgId, sequence, md5});
 
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (java.lang.String) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+            if (_resp instanceof java.rmi.RemoteException) {
+                throw (java.rmi.RemoteException) _resp;
+            } else {
+                extractAttachments(_call);
+                try {
+                    return (java.lang.String) _resp;
+                } catch (java.lang.Exception _exception) {
+                    return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+                }
             }
+        } catch (org.apache.axis.AxisFault axisFaultException) {
+            throw axisFaultException;
         }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-  throw axisFaultException;
-}
     }
 
 }

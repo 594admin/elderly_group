@@ -1,5 +1,6 @@
 package cn.lanhuhebi.elderly_group.util;
 
+import cn.lanhuhebi.elderly_group.job.SchedulerJob;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author dxq
  * @date 2019-09-01 - 19:32
  */
+
 public class ScheduleUtils {
 
     @Autowired
@@ -15,16 +17,15 @@ public class ScheduleUtils {
     public void buildJob(String corn) throws SchedulerException {
         CronScheduleBuilder scheduleBuilder =CronScheduleBuilder.cronSchedule(corn);
 
-        //Job   withIdentity(String name, String group)
         JobDetail jobDetail = JobBuilder.newJob(SchedulerJob.class)
                 .withIdentity(SchedulerJob.JOBNAME,SchedulerJob.JOBGROUP)
                 .withDescription(SchedulerJob.JOBDESCRIPTION)
                 .build();
 
-        //Trigger
         Trigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity(SchedulerJob.JOBNAME,SchedulerJob.JOBGROUP)
                 .withDescription(SchedulerJob.JOBDESCRIPTION)
+                .withSchedule(scheduleBuilder)
                 .build();
 
         scheduler.scheduleJob(jobDetail,trigger);
@@ -37,7 +38,6 @@ public class ScheduleUtils {
                 .withIdentity(triggerKey)
                 .withSchedule(scheduleBuilder)
                 .build();
-
         try {
             scheduler.rescheduleJob(triggerKey,trigger);
             return true;

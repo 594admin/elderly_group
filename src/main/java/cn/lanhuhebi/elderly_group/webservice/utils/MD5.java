@@ -1,4 +1,4 @@
-package cn.lanhuhebi.elderly_group.webservice;
+package cn.lanhuhebi.elderly_group.webservice.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

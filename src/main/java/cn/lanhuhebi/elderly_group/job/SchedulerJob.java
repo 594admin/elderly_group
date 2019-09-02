@@ -1,4 +1,4 @@
-package cn.lanhuhebi.elderly_group.util;
+package cn.lanhuhebi.elderly_group.job;
 
 import cn.lanhuhebi.elderly_group.service.CollectService;
 import org.quartz.JobExecutionContext;
@@ -27,6 +27,6 @@ public class SchedulerJob extends QuartzJobBean {
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        logger.info("数据采集");
+        logger.info("---------------------------------数据采集-----------------------------------");
     }
 }

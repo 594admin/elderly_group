@@ -1,4 +1,4 @@
-package cn.lanhuhebi.elderly_group.webservice;
+package cn.lanhuhebi.elderly_group.webservice.utils;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

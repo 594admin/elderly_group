@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package cn.lanhuhebi.elderly_group.webservice;
+package cn.lanhuhebi.elderly_group.webservice.generator;
 
 import javax.xml.rpc.ServiceException;
 
@@ -124,12 +124,9 @@ public class SmartdatatransmissionServiceLocator extends org.apache.axis.client.
     * Set the endpoint address for the specified port name.
     */
     public void setEndpointAddress(java.lang.String portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
-
-if ("smartdatatransmission".equals(portName)) {
+        if ("smartdatatransmission".equals(portName)) {
             setsmartdatatransmissionEndpointAddress(address);
-        }
-        else
-{ // Unknown Port Name
+        } else { // Unknown Port Name
             throw new javax.xml.rpc.ServiceException(" Cannot set Endpoint Address for Unknown Port" + portName);
         }
     }

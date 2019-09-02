@@ -7,7 +7,9 @@ import cn.lanhuhebi.elderly_group.model.domain.ReportData;
 import cn.lanhuhebi.elderly_group.model.pojo.Area;
 import cn.lanhuhebi.elderly_group.service.AreaService;
 import cn.lanhuhebi.elderly_group.service.ReportService;
+import cn.lanhuhebi.elderly_group.util.ScheduleUtils;
 import com.alibaba.fastjson.JSON;
+import org.quartz.SchedulerException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,4 +61,5 @@ public class ReportController {
         request.setAttribute("areas",areas);
         return "report/areaReport";
     }
+
 }

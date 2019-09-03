@@ -91,12 +91,36 @@
     <!--查询鹤壁市的区 -->
     <select id="queryAllArea" resultType="cn.lanhuhebi.elderly_group.model.pojo.Area">
         select area_id as areaId ,area_name as areaName
-         from `area` where  area_parID=386709
+         from `area` where  area_parID=386709  and area_id > 386710
     </select>
 
     <!-- 查询某一年所有的年度计划-->
     <select id="queryByAnnYear" resultType="cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan">
-        select anp_area_id,anp_year from annual_plan where anp_year=#{cann_year} and `status`=1
+        select anp_area_id,anp_year from annual_plan where anp_year=#{cann_year} and anp_status=1
     </select>
+
+    <!-- 由地区编号得到地区名称-->
+    <select id="queryAreaNameByareaId" resultType="string">
+        select area_name from area where area_id=#{anp_area_id}
+    </select>
+
+
+    <select id="queryMonInstall" resultType="int">
+        SELECT   IFNULL(SUM(o.or_ept_num),0) AS he
+        FROM `install` i LEFT JOIN `order` o ON i.ill_or_id=o.or_id
+        LEFT JOIN family f  ON i.ill_fly_id=f.fly_id
+        LEFT JOIN `area` a ON f.fly_area_id IN
+        (SELECT  c.area_id
+            FROM `area` a INNER JOIN `area` b ON a.area_id=b.area_parID
+            INNER JOIN `area` c ON b.area_id=c.area_parID
+            WHERE a.area_id=#{area_id})
+        WHERE
+            a.area_id=#{area_id}
+            AND i.ill_installDate >= #{beginTime}
+            AND i.ill_installDate &lt; #{endTime}
+            AND i.ill_status=1;
+    </select>
+
+
 
 </mapper>

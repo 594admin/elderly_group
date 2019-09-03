@@ -34,8 +34,8 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
-    public boolean addEquipment(Equipment equipment) {
-        return equipmentDao.addEquipment(equipment) == 1 ? true : false;
+    public String addEquipment(Equipment equipment) {
+        return equipmentDao.getEptByMTF(equipment) == null ? (equipmentDao.addEquipment(equipment) == 1 ? "success" : "fail") : "exist";
     }
 
     @Override

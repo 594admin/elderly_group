@@ -16,7 +16,11 @@
     </update>
 
     <select id="getEptPrice" parameterType="Equipment" resultMap="ept">
-        SELECT ept_id, ept_price FROM equipment WHERE ept_type=#{eptType} AND ept_facty=#{eptFacty} AND ept_model=#{eptModel}
+        SELECT ept_id, ept_price FROM equipment WHERE ept_type = #{eptType} AND ept_facty = #{eptFacty} AND ept_model = #{eptModel}
+    </select>
+
+    <select id="getEptByMTF" parameterType="Equipment" resultType="int">
+        SELECT ept_id FROM equipment WHERE ept_model = #{eptModel} AND ept_facty = #{eptFacty} AND ept_type = #{eptType}
     </select>
 
     <resultMap id="ept" type="Equipment">

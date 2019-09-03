@@ -13,4 +13,6 @@ public interface EquipmentDao {
     int updateStock(Equipment equipment);
 
     Equipment getEptPrice(Equipment equipment);
+
+    Integer getEptByMTF(Equipment equipment);
 }

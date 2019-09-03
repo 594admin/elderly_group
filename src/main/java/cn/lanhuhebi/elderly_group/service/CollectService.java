@@ -7,4 +7,5 @@ package cn.lanhuhebi.elderly_group.service;
  */
 public interface CollectService {
 
+    Integer insertequFromservice();
 }

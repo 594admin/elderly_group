@@ -94,7 +94,8 @@
                                     <input type="button" style="position: absolute; opacity: 0;" value="统计">
                                     <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                 </div>-->
-                                <input type="button" value="统计" style="font-family: 楷体 ;"/>
+                                <input type="button" value="统计" name="tongji" style="font-family: 楷体 ;"/>
+                                <input type="button" value="查询"  name="cha" style="display: none"/>
                             </label>
                         </div>
                         <#--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -140,6 +141,94 @@
     <!-- 全局js -->
     <script src="js/jquery.min.js?v=2.1.4"></script>
     <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript">
+        $(function () {
+             $("[name='tongji']") .click(function () {
+                 var tongjinian=$("[name='anp_year']").val();
+                 //alert(tongjinian);
+                 $.post("/checkPlan",{"cann_year":tongjinian},
+                     function (shuzi) {
+                        //alert(shuzi);
+                        if(shuzi=="-1"){
+                            alert("该年度还未设置年度计划！");
+                        }else if(shuzi=="0"){
+                            alert("各区还未设置月度计划！");
+                        }else{
+                            $("[name='cha']").click();
+                        }
+                    },"json"
+                 );
+             });
+
+            $("[name='cha']").click(function () {
+                var tongjinian=$("[name='anp_year']").val();
+                $.post("/ecAnnMonPlans",{"cann_year":tongjinian},
+                    function (infomap) {
+                        var datas=new Array();
+                        var myseries=new Array();
+                        for(var key in infomap) {
+                            datas.push(key);
+                        }
+                        var lineChart = echarts.init(document.getElementById("echarts-line-chart"));
+                        var seriess=[];
+                        for(var key in infomap) {
+                            seriess.push({
+                                name:key,
+                                type:'line',
+                                data:infomap[key],
+                                markPoint : {
+                                    data : [
+                                        {type : 'max', name: '最大值'},
+                                        {type : 'min', name: '最小值'}
+                                    ]
+                                },
+                                markLine : {
+                                    data : [
+                                        {type : 'average', name: '平均值'}
+                                    ]
+                                }
+                            });
+                        }
+                        var lineoption = {
+                            title : {
+                                text: '各区月度计划进度'
+                            },
+                            tooltip : {
+                                trigger: 'axis'
+                            },
+                            legend: {
+                                data:datas
+                            },
+                            grid:{
+                                x:40,
+                                x2:40,
+                                y2:24
+                            },
+                            calculable : true,
+                            xAxis : [
+                                {
+                                    type : 'category',
+                                    boundaryGap : false,
+                                    data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                                }
+                            ],
+                            yAxis : [
+                                {
+                                    type : 'value',
+                                    axisLabel : {
+                                        formatter: '{value} '
+                                    }
+                                }
+                            ],
+                            series :seriess
+                        };
+                        lineChart.setOption(lineoption);
+                        $(window).resize(lineChart.resize);
+                    },"json"
+                );
+            });
+        });
+    </script>
 
     <!-- iCheck -->
     <script src="js/plugins/iCheck/icheck.min.js"></script>
@@ -166,7 +255,7 @@
                     trigger: 'axis'
                 },
                 legend: {
-                    data:['鹤壁市','淇县','市辖区']
+                    data:['鹤壁市','淇县','浚县']
                 },
                 grid:{
                     x:40,
@@ -223,7 +312,7 @@
                     }
                     ,
                     {
-                        name:'市辖区',
+                        name:'浚县',
                         type:'line',
                         data:[1, 6, 8, 5, 15, 2, 4, 8, 9, 14, 3, 12],
                         markPoint : {

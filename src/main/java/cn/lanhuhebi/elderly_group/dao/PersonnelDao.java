@@ -105,4 +105,11 @@ public interface PersonnelDao {
     //查询所属小组id
     int queryTeamId(@Param("pre_id") Integer pre_id);
 
+    /**
+     * app端 员工登录 根据手机号查询一条数据
+     * @param prePhone
+     * @return
+     */
+    Personnel getPersonnleOne(@Param("prePhone") String prePhone);
+
 }

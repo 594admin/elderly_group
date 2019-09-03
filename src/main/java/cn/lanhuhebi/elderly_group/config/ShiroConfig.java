@@ -33,6 +33,8 @@ public class ShiroConfig {
         filterMap.put("/fonts/**", "anon");
         filterMap.put("/img/**", "anon");
         filterMap.put("/js/**", "anon");
+        filterMap.put("/aaa", "anon");
+        filterMap.put("/bbb", "anon");
         filterMap.put("/favicon.ico", "anon");
 
         //测试权限

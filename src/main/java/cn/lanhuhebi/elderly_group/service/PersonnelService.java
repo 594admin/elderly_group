@@ -38,6 +38,12 @@ public interface PersonnelService {
      * @return
      */
     boolean checkPhone(String prePhone);
+    /**
+     * 查询手机号是否重复
+     * @param prePhone
+     * @return
+     */
+    Personnel getPersonnleOne(String prePhone);
 
     /**
      * 查询email是否重复

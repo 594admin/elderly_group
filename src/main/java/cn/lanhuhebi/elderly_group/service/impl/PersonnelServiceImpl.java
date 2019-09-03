@@ -6,7 +6,6 @@ import cn.lanhuhebi.elderly_group.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -42,6 +41,11 @@ public class PersonnelServiceImpl implements PersonnelService {
     public boolean checkPhone(String prePhone) {
         String checkPhone = personnelDao.checkPhone(prePhone);
         return checkPhone != null && !checkPhone.equals("");
+    }
+
+    @Override
+    public Personnel getPersonnleOne(String prePhone) {
+        return personnelDao.getPersonnleOne(prePhone);
     }
 
     @Override

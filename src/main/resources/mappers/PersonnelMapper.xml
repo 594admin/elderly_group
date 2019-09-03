@@ -40,7 +40,17 @@
     </select>
 
 
-
+    <select id="getPersonnleOne" resultMap="personnel">
+        select pre_id,pre_name,pre_phone,pre_email,pre_password,pre_gender,
+               pre_role_id,pre_status, pre_creaDate,pre_updaDate
+        from
+              personnel
+        where
+              pre_phone = #{prePhone}
+        and
+              pre_status = 1
+        limit 1
+    </select>
 
     <select id="listPersonnel" resultMap="personnel">
         select pre_id,pre_name,pre_phone,pre_email,pre_password,pre_gender,pre_role_id

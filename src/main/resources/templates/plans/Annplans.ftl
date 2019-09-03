@@ -163,14 +163,14 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>生物质炉具计划：</label>
                             <div class="col-sm-8">
-                                <input name="anp_Sept_num" minlength="2" type="text" class="form-control" pattern="^\+?[1-9][0-9]*$" required="" aria-required="true">
+                                <input name="anp_Sept_num" minlength="2" type="text" class="form-control" pattern="^\+?[1-9][0-9]*$" required="required" aria-required="true">
                             </div>
                         </div>
                         <p align="center"  style="color: red" id="prePhones"></p>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>热风机计划：</label>
                             <div class="col-sm-8">
-                                <input name="anp_Rept_num" minlength="2" type="text" class="form-control" pattern="^\+?[1-9][0-9]*$" required="" aria-required="true">
+                                <input name="anp_Rept_num" minlength="2" type="text" class="form-control" pattern="^\+?[1-9][0-9]*$" required="required" aria-required="true">
                             </div>
                         </div>
 
@@ -259,14 +259,14 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>生物质炉具计划：</label>
                             <div class="col-sm-8">
-                                <input name="xanp_Sept_num" minlength="2" type="text" class="form-control" pattern="^\+?[1-9][0-9]*$" required="" aria-required="true">
+                                <input name="xanp_Sept_num" minlength="2" type="text" class="form-control" pattern="^\+?[1-9][0-9]*$" required="required" aria-required="true">
                             </div>
                         </div>
                         <p align="center"  style="color: red" id="prePhones"></p>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>热风机计划：</label>
                             <div class="col-sm-8">
-                                <input name="xanp_Rept_num" minlength="2" type="text" class="form-control" pattern="^\+?[1-9][0-9]*$" required="" aria-required="true">
+                                <input name="xanp_Rept_num" minlength="2" type="text" class="form-control" pattern="^\+?[1-9][0-9]*$" required="required" aria-required="true">
                             </div>
                         </div>
 

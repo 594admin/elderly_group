@@ -53,6 +53,10 @@ public interface PlanDao {
      */
     //查询某一年各区的年度计划
     List<AnnualPlan> queryByAnnYear(@Param("cann_year")String cann_year);
+    //由地区编号的得到地区名称
+    String queryAreaNameByareaId(@Param("anp_area_id")Integer anp_area_id);
+    //查询每个区的月度安装数量
+    Integer queryMonInstall(@Param("beginTime")String beginTime,@Param("endTime")String endTime,@Param("area_id")Integer area_id);
 
 
 

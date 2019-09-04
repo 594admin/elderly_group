@@ -25,7 +25,7 @@ public class AppLoginRestController {
     @Autowired
    private  TokenUtils tokenUtils ;
     //可以登录的角色
-    private Integer[] roles = {2,3,4,5};
+    private Integer[] roles = {2,3,4,5,6};
 
 
     @GetMapping("/aaa")
@@ -47,7 +47,7 @@ public class AppLoginRestController {
         String data = null;
         String o = (String)redisUtils.get(phone);
         boolean flagPhone = true;
-//         flagPhone = code.equals(o);
+//        flagPhone = code.equals(o);
         Personnel personnleOne = personnelService.getPersonnleOne(phone);
         if(flagPhone){
             Integer preRoleId = personnleOne.getPreRoleId();
@@ -60,7 +60,7 @@ public class AppLoginRestController {
                 try {
                     Object[] login = tokenUtils.login(personnelVo);
                     Gson gson = new Gson();
-                    data= gson.toJson(login);
+                    data = gson.toJson(login);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -70,14 +70,9 @@ public class AppLoginRestController {
         }else{
             data = "验证码或手机号错误";
         }
-
-
         System.out.println(data + ">>>>>>>>>>>");
-
         return data;
     }
-
-
 
 
 

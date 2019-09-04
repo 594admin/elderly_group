@@ -44,10 +44,7 @@ public class EquipmentController {
 
     @RequestMapping("/addept")
     public String addept(Equipment equipment, RedirectAttributes attributes) {
-        boolean b = equipmentService.addEquipment(equipment);
-        if (!b) {
-            attributes.addFlashAttribute("AddInfo", "添加失败");
-        }
+        attributes.addFlashAttribute("AddInfo", equipmentService.addEquipment(equipment));
         return "redirect:/eptlist";
     }
 }

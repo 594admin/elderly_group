@@ -4,7 +4,7 @@ package cn.lanhuhebi.elderly_group.constant;
  * @author dxq
  * @date 2019-08-19 - 21:27
  */
-public class AreaConstant {
+public class  AreaConstant {
 
     /**
      * 省

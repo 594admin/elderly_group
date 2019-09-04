@@ -67,6 +67,7 @@ public class AppLoginRestController {
         }else{
             data = "验证码或手机号错误";
         }
+        System.out.println("=================>>"+data);
         return data;
     }
 

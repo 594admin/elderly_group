@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import java.text.DecimalFormat;
 import java.util.*;
 
 @Controller
@@ -272,6 +273,8 @@ public class PlanController {
         yues.add((Integer.parseInt(cann_year)+1)+"-01-01");
         //返回一个map集合
         Map<String,List<Double>> map= new HashMap<>();
+        //控制double的小数位数
+        DecimalFormat df = new DecimalFormat( "0.00");
         //第一步：由年份得到所有的年度的计划
         List<AnnualPlan> alist= planService.queryByAnnYear(cann_year);
 
@@ -298,7 +301,7 @@ public class PlanController {
                 if (mlist.get(z).getMon_Rept_num()+mlist.get(z).getMon_Sept_num()==0){
                     rateList.add(((double)monInstall)/1);
                 }else{
-                    rateList.add(((double)monInstall)/(mlist.get(z).getMon_Rept_num()+mlist.get(z).getMon_Sept_num()));
+                    rateList.add(Double.parseDouble(df.format(((double)monInstall)/(mlist.get(z).getMon_Rept_num()+mlist.get(z).getMon_Sept_num()))));
                 }
             }
 

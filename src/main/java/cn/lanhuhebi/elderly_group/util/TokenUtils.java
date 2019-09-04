@@ -35,7 +35,7 @@ public class TokenUtils {
     private String generateToken(PersonnelVo personnelVo){
         StringBuilder builder=new StringBuilder();
         builder.append("token-");
-        builder.append("PC-"+"-");
+        builder.append("APP-"+"-");
         String info=MD5Utils.getSaltMD5(personnelVo.getPrePhone());
         builder.append(info+"-");
         builder.append(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
@@ -45,7 +45,7 @@ public class TokenUtils {
 
     private void saveToken(String token,PersonnelVo personnelVo){
 
-        String tokenKey="qianzhui-"+personnelVo.getPreId();
+        String tokenKey="laonian-"+personnelVo.getPreId();
         String tokenValue=null;
         if ((tokenValue=(String)redisUtils.get(tokenKey))!=null){
             //说明用户已经登录了

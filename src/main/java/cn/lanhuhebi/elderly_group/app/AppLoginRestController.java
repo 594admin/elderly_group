@@ -9,7 +9,9 @@ import cn.lanhuhebi.elderly_group.util.VerificationCode;
 import com.google.gson.Gson;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -39,7 +41,8 @@ public class AppLoginRestController {
         System.out.println("手机号"+phone);
         return code;
     }
-    @GetMapping(value = "/bbb")
+    @RequestMapping(value = "/bbb")
+    @CrossOrigin
     public String appdoXinXiYuanLogin(String phone,String code){
         String data = null;
         String o = (String)redisUtils.get(phone);
@@ -67,6 +70,7 @@ public class AppLoginRestController {
         }else{
             data = "验证码或手机号错误";
         }
+        System.out.println(data + ">>>>>>>>>>>");
         return data;
     }
 

@@ -1,5 +1,6 @@
 package cn.lanhuhebi.elderly_group.dao;
 
+import cn.lanhuhebi.elderly_group.model.dto.FamiliesVo;
 import cn.lanhuhebi.elderly_group.model.dto.Family_team_area;
 import cn.lanhuhebi.elderly_group.model.pojo.Family;
 import org.apache.ibatis.annotations.Param;
@@ -25,6 +26,8 @@ public interface FamilyDao {
     int addFamily(Family family);
     //户资料上传
     int updateFamilyData(Family family);
+    //查询本小组所有的用户
+    List<Family> queryAllByFlyId(@Param("fly_id")Integer fly_id);
 
 
 

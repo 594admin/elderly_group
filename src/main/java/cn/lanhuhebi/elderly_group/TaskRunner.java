@@ -5,13 +5,12 @@ import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
 
 /**
  * @author dxq
  * @date 2019-09-02 - 8:57
  */
-@Component
+//@Component
 public class TaskRunner implements ApplicationRunner {
 
     @Override

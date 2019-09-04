@@ -10,7 +10,8 @@ public interface EquipmentService {
 
     List<Equipment> getAllEquipment();
 
-    boolean addEquipment(Equipment equipment);
+    String addEquipment(Equipment equipment);
 
     boolean updateStock(Equipment equipment, Liblogs liblogs, Personnel personnel);
+
 }

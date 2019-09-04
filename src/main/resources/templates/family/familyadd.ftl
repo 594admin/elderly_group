@@ -16,7 +16,7 @@
 </head>
 <body class="gray-bg">
     <div class="col-sm-12">
-    <div class="ibox float-e-margins">a'l
+    <div class="ibox float-e-margins">
         <div align="center"><span style="color: red"><#if addmsg??><h3>${addmsg}</h3></#if></span></div>
         <div class="ibox-title">
             <div class="ibox-tools">

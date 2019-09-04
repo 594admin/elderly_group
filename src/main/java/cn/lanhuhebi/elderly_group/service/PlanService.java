@@ -39,4 +39,12 @@ public interface PlanService {
 
     //查询某一年各区的年度计划
     List<AnnualPlan> queryByAnnYear(String cann_year);
+
+    //由地区编号得到是地区名称
+    String queryAreaNameByareaId(Integer anp_area_id);
+
+    //查询每个区的月度安装数量
+    Integer queryMonInstall(String beginTime,String endTime,Integer area_id);
+
+
 }

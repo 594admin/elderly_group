@@ -30,14 +30,18 @@ public class AppLoginRestController {
     @GetMapping("/aaa")
     public String applogin(String phone) {
         String code = null;
-        if (personnelService.checkPhone(phone)) {
+        if(personnelService.checkPhone(phone)){
+            //这个是暂时的普通Code生成方法
             code = VerificationCode.randomCode();
-            redisUtils.set(phone, 60, code);
-        } else {
+            // 手机验证
+            //code = ShortMessage.loginCode(phone);
+            redisUtils.set(phone,180,code);
+        }else {
             code = "手机号未注册";
         }
-        System.out.println("邀请码" + code);
-        System.out.println("手机号" + phone);
+        System.out.println("手机号:"+phone);
+        System.out.println("验证码:"+code);
+
         return code;
     }
 
@@ -52,13 +56,16 @@ public class AppLoginRestController {
             Integer preRoleId = personnleOne.getPreRoleId();
             if (Arrays.asList(roles).contains(preRoleId)) {
                 //组装信息
-                PersonnelVo personnelVo = new PersonnelVo();
-                BeanUtils.copyProperties(personnleOne, personnelVo);
+                PersonnelVo personnelVo=new PersonnelVo();
+                //Vo现在与Personnel是一致的,如有其他需要可以增加属性
+                BeanUtils.copyProperties(personnleOne,personnelVo);
                 //更新信息(如有必要)
-                //生成token
+
                 try {
+                    //生成token
                     Object[] login = tokenUtils.login(personnelVo);
                     Gson gson = new Gson();
+                    //回传页面
                     data = gson.toJson(login);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -72,6 +79,4 @@ public class AppLoginRestController {
         System.out.println("=================>>" + data);
         return data;
     }
-
-
 }

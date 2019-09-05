@@ -64,14 +64,23 @@ public class ShortMessage {
         smsSingleSender =  new SmsSingleSender(appid,appkey);
     }
     //手机登录短信发送成功返回验证码
-    public static String loginCode(String phone) throws HTTPException, IOException {
+    public static String loginCode(String phone)  {
         String[] phoneNumbers = {phone};
         String coed = VerificationCode.randomCode();
         String[] params = {coed,"3"};
-        SmsSingleSenderResult result = smsSingleSender.sendWithParam("86", phoneNumbers[0], templateId, params, smsSign, "", "");
-        if("ok".equals(result.errMsg)){
+        SmsSingleSenderResult result = null;
+        try {
+            result = smsSingleSender.sendWithParam("86", phoneNumbers[0], templateId, params, smsSign, "", "");
+            System.out.println(result);
+        } catch (HTTPException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(result != null && "OK".equals(result.errMsg)){
             return coed;
         }
+
         return null;
     }
 
@@ -82,7 +91,7 @@ public class ShortMessage {
         System.out.println("注册手机号："+phone);
         String[] params = {coed,"3","QQ：229004872","【清洁能源】"};
         SmsSingleSenderResult result = smsSingleSender.sendWithParam("86", phoneNumbers[0], registerId, params, smsSign, "", "");
-        if("ok".equals(result.errMsg)){
+        if("OK".equals(result.errMsg)){
             return coed;
         }
         return null;

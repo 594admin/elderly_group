@@ -44,8 +44,7 @@ public class TokenUtils {
     }
 
     private void saveToken(String token,PersonnelVo personnelVo){
-
-        String tokenKey="lanhu-"+personnelVo.getPreId();
+        String tokenKey="laonian-"+personnelVo.getPreId();
         String tokenValue=(String)redisUtils.get(tokenKey);
         if (tokenValue!=null){
             //说明用户已经登录了

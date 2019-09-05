@@ -107,4 +107,9 @@ public class FamilyServiceImpl implements FamilyService {
         return this.purchaseDao.deletePurchaseByFlyId(fly_id);
     }
 
+    @Override
+    public List<Family> queryAllByPerId(Integer perId) {
+        return this.familyDao.queryAllByPerId(perId);
+    }
+
 }

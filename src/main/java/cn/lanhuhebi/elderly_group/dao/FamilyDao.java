@@ -25,6 +25,8 @@ public interface FamilyDao {
     int addFamily(Family family);
     //户资料上传
     int updateFamilyData(Family family);
+    //查询本小组所有的用户
+    List<Family> queryAllByPerId(@Param("perId")Integer perId);
 
 
 

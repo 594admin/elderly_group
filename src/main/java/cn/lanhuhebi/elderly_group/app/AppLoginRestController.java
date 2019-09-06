@@ -47,6 +47,7 @@ public class AppLoginRestController {
 
     @RequestMapping(value = "/bbb")
     public String appdoXinXiYuanLogin(String phone, String code) {
+        System.out.println("========>>>>" + phone);
         String data = null;
         String o = (String) redisUtils.get(phone);
         boolean flagPhone = true;

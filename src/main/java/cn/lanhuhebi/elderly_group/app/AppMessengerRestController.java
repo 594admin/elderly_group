@@ -28,4 +28,10 @@ public class AppMessengerRestController {
     public ResponseEntity<List<Family>> listfamily(@RequestParam("per_id") int perId) {
         return ResponseEntity.ok(familyService.queryAllByPerId(perId));
     }
+
+    @GetMapping("delFly")
+    public String deleteFamily(@RequestParam("flyId") Integer flyId) {
+        boolean b = familyService.updateFamilyStatus(flyId);
+        return b ? "success" : "fail";
+    }
 }

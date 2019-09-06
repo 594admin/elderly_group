@@ -48,7 +48,7 @@
     </select>
 
     <select id="queryAllByPerId" resultType="cn.lanhuhebi.elderly_group.model.pojo.Family">
-        SELECT * FROM family f WHERE f.fly_tem_id = (SELECT mem_tem_id FROM member WHERE mem_mem = #{perId})
+        SELECT * FROM family f WHERE f.fly_tem_id = (SELECT mem_tem_id FROM member WHERE mem_mem = #{perId}) and f.fly_status >= 1
     </select>
 
     <update id="updateFamilyAddStatus" parameterType="java.lang.Integer">

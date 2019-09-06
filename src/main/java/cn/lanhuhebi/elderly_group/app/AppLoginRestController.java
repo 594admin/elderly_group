@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -45,7 +45,7 @@ public class AppLoginRestController {
         return code;
     }
 
-    @RequestMapping(value = "/bbb")
+    @PostMapping(value = "/bbb")
     public String appdoXinXiYuanLogin(String phone, String code) {
         System.out.println("========>>>>" + phone);
         String data = null;

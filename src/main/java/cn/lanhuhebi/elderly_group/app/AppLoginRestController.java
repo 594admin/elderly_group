@@ -6,7 +6,7 @@ import cn.lanhuhebi.elderly_group.service.PersonnelService;
 import cn.lanhuhebi.elderly_group.util.RedisUtils;
 import cn.lanhuhebi.elderly_group.util.TokenUtils;
 import cn.lanhuhebi.elderly_group.util.VerificationCode;
-import com.google.gson.Gson;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,11 +63,8 @@ public class AppLoginRestController {
                 //更新信息(如有必要)
 
                 try {
-                    //生成token
-                    Object[] login = tokenUtils.login(personnelVo);
-                    Gson gson = new Gson();
-                    //回传页面
-                    data = gson.toJson(login);
+                    //生成token,回传页面
+                    data = JSON.toJSONString(tokenUtils.login(personnelVo));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -27,6 +27,14 @@ public class TokenUtils {
         this.saveToken(token,personnelVo);
         return new Object[]{personnelVo,token};
     }
+    public String loginToken(PersonnelVo personnelVo)throws Exception{
+
+        //生成用户token
+        String token=this.generateToken(personnelVo);
+        //保存用户token到redis
+        this.saveToken(token,personnelVo);
+        return token;
+    }
 
 
 

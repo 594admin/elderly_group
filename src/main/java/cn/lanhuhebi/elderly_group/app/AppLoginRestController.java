@@ -9,11 +9,14 @@ import cn.lanhuhebi.elderly_group.util.VerificationCode;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+
 
 @RestController
 public class AppLoginRestController {
@@ -77,4 +80,10 @@ public class AppLoginRestController {
         System.out.println("=================>>" + data);
         return data;
     }
+
+    @RequestMapping("/fail")
+    public ResponseEntity fail() {
+        return ResponseEntity.notFound().build();
+    }
+
 }

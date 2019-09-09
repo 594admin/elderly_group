@@ -48,7 +48,7 @@
     </select>
 
     <select id="queryAllByFlyId" resultType="cn.lanhuhebi.elderly_group.model.pojo.Family">
-      select * from family where fly_tem_id=(SELECT fly_tem_id FROM family where fly_id=#{fly_id})
+      select * from family where fly_tem_id=(SELECT m.mem_tem_id FROM personnel p INNER JOIN member m ON p.pre_id=m.mem_mem where p.pre_id=#{pre_id})
     </select>
 
     <update id="updateFamilyAddStatus" parameterType="java.lang.Integer">

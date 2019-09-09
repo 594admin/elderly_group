@@ -7,7 +7,11 @@ import org.apache.ibatis.annotations.Param;
 public interface OrderDetaillDao {
 
 
-    //添加
+    /**
+     *
+     * @param od_or_id
+     * @return
+     */
     int addOrderDetail(@Param("od_or_id")Integer od_or_id);
 
 }

@@ -27,6 +27,14 @@ public class TokenUtils {
         this.saveToken(token,personnelVo);
         return new Object[]{personnelVo,token};
     }
+    public String loginToken(PersonnelVo personnelVo)throws Exception{
+
+        //生成用户token
+        String token=this.generateToken(personnelVo);
+        //保存用户token到redis
+        this.saveToken(token,personnelVo);
+        return token;
+    }
 
 
 
@@ -44,19 +52,16 @@ public class TokenUtils {
     }
 
     private void saveToken(String token,PersonnelVo personnelVo){
-
         String tokenKey="laonian-"+personnelVo.getPreId();
-        String tokenValue=null;
-        if ((tokenValue=(String)redisUtils.get(tokenKey))!=null){
+        String tokenValue=(String)redisUtils.get(tokenKey);
+        if (tokenValue!=null){
             //说明用户已经登录了
+            redisUtils.delete(tokenValue);
             redisUtils.delete(tokenKey);
-            redisUtils.delete(token);
         }
         //缓存用户token
-        redisUtils.set(tokenKey,1800,token);
-        System.out.println("tokenKey================>"+tokenKey);
+        redisUtils.set(tokenKey,token);
         //缓存用户详细信息
-        redisUtils.set(token,1800, JSON.toJSONString(personnelVo));
-        System.out.println("tokenVO============>"+token);
+        redisUtils.set(token, JSON.toJSONString(personnelVo));
     }
 }

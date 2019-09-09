@@ -38,6 +38,7 @@ public class ShiroConfig {
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/messenger/*", "anon");
         filterMap.put("/address/*", "anon");
+        filterMap.put("/fail", "anon");
         //测试权限
         filterMap.put("/test", "anon");
         filterMap.put("/doAuth", "anon");

@@ -123,4 +123,20 @@ public class PersonnelVo implements Serializable {
         this.preUpdaDate = preUpdaDate;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "PersonnelVo{" +
+                "preId=" + preId +
+                ", preName='" + preName + '\'' +
+                ", prePhone='" + prePhone + '\'' +
+                ", preEmail='" + preEmail + '\'' +
+                ", prePassword='" + prePassword + '\'' +
+                ", preGender=" + preGender +
+                ", preRoleId=" + preRoleId +
+                ", preStatus=" + preStatus +
+                ", preCreaDate=" + preCreaDate +
+                ", preUpdaDate=" + preUpdaDate +
+                '}';
+    }
 }

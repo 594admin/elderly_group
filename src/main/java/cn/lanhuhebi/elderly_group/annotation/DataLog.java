@@ -1,5 +1,7 @@
 package cn.lanhuhebi.elderly_group.annotation;
 
+import cn.lanhuhebi.elderly_group.enums.BusinessType;
+
 import java.lang.annotation.*;
 
 /**
@@ -11,8 +13,14 @@ import java.lang.annotation.*;
 @Documented
 public @interface DataLog {
 
-    String name() default "";
+    /**
+     * 功能
+     */
+    BusinessType businessType() default BusinessType.OTHER;
 
+    /**
+     * 描述
+     */
     String desc() default "";
 
 }

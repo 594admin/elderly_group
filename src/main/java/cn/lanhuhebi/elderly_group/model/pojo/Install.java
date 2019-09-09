@@ -12,9 +12,6 @@ public class Install {
     //安装记录ID
     private Integer illId;
 
-    //户信息ID
-    private Integer illFlyId;
-
     //订单ID
     private Integer illOrId;
 
@@ -26,8 +23,22 @@ public class Install {
 
     //安装状态
     private Integer illStatus;
+    //采购单ID
+    private Integer illPurseId;
+
 
     //get set 方法
+
+
+    public Integer getIllPurseId() {
+        return illPurseId;
+    }
+
+    public Install setIllPurseId(Integer illPurseId) {
+        this.illPurseId = illPurseId;
+        return this;
+    }
+
     public Install setIllId (Integer illId){
         this.illId=illId;
         return this;
@@ -35,15 +46,6 @@ public class Install {
 
     public Integer getIllId(){
         return this.illId;
-    }
-
-    public Install setIllFlyId (Integer illFlyId){
-        this.illFlyId=illFlyId;
-        return this;
-    }
-
-    public Integer getIllFlyId(){
-        return this.illFlyId;
     }
 
     public Install setIllOrId (Integer illOrId){

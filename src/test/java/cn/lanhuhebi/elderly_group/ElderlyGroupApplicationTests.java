@@ -2,6 +2,7 @@ package cn.lanhuhebi.elderly_group;
 
 import cn.lanhuhebi.elderly_group.dao.ReportMapper;
 import cn.lanhuhebi.elderly_group.dao.RoleDao;
+import cn.lanhuhebi.elderly_group.job.domain.SchedulerCron;
 import cn.lanhuhebi.elderly_group.service.RoleService;
 import cn.lanhuhebi.elderly_group.util.RedisUtils;
 import org.junit.Test;
@@ -74,6 +75,14 @@ public class ElderlyGroupApplicationTests {
         System.out.println(angang);
 
 
+    }
+
+    @Autowired
+    private SchedulerCron schedulerCron;
+
+    @Test
+    public void test001(){
+        System.out.println(schedulerCron);
     }
 
 }

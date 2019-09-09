@@ -56,7 +56,7 @@
 
                                         <select placeholder="请选择..."  style="width: 129px;height: 31px;margin-right: 25px;"  id="shi">
                                             <option value="-1">请选择</option>
-                                        </select name=>
+                                        </select >
 
                                         <select placeholder="请选择..."  style="width: 129px;height: 31px;margin-right: 25px;"  id="qv">
                                             <option value="-1">请选择</option>
@@ -225,13 +225,7 @@
             }
         });
 
-        [
-            {value:335, name:'祁县'},
-            {value:310, name:'淇滨区'},
-            {value:234, name:'市辖区'},
-            {value:135, name:'赫山区'},
-            {value:1548, name:'山城区'}
-        ]
+
 
         var obj = eval('${jsondata}');
         var series1 = new Array();

@@ -64,7 +64,6 @@ public class LogAspect {
         logger.info("Class Method   :   {}.{}", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
         // 打印请求的 IP
         logger.info("IP             :   {}", request.getRemoteAddr());
-
     }
 
     @After(value = "logPointcut()")

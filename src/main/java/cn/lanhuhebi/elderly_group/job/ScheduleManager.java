@@ -1,20 +1,23 @@
-package cn.lanhuhebi.elderly_group.util;
+package cn.lanhuhebi.elderly_group.job;
 
-import cn.lanhuhebi.elderly_group.job.SchedulerJob;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author dxq
  * @date 2019-09-01 - 19:32
  */
 
-public class ScheduleUtils {
+@Component
+public class ScheduleManager {
 
     @Autowired
     private Scheduler scheduler;
 
+
     public void buildJob(String corn) throws SchedulerException {
+        System.out.println("scheduler++++++++++++++++++++++++++++++++++++++++++++++++++++++"+scheduler);
         CronScheduleBuilder scheduleBuilder =CronScheduleBuilder.cronSchedule(corn);
 
         JobDetail jobDetail = JobBuilder.newJob(SchedulerJob.class)
@@ -29,25 +32,26 @@ public class ScheduleUtils {
                 .build();
 
         scheduler.scheduleJob(jobDetail,trigger);
+        scheduler.start();
     }
 
-    public boolean updateJob(String group,String name, String cron){
-        CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
-        TriggerKey triggerKey = getTriggerKey(name,group);
-        Trigger trigger = TriggerBuilder.newTrigger()
-                .withIdentity(triggerKey)
-                .withSchedule(scheduleBuilder)
-                .build();
+    public void updateJob(String cron) throws SchedulerException {
+
         try {
-            scheduler.rescheduleJob(triggerKey,trigger);
-            return true;
+
+            TriggerKey triggerKey = TriggerKey.triggerKey(SchedulerJob.JOBNAME, SchedulerJob.JOBGROUP);
+
+            CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
+
+            CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
+
+            trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
+
+            scheduler.rescheduleJob(triggerKey, trigger);
+
         } catch (SchedulerException e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("更新定时任务失败");
         }
     }
 
-    public TriggerKey getTriggerKey(String group,String name){
-        return TriggerKey.triggerKey(name,group);
-    }
 }

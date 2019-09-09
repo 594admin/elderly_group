@@ -17,4 +17,28 @@
         </foreach>
     </insert>
 
+    <insert id="insertRateupdalog" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Rateupdalog">
+        insert into rateupdalog(uplog_operaDate,uplog_before,uplog_after,uplog_pre_id)
+        values (#{uplogOperaDate},#{uplogBefore},#{uplogAfter},#{uplogPreId})
+    </insert>
+
+    <select id="hasEqu" resultType="int">
+
+    </select>
+    <select id="selectMaxUplogAfter" resultType="java.lang.String">
+        select uplog_after from rateupdalog where uplog_operaDate = (
+            select max(uplog_operaDate) from  rateupdalog
+        )
+    </select>
+    <select id="selectAllRateupdalog" resultMap="rateupdalogMap">
+        select * from rateupdalog
+    </select>
+    <resultMap id="rateupdalogMap" type="cn.lanhuhebi.elderly_group.model.pojo.Rateupdalog">
+        <id column="uplog_id" property="uplogId"/>
+        <result column="uplog_operaDate" property="uplogOperaDate"/>
+        <result column="uplog_before" property="uplogBefore"/>
+        <result column="uplog_after" property="uplogAfter"/>
+        <result column="uplog_pre_id" property="uplogPreId"/>
+    </resultMap>
+
 </mapper>

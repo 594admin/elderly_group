@@ -28,5 +28,6 @@ public class SchedulerJob extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         logger.info("---------------------------------数据采集-----------------------------------");
+        System.out.println(collectService);
     }
 }

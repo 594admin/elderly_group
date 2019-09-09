@@ -1,6 +1,7 @@
 package cn.lanhuhebi.elderly_group.service;
 
 import cn.lanhuhebi.elderly_group.model.dto.InstallVo;
+import cn.lanhuhebi.elderly_group.model.dto.OrderDetailVo;
 
 import java.util.List;
 
@@ -25,4 +26,11 @@ public interface InstallService {
      * @return
      */
     InstallVo getInstallOne(Integer flyId);
+
+    /**
+     * 安装时查询当前采购单的订单明细
+     * @param purId
+     * @return
+     */
+    List<OrderDetailVo> getOrderDetailVo(Integer purId);
 }

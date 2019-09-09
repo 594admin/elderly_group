@@ -26,8 +26,15 @@ public class AppInstallRestController {
 
     //用户地址
     @GetMapping(value = "/eee")
-    public String doAddress(Integer flyId){
+    public String toAddress(Integer flyId){
         return JSON.toJSONString(installService.getInstallOne(flyId));
+    }
+
+    //设备明细
+    @GetMapping(value = "/ppp")
+    public String toEmp(Integer purId){
+        System.out.println("执行方法pppp"+purId);
+        return JSON.toJSONString(installService.getOrderDetailVo(purId));
     }
 
 }

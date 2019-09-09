@@ -4,6 +4,7 @@ import cn.lanhuhebi.elderly_group.dao.InstallDao;
 import cn.lanhuhebi.elderly_group.dao.ReportMapper;
 import cn.lanhuhebi.elderly_group.dao.RoleDao;
 import cn.lanhuhebi.elderly_group.model.dto.InstallVo;
+import cn.lanhuhebi.elderly_group.model.dto.OrderDetailVo;
 import cn.lanhuhebi.elderly_group.model.pojo.Dist;
 import cn.lanhuhebi.elderly_group.service.InstallService;
 import cn.lanhuhebi.elderly_group.service.RoleService;
@@ -38,6 +39,7 @@ public class ElderlyGroupApplicationTests {
 
     @Autowired
     private InstallService installService;
+
 
     @Test
     public void setInstallService(){

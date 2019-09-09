@@ -1,7 +1,9 @@
 package cn.lanhuhebi.elderly_group.service.impl;
 
 import cn.lanhuhebi.elderly_group.dao.InstallDao;
+import cn.lanhuhebi.elderly_group.dao.OrderDetaillDao;
 import cn.lanhuhebi.elderly_group.model.dto.InstallVo;
+import cn.lanhuhebi.elderly_group.model.dto.OrderDetailVo;
 import cn.lanhuhebi.elderly_group.service.InstallService;
 import cn.lanhuhebi.elderly_group.util.EmptyUtils;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ public class InstallServiceImpl implements InstallService {
     @Resource
     private InstallDao installDao;
 
+    @Resource
+    private OrderDetaillDao orderDetaillDao;
 
     @Override
     public List<InstallVo> getAlreadyInstalls(Integer areaId, Integer perId) {
@@ -47,5 +51,10 @@ public class InstallServiceImpl implements InstallService {
     @Override
     public InstallVo getInstallOne(Integer flyId) {
         return installDao.getInstallOne(flyId);
+    }
+
+    @Override
+    public List<OrderDetailVo> getOrderDetailVo(Integer purId) {
+        return orderDetaillDao.getOrderDetailVo(purId);
     }
 }

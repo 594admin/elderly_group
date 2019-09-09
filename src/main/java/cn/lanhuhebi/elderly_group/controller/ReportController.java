@@ -57,10 +57,4 @@ public class ReportController {
         return "report/areaReport";
     }
 
-    @RequestMapping("/toTeamReport")
-    public String toTeamReport(){
-        return "report/teamReport";
-    }
-
-
 }

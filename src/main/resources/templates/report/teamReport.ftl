@@ -69,7 +69,7 @@
                                 <div class="col-sm-6">
                                     <div class="ibox float-e-margins">
                                         <div class="ibox-content" style="border-style: none">
-                                            <table class="table table-bordered">
+                                            <table class="table table-bordered" id="ReportTable">
                                                 <thead>
                                                 <tr>
                                                     <th>小组名称</th>
@@ -105,15 +105,34 @@
                                                     <td>65</td>
                                                     <td>65</td>
                                                 </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>三六籽</td>
+                                                    <td>57</td>
+                                                    <td>23</td>
+                                                    <td>66</td>
+                                                    <td>88</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>时代城</td>
+                                                    <td>57</td>
+                                                    <td>23</td>
+                                                    <td>66</td>
+                                                    <td>88</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>七星仔</td>
+                                                    <td>57</td>
+                                                    <td>23</td>
+                                                    <td>66</td>
+                                                    <td>88</td>
+                                                </tr>
                                                 </tbody>
                                                 <tfoot>
-                                                <tr>
-                                                    <th>合计</th>
-                                                    <th>—</th>
-                                                    <th>XXX</th>
-                                                    <th>XXX</th>
-                                                    <th>XXX</th>
-                                                    <th>XXX</th>
+                                                <tr class="count">
+
                                                 </tr>
                                                 </tfoot>
                                             </table>
@@ -157,16 +176,10 @@
 <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
 <script>
-    /*//外部js调用
-    laydate({
-        elem: '#start', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
-        elem: '#end',
-        event: 'focus' //响应事件。如果没有传入event，则按照默认的click
-    });*/
 
     var start = {
         elem: '#start', //选择ID为START的input
-        format: 'YYYY-MM-DD', //自动生成的时间格式
+        format: 'YYYY-MM-DD 00:00:00', //自动生成的时间格式
         min: '2000-01-01', //设定最小日期为当前日期
         max: laydate.now(), //最大日期
         istime: false, //必须填入时间
@@ -179,7 +192,7 @@
     };
     var end = {
         elem: '#end',
-        format: 'YYYY-MM-DD',
+        format: 'YYYY-MM-DD 23:59:59',
         min: laydate.now(),
         max: laydate.now(),
         istime: false,
@@ -194,11 +207,29 @@
 
     $(document).ready(function () {
 
+        var table=document.getElementById("ReportTable");//获取table对象
+        var rows=table.rows;//获取行对象
+        var cells=table.cells;//获取列对象
+        var colums = table.rows[0].cells.length;//获取列数
+        $(".count").empty();//每次加载时清空最后一列，防止二次加载数据时出现多行合计
+        $(".count").append("<th>合计</th><th>—</th>");
+        //这里从列开始遍历，得到的就是每一列的数据
+        //如果从行开始遍历，得到的就是每行的数据
+        for(var j=2;j<colums;j++){
+            var sum=0;
+            for(var i=1;i<rows.length-1;i++){//从i=1第二行开始去掉表头，rows.length-1结束，去掉合计行
+                var a =parseInt(rows[i].cells[j].innerHTML.trim());//获取每一列的值
+                sum=sum+a; //计算
+            }
+            $(".count").append("<th>"+sum+"</th>");//给最后一行添加计算结果列
+        }
+
+
         var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
         var pieoption = {
             title: {
                 text: '工程小组完成占比',
-                subtext: '最后日期',
+                subtext: '2019-08-31~2019-09-02',
                 x: 'center'
             },
             tooltip: {

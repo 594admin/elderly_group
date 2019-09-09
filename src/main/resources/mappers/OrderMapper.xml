@@ -5,7 +5,7 @@
 
 <mapper namespace="cn.lanhuhebi.elderly_group.dao.OrderDao">
 
-    <insert id="addOrder" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Order">
+    <insert id="addOrder" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Order" useGeneratedKeys="true" keyProperty="orId">
         insert into `order` (or_id,or_ept_id,or_ept_num,or_ept_price,or_purse_id)values (default ,#{orEptId},#{orEptNum},#{orEptPrice},#{orPurseId})
     </insert>
     <delete id="deleteOrderByFlyId" parameterType="int">

@@ -27,4 +27,11 @@
             <result property="eptFacty" column="ept_facty"/>
             <result property="eptModel" column="ept_model"/>
     </resultMap>
+    <insert id="addOrderDetail" parameterType="java.lang.Integer" >
+      insert into order_detail  VALUES(DEFAULT ,null,null,#{od_or_id})
+    </insert>
+
+
+
+
 </mapper>

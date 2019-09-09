@@ -17,14 +17,14 @@ import java.util.Random;
 
 public class TencentCOS {
     // 此处填写的存储桶名称
-   //private static final String bucketName = "five-1258991825";
-   private static final String bucketName = "sxd-1258987597";
+    //private static final String bucketName = "five-1258991825";
+    private static final String bucketName = "sxd-1258987597";
     // secretId
     //private static final String secretId = "AKIDEl8oOptp9JONHGoSZjQ8bG5mJkawuRnz";
     private static final String secretId = "AKID0rhIdkTJlzeGdlnojPqc9QSEhurYkA8r";
     // secretKey
     private static final String secretKey = "gM1QwiKuELFtISVMzMTSCD7lBPQBk8GA";
-   //private static final String secretKey = "Fvb7W3f8a3Sl0DUukdaL4qfYWVRJEA4w";
+    //private static final String secretKey = "Fvb7W3f8a3Sl0DUukdaL4qfYWVRJEA4w";
 
     // 1 初始化用户身份信息(secretId, secretKey，可在腾讯云后台中的API密钥管理中查看！
     private static COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
@@ -45,8 +45,8 @@ public class TencentCOS {
         // 生成cos客户端
         COSClient cosclient = new COSClient(cred, clientConfig);
         String fileName = null;
-        try {
-            fileName = localFile.getName();
+            try {
+                fileName = localFile.getName();
             String substring = fileName.substring(fileName.lastIndexOf("."));
             Random random = new Random();
             // 指定要上传到 COS 上的路径

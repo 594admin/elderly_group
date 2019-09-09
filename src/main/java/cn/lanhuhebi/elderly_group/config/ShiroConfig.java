@@ -35,6 +35,8 @@ public class ShiroConfig {
         filterMap.put("/js/**", "anon");
         filterMap.put("/aaa", "anon");
         filterMap.put("/bbb", "anon");
+        filterMap.put("/iii", "anon");//安装列表
+        filterMap.put("/eee", "anon");//安装一个的地址
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/messenger/*", "anon");
         filterMap.put("/address/*", "anon");

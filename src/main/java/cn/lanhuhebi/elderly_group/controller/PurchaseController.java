@@ -3,8 +3,10 @@ package cn.lanhuhebi.elderly_group.controller;
 import cn.lanhuhebi.elderly_group.model.pojo.Order;
 import cn.lanhuhebi.elderly_group.model.pojo.Purchase;
 import cn.lanhuhebi.elderly_group.service.FamilyService;
+import cn.lanhuhebi.elderly_group.service.OrderDetaliService;
 import cn.lanhuhebi.elderly_group.service.OrderService;
 import cn.lanhuhebi.elderly_group.service.PurchaseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,8 @@ public class PurchaseController {
     private FamilyService familyService;
     @Resource
     private OrderService orderService;
+    @Autowired
+    private OrderDetaliService orderDetaliService;
 
 
     @RequestMapping(value = "/doAddPurchase", method = RequestMethod.POST)
@@ -38,7 +42,11 @@ public class PurchaseController {
             order.setOrEptPrice((orEptPrice.get(i) * orEptNum.get(i)));
             order.setOrPurseId(or_purse_id);
             this.orderService.addOrder(order);
+            for(int j=0;j<orEptNum.get(i);j++){
+                this.orderDetaliService.addOrderDetail(order.getOrId());
+            }
         }
+
         if (i1 > 0) {
             this.familyService.updateFamilyAddStatus(3, purseFlyId);
             model.addAttribute("fly_status", 3);

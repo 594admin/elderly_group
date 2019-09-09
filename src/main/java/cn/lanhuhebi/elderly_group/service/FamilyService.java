@@ -40,7 +40,7 @@ public interface FamilyService {
     int deletePurchaseByFlyId(@Param("fly_id")Integer fly_id);
 
     //查询本小组所有的用户
-    List<Family> queryAllByFlyId(@Param("fly_id")Integer fly_id);
+    List<Family> queryAllByPerId(@Param("perId")Integer perId);
 
 
 }

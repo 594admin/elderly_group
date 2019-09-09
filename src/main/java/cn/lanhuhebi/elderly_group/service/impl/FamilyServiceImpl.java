@@ -108,8 +108,8 @@ public class FamilyServiceImpl implements FamilyService {
     }
 
     @Override
-    public List<Family> queryAllByFlyId(Integer fly_id) {
-        return this.familyDao.queryAllByFlyId(fly_id);
+    public List<Family> queryAllByPerId(Integer perId) {
+        return this.familyDao.queryAllByPerId(perId);
     }
 
 }

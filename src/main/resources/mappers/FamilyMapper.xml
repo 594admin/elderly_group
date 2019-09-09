@@ -47,8 +47,8 @@
         AND a4.`area_id`=a5.`area_parID`) q WHERE f.`fly_tem_id`=t.`tem_id` AND f.`fly_status` in (1,2,3) AND q.`area_id`= f.`fly_area_id` and f.fly_id=#{fly_id}
     </select>
 
-    <select id="queryAllByFlyId" resultType="cn.lanhuhebi.elderly_group.model.pojo.Family">
-      select * from family where fly_tem_id=(SELECT m.mem_tem_id FROM personnel p INNER JOIN member m ON p.pre_id=m.mem_mem where p.pre_id=#{pre_id})
+    <select id="queryAllByPerId" resultType="cn.lanhuhebi.elderly_group.model.pojo.Family">
+        SELECT * FROM family f WHERE f.fly_tem_id = (SELECT mem_tem_id FROM member WHERE mem_mem = #{perId}) and f.fly_status >= 1
     </select>
 
     <update id="updateFamilyAddStatus" parameterType="java.lang.Integer">

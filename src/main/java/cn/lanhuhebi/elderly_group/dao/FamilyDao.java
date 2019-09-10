@@ -30,7 +30,8 @@ public interface FamilyDao {
 
 
 
-
+    //根据信息员id得到对应的小组id
+    Integer queryTeamIdByperId (@Param("perId")Integer perId);
 
 
 

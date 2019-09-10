@@ -112,4 +112,9 @@ public class FamilyServiceImpl implements FamilyService {
         return this.familyDao.queryAllByPerId(perId);
     }
 
+    @Override
+    public Integer queryTeamIdByPerId(Integer perId) {
+        return familyDao.queryTeamIdByperId(perId);
+    }
+
 }

@@ -55,6 +55,9 @@
         update family set fly_status=#{fly_status} where fly_id=#{fly_id}
     </update>
 
-
+    <!--app端 新增湖基本信息 需要根据信息员id得到小组id-->
+    <select id="queryTeamIdByperId" resultType="int" >
+        select mem_tem_id from member where mem_mem=#{perId}
+    </select>
 
 </mapper>

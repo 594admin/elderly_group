@@ -1,6 +1,8 @@
 package cn.lanhuhebi.elderly_group.controller;
 
 import cn.lanhuhebi.elderly_group.model.dto.AnnPlan;
+import cn.lanhuhebi.elderly_group.model.dto.app.annPlan.AnnPlanVo;
+import cn.lanhuhebi.elderly_group.model.dto.app.annPlan.Series;
 import cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan;
 import cn.lanhuhebi.elderly_group.model.pojo.Area;
 import cn.lanhuhebi.elderly_group.model.pojo.MonthlyPlan;
@@ -307,6 +309,7 @@ public class PlanController {
 
             map.put(planService.queryAreaNameByareaId(alist.get(i).getAnp_area_id()),rateList);
         }
+
         System.out.println(JSON.toJSONString(map,SerializerFeature.PrettyFormat));
         return JSON.toJSONString(map,SerializerFeature.PrettyFormat);
     }

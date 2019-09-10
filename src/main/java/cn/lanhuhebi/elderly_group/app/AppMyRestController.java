@@ -17,11 +17,13 @@ public class AppMyRestController {
     private String purl = "https://lxw-1258988357.cos.ap-beijing.myqcloud.com/elderlyImages/";
 
     @RequestMapping("/upLoadImg")
-    public String testUploadFile(@RequestParam("images") MultipartFile images) throws IOException {
+    public String testUploadFile(@RequestParam("images") MultipartFile images, @RequestParam("info") String info) throws IOException {
         System.out.println("=========>>>> upLoadImg");
         System.out.println("=========>>>> name: " + images.getName());
         System.out.println("=========>>>> filename: " + images.getOriginalFilename());
         System.out.println("=========>>>> contentType: " + images.getContentType());
+
+        System.out.println("info=========>>>" + info);
 
         StringBuffer sb = new StringBuffer();
         String pic = "";
@@ -44,4 +46,7 @@ public class AppMyRestController {
         pic = sb.toString();
         return JSON.toJSONString(pic);
     }
+
+
+
 }

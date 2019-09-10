@@ -40,6 +40,7 @@ public class ShiroConfig {
         filterMap.put("/ppp", "anon");//安装设备明细
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/messenger/*", "anon");
+        filterMap.put("/statistics/*", "anon");
         filterMap.put("/address/*", "anon");
         filterMap.put("/fail", "anon");
         filterMap.put("/upLoadImg", "anon");

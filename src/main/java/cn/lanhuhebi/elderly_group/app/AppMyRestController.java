@@ -1,5 +1,11 @@
 package cn.lanhuhebi.elderly_group.app;
 
+/**
+ * @ClassName AppMyRestController
+ * @Author Oblivion
+ * @Date 2019/9/9
+ * @Version 1.0
+ **/
 import cn.lanhuhebi.elderly_group.util.TencentAppCOS;
 import com.alibaba.fastjson.JSON;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +18,6 @@ import java.io.IOException;
 
 @RestController
 public class AppMyRestController {
-
 
     private String purl = "https://lxw-1258988357.cos.ap-beijing.myqcloud.com/elderlyImages/";
 

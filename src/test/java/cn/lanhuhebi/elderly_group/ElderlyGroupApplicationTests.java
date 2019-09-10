@@ -1,17 +1,25 @@
 package cn.lanhuhebi.elderly_group;
 
+import cn.lanhuhebi.elderly_group.dao.InstallDao;
 import cn.lanhuhebi.elderly_group.dao.ReportMapper;
 import cn.lanhuhebi.elderly_group.dao.RoleDao;
+import cn.lanhuhebi.elderly_group.model.dto.InstallVo;
+import cn.lanhuhebi.elderly_group.model.dto.OrderDetailVo;
+import cn.lanhuhebi.elderly_group.model.pojo.Dist;
+import cn.lanhuhebi.elderly_group.service.InstallService;
 import cn.lanhuhebi.elderly_group.service.RoleService;
 import cn.lanhuhebi.elderly_group.util.RedisUtils;
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.json.JsonbTester;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @RunWith(SpringRunner.class)
@@ -28,6 +36,28 @@ public class ElderlyGroupApplicationTests {
 
     @Autowired
     private ReportMapper reportMapper;
+
+    @Autowired
+    private InstallService installService;
+
+
+    @Test
+    public void setInstallService(){
+        List<InstallVo> alreadyInstalls = installService.getAlreadyInstalls(386912, 20);
+        for (InstallVo alreadyInstall : alreadyInstalls) {
+            System.out.println("安装完成"+alreadyInstall.getIllId());
+        }
+    }
+    @Test
+    public void setInstallService6(){
+        List<InstallVo> alreadyInstalls = installService.getNotInstalls(386912, 20);
+        for (InstallVo alreadyInstall : alreadyInstalls) {
+            System.out.println("安装未完成"+alreadyInstall.getIllId());
+        }
+    }
+
+
+
     @Test
     public void contextLoads() {
 

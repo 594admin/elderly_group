@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.InstallDao">
+
+
+
+    <select id="getNotInstalls" resultMap="installVos">
+      SELECT  i.ill_id,i.ill_purse_id,d.dist_id,d.dist_installer,f.fly_id,f.fly_name,f.fly_area_id,f.fly_phone,f.fly_IDcard,f.fly_doorNum,f.fly_birthday
+            FROM `install` i
+            INNER JOIN dist d  ON d.dist_id = i.ill_dist_id
+            INNER JOIN family f ON d.dist_fly_id = f.fly_id
+            WHERE d.dist_status = 1 AND f.fly_area_id = #{areaId}
+            AND i.ill_status = 0
+    </select>
+
+    <select id="getAlreadyInstalls" resultMap="installVos">
+        SELECT  i.ill_id,i.ill_purse_id,d.dist_id,d.dist_installer,f.fly_id,f.fly_name,f.fly_area_id,f.fly_phone,f.fly_IDcard,f.fly_doorNum,f.fly_birthday
+            FROM `install` i
+            INNER JOIN dist d  ON d.dist_id = i.ill_dist_id
+            INNER JOIN family f ON d.dist_fly_id = f.fly_id
+            WHERE d.dist_status = 1 AND f.fly_area_id = #{areaId}
+            AND i.ill_status = 1
+    </select>
+
+    <select id="getInstallOne" resultMap="installVo">
+      SELECT  f.`fly_id`, f.`fly_name`,CONCAT(q.qu,q.jiedao,q.cunweihui,f.`fly_address`,f.`fly_doorNum`) AS fly_address ,p.`purse_instPtl`,f.`fly_phone`,t.tem_id,t.`tem_name`
+        FROM family f ,team t ,(SELECT a5.`area_id`, a3.`area_name` qu,a4.`area_name` jiedao,a5.`area_name` cunweihui FROM
+        `area` a1,`area` a2,`area` a3 ,`area` a4,`area` a5
+        WHERE a1.`area_id`=a2.`area_parID` AND a2.`area_id`=a3.`area_parID` AND a3.`area_id`=a4.`area_parID`
+        AND a4.`area_id`=a5.`area_parID`) q ,purchase p
+        WHERE f.`fly_tem_id`=t.`tem_id`
+        AND p.`purse_fly_id`=f.`fly_id`
+        AND q.`area_id`= f.`fly_area_id`AND f.`fly_id` = #{flyId} limit 1
+    </select>
+
+
+    <resultMap id="installVo" type="cn.lanhuhebi.elderly_group.model.dto.InstallVo">
+        <result property="flyId" column="fly_id"/>
+        <result property="flyName" column="fly_name"/>
+        <result property="flyPhone" column="fly_phone"/>
+        <result property="temId" column="tem_id"/>
+        <result property="temName" column="tem_name"/>
+        <result property="flyAddress" column="fly_address"/>
+        <result property="purseInstptl" column="purse_instptl"/>
+    </resultMap>
+
+    <resultMap id="installVos" type="cn.lanhuhebi.elderly_group.model.dto.InstallVo">
+        <id property="illId" column="ill_id"/>
+        <result property="distId" column="dist_id"/>
+        <result property="distInstaller" column="dist_installer"/>
+        <result property="illPurseId" column="ill_purse_id"/>
+        <result property="flyId" column="fly_id"/>
+        <result property="flyName" column="fly_name"/>
+        <result property="flyDoorNum" column="fly_doorNum"/>
+        <result property="flyPhone" column="fly_phone"/>
+        <result property="flyIDcard" column="fly_IDcard"/>
+        <result property="temId" column="tem_id"/>
+        <result property="temName" column="tem_name"/>
+        <result property="flyBirthday" column="fly_birthday"/>
+        <result property="flyAreaId" column="fly_area_id"/>
+        <result property="illStatus" column="ill_status"/>
+    </resultMap>
+
+    <resultMap id="dist" type="cn.lanhuhebi.elderly_group.model.pojo.Dist">
+        <id property="distId" column="dist_id"/>
+        <result property="distFlyId" column="dist_fly_id"/>
+        <result property="distDistDate" column="dist_distDate"/>
+        <result property="distStatus" column="dist_status"/>
+        <result property="distInstaller" column="dist_installer"/>
+    </resultMap>
+</mapper>

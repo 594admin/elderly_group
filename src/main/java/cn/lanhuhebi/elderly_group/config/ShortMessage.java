@@ -76,9 +76,10 @@ public class ShortMessage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if("OK".equals(result.errMsg)){
+        if(result != null && "OK".equals(result.errMsg)){
             return coed;
         }
+
         return null;
     }
 

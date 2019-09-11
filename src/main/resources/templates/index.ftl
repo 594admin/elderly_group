@@ -195,9 +195,6 @@
                         <!--</li>-->
                         <!--<li><a class="J_menuItem" href="widgets.html">小部件</a>-->
                         <!--</li>-->
-
-                        <li><a class="J_menuItem" href="/tolistrole">角色列表</a>
-                        </li>
                     </ul>
                 </li>
                 <li>

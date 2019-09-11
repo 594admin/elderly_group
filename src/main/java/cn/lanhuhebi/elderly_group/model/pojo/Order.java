@@ -23,6 +23,7 @@ public class Order {
     //采购ID
     private Integer orPurseId;
 
+
     //get set 方法
     public Order setOrId (Integer orId){
         this.orId=orId;

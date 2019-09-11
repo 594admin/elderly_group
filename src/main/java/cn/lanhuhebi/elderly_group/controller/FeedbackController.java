@@ -26,7 +26,7 @@ public class FeedbackController {
     //    分页查看所有意见反馈
     @RequestMapping(value = "doListFeedback")
 //    public String doListFeedback(@RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize, Integer fbk_person, Model model) {
-    public String doListFeedback(Integer fbk_person,Model model) {
+    public String doListFeedback(Integer fbk_person, Model model) {
 //        if (fbk_person != null) {
 //            model.addAttribute("pageInfo", feedbackService.queryAllFeedbackByPage(pageNo, pageSize,fbk_person));
 //        }
@@ -47,14 +47,14 @@ public class FeedbackController {
         StringBuffer sb = new StringBuffer();
         String pic = "";
         File excelFile = null;
-        for (int i=0;i<url.size();i++) {
-            if (url.get(i)!=null&&!url.get(i).isEmpty()) {
+        for (int i = 0; i < url.size(); i++) {
+            if (url.get(i) != null && !url.get(i).isEmpty()) {
                 // 获取文件名
                 String fileName = url.get(i).getOriginalFilename();
                 // 获取文件后缀
                 String prefix = fileName.substring(fileName.lastIndexOf("."));
                 // 用uuid作为文件名，防止生成的临时文件重复
-                excelFile = File.createTempFile(String.valueOf(System.currentTimeMillis()),prefix);
+                excelFile = File.createTempFile(String.valueOf(System.currentTimeMillis()), prefix);
                 // 将MultipartFile转为File
                 url.get(i).transferTo(excelFile);
                 //调用腾讯云工具上传文件
@@ -81,7 +81,7 @@ public class FeedbackController {
 
         // 获取文件名
         String fileName = multfile.getOriginalFilename();
-        if(fileName!=null&&!fileName.equals("")){
+        if (fileName != null && !fileName.equals("")) {
             // 获取文件后缀
             String prefix = fileName.substring(fileName.lastIndexOf("."));
             // 用uuid作为文件名，防止生成的临时文件重复
@@ -118,32 +118,30 @@ public class FeedbackController {
     }
 
 
-
-
-//    去修改页面
-    @RequestMapping(value="toUpdateFeedback")
-    public String toUpdateFeedback(Integer fbk_id,Model model){
+    //    去修改页面
+    @RequestMapping(value = "toUpdateFeedback")
+    public String toUpdateFeedback(Integer fbk_id, Model model) {
         model.addAttribute("info", feedbackService.detailFeedback(fbk_id));
         return "feedback/updateFeedback";
     }
 
-//    执行修改操作
-    @RequestMapping(value="doUpdateFeedback")
-    public String doUpdateFeedback(Feedback feedback,RedirectAttributes attributes){
-        if (feedbackService.updateFeedback(feedback)>0) {
+    //    执行修改操作
+    @RequestMapping(value = "doUpdateFeedback")
+    public String doUpdateFeedback(Feedback feedback, RedirectAttributes attributes) {
+        if (feedbackService.updateFeedback(feedback) > 0) {
             attributes.addFlashAttribute("msg", "修改反馈信息成功！");
-        }else{
+        } else {
             attributes.addFlashAttribute("msg", "修改反馈信息失败！");
         }
         return "redirect:doListFeedback";
     }
 
-//    删除反馈信息
-    @RequestMapping(value="doDeleteFeedback")
-    public String doDeleteFeedback(Integer fbk_id,RedirectAttributes attributes){
+    //    删除反馈信息
+    @RequestMapping(value = "doDeleteFeedback")
+    public String doDeleteFeedback(Integer fbk_id, RedirectAttributes attributes) {
         if (feedbackService.deleteFeedback(fbk_id) > 0) {
             attributes.addFlashAttribute("msg", "删除反馈信息成功！");
-        }else{
+        } else {
             attributes.addFlashAttribute("msg", "删除反馈信息失败！");
         }
         return "redirect:doListFeedback";

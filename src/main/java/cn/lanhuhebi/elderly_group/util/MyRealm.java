@@ -25,8 +25,8 @@ public class MyRealm extends AuthorizingRealm  {
         //获取当前用户
         Personnel personnel =   (Personnel)principalCollection.getPrimaryPrincipal();
         //查询出当前用户的所有权限
-        Set<String> strings = roleService.addStringPermissions(personnel.getPreRoleId());
         //获得用户角色
+        Set<String> strings = roleService.addStringPermissions(personnel.getPreRoleId());
         Role role = roleService.getRole(personnel.getPreRoleId());
         //通过SimpleAuthenticationInfo做授权
         SimpleAuthorizationInfo simpleAuthorizationInfo=new SimpleAuthorizationInfo();
@@ -44,8 +44,8 @@ public class MyRealm extends AuthorizingRealm  {
         UsernamePasswordToken token=(UsernamePasswordToken) authenticationToken;
         Personnel personnel = new Personnel();
         if(!token.getUsername().equals("")){
-            //根据账户名查询出一条数据
-            personnel = personnelService.login(token.getUsername());
+                //根据账户名查询出一条数据
+                personnel = personnelService.login(token.getUsername());
         }
         //判断用户是否为空
         if(null == personnel){

@@ -2,14 +2,15 @@ package cn.lanhuhebi.elderly_group.controller;
 
 import cn.lanhuhebi.elderly_group.annotation.DataLog;
 import cn.lanhuhebi.elderly_group.enums.BusinessType;
+import cn.lanhuhebi.elderly_group.job.ScheduleManager;
 import cn.lanhuhebi.elderly_group.model.domain.AreaReport;
 import cn.lanhuhebi.elderly_group.model.domain.ReportData;
 import cn.lanhuhebi.elderly_group.model.pojo.Area;
 import cn.lanhuhebi.elderly_group.service.AreaService;
 import cn.lanhuhebi.elderly_group.service.ReportService;
-import cn.lanhuhebi.elderly_group.util.ScheduleUtils;
 import com.alibaba.fastjson.JSON;
 import org.quartz.SchedulerException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,11 +31,21 @@ public class ReportController {
     @Resource
     private ReportService reportService;
 
+    @Autowired
+    private ScheduleManager scheduleManager;
+
     @GetMapping("/toAreaReport")
     public String toAreaReport(HttpServletRequest request){
         List<Area> areas = areaService.queryAllSheng();
         request.setAttribute("areas",areas);
         return "report/areaReport";
+    }
+
+    @RequestMapping("/toChangjia")
+    public String toChangjia(){
+
+
+        return "report/cjReport";
     }
 
     @DataLog(businessType = BusinessType.GRANT,desc = "区域查询")

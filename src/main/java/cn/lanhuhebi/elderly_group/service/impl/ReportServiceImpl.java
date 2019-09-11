@@ -25,6 +25,8 @@ public class ReportServiceImpl implements ReportService {
     public List<AreaReport> selectAreaReportBy(ReportData reportData) {
         List<AreaReport> areaReports = new ArrayList<>();
         List<ReportVo> reports = getReportVo(reportData);
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++reportData"+reportData);
+        System.out.println("---+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+reports.size());
         AreaReport report = null;
 
         for (ReportVo r : reports) {
@@ -77,7 +79,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public AreaReport tongji(List<AreaReport> list) {
         AreaReport report = new AreaReport();
-        Stream<AreaReport> stream = list.stream();
+
         int tcount = 0;
         int hcount = 0;
         int rtcount = 0;

@@ -22,52 +22,45 @@ public class Rateupdalog {
     private String uplogAfter;
 
     //员工ID
-    private Integer uplogPreId;
+    private String uplogPreId;
 
-    //get set 方法
-    public Rateupdalog setUplogId (Integer uplogId){
-        this.uplogId=uplogId;
-        return this;
+    public Integer getUplogId() {
+        return uplogId;
     }
 
-    public Integer getUplogId(){
-        return this.uplogId;
+    public void setUplogId(Integer uplogId) {
+        this.uplogId = uplogId;
     }
 
-    public Rateupdalog setUplogOperaDate (Date uplogOperaDate){
-        this.uplogOperaDate=uplogOperaDate;
-        return this;
+    public Date getUplogOperaDate() {
+        return uplogOperaDate;
     }
 
-    public Date getUplogOperaDate(){
-        return this.uplogOperaDate;
+    public void setUplogOperaDate(Date uplogOperaDate) {
+        this.uplogOperaDate = uplogOperaDate;
     }
 
-    public Rateupdalog setUplogBefore (String uplogBefore){
-        this.uplogBefore=uplogBefore;
-        return this;
+    public String getUplogBefore() {
+        return uplogBefore;
     }
 
-    public String getUplogBefore(){
-        return this.uplogBefore;
+    public void setUplogBefore(String uplogBefore) {
+        this.uplogBefore = uplogBefore;
     }
 
-    public Rateupdalog setUplogAfter (String uplogAfter){
-        this.uplogAfter=uplogAfter;
-        return this;
+    public String getUplogAfter() {
+        return uplogAfter;
     }
 
-    public String getUplogAfter(){
-        return this.uplogAfter;
+    public void setUplogAfter(String uplogAfter) {
+        this.uplogAfter = uplogAfter;
     }
 
-    public Rateupdalog setUplogPreId (Integer uplogPreId){
-        this.uplogPreId=uplogPreId;
-        return this;
+    public String getUplogPreId() {
+        return uplogPreId;
     }
 
-    public Integer getUplogPreId(){
-        return this.uplogPreId;
+    public void setUplogPreId(String uplogPreId) {
+        this.uplogPreId = uplogPreId;
     }
-
 }

@@ -91,7 +91,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="/toAreaReport">区域统计</a>
                         </li>
-                        <li><a class="J_menuItem" href="#">厂家统计</a>
+                        <li><a class="J_menuItem" href="/toChangjia">厂家统计</a>
                         </li>
                         <li><a class="J_menuItem" href="#">工程统计</a>
                         </li>
@@ -108,8 +108,9 @@
                         </li>
                         <li><a class="J_menuItem" href="/toEquList">智能开关列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="#">采集频次设置</a>
+                        <li><a class="J_menuItem" href="/toCronList">采集频次设置</a>
                         </li>
+
                     </ul>
                 </li>
                 <li>
@@ -119,6 +120,7 @@
                         <li><a class="J_menuItem" href="/toAnpList">计划任务分配</a>
                         </li>
                         <li><a class="J_menuItem" href="/toAnnStatistics">进度完成图表</a>
+
                     </ul>
                 </li>
                 <li>
@@ -127,6 +129,72 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="/listPersonnels">账号列表</a>
                         </li>
+                        <!--<li>-->
+                            <!--<a href="#">字体图标 <span class="fa arrow"></span></a>-->
+                            <!--<ul class="nav nav-third-level">-->
+                                <!--<li>-->
+                                    <!--<a class="J_menuItem" href="fontawesome.html">Font Awesome</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a class="J_menuItem" href="glyphicons.html">Glyphicon</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a class="J_menuItem" href="iconfont.html">阿里巴巴矢量图标库</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="#">拖动排序 <span class="fa arrow"></span></a>-->
+                            <!--<ul class="nav nav-third-level">-->
+                                <!--<li><a class="J_menuItem" href="draggable_panels.html">拖动面板</a>-->
+                                <!--</li>-->
+                                <!--<li><a class="J_menuItem" href="agile_board.html">任务清单</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <li><a class="J_menuItem" href="/tolistrole">角色列表</a>
+                        </li>
+                        <!--<li><a class="J_menuItem" href="tabs_panels.html">选项卡 &amp; 面板</a>-->
+                        <!--</li>-->
+                        <!--<li><a class="J_menuItem" href="notifications.html">通知 &amp; 提示</a>-->
+                        <!--</li>-->
+                        <!--<li><a class="J_menuItem" href="badges_labels.html">徽章，标签，进度条</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a class="J_menuItem" href="grid_options.html">栅格</a>-->
+                        <!--</li>-->
+                        <!--<li><a class="J_menuItem" href="plyr.html">视频、音频</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="#">弹框插件 <span class="fa arrow"></span></a>-->
+                            <!--<ul class="nav nav-third-level">-->
+                                <!--<li><a class="J_menuItem" href="layer.html">Web弹层组件layer</a>-->
+                                <!--</li>-->
+                                <!--<li><a class="J_menuItem" href="modal_window.html">模态窗口</a>-->
+                                <!--</li>-->
+                                <!--<li><a class="J_menuItem" href="sweetalert.html">SweetAlert</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="#">树形视图 <span class="fa arrow"></span></a>-->
+                            <!--<ul class="nav nav-third-level">-->
+                                <!--<li><a class="J_menuItem" href="jstree.html">jsTree</a>-->
+                                <!--</li>-->
+                                <!--<li><a class="J_menuItem" href="tree_view.html">Bootstrap Tree View</a>-->
+                                <!--</li>-->
+                                <!--<li><a class="J_menuItem" href="nestable_list.html">nestable</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li><a class="J_menuItem" href="toastr_notifications.html">Toastr通知</a>-->
+                        <!--</li>-->
+                        <!--<li><a class="J_menuItem" href="diff.html">文本对比</a>-->
+                        <!--</li>-->
+                        <!--<li><a class="J_menuItem" href="spinners.html">加载动画</a>-->
+                        <!--</li>-->
+                        <!--<li><a class="J_menuItem" href="widgets.html">小部件</a>-->
+                        <!--</li>-->
 
                         <li><a class="J_menuItem" href="/tolistrole">角色列表</a>
                         </li>

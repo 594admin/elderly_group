@@ -28,10 +28,17 @@
             INNER JOIN purchase on family.fly_id= purchase.purse_fly_id
             INNER JOIN `order` on purchase.purse_id = `order`.or_purse_id
             INNER JOIN equipment on equipment.ept_id = `order`.or_ept_id
-            where d.area_id = #{areaid}
-            and family.fly_status = 1
-            and family.fly_date &gt;= #{start}
-            and family.fly_date &lt;= #{end}
+        where
+            family.fly_status = 1
+            <if test="areaid != null and areaid != -1">
+                and d.area_id = #{areaid}
+            </if>
+            <if test="start != null">
+                and family.fly_date &gt;= #{start}
+            </if>
+            <if test="end != null">
+                and family.fly_date &lt;= #{end}
+            </if>
     </select>
 
     <select id="selectFamilyByDate2" resultMap="FamilyVoResult">
@@ -48,10 +55,18 @@
             INNER JOIN purchase on family.fly_id= purchase.purse_fly_id
             INNER JOIN `order` on purchase.purse_id = `order`.or_purse_id
             INNER JOIN equipment on equipment.ept_id = `order`.or_ept_id
-            where c.area_id = #{areaid}
-            and family.fly_status = 1
-            and family.fly_date &gt;= #{start}
-            and family.fly_date &lt;= #{end}
+        where
+            family.fly_status = 1
+            <if test="areaid != null and areaid != -1">
+                and c.area_id = #{areaid}
+            </if>
+            <if test="start != null">
+                and family.fly_date &gt;= #{start}
+            </if>
+            <if test="end != null">
+                and family.fly_date &lt;= #{end}
+            </if>
+
     </select>
 
     <select id="selectFamilyByDate3" resultMap="FamilyVoResult">
@@ -65,15 +80,20 @@
         FROM area a
 			INNER JOIN family on family.fly_area_id = a.area_id
             INNER JOIN area b on a.area_parID = b.area_id
-
-
             INNER JOIN purchase on family.fly_id= purchase.purse_fly_id
             INNER JOIN `order` on purchase.purse_id = `order`.or_purse_id
             INNER JOIN equipment on equipment.ept_id = `order`.or_ept_id
-            where b.area_id = #{areaid}
-            and family.fly_status = 1
-            and family.fly_date &gt;= #{start}
-            and family.fly_date &lt;= #{end}
+        where
+            family.fly_status = 1
+            <if test="areaid != null and areaid != -1">
+                and b.area_id = #{areaid}
+            </if>
+            <if test="start != null">
+                and family.fly_date &gt;= #{start}
+            </if>
+            <if test="end != null">
+                and family.fly_date &lt;= #{end}
+            </if>
     </select>
 
     <resultMap id="FamilyVoResult" type="cn.lanhuhebi.elderly_group.model.domain.ReportVo">

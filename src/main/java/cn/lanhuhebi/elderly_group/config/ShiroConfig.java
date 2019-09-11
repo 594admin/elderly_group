@@ -38,6 +38,8 @@ public class ShiroConfig {
         filterMap.put("/iii", "anon");//安装列表
         filterMap.put("/eee", "anon");//安装一个的地址
         filterMap.put("/ppp", "anon");//安装设备明细
+        //filterMap.put("/installEmp", "anon");//安装状态修改为已安装
+        filterMap.put("/upLoadImgInstall", "anon");//安装确认
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/messenger/*", "anon");
         filterMap.put("/statistics/*", "anon");

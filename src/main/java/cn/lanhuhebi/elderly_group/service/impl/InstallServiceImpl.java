@@ -57,4 +57,11 @@ public class InstallServiceImpl implements InstallService {
     public List<OrderDetailVo> getOrderDetailVo(Integer purId) {
         return orderDetaillDao.getOrderDetailVo(purId);
     }
+
+    @Override
+    public boolean installEmp(Integer pureId) {
+        Integer pId = installDao.getPId(pureId);
+        System.out.println("采购单号:"+pId);
+        return installDao.installEmp(pId)>0;
+    }
 }

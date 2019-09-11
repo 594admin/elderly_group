@@ -25,4 +25,6 @@ public interface OrderDetaillDao {
      */
     int addOrderDetail(@Param("od_or_id") Integer od_or_id);
 
+    int updateOrderDetail(@Param("odId")Integer odId,@Param("odEmpNo")String odEmpNo,@Param("odPhoto")String odPhoto);
+
 }

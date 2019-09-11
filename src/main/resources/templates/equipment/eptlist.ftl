@@ -110,33 +110,33 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>类型：</label>
                             <div class="col-sm-8">
-                                <input name="eptType" type="text" class="form-control">
+                                <input name="eptType" required type="text" class="form-control">
                             </div>
                         </div>
                         <p align="center" style="color: red" id="prePhones"></p>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>厂家：</label>
                             <div class="col-sm-8">
-                                <input name="eptFacty" type="text" class="form-control">
+                                <input name="eptFacty" required type="text" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>型号：</label>
                             <div class="col-sm-8">
-                                <input name="eptModel" type="text" class="form-control">
+                                <input name="eptModel" required type="text" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>单价：</label>
                             <div class="col-sm-8">
-                                <input name="eptPrice" type="text" class="form-control">
+                                <input name="eptPrice" required pattern="^\+?[1-9][0-9]*$" type="text" class="form-control">
                             </div>
                         </div>
                         <p align="center" style="color: red" id="preEmails"></p>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><span style="color: red">*</span>数量：</label>
                             <div class="col-sm-8">
-                                <input name="eptStock" type="text" class="form-control">
+                                <input name="eptStock" required pattern="^\+?[1-9][0-9]*$" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">

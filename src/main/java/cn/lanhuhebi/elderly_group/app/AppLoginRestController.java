@@ -9,7 +9,6 @@ import cn.lanhuhebi.elderly_group.util.VerificationCode;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,8 +81,8 @@ public class AppLoginRestController {
     }
 
     @RequestMapping("/fail")
-    public ResponseEntity fail() {
-        return ResponseEntity.notFound().build();
+    public String fail() {
+        return JSON.toJSONString("fail");
     }
 
 }

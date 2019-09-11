@@ -144,7 +144,7 @@ public class FamilyController {
         family.setFly_data5(returnfileName.get(4));
         family.setFly_data6(returnfileName.get(5));
         this.familyService.updateFamilyData(family);
-        return "redirect/initfamilylist";
+        return "redirect:/initfamilylist";
     }
 
     /**

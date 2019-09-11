@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,14 +41,14 @@ public class AppMessengerRestController {
     private OrderService orderService;
 
     @PostMapping("listFly")
-    /*public ResponseEntity<List<Family>> listfamily(@RequestAttribute("personnelVo") PersonnelVo personnelVo) {
+    public ResponseEntity<List<Family>> listfamily(@RequestAttribute("personnelVo") PersonnelVo personnelVo) {
         System.out.println(" <<<<<===personnelVo===>>>> " + personnelVo);
         return ResponseEntity.ok(familyService.queryAllByPerId(personnelVo.getPreId()));
-    }*/
-    public ResponseEntity<List<Family>> listfamily(@RequestParam("per_id") Integer per_id) {
-        //System.out.println(" <<<<<===personnelVo===>>>> " + personnelVo);
-        return ResponseEntity.ok(familyService.queryAllByPerId(per_id));
     }
+//    public ResponseEntity<List<Family>> listfamily(@RequestParam("per_id") Integer per_id) {
+//        //System.out.println(" <<<<<===personnelVo===>>>> " + personnelVo);
+//        return ResponseEntity.ok(familyService.queryAllByPerId(per_id));
+//    }
 
     @PostMapping("delFly")
     public String deleteFamily(@RequestParam("flyId") Integer flyId) {

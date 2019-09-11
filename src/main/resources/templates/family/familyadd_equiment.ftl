@@ -270,12 +270,12 @@
 
         if(ept_price!=null){
         $('#editable').dataTable().fnAddData([
-            '<input style="border: 0;background-color: #f5f5f5" type="text" name="orEptId" value="'+ept_id+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="ept_type" value="'+ept_type+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="ept_facty" value="'+ept_facty+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="ept_model" value="'+ept_model+'"/>',
-            '<input  style="border: 0;background-color: #f5f5f5"  type="text" name="orEptPrice" value="'+ept_price+'"/>',
-            '<input  style="border: 0.5;background-color: #f5f5f5" type="number" required name="orEptNum" min="1" step="1"/>',
+            '<input readonly unselectable="on" style="border: 0;background-color: #f5f5f5" type="text" name="orEptId" value="'+ept_id+'"/>',
+            '<input readonly unselectable="on" style="border: 0;background-color: #f5f5f5"  type="text" name="ept_type" value="'+ept_type+'"/>',
+            '<input readonly unselectable="on" style="border: 0;background-color: #f5f5f5"  type="text" name="ept_facty" value="'+ept_facty+'"/>',
+            '<input readonly unselectable="on" style="border: 0;background-color: #f5f5f5"  type="text" name="ept_model" value="'+ept_model+'"/>',
+            '<input readonly unselectable="on" style="border: 0;background-color: #f5f5f5"  type="text" name="orEptPrice" value="'+ept_price+'"/>',
+            '<input style="border: 0.5;background-color: #f5f5f5" type="number" required name="orEptNum" min="1" step="1"/>',
             '<a  data-toggle="modal" class="btn btn-info btn-xs" onclick="shanchu($(this).parents(\'tr\').index())" href="javascript:void(0)">删除</a>']);
        }
 

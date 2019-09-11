@@ -7,6 +7,7 @@ import cn.lanhuhebi.elderly_group.util.RedisUtils;
 import cn.lanhuhebi.elderly_group.util.TokenUtils;
 import cn.lanhuhebi.elderly_group.util.VerificationCode;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 
 @RestController
+@RequestMapping("/login")
 public class AppLoginRestController {
     @Autowired
     private RedisUtils redisUtils;
@@ -48,7 +51,7 @@ public class AppLoginRestController {
     }
 
     @PostMapping(value = "/bbb")
-    public String appdoXinXiYuanLogin(String phone, String code) {
+    public String appdoXinXiYuanLogin(String phone, String code, Integer auth) {
         System.out.println("========>>>>" + phone);
         String data = null;
         String o = (String) redisUtils.get(phone);
@@ -57,6 +60,9 @@ public class AppLoginRestController {
         Personnel personnleOne = personnelService.getPersonnleOne(phone);
         if (flagPhone) {
             Integer preRoleId = personnleOne.getPreRoleId();
+            if (preRoleId != auth) {
+                data = "登录角色不符";
+            }
             if (Arrays.asList(roles).contains(preRoleId)) {
                 //组装信息
                 PersonnelVo personnelVo=new PersonnelVo();
@@ -80,8 +86,21 @@ public class AppLoginRestController {
         return data;
     }
 
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        if (redisUtils.exist(token)) {
+            String JSON_OBJ_STR = (String) redisUtils.get(token);
+            PersonnelVo personnelVo = JSON.parseObject(JSON_OBJ_STR, new TypeReference<PersonnelVo>() {});
+            redisUtils.delete("laonian-" + personnelVo.getPreId());
+            redisUtils.delete(token);
+        }
+        return "success";
+    }
+
     @RequestMapping("/fail")
     public String fail() {
+        System.out.println("======fail======");
         return JSON.toJSONString("fail");
     }
 

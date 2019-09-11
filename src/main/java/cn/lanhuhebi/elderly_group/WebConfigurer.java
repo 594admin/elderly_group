@@ -24,6 +24,6 @@ public class WebConfigurer implements WebMvcConfigurer {
         System.out.println("=====>拦截器Start");
         // addPathPatterns("/**") 表示拦截所有的请求，
         // excludePathPatterns("/login", "/register") 表示除了登陆与注册之外，因为登陆注册不需要登陆也可以访问
-        registry.addInterceptor(tokenInterceptor).addPathPatterns("/**").excludePathPatterns("/doLogin", "/bbb", "/fail", "/", "/logout", "/css/**", "/docs/**", "/fonts/**", "/img/**", "/js/**", "/aaa", "/favicon.ico", "/test", "/doAuth");
+        registry.addInterceptor(tokenInterceptor).addPathPatterns("/**").excludePathPatterns("/login/*", "/doLogin", "/", "/logout", "/css/**", "/docs/**", "/fonts/**", "/img/**", "/js/**", "/favicon.ico", "/test", "/doAuth");
     }
 }

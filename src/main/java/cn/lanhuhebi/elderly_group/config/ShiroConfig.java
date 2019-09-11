@@ -33,16 +33,18 @@ public class ShiroConfig {
         filterMap.put("/fonts/**", "anon");
         filterMap.put("/img/**", "anon");
         filterMap.put("/js/**", "anon");
-        filterMap.put("/aaa", "anon");
-        filterMap.put("/bbb", "anon");
-        filterMap.put("/iii", "anon");//安装列表
-        filterMap.put("/eee", "anon");//安装一个的地址
-        filterMap.put("/ppp", "anon");//安装设备明细
         filterMap.put("/favicon.ico", "anon");
+
+//        filterMap.put("/aaa", "anon");
+//        filterMap.put("/bbb", "anon");
+//        filterMap.put("/iii", "anon");//安装列表
+//        filterMap.put("/eee", "anon");//安装一个的地址
+//        filterMap.put("/ppp", "anon");//安装设备明细
+        filterMap.put("/login/*", "anon");
+        filterMap.put("/install/*", "anon");
         filterMap.put("/messenger/*", "anon");
         filterMap.put("/statistics/*", "anon");
         filterMap.put("/address/*", "anon");
-        filterMap.put("/fail", "anon");
         filterMap.put("/my/*", "anon");
         //测试权限
         filterMap.put("/test", "anon");

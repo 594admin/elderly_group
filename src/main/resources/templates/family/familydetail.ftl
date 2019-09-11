@@ -114,14 +114,11 @@
                         </select>
                         &nbsp;
                         <select class="chosen-select" style="width:80px;height: 34px" >
-                            <option value="386910" hassubinfo="true" >淇滨区</option>
+                            <option value="" hassubinfo="true">${family_team.qu}</option>
                         </select>
                         &nbsp;
                         <select  id='jiedao'class="chosen-select" style="width:80px;height: 34px" required>
                             <option value="" hassubinfo="true">${family_team.jiedao}</option>
-                            <#list areas as a>
-                                <option value="${a.areaId?c}" name="jiedao" jiedaoname="${a.areaId?c}" hassubinfo="true">${a.areaName}</option>
-                            </#list>
                         </select>
                         &nbsp;
                         <select id='juweihui'class="chosen-select" name="fly_area_id" style="width:80px;height: 34px" required>

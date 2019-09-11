@@ -43,4 +43,8 @@ public interface FamilyService {
     List<Family> queryAllByPerId(@Param("perId")Integer perId);
 
 
+    //根据信息员id得到小组id
+    Integer queryTeamIdByPerId(Integer perId);
+
+
 }

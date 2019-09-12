@@ -33,4 +33,18 @@ public interface InstallDao {
      * @return
      */
     InstallVo getInstallOne(@Param("flyId") Integer flyId);
+
+    /**
+     *修改安装状态
+     * @param illId
+     * @return
+     */
+    int installEmp(@Param("illId")Integer illId);
+
+    /**
+     * 查询数据
+     * @param pureId
+     * @return
+     */
+    Integer getPId(@Param("pureId")Integer pureId);
 }

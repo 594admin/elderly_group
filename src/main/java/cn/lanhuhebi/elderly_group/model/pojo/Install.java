@@ -1,4 +1,7 @@
 package cn.lanhuhebi.elderly_group.model.pojo;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 /**
@@ -11,24 +14,37 @@ public class Install {
 
     //安装记录ID
     private Integer illId;
-
-    //订单ID
-    private Integer illOrId;
-
+    //户Id
+    private Integer illFlyId;
+    //采购单ID
+    private Integer illPurseId;
     //分配记录ID
     private Integer illDistId;
 
     //安装时间
+    @JSONField(format="yyyy-MM-dd")
     private Date illInstallDate;
 
     //安装状态
     private Integer illStatus;
-    //采购单ID
-    private Integer illPurseId;
 
+    public Integer getIllId() {
+        return illId;
+    }
 
-    //get set 方法
+    public Install setIllId(Integer illId) {
+        this.illId = illId;
+        return this;
+    }
 
+    public Integer getIllFlyId() {
+        return illFlyId;
+    }
+
+    public Install setIllFlyId(Integer illFlyId) {
+        this.illFlyId = illFlyId;
+        return this;
+    }
 
     public Integer getIllPurseId() {
         return illPurseId;
@@ -39,49 +55,30 @@ public class Install {
         return this;
     }
 
-    public Install setIllId (Integer illId){
-        this.illId=illId;
+    public Integer getIllDistId() {
+        return illDistId;
+    }
+
+    public Install setIllDistId(Integer illDistId) {
+        this.illDistId = illDistId;
         return this;
     }
 
-    public Integer getIllId(){
-        return this.illId;
+    public Date getIllInstallDate() {
+        return illInstallDate;
     }
 
-    public Install setIllOrId (Integer illOrId){
-        this.illOrId=illOrId;
+    public Install setIllInstallDate(Date illInstallDate) {
+        this.illInstallDate = illInstallDate;
         return this;
     }
 
-    public Integer getIllOrId(){
-        return this.illOrId;
+    public Integer getIllStatus() {
+        return illStatus;
     }
 
-    public Install setIllDistId (Integer illDistId){
-        this.illDistId=illDistId;
+    public Install setIllStatus(Integer illStatus) {
+        this.illStatus = illStatus;
         return this;
     }
-
-    public Integer getIllDistId(){
-        return this.illDistId;
-    }
-
-    public Install setIllInstallDate (Date illInstallDate){
-        this.illInstallDate=illInstallDate;
-        return this;
-    }
-
-    public Date getIllInstallDate(){
-        return this.illInstallDate;
-    }
-
-    public Install setIllStatus (Integer illStatus){
-        this.illStatus=illStatus;
-        return this;
-    }
-
-    public Integer getIllStatus(){
-        return this.illStatus;
-    }
-
 }

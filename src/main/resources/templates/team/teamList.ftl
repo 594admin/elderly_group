@@ -49,7 +49,7 @@
                                         </button>
                                         <h4 class="modal-title">新增工程小组</h4>
                                     </div>
-                                    <form action="/addTeam" method="post" class="form-horizontal">
+                                    <form action="/addTeam" method="post" class="form-horizontal" id="addteam">
                                         <div class="modal-body" style="height: 400px;">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -140,7 +140,7 @@
                                 <td>${t.createTime?string("yyyy-MM-dd")}</td>
                                 <td>${t.creator}</td>
                                 <td>
-                                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal2" onclick="edtTeam(${t.tid})" ">
+                                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal2" onclick="edtTeam(${t.tid})">
                                         编辑
                                     </a>
                                 </td>
@@ -157,7 +157,7 @@
                                     </button>
                                     <h4 class="modal-title">编辑工程小组</h4>
                                 </div>
-                                <form action="/edtTeamById" method="post" class="form-horizontal">
+                                <form action="/edtTeamById" method="post" class="form-horizontal" id="bianji">
                                     <input type="hidden" name="edt_teamId">
                                     <div class="modal-body" style="height: 400px;">
                                         <div class="col-md-12">
@@ -253,6 +253,144 @@
 
 <script>
     $(document).ready(function () {
+
+        $("#addteam").submit(function () {
+            var tname = $("[name='teamName']").val();
+            if (tname == '' || tname == null){
+                parent.layer.alert('请填写小组名', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return  false;
+            }
+
+
+            var teamLeader = $("[name='teamLeader']").val();
+            if (teamLeader == '' || teamLeader == null || teamLeader == -1){
+                parent.layer.alert('请选择组长', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return false;
+            }
+
+            var informationer = $("[name='informationer']");
+            var flag = false;
+            for (var i = 0; i < informationer.length;i++){
+                if (informationer.eq(i).prop("checked")){
+                    flag = true;
+                }
+            }
+            if (flag == false){
+                parent.layer.alert('请选择信息员', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return false;
+            }
+
+            var warehousemanager = $("[name='warehousemanager']");
+            var wflag = false;
+            for (var i = 0; i < warehousemanager.length;i++){
+                if (warehousemanager.eq(i).prop("checked")){
+                    wflag = true;
+                }
+            }
+            if (wflag == false){
+                parent.layer.alert('请选择库管员', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return false;
+            }
+
+            var installer = $("[name='installer']");
+            var iflag = false;
+            for (var i = 0; i < installer.length;i++){
+                if (installer.eq(i).prop("checked")){
+                    iflag = true;
+                }
+            }
+            if (iflag == false){
+                parent.layer.alert('请选择安装工', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return false;
+            }
+            return true;
+        });
+
+
+        $("#bianji").submit(function () {
+
+            var edt_teamName = $("[name='edt_teamName']").val();
+            if (edt_teamName == '' || edt_teamName == null){
+                parent.layer.alert('请填写小组名', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return  false;
+            }
+
+            var edt_teamLeader = $("[name='edt_teamLeader']").val();
+            if (edt_teamLeader == '' || edt_teamLeader == null || edt_teamLeader == -1){
+                parent.layer.alert('请选择组长', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return false;
+            }
+
+            var edt_informationer = $("[name='edt_informationer']");
+            var flag = false;
+            for (var i = 0; i < edt_informationer.length;i++){
+                if (edt_informationer.eq(i).prop("checked")){
+                    flag = true;
+                }
+            }
+            if (flag == false){
+                parent.layer.alert('请选择信息员', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return false;
+            }
+
+            var edt_warehousemanger = $("[name='edt_warehousemanger']");
+            var wflag = false;
+            for (var i = 0; i < edt_warehousemanger.length;i++){
+                if (edt_warehousemanger.eq(i).prop("checked")){
+                    wflag = true;
+                }
+            }
+            if (wflag == false){
+                parent.layer.alert('请选择库管员', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return false;
+            }
+
+            var edt_installer = $("[name='edt_installer']");
+            var iflag = false;
+            for (var i = 0; i < edt_installer.length;i++){
+                if (edt_installer.eq(i).prop("checked")){
+                    iflag = true;
+                }
+            }
+            if (iflag == false){
+                parent.layer.alert('请选择安装工', {
+                    skin: 'layui-layer-lan',
+                    shift: 4
+                });
+                return false;
+            }
+            return true;
+
+        });
+
+
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
@@ -260,11 +398,13 @@
     });
 
     function edtTeam(tid) {
+
         // 组ID 组名 组长ID
         $.post("/getTeamById",{"tid":tid},function (data) {
             $("[name='edt_teamId']").val(data.temId);
             $("[name='edt_teamName']").val(data.temName);
-            $("[name='edt_teamLeader'] option[value="+data.temLead+"]").attr("selected","selected");
+            $("[name='edt_teamLeader']").val(data.temLead);
+            //$("[name='edt_teamLeader'] option[value="+data.temLead+"]").attr("selected","selected");
         },"json");
         // 本组信息员ID 姓名
         $.post("/getInformationerByTeamId",{"tid":tid},function (data) {

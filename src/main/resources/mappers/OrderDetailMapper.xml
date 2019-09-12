@@ -6,4 +6,42 @@
 <mapper namespace="cn.lanhuhebi.elderly_group.dao.OrderDetaillDao">
 
 
+    <select id="getOrderDetailVo" resultMap="orderdetailVo">
+    SELECT od.od_id,od.od_emp_no,od.od_photo,od.od_or_id,o.`or_purse_id`,
+        e.ept_id,e.ept_type,e.ept_facty,e.ept_model
+    FROM order_detail  od
+    INNER JOIN `order` o ON od.od_or_id = o.or_id
+    INNER JOIN `equipment` e ON o.`or_ept_id` = e.ept_id
+    WHERE od.`od_or_id` IN(SELECT or_id FROM `order` WHERE or_purse_id = #{purId})
+    </select>
+
+
+    <update id="updateOrderDetail" >
+        UPDATE
+          order_detail
+        SET
+          od_emp_no=#{odEmpNo} ,od_photo =#{odPhoto}
+        WHERE
+          od_id = #{odId}
+    </update>
+
+
+    <resultMap id="orderdetailVo" type="cn.lanhuhebi.elderly_group.model.dto.OrderDetailVo">
+            <id property="odId" column="od_id"/>
+            <result property="odEmpNo" column="od_emp_no"/>
+            <result property="odPhoto" column="od_photo"/>
+            <result property="odOrId" column="od_or_id"/>
+            <result property="orPurseId" column="or_purse_id"/>
+            <result property="eptId" column="ept_id"/>
+            <result property="eptType" column="ept_type"/>
+            <result property="eptFacty" column="ept_facty"/>
+            <result property="eptModel" column="ept_model"/>
+    </resultMap>
+    <insert id="addOrderDetail" parameterType="java.lang.Integer" >
+      insert into order_detail  VALUES(DEFAULT ,null,null,#{od_or_id})
+    </insert>
+
+
+
+
 </mapper>

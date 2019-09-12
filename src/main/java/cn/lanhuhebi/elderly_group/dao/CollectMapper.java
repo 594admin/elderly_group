@@ -1,6 +1,7 @@
 package cn.lanhuhebi.elderly_group.dao;
 
 import cn.lanhuhebi.elderly_group.model.domain.SmartequVo;
+import cn.lanhuhebi.elderly_group.model.pojo.Rateupdalog;
 import cn.lanhuhebi.elderly_group.model.pojo.Smartequ;
 
 import java.util.List;
@@ -14,5 +15,11 @@ public interface CollectMapper {
     int insertequ(List<SmartequVo> smartequs);
 
     List<Integer> hasEqu(List<Smartequ> smartequs);
+
+    int insertRateupdalog(Rateupdalog rateupdalog);
+
+    String selectMaxUplogAfter();
+
+    List<Rateupdalog> selectAllRateupdalog();
 
 }

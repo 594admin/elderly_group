@@ -1,6 +1,8 @@
 package cn.lanhuhebi.elderly_group.controller;
 
 import cn.lanhuhebi.elderly_group.model.dto.AnnPlan;
+import cn.lanhuhebi.elderly_group.model.dto.app.annPlan.AnnPlanVo;
+import cn.lanhuhebi.elderly_group.model.dto.app.annPlan.Series;
 import cn.lanhuhebi.elderly_group.model.pojo.AnnualPlan;
 import cn.lanhuhebi.elderly_group.model.pojo.Area;
 import cn.lanhuhebi.elderly_group.model.pojo.MonthlyPlan;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import java.text.DecimalFormat;
 import java.util.*;
 
 @Controller
@@ -272,6 +275,8 @@ public class PlanController {
         yues.add((Integer.parseInt(cann_year)+1)+"-01-01");
         //返回一个map集合
         Map<String,List<Double>> map= new HashMap<>();
+        //控制double的小数位数
+        DecimalFormat df = new DecimalFormat( "0.00");
         //第一步：由年份得到所有的年度的计划
         List<AnnualPlan> alist= planService.queryByAnnYear(cann_year);
 
@@ -298,12 +303,13 @@ public class PlanController {
                 if (mlist.get(z).getMon_Rept_num()+mlist.get(z).getMon_Sept_num()==0){
                     rateList.add(((double)monInstall)/1);
                 }else{
-                    rateList.add(((double)monInstall)/(mlist.get(z).getMon_Rept_num()+mlist.get(z).getMon_Sept_num()));
+                    rateList.add(Double.parseDouble(df.format(((double)monInstall)/(mlist.get(z).getMon_Rept_num()+mlist.get(z).getMon_Sept_num()))));
                 }
             }
 
             map.put(planService.queryAreaNameByareaId(alist.get(i).getAnp_area_id()),rateList);
         }
+
         System.out.println(JSON.toJSONString(map,SerializerFeature.PrettyFormat));
         return JSON.toJSONString(map,SerializerFeature.PrettyFormat);
     }

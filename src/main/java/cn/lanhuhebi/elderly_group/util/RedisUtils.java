@@ -24,7 +24,6 @@ public class RedisUtils {
 
     public boolean set(String key,String value){
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-
         redisTemplate.setValueSerializer(new StringRedisSerializer());
         ValueOperations<String,Object> vo=redisTemplate.opsForValue();
         vo.set(key,value);

@@ -107,7 +107,7 @@
 
     <select id="queryMonInstall" resultType="int">
         SELECT   IFNULL(SUM(o.or_ept_num),0) AS he
-        FROM `install` i LEFT JOIN `order` o ON i.ill_or_id=o.or_id
+        FROM `install` i LEFT JOIN `order` o ON i.ill_purse_id=o.or_purse_id
         LEFT JOIN family f  ON i.ill_fly_id=f.fly_id
         LEFT JOIN `area` a ON f.fly_area_id IN
         (SELECT  c.area_id

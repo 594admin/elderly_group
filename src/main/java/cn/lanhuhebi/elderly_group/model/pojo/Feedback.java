@@ -86,4 +86,17 @@ public class Feedback {
     public void setFbk_creaDate(Timestamp fbk_creaDate) {
         this.fbk_creaDate = fbk_creaDate;
     }
+
+    @Override
+    public String toString() {
+        return "Feedback{" +
+                "fbk_id=" + fbk_id +
+                ", fbk_person=" + fbk_person +
+                ", fbk_phone='" + fbk_phone + '\'' +
+                ", fbk_name='" + fbk_name + '\'' +
+                ", fbk_data='" + fbk_data + '\'' +
+                ", fbk_pic='" + fbk_pic + '\'' +
+                ", fbk_creaDate=" + fbk_creaDate +
+                '}';
+    }
 }

@@ -7,6 +7,10 @@
         INSERT INTO liblogs VALUES (DEFAULT, #{libType}, SYSDATE(), #{libOperator}, #{libEptId}, #{libNum})
     </insert>
 
+    <insert id="addLogs">
+        INSERT INTO liblogs VALUES (DEFAULT, #{lib_type}, SYSDATE(), #{lib_operator}, #{lib_pur_id})
+    </insert>
+
     <resultMap id="lib" type="Liblogs">
         <result column="lib_id" property="libeptId"/>
         <result column="lib_type" property="libType"/>

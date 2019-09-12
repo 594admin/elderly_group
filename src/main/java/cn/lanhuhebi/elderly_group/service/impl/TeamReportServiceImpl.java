@@ -6,7 +6,6 @@ import cn.lanhuhebi.elderly_group.service.TeamReportService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,22 +18,22 @@ public class TeamReportServiceImpl implements TeamReportService{
     private TeamReportDao teamReportDao;
 
     @Override
-    public List<recordVO> getRecordCount(Date start, Date end) {
+    public List<recordVO> getRecordCount(String start, String end) {
         return teamReportDao.getRecordCount(start, end);
     }
 
     @Override
-    public List<payVO> getPayCount(Date start, Date end) {
+    public List<payVO> getPayCount(String start, String end) {
         return teamReportDao.getPayCount(start, end);
     }
 
     @Override
-    public List<outVO> getOutCount(Date start, Date end) {
+    public List<outVO> getOutCount(String start, String end) {
         return teamReportDao.getOutCount(start, end);
     }
 
     @Override
-    public List<installVO> getInstallCount(Date start, Date end) {
+    public List<insVO> getInstallCount(String start, String end) {
         return teamReportDao.getInstallCount(start, end);
     }
 

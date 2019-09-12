@@ -4,7 +4,7 @@ package cn.lanhuhebi.elderly_group.model.dto.teamReport;
  * @author FanWeichong
  * @date 2019-09-12 14:56
  */
-public class installVO {
+public class insVO {
     private int teamId,installCount;
     private String teamName,leaderName;
 

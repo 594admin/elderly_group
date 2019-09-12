@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.lanhuhebi.elderly_group.dao.TeamReportDao">
 
-    <select id="getRecordCount">
+    <select id="getRecordCount" resultType="cn.lanhuhebi.elderly_group.model.dto.teamReport.recordVO">
         SELECT tem_id teamId,tem_name teamName,pre_name leaderName,COUNT(fly_tem_id) recordCount
         FROM team
         LEFT JOIN personnel ON tem_lead=pre_id
@@ -18,7 +18,7 @@
         GROUP BY tem_id
     </select>
 
-    <select id="getPayCount">
+    <select id="getPayCount" resultType="cn.lanhuhebi.elderly_group.model.dto.teamReport.payVO">
         SELECT tem_id teamId,tem_name teamName,pre_name leaderName,COUNT(purse_payDate) payCount
         FROM team
         LEFT JOIN family ON fly_tem_id=tem_id
@@ -34,7 +34,7 @@
         GROUP BY tem_id
     </select>
 
-    <select id="getOutCount">
+    <select id="getOutCount" resultType="cn.lanhuhebi.elderly_group.model.dto.teamReport.outVO">
         SELECT tem_id teamId,tem_name teamName,pre_name leaderName,SUM(tem_lib_num) outCount
         FROM team
         LEFT JOIN personnel ON tem_lead=pre_id
@@ -50,7 +50,7 @@
         GROUP BY tem_id
     </select>
 
-    <select id="getInstallCount">
+    <select id="getInstallCount" resultType="cn.lanhuhebi.elderly_group.model.dto.teamReport.insVO">
         SELECT tem_id teamId,tem_name teamName,pre_name leaderName,SUM(or_ept_num) installCount
         FROM team
         LEFT JOIN personnel ON tem_lead=pre_id

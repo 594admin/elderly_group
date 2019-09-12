@@ -81,22 +81,6 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <#list rv as r>
-                                                <tr>
-                                                    <td>${r.teamName}</td>
-                                                    <td>${r.leaderName}</td>
-                                                    <td>${r.recordCount}</td>
-                                                    </#list>
-                                                    <#list ov as o>
-                                                        <td>${o.outCount}</td>
-                                                    </#list>
-                                                    <#list pv as p>
-                                                        <td>${p.payCount}</td>
-                                                    </#list>
-                                                    <#list iv as i>
-                                                    <td>${i.installCount}</td>
-                                                </tr>
-                                                </#list>
                                                 <tr>
                                                     <td>1</td>
                                                     <td>张三</td>

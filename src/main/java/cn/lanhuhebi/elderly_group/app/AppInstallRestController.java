@@ -7,7 +7,6 @@ import cn.lanhuhebi.elderly_group.util.TencentAppCOS;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -34,9 +33,9 @@ public class AppInstallRestController {
         data[0] = installService.getAlreadyInstalls(areaId, personnelVo.getPreId());
         data[1] = installService.getNotInstalls(areaId, personnelVo.getPreId());
         //已安装
-        data[1] = installService.getAlreadyInstalls(areaId, perId);
+        data[1] = installService.getAlreadyInstalls(areaId, personnelVo.getPreId());
         //未安装
-        data[0] = installService.getNotInstalls(areaId, perId);
+        data[0] = installService.getNotInstalls(areaId, personnelVo.getPreId());
         return JSON.toJSONString(data);
     }
 

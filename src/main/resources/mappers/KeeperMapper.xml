@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.KeeperDao">
+
+<!--添加设备库存信息-->
+    <insert id="addKeeper">
+        insert into keeper values (default,#{k_ept_id},#{k_ept_num},#{k_purse_id},#{k_status})
+    </insert>
+
+    <!--修改设备库存信息-->
+    <update id="updateKeeper">
+        update keeper k set k.k_status=#{k_status} where k.kid=#{kid}
+    </update>
+
+
+</mapper>

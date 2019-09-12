@@ -8,12 +8,107 @@
     <insert id="addOnePurchase" parameterType="cn.lanhuhebi.elderly_group.model.pojo.Purchase" useGeneratedKeys="true" keyProperty="purseId">
         insert into purchase (purse_num,purse_purseDate,purse_payMethod,purse_payDate,purse_receipt,purse_instPtl,purse_fly_id) values (#{purseNum},Now(),#{pursePayMethod},#{pursePayDate},#{purseReceipt},#{purseInstPtl},#{purseFlyId})
     </insert>
+
     <delete id="deletePurchaseByFlyId" parameterType="int">
         DELETE FROM purchase WHERE purse_id =(SELECT * FROM (SELECT p.`purse_id` FROM family f, purchase p WHERE f.`fly_id`=p.`purse_fly_id` AND f.`fly_id`=#{fly_id}) pid)
-
     </delete>
+
     <select id="queryOneByPurchaseFlyId" resultMap="Purchase">
         SELECT p.`purse_payMethod`,p.`purse_receipt`,p.`purse_payDate`,p.`purse_instPtl`FROM purchase p,family f WHERE f.`fly_id`=p.`purse_fly_id` AND f.`fly_id`=#{fly_id}
+    </select>
+
+    <!--添加商品出库-->
+    <insert id="addPurchaseVo">
+        insert into purchase values (default,#{purseNum},Now())
+    </insert>
+
+    <!--修改采购表户下的设备状态-->
+    <update id="updateStatus">
+        UPDATE purchase p SET p.`purse_status`=1 WHERE p.`purse_fly_id`=#{purse_fly_id} and p.`purse_id`=#{purse_id}
+    </update>
+
+    <!--查询出库管理-->
+    <select id="queryAll" resultType="cn.lanhuhebi.elderly_group.model.dto.PurchaseVo">
+        SELECT f.`fly_id`,f.`fly_name`, f.`fly_phone`,f.`fly_IDcard`,f.`fly_doorNum`,f.`fly_birthday`,f.`fly_address`,p.`purse_status`
+        FROM family f JOIN purchase p ON f.`fly_id`=p.`purse_fly_id` where true
+        <if test="fly_id!=null and fly_id>0">and fly_id=#{fly_id}</if>
+        order by f.fly_id desc
+    </select>
+
+    <!-- 查询个人名下的未安装详情-->
+    <select id="detailPurchaseVo0" resultType="cn.lanhuhebi.elderly_group.model.dto.PurchaseVo">
+        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,te. tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total
+        FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
+        JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
+        JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
+        JOIN team_ept te ON k.`k_ept_id`=te.`tem_ept_id`
+        WHERE  k.`k_status`=0 AND f.`fly_id`=#{fly_id}
+        GROUP BY f.`fly_id`,te.`tem_ept_model`,te.`tem_ept_type`,te.`tem_ept_facty`
+    </select>
+
+    <!-- 查询个人名下的已安装详情-->
+    <select id="detailPurchaseVo1" resultType="cn.lanhuhebi.elderly_group.model.dto.PurchaseVo">
+        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,te. tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total,per.`pre_name`,lib.`lib_creaDate`
+        FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
+        JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
+        JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
+        JOIN team_ept te ON k.`k_ept_id`=te.`tem_ept_id`
+        JOIN liblogs lib ON p.`purse_id`=lib.`lib_pur_id`
+        JOIN personnel per ON per.`pre_id`=lib.`lib_operator`
+        WHERE  k.`k_status`=1 AND f.`fly_id`=#{fly_id}
+        GROUP BY f.`fly_id`,te.`tem_ept_model`,te.`tem_ept_type`,te.`tem_ept_facty`
+    </select>
+
+    <!--查询出库状态为1-->
+    <select id="queryAll1" resultType="cn.lanhuhebi.elderly_group.model.dto.PurchaseVo">
+        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total,per.`pre_name`,lib.`lib_creaDate`
+        FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
+        JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
+        JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
+        JOIN team_ept te ON k.`k_ept_id`=te.`tem_ept_id`
+        JOIN liblogs lib ON p.`purse_id`=lib.`lib_pur_id`
+        JOIN personnel per ON per.`pre_id`=lib.`lib_operator`
+        WHERE  k.`k_status`=1
+        GROUP BY f.`fly_id`
+        order BY f.`fly_id`
+    </select>
+
+    <!--查询出库状态为0-->
+    <select id="queryAll0" resultType="cn.lanhuhebi.elderly_group.model.dto.PurchaseVo">
+        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total
+        FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
+        JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
+        JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
+        JOIN team_ept te ON k.`k_ept_id`=te.`tem_ept_id`
+        WHERE  k.`k_status`=0
+        GROUP BY f.`fly_id`
+        ORDER BY f.`fly_id`
+    </select>
+
+    <!--统计出库状态为1的户总数量-->
+    <select id="searchCountByStatus1" resultType="java.lang.Integer">
+        SELECT COUNT(*) num FROM(SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total,per.`pre_name`,lib.`lib_creaDate`
+        FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
+        JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
+        JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
+        JOIN team_ept te ON k.`k_ept_id`=te.`tem_ept_id`
+        JOIN liblogs lib ON p.`purse_id`=lib.`lib_pur_id`
+        JOIN personnel per ON per.`pre_id`=lib.`lib_operator`
+        WHERE  k.`k_status`=1
+        GROUP BY f.`fly_id`
+        ORDER BY f.`fly_id`)a
+    </select>
+
+    <!--统计出库状态为0的户总数量-->
+    <select id="searchCountByStatus0" resultType="java.lang.Integer">
+        SELECT COUNT(*) num FROM(SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total
+        FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
+        JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
+        JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
+        JOIN team_ept te ON k.`k_ept_id`=te.`tem_ept_id`
+        WHERE  k.`k_status`=0
+        GROUP BY f.`fly_id`
+        ORDER BY f.`fly_id`)b
     </select>
 
     <resultMap id="Purchase" type="cn.lanhuhebi.elderly_group.model.pojo.Purchase">

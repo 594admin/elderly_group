@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.TeameptDao">
+
+    <!--添加出库记录-->
+    <update id="updChuKu">
+        UPDATE team_ept t SET t.`tem_ept_stock`=t.`tem_ept_stock`-#{tem_ept_stock} WHERE t.`tem_ept_id`=#{tem_ept_id}
+    </update>
+
+
+
+    <!--修改设备库存-->
+    <update id="updateStockByTemeptid">
+        UPDATE team_ept t SET t.`tem_ept_stock`=t.`tem_ept_stock`+#{tem_ept_stock} WHERE t.`tem_ept_id`=#{tem_ept_id}
+    </update>
+
+    <!--查询小组所有设备详情-->
+    <select id="queryAll" resultType="cn.lanhuhebi.elderly_group.model.pojo.TeamEpt">
+        SELECT * FROM team_ept t ORDER BY t.`tem_ept_id` ASC
+    </select>
+
+    <!--根据设备ID查询设备详情-->
+    <select id="detailEquipment" resultType="cn.lanhuhebi.elderly_group.model.pojo.TeamEpt">
+
+        SELECT * FROM team_ept t WHERE t.`tem_ept_id`=#{tem_ept_id}
+    </select>
+
+    <!--根据设备ID查询设备库存-->
+    <select id="detailStock" resultType="java.lang.Integer">
+        SELECT t.`tem_ept_stock` FROM team_ept t WHERE t.`tem_ept_id`=#{tem_ept_id}
+    </select>
+
+
+</mapper>

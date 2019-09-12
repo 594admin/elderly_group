@@ -30,11 +30,7 @@ public class AppInstallRestController {
         System.out.println("aredId===>" + areaId);
         System.out.println("perId===>" + personnelVo.getPreId());
         Object[] data = new Object[2];
-        data[0] = installService.getAlreadyInstalls(areaId, personnelVo.getPreId());
-        data[1] = installService.getNotInstalls(areaId, personnelVo.getPreId());
-        //已安装
         data[1] = installService.getAlreadyInstalls(areaId, personnelVo.getPreId());
-        //未安装
         data[0] = installService.getNotInstalls(areaId, personnelVo.getPreId());
         return JSON.toJSONString(data);
     }

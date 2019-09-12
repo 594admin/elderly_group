@@ -9,6 +9,7 @@ package cn.lanhuhebi.elderly_group.app;
 import cn.lanhuhebi.elderly_group.model.dto.PersonnelVo;
 import cn.lanhuhebi.elderly_group.model.pojo.Feedback;
 import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
+import cn.lanhuhebi.elderly_group.service.FeedbackService;
 import cn.lanhuhebi.elderly_group.service.PersonnelService;
 import cn.lanhuhebi.elderly_group.util.RedisUtils;
 import cn.lanhuhebi.elderly_group.util.TencentAppCOS;
@@ -29,6 +30,9 @@ public class AppMyRestController {
 
     @Autowired
     private PersonnelService personnelService;
+
+    @Autowired
+    private FeedbackService feedbackService;
 
     @Autowired
     private RedisUtils redisUtils;
@@ -86,7 +90,7 @@ public class AppMyRestController {
             feedback.setFbk_data(content);
             feedback.setFbk_pic(pic);
             System.out.println(feedback);
-
+            feedbackService.addFeedback(feedback);
             System.out.println("==================持久化===================");
         }
         return "success";

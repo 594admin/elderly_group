@@ -1,6 +1,7 @@
 package cn.lanhuhebi.elderly_group.app;
 
 import cn.lanhuhebi.elderly_group.model.dto.FamiliesVo;
+import cn.lanhuhebi.elderly_group.model.dto.PersonnelVo;
 import cn.lanhuhebi.elderly_group.model.dto.PurchaseVo;
 import cn.lanhuhebi.elderly_group.model.pojo.Family;
 import cn.lanhuhebi.elderly_group.model.pojo.Feedback;
@@ -12,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -181,10 +183,10 @@ public class KeeperController {
 
 //    修改设备库存
     @RequestMapping(value="updateStock")
-    public Integer updateStock(@RequestParam(value = "num") Integer num, @RequestParam(value = "temEptId") Integer temEptId,@RequestParam(value = "lib_operator") Integer lib_operator){
+    public Integer updateStock(@RequestParam(value = "num") Integer num, @RequestParam(value = "temEptId") Integer temEptId,@RequestAttribute(value = "personnelVo") PersonnelVo personnelVo){
         System.out.println("id==="+temEptId+",num==="+num);
-        System.out.println(",lib_opera===="+lib_operator);
-        return teamEptService.updateStockByTemeptid(num, temEptId,lib_operator);
+        System.out.println(",lib_opera===="+personnelVo.getPreId());
+        return teamEptService.updateStockByTemeptid(num, temEptId,personnelVo.getPreId());
     }
 
 //    根据ID查询库存记录
@@ -202,15 +204,15 @@ public class KeeperController {
 //    添加出库记录
     @RequestMapping(value="addChuku")
     public Integer addChuku(@RequestParam(value = "purse_fly_id") Integer purse_fly_id, @RequestParam(value = "tem_ept_id") List<Integer> tem_ept_id,
-                            @RequestParam(value = "num") List<Integer> num,@RequestParam(value = "purse_id") List<Integer> purse_id,@RequestParam(value = "lib_operator") Integer lib_operator,
+                            @RequestParam(value = "num") List<Integer> num,@RequestParam(value = "purse_id") List<Integer> purse_id,@RequestAttribute(value = "personnelVo") PersonnelVo personnelVo,
                             @RequestParam(value = "kid") List<Integer>kid){
         System.out.println("=============================");
         System.out.println("purCon====="+purse_fly_id);
         System.out.println("teamCon=====" + tem_ept_id);
         System.out.println("numCon======" + num);
         System.out.println("puridCon======" + purse_id);
-        System.out.println("libCon======"+lib_operator);
-        if (teamEptService.updateChuku(purse_fly_id, tem_ept_id, num,purse_id,lib_operator,kid)) {
+        System.out.println("libCon======"+personnelVo.getPreId());
+        if (teamEptService.updateChuku(purse_fly_id, tem_ept_id, num,purse_id,personnelVo.getPreId(),kid)) {
             return 1;
         }
         return 0;

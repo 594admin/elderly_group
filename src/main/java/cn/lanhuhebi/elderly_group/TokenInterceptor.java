@@ -46,14 +46,14 @@ public class TokenInterceptor implements HandlerInterceptor {
                 flag = true;
                 // personnelVo对象
                 String JSON_OBJ_STR = (String) redisUtils.get(token);
-                PersonnelVo personnelVo = JSON.parseObject(JSON_OBJ_STR, new TypeReference<PersonnelVo>() {
-                });
+                PersonnelVo personnelVo = JSON.parseObject(JSON_OBJ_STR, new TypeReference<PersonnelVo>() {});
                 System.out.println("personnelVo========>>>>> " + personnelVo);
                 request.setAttribute("personnelVo", personnelVo);
             }
-        } else {
+        }
+        if (flag == false){
             // tokenKey不存在, tokenKey, token无映射跳转到login页
-            response.sendRedirect("/fail");
+            response.sendRedirect("/login/fail");
         }
         return flag;
     }

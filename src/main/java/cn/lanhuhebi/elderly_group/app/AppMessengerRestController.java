@@ -8,13 +8,19 @@ import cn.lanhuhebi.elderly_group.service.FamilyService;
 import cn.lanhuhebi.elderly_group.service.OrderService;
 import cn.lanhuhebi.elderly_group.service.PurchaseService;
 import cn.lanhuhebi.elderly_group.util.IdWorker;
+import cn.lanhuhebi.elderly_group.util.RedisUtils;
+import cn.lanhuhebi.elderly_group.util.TencentCOS;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -39,6 +45,11 @@ public class AppMessengerRestController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private RedisUtils redisUtils;
+
+    private String purl = "https://sxd-1258987597.cos.ap-chengdu.myqcloud.com/";
 
     @PostMapping("listFly")
     public ResponseEntity<List<Family>> listfamily(@RequestAttribute("personnelVo") PersonnelVo personnelVo) {
@@ -170,4 +181,83 @@ public class AppMessengerRestController {
         }
         return JSON.toJSONString(map, SerializerFeature.PrettyFormat);
     }
+
+    @RequestMapping(value = "upLoadData")
+    public String upLoadData(@RequestParam("images") MultipartFile images
+            ,@RequestParam("purseFlyId")Integer fly_id,
+                             @RequestParam("i") String i,
+                             @RequestParam("length") int length) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+        System.out.println("==============================");
+
+        String j = this.uploadImageInit();
+
+        System.out.println("j: " + j);
+        System.out.println("length: " + length);
+
+        StringBuffer sb = new StringBuffer();
+        File excelFile = null;
+
+        if (images != null && !images.isEmpty()) {
+            // 获取文件名
+            String fileName = images.getOriginalFilename();
+            // 获取文件后缀
+            String prefix = fileName.substring(fileName.lastIndexOf("."));
+            // 用uuid作为文件名，防止生成的临时文件重复
+            excelFile = File.createTempFile(String.valueOf(System.currentTimeMillis()), prefix);
+            // 将MultipartFile转为File
+            images.transferTo(excelFile);
+            //调用腾讯云工具上传文件
+            fileName = TencentCOS.uploadfile(excelFile);
+            sb.append(purl).append(fileName).append(",");
+        }
+        String pic = sb.toString();
+        redisUtils.set(i, pic);
+
+        if (length - 1 == j.length()) {
+            Family family = new Family();
+            family.setFly_id(fly_id);
+            redisUtils.delete("j");
+            System.out.println("familyClass: " + family.getClass());
+            System.out.println("method: " + family.getClass().getDeclaredMethod("setFly_data1", java.lang.String.class));
+            for (int index = 1; index < 7; index++) {
+                family.getClass().getDeclaredMethod("setFly_data" + index, java.lang.String.class).invoke(family, redisUtils.get(String.valueOf(index)));
+                redisUtils.delete(String.valueOf(index));
+            }
+            System.out.println("family: " + family);
+//            familyService.updateFamilyData(family);
+        }
+//        System.out.println(imageList.getOriginalFilename());
+//
+//        String url=str+String.valueOf(index);
+//        try {
+//            family.getClass().getMethod(url,cn.lanhuhebi.elderly_group.model.pojo.Family.class).invoke(imageList.getOriginalFilename());
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        }
+//        family.setFly_id(fly_id.get(0));
+
+
+        return "";
+
+    }
+
+
+    private synchronized String uploadImageInit() {
+        String j = (String) redisUtils.get("j");
+        if (j == null) {
+            redisUtils.set("j", "1");
+            j = "1";
+        } else {
+            redisUtils.set("j", j + "1");
+            j += "1";
+        }
+
+        return j;
+    }
+
 }

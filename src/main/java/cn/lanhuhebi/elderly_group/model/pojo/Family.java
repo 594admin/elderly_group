@@ -208,4 +208,32 @@ public class Family {
     public void setFly_birthday(Date fly_birthday) {
         this.fly_birthday = fly_birthday;
     }
+
+    @Override
+    public String toString() {
+        return "Family{" +
+                "fly_id=" + fly_id +
+                ", fly_area_id=" + fly_area_id +
+                ", fly_ispoor=" + fly_ispoor +
+                ", fly_tem_id=" + fly_tem_id +
+                ", fly_status=" + fly_status +
+                ", fly_purse_id=" + fly_purse_id +
+                ", fly_name='" + fly_name + '\'' +
+                ", fly_phone='" + fly_phone + '\'' +
+                ", fly_IDcard='" + fly_IDcard + '\'' +
+                ", fly_address='" + fly_address + '\'' +
+                ", fly_doorNum='" + fly_doorNum + '\'' +
+                ", fly_notes='" + fly_notes + '\'' +
+                ", fly_data1='" + fly_data1 + '\'' +
+                ", fly_data2='" + fly_data2 + '\'' +
+                ", fly_data3='" + fly_data3 + '\'' +
+                ", fly_data4='" + fly_data4 + '\'' +
+                ", fly_data5='" + fly_data5 + '\'' +
+                ", fly_data6='" + fly_data6 + '\'' +
+                ", fly_birthday=" + fly_birthday +
+                ", fly_date=" + fly_date +
+                ", fly_buldArea=" + fly_buldArea +
+                ", fly_heatArea=" + fly_heatArea +
+                '}';
+    }
 }

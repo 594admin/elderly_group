@@ -140,7 +140,7 @@
                                 <td>${t.createTime?string("yyyy-MM-dd")}</td>
                                 <td>${t.creator}</td>
                                 <td>
-                                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal2" onclick="edtTeam(${t.tid})" ">
+                                    <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal2" onclick="edtTeam(${t.tid})">
                                         编辑
                                     </a>
                                 </td>
@@ -398,11 +398,13 @@
     });
 
     function edtTeam(tid) {
+
         // 组ID 组名 组长ID
         $.post("/getTeamById",{"tid":tid},function (data) {
             $("[name='edt_teamId']").val(data.temId);
             $("[name='edt_teamName']").val(data.temName);
-            $("[name='edt_teamLeader'] option[value="+data.temLead+"]").attr("selected","selected");
+            $("[name='edt_teamLeader']").val(data.temLead);
+            //$("[name='edt_teamLeader'] option[value="+data.temLead+"]").attr("selected","selected");
         },"json");
         // 本组信息员ID 姓名
         $.post("/getInformationerByTeamId",{"tid":tid},function (data) {

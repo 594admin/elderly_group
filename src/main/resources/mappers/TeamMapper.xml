@@ -16,22 +16,22 @@
     </resultMap>
 
     <select id="queryAllTeamLeader" resultType="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
-        SELECT pre_id as preId,pre_name as preName FROM personnel WHERE pre_role_id=2
+        SELECT pre_id as preId,pre_name as preName FROM personnel WHERE pre_role_id=2 and pre_status = 1
     </select>
 
     <select id="queryAllInformationer" resultType="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
         SELECT pre_id AS preId,pre_name AS preName FROM personnel WHERE pre_id NOT IN
-        (SELECT mem_mem FROM member) AND pre_role_id=3
+        (SELECT mem_mem FROM member) AND pre_role_id=3 and pre_status = 1
     </select>
 
     <select id="queryAllWarehouseManager" resultType="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
         SELECT pre_id AS preId,pre_name AS preName FROM personnel WHERE pre_id NOT IN
-        (SELECT mem_mem FROM member) AND pre_role_id=5
+        (SELECT mem_mem FROM member) AND pre_role_id=5 and pre_status = 1
     </select>
 
     <select id="queryAllInstaller" resultType="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
         SELECT pre_id AS preId,pre_name AS preName FROM personnel WHERE pre_id NOT IN
-        (SELECT mem_mem FROM member) AND pre_role_id=4
+        (SELECT mem_mem FROM member) AND pre_role_id=4 and pre_status = 1
     </select>
 
     <select id="queryAllTeamVO" resultMap="teamList">

@@ -1,7 +1,11 @@
 package cn.lanhuhebi.elderly_group.dao;
 
+import cn.lanhuhebi.elderly_group.model.dto.OrderDetailVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 @Mapper
 
 public interface OrderDetaillDao {

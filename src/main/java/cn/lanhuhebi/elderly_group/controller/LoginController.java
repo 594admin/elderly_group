@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * /logout 是shiro 做好的退出方法
  */
 @Controller
-public class loginController {
+public class LoginController {
 
     /**
      * 去登录页面

@@ -12,17 +12,19 @@ public interface OrderDetaillDao {
 
     /**
      * 安装时查询当前采购单的订单明细
+     *
      * @param purId
      * @return
      */
-    List<OrderDetailVo> getOrderDetailVo(@Param("purId")Integer purId);
+    List<OrderDetailVo> getOrderDetailVo(@Param("purId") Integer purId);
 
 
     /**
-     *
      * @param od_or_id
      * @return
      */
-    int addOrderDetail(@Param("od_or_id")Integer od_or_id);
+    int addOrderDetail(@Param("od_or_id") Integer od_or_id);
+
+    int updateOrderDetail(@Param("odId")Integer odId,@Param("odEmpNo")String odEmpNo,@Param("odPhoto")String odPhoto);
 
 }

@@ -1,6 +1,7 @@
 package cn.lanhuhebi.elderly_group;
 
 import cn.lanhuhebi.elderly_group.model.dto.PersonnelVo;
+import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
 import cn.lanhuhebi.elderly_group.util.RedisUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -29,6 +31,11 @@ public class TokenInterceptor implements HandlerInterceptor {
     private RedisUtils redisUtils;
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HttpSession session = request.getSession();
+        Personnel personnel = (Personnel) session.getAttribute("personnel");
+        if (personnel != null) {
+            return true;
+        }
         boolean flag = false;
         String token = request.getHeader("Authorization");
         System.out.println("token +++++>>>>>>>>>>>>>>+++++++" + token);
@@ -39,14 +46,14 @@ public class TokenInterceptor implements HandlerInterceptor {
                 flag = true;
                 // personnelVo对象
                 String JSON_OBJ_STR = (String) redisUtils.get(token);
-                PersonnelVo personnelVo = JSON.parseObject(JSON_OBJ_STR, new TypeReference<PersonnelVo>() {
-                });
+                PersonnelVo personnelVo = JSON.parseObject(JSON_OBJ_STR, new TypeReference<PersonnelVo>() {});
                 System.out.println("personnelVo========>>>>> " + personnelVo);
                 request.setAttribute("personnelVo", personnelVo);
             }
-        } else {
+        }
+        if (flag == false){
             // tokenKey不存在, tokenKey, token无映射跳转到login页
-            response.sendRedirect("/fail");
+            response.sendRedirect("/login/fail");
         }
         return flag;
     }

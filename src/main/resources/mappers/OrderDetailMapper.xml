@@ -16,6 +16,16 @@
     </select>
 
 
+    <update id="updateOrderDetail" >
+        UPDATE
+          order_detail
+        SET
+          od_emp_no=#{odEmpNo} ,od_photo =#{odPhoto}
+        WHERE
+          od_id = #{odId}
+    </update>
+
+
     <resultMap id="orderdetailVo" type="cn.lanhuhebi.elderly_group.model.dto.OrderDetailVo">
             <id property="odId" column="od_id"/>
             <result property="odEmpNo" column="od_emp_no"/>

@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,14 +41,14 @@ public class AppMessengerRestController {
     private OrderService orderService;
 
     @PostMapping("listFly")
-    /*public ResponseEntity<List<Family>> listfamily(@RequestAttribute("personnelVo") PersonnelVo personnelVo) {
+    public ResponseEntity<List<Family>> listfamily(@RequestAttribute("personnelVo") PersonnelVo personnelVo) {
         System.out.println(" <<<<<===personnelVo===>>>> " + personnelVo);
         return ResponseEntity.ok(familyService.queryAllByPerId(personnelVo.getPreId()));
-    }*/
-    public ResponseEntity<List<Family>> listfamily(@RequestParam("per_id") Integer per_id) {
-        //System.out.println(" <<<<<===personnelVo===>>>> " + personnelVo);
-        return ResponseEntity.ok(familyService.queryAllByPerId(per_id));
     }
+//    public ResponseEntity<List<Family>> listfamily(@RequestParam("per_id") Integer per_id) {
+//        //System.out.println(" <<<<<===personnelVo===>>>> " + personnelVo);
+//        return ResponseEntity.ok(familyService.queryAllByPerId(per_id));
+//    }
 
     @PostMapping("delFly")
     public String deleteFamily(@RequestParam("flyId") Integer flyId) {
@@ -58,33 +57,33 @@ public class AppMessengerRestController {
     }
 
     @PostMapping("addFamilyFirsty")
-    public String addFamilyFirst(@RequestParam("address")String address,
-                                 @RequestParam("fly_address")String fly_address,
-                                 @RequestParam(value = "fly_doorNum",required = false)String fly_doorNum,
-                                 @RequestParam("fly_name")String fly_name,
-                                 @RequestParam("fly_IDcard")String fly_IDcard,
-                                 @RequestParam("fly_phone")String fly_phone,
-                                 @RequestParam("fly_buldArea")Double fly_buldArea,
-                                 @RequestParam("fly_heatArea")Double fly_heatArea,
-                                 @RequestParam(value = "fly_notes",required = false)String fly_notes,
-                                 @RequestParam("date")String fly_birthday,
-                                 @RequestParam(value = "index",required = false)Integer fly_ispoor,
-                                 @RequestParam("per_id")String per_id){
+    public String addFamilyFirst(@RequestParam("fly_area_id") String fly_area_id,
+                                 @RequestParam("fly_address") String fly_address,
+                                 @RequestParam(value = "fly_doorNum", required = false) String fly_doorNum,
+                                 @RequestParam("fly_name") String fly_name,
+                                 @RequestParam("fly_IDcard") String fly_IDcard,
+                                 @RequestParam("fly_phone") String fly_phone,
+                                 @RequestParam("fly_buldArea") Double fly_buldArea,
+                                 @RequestParam("fly_heatArea") Double fly_heatArea,
+                                 @RequestParam(value = "fly_notes", required = false) String fly_notes,
+                                 @RequestParam("date") String fly_birthday,
+                                 @RequestParam(value = "index", required = false) Integer fly_ispoor,
+                                 @RequestAttribute("personnelVo") PersonnelVo personnelVo) {
 
-        address="386725";//鹤山区新华街道新华街南居委会
-       // System.out.println(per_id + "$$$$$$$$$$$$");
-        Family family=new Family();
-        family.setFly_area_id(Integer.parseInt(address));
-        if(fly_doorNum!=null){
+//        address="386725";//鹤山区新华街道新华街南居委会
+        // System.out.println(per_id + "$$$$$$$$$$$$");
+        Family family = new Family();
+        family.setFly_area_id(Integer.parseInt(fly_area_id));
+        if (fly_doorNum != null) {
             family.setFly_doorNum(fly_doorNum);
         }
-        if(fly_ispoor!=null){
+        if (fly_ispoor != null) {
             family.setFly_ispoor(fly_ispoor);
         }
-        if(fly_notes!=null){
+        if (fly_notes != null) {
             family.setFly_notes(fly_notes);
         }
-        family.setFly_tem_id(familyService.queryTeamIdByPerId((Integer.parseInt(per_id)) ));
+        family.setFly_tem_id(familyService.queryTeamIdByPerId(personnelVo.getPreId()));
         family.setFly_address(fly_address);
         family.setFly_name(fly_name);
         family.setFly_IDcard(fly_IDcard);
@@ -93,38 +92,38 @@ public class AppMessengerRestController {
         family.setFly_heatArea(fly_heatArea);
         family.setFly_status(2);
 
-        System.out.println("区域是：   "+family.getFly_area_id());
+        System.out.println("区域是：   " + family.getFly_area_id());
         try {
-            family.setFly_birthday( new SimpleDateFormat("yyyy-MM-dd").parse(fly_birthday) );
+            family.setFly_birthday(new SimpleDateFormat("yyyy-MM-dd").parse(fly_birthday));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         System.out.println(family.toString());
-        Map<String,Object> map=new HashMap<>();
-        if(familyService.addFamFirst(family)>0){
-            map.put("fly_id",family.getFly_id());
+        Map<String, Object> map = new HashMap<>();
+        if (familyService.addFamFirst(family) > 0) {
+            map.put("fly_id", family.getFly_id());
             map.put("purse_num", IdWorker.getId());
-            map.put("addmsg","ok");
-        }else{
-            map.put("addmsg","bad");
+            map.put("addmsg", "ok");
+        } else {
+            map.put("addmsg", "bad");
         }
-        return JSON.toJSONString(map,true);
+        return JSON.toJSONString(map, true);
     }
 
     //添加户信息第二步：录入设备信息
     @RequestMapping(value = "/doAddPurchase", method = RequestMethod.POST)
     @Transactional
-    public String doAddPurchase(@RequestParam("index")Integer purse_payMethod,
-                                @RequestParam("purseNum")String purse_num,
-                                @RequestParam("date")String purse_purseDate,
-                                @RequestParam("purseReceipt")String purse_receipt,
-                                @RequestParam("purseInstPtl")String purse_instPtl,
-                                @RequestParam("purseFlyId")Integer purse_fly_id,
+    public String doAddPurchase(@RequestParam("index") Integer purse_payMethod,
+                                @RequestParam("purseNum") String purse_num,
+                                @RequestParam("date") String purse_purseDate,
+                                @RequestParam("purseReceipt") String purse_receipt,
+                                @RequestParam("purseInstPtl") String purse_instPtl,
+                                @RequestParam("purseFlyId") Integer purse_fly_id,
                                 @RequestParam("orEptId") List<Integer> orEptId,
                                 @RequestParam("orEptNum") List<Integer> orEptNum,
                                 @RequestParam("orEptPrice") List<Double> orEptPrice
-                                ) throws Exception{
-       //date: this.date,//付款时间
+    ) throws Exception {
+        //date: this.date,//付款时间
         //						index: 1,//付款方式
         //						purseReceipt:"56565635", //收据编号
         //						purseInstPtl:"1111563685" ,//安装协议编号
@@ -142,13 +141,13 @@ public class AppMessengerRestController {
         System.out.println(orEptId.size());
         System.out.println(orEptNum.size());
         System.out.println(orEptPrice.size());
-        Purchase purchase=new Purchase();
+        Purchase purchase = new Purchase();
         purchase.setPurseFlyId(purse_fly_id);
         purchase.setPurseInstPtl(purse_instPtl);
         purchase.setPurseReceipt(purse_receipt);
         purchase.setPurseNum(purse_num);
         purchase.setPursePayMethod(purse_payMethod);
-        SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         purchase.setPursePayDate(sdf.parse(purse_purseDate));
         int i1 = this.purchaseService.addOnePurchase(purchase);
         Integer or_purse_id = purchase.getPurseId();
@@ -160,7 +159,7 @@ public class AppMessengerRestController {
             order.setOrPurseId(or_purse_id);
             this.orderService.addOrder(order);
         }
-        Map<String,Object> map=new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         if (i1 > 0) {
             this.familyService.updateFamilyAddStatus(3, purse_fly_id);
             map.put("fly_status", 3);
@@ -169,6 +168,6 @@ public class AppMessengerRestController {
         } else {
             map.put("addmsg", "bad");
         }
-        return JSON.toJSONString(map,SerializerFeature.PrettyFormat);
+        return JSON.toJSONString(map, SerializerFeature.PrettyFormat);
     }
 }

@@ -5,14 +5,19 @@
 
 <mapper namespace="cn.lanhuhebi.elderly_group.dao.InstallDao">
 
-
+    <select id="getPId" resultType="int">
+        SELECT ill_id FROM `install`  WHERE ill_purse_id = #{pureId}
+    </select>
 
     <select id="getNotInstalls" resultMap="installVos">
       SELECT  i.ill_id,i.ill_purse_id,d.dist_id,d.dist_installer,f.fly_id,f.fly_name,f.fly_area_id,f.fly_phone,f.fly_IDcard,f.fly_doorNum,f.fly_birthday
             FROM `install` i
             INNER JOIN dist d  ON d.dist_id = i.ill_dist_id
             INNER JOIN family f ON d.dist_fly_id = f.fly_id
-            WHERE d.dist_status = 1 AND f.fly_area_id = #{areaId}
+            WHERE d.dist_status = 1
+            <if test="areaId != null and areaId != ''">
+                AND f.fly_area_id = #{areaId}
+            </if>
             AND i.ill_status = 0
     </select>
 
@@ -21,7 +26,10 @@
             FROM `install` i
             INNER JOIN dist d  ON d.dist_id = i.ill_dist_id
             INNER JOIN family f ON d.dist_fly_id = f.fly_id
-            WHERE d.dist_status = 1 AND f.fly_area_id = #{areaId}
+            WHERE d.dist_status = 1
+            <if test="areaId != null and areaId != ''">
+                AND f.fly_area_id = #{areaId}
+            </if>
             AND i.ill_status = 1
     </select>
 
@@ -35,6 +43,20 @@
         AND p.`purse_fly_id`=f.`fly_id`
         AND q.`area_id`= f.`fly_area_id`AND f.`fly_id` = #{flyId} limit 1
     </select>
+
+    <update id="installEmp">
+        UPDATE `install` SET ill_status = 1
+        WHERE ill_id =#{illId}
+    </update>
+
+    <resultMap id="install" type="cn.lanhuhebi.elderly_group.model.pojo.Install">
+        <id property="illId" column="ill_id" />
+        <result property="illFlyId" column="ill_fly_id"/>
+        <result property="illPurseId" column="ill_purse_id"/>
+        <result property="illDistId" column="ill_dist_id"/>
+        <result property="illInstallDate" column="ill_install_date"/>
+        <result property="illStatus" column="ill_status"/>
+    </resultMap>
 
 
     <resultMap id="installVo" type="cn.lanhuhebi.elderly_group.model.dto.InstallVo">

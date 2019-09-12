@@ -33,4 +33,12 @@ public interface InstallService {
      * @return
      */
     List<OrderDetailVo> getOrderDetailVo(Integer purId);
+
+    /**
+     *修改安装状态
+     * @param pureId
+     * @return
+     */
+    boolean installEmp(Integer pureId);
+
 }

@@ -34,7 +34,7 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <form class="form-horizontal m-t" action="" method="post">
+                            <form class="form-horizontal m-t" action="/getTeamReport" method="post">
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"
@@ -81,6 +81,22 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                <#list rv as r>
+                                                <tr>
+                                                    <td>${r.teamName}</td>
+                                                    <td>${r.leaderName}</td>
+                                                    <td>${r.recordCount}</td>
+                                                    </#list>
+                                                    <#list ov as o>
+                                                        <td>${o.outCount}</td>
+                                                    </#list>
+                                                    <#list pv as p>
+                                                        <td>${p.payCount}</td>
+                                                    </#list>
+                                                    <#list iv as i>
+                                                    <td>${i.installCount}</td>
+                                                </tr>
+                                                </#list>
                                                 <tr>
                                                     <td>1</td>
                                                     <td>张三</td>
@@ -88,46 +104,6 @@
                                                     <td>23</td>
                                                     <td>23</td>
                                                     <td>23</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>李四</td>
-                                                    <td>57</td>
-                                                    <td>27</td>
-                                                    <td>27</td>
-                                                    <td>27</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>王麻子</td>
-                                                    <td>57</td>
-                                                    <td>65</td>
-                                                    <td>65</td>
-                                                    <td>65</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>三六籽</td>
-                                                    <td>57</td>
-                                                    <td>23</td>
-                                                    <td>66</td>
-                                                    <td>88</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td>时代城</td>
-                                                    <td>57</td>
-                                                    <td>23</td>
-                                                    <td>66</td>
-                                                    <td>88</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>6</td>
-                                                    <td>七星仔</td>
-                                                    <td>57</td>
-                                                    <td>23</td>
-                                                    <td>66</td>
-                                                    <td>88</td>
                                                 </tr>
                                                 </tbody>
                                                 <tfoot>
@@ -207,21 +183,21 @@
 
     $(document).ready(function () {
 
-        var table=document.getElementById("ReportTable");//获取table对象
-        var rows=table.rows;//获取行对象
-        var cells=table.cells;//获取列对象
+        var table = document.getElementById("ReportTable");//获取table对象
+        var rows = table.rows;//获取行对象
+        var cells = table.cells;//获取列对象
         var colums = table.rows[0].cells.length;//获取列数
         $(".count").empty();//每次加载时清空最后一列，防止二次加载数据时出现多行合计
         $(".count").append("<th>合计</th><th>—</th>");
         //这里从列开始遍历，得到的就是每一列的数据
         //如果从行开始遍历，得到的就是每行的数据
-        for(var j=2;j<colums;j++){
-            var sum=0;
-            for(var i=1;i<rows.length-1;i++){//从i=1第二行开始去掉表头，rows.length-1结束，去掉合计行
-                var a =parseInt(rows[i].cells[j].innerHTML.trim());//获取每一列的值
-                sum=sum+a; //计算
+        for (var j = 2; j < colums; j++) {
+            var sum = 0;
+            for (var i = 1; i < rows.length - 1; i++) {//从i=1第二行开始去掉表头，rows.length-1结束，去掉合计行
+                var a = parseInt(rows[i].cells[j].innerHTML.trim());//获取每一列的值
+                sum = sum + a; //计算
             }
-            $(".count").append("<th>"+sum+"</th>");//给最后一行添加计算结果列
+            $(".count").append("<th>" + sum + "</th>");//给最后一行添加计算结果列
         }
 
 

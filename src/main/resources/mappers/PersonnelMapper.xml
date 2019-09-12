@@ -17,6 +17,14 @@
         select pre_id from personnel where pre_phone = #{prePhone}  limit 1
     </select>
 
+    <select id="getMemByPerId" resultType="int">
+        SELECT mem_tem_id FROM member WHERE mem_mem = #{perId}
+    </select>
+    <select id="getTeamByPerId" resultType="int">
+        SELECT COUNT(tem_id) FROM team WHERE tem_lead =  #{perId}
+    </select>
+
+
     <select id="checkEmail" resultType="String">
         select pre_id from personnel where pre_email = #{preEmail}  limit 1
     </select>

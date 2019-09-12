@@ -12,7 +12,7 @@ import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
 import cn.lanhuhebi.elderly_group.service.FeedbackService;
 import cn.lanhuhebi.elderly_group.service.PersonnelService;
 import cn.lanhuhebi.elderly_group.util.RedisUtils;
-import cn.lanhuhebi.elderly_group.util.TencentAppCOS;
+import cn.lanhuhebi.elderly_group.util.TencentCOS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -37,7 +37,7 @@ public class AppMyRestController {
     @Autowired
     private RedisUtils redisUtils;
 
-    private String purl = "https://lxw-1258988357.cos.ap-beijing.myqcloud.com/elderlyImages/";
+    private String purl = "https://sxd-1258987597.cos.ap-chengdu.myqcloud.com/";
 
     @RequestMapping("/upLoadImg")
     public synchronized String testUploadFile(@RequestParam("images") MultipartFile images,
@@ -67,7 +67,7 @@ public class AppMyRestController {
             // 将MultipartFile转为File
             images.transferTo(excelFile);
             //调用腾讯云工具上传文件
-            fileName = TencentAppCOS.uploadImages(excelFile);
+            fileName = TencentCOS.uploadfile(excelFile);
             sb.append(purl).append(fileName).append(",");
         }
         pic = sb.toString();

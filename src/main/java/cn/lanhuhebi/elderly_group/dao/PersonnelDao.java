@@ -112,4 +112,18 @@ public interface PersonnelDao {
      */
     Personnel getPersonnleOne(@Param("prePhone") String prePhone);
 
+    /**
+     * 查询员工所在组
+     * @param perId
+     * @return
+     */
+    Integer getMemByPerId(@Param("perId")Integer perId);
+
+    /**
+     * 查询组长所在组
+     * @param perId
+     * @return
+     */
+    Integer getTeamByPerId(@Param("perId")Integer perId);
+
 }

@@ -3,9 +3,9 @@ package cn.lanhuhebi.elderly_group.service.impl;
 import cn.lanhuhebi.elderly_group.dao.PersonnelDao;
 import cn.lanhuhebi.elderly_group.model.pojo.Personnel;
 import cn.lanhuhebi.elderly_group.service.PersonnelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,7 +18,7 @@ import java.util.List;
 @Service("PersonnelServiceImpl")
 public class PersonnelServiceImpl implements PersonnelService {
 
-    @Autowired
+    @Resource
     private PersonnelDao personnelDao;
 
 
@@ -61,7 +61,32 @@ public class PersonnelServiceImpl implements PersonnelService {
 
     @Override
     public boolean updatePersonnel(Personnel personnel) {
-        return personnelDao.updatePersonnel(personnel) > 0;
+        Integer preId = personnel.getPreId();
+        Integer preRoleId = personnel.getPreRoleId();
+
+        boolean flag = false;
+        if(personnel.getPreStatus()== 0){
+            if(preRoleId == null){
+                flag = true;
+            }else if(preRoleId == 2){
+                if(personnelDao.getTeamByPerId(preId) == 0){
+                    flag = true;
+                }
+            }else if(preRoleId == 3 || preRoleId == 4 || preRoleId == 5 ){
+                if(personnelDao.getMemByPerId(preId)== null){
+                    flag = true;
+                }
+            }else{
+                flag =true;
+            }
+        }else {
+          flag = true;
+        }
+        if(flag){
+            return personnelDao.updatePersonnel(personnel)>0;
+        }else {
+            return false;
+        }
     }
 
     @Override

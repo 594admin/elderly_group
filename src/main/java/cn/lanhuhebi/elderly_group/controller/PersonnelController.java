@@ -11,7 +11,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PersonnelController {
-
     @Autowired
     private PersonnelService personnelService;
     @Autowired
@@ -84,11 +83,14 @@ public class PersonnelController {
      * @return
      */
     @PostMapping(value = "/doUpdatePersonnels")
-    public String doUpdatePersonnels(Personnel personnel, RedirectAttributes redirectAttributes){
+    public String doUpdatePersonnels(Personnel personnel, RedirectAttributes redirectAttributes,Model model){
         if(personnelService.updatePersonnel(personnel)){
             redirectAttributes.addFlashAttribute("addmsg","修改成功");
+            System.out.println("doUpdatePersonnels修改成功！");
         }else{
-            redirectAttributes.addFlashAttribute("addmsg","修改失败");
+            model.addAttribute("addmsg","用户已经分配了小组，请先取消");
+            model.addAttribute("personnel",personnel);
+            return "/personnel/updatepersonnel";
         }
         return "redirect:/listPersonnels";
     }

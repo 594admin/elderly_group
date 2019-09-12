@@ -28,7 +28,10 @@
         <div class="col-sm-4">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>修改 <small>员工</small></h5>
+                    <h3>修改 <small>员工</small></h3>
+                     <#if "addmsg??">
+                        <p style="color:red;">${addmsg}</p>
+                     </#if>
                 </div>
 
             </div>
@@ -43,6 +46,7 @@
                                 <div class="col-sm-8">
                                     <input name="prePhone" value="${personnel.prePhone}" minlength="2" type="text" class="form-control" pattern="0?(13|14|15|18|17)[0-9]{9}" required="" aria-required="true">
                                     <input name="preId" value="${personnel.preId}" minlength="2" type="hidden">
+                                    <input name="preRoleId" value="${personnel.preRoleId}" minlength="2" type="hidden">
                                 </div>
                             </div>
                             <p align="center"  style="color: red" id="prePhones"></p>

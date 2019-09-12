@@ -9,88 +9,88 @@ package cn.lanhuhebi.elderly_group.model.pojo;
 public class TeamEpt {
 
     //小组设备库存ID
-    private Integer temEptId;
+    private Integer tem_ept_id;
 
     //类型
-    private Integer temEptType;
+    private String tem_ept_type;
 
     //厂家
-    private Integer temEptFacty;
+    private String tem_ept_facty;
 
     //型号
-    private String temEptModel;
+    private String tem_ept_model;
 
     //单价
-    private Double temEptPrice;
+    private Double tem_ept_price;
 
     //库存
-    private Integer temEptStock;
+    private Integer tem_ept_stock;
 
     //编号
-    private Integer temEptNum;
+    private String tem_ept_num;
 
     //get set 方法
-    public TeamEpt setTemEptId (Integer temEptId){
-        this.temEptId=temEptId;
-        return this;
+    public Integer getTem_ept_id() {
+        return tem_ept_id;
     }
 
-    public Integer getTemEptId(){
-        return this.temEptId;
+    public void setTem_ept_id(Integer tem_ept_id) {
+        this.tem_ept_id = tem_ept_id;
     }
 
-    public TeamEpt setTemEptType (Integer temEptType){
-        this.temEptType=temEptType;
-        return this;
+    public String getTem_ept_type() {
+        return tem_ept_type;
     }
 
-    public Integer getTemEptType(){
-        return this.temEptType;
+    public void setTem_ept_type(String tem_ept_type) {
+        this.tem_ept_type = tem_ept_type;
     }
 
-    public TeamEpt setTemEptFacty (Integer temEptFacty){
-        this.temEptFacty=temEptFacty;
-        return this;
+    public String getTem_ept_facty() {
+        return tem_ept_facty;
     }
 
-    public Integer getTemEptFacty(){
-        return this.temEptFacty;
+    public void setTem_ept_facty(String tem_ept_facty) {
+        this.tem_ept_facty = tem_ept_facty;
     }
 
-    public TeamEpt setTemEptModel (String temEptModel){
-        this.temEptModel=temEptModel;
-        return this;
+    public String getTem_ept_model() {
+        return tem_ept_model;
     }
 
-    public String getTemEptModel(){
-        return this.temEptModel;
+    public void setTem_ept_model(String tem_ept_model) {
+        this.tem_ept_model = tem_ept_model;
     }
 
-    public TeamEpt setTemEptPrice (Double temEptPrice){
-        this.temEptPrice=temEptPrice;
-        return this;
+    public Double getTem_ept_price() {
+        return tem_ept_price;
     }
 
-    public Double getTemEptPrice(){
-        return this.temEptPrice;
+    public void setTem_ept_price(Double tem_ept_price) {
+        this.tem_ept_price = tem_ept_price;
     }
 
-    public TeamEpt setTemEptStock (Integer temEptStock){
-        this.temEptStock=temEptStock;
-        return this;
+    public Integer getTem_ept_stock() {
+        return tem_ept_stock;
     }
 
-    public Integer getTemEptStock(){
-        return this.temEptStock;
+    public void setTem_ept_stock(Integer tem_ept_stock) {
+        this.tem_ept_stock = tem_ept_stock;
     }
 
-    public TeamEpt setTemEptNum (Integer temEptNum){
-        this.temEptNum=temEptNum;
-        return this;
+    public String getTem_ept_num() {
+        return tem_ept_num;
     }
 
-    public Integer getTemEptNum(){
-        return this.temEptNum;
+    public void setTem_ept_num(String tem_ept_num) {
+        this.tem_ept_num = tem_ept_num;
     }
 
+    public TeamEpt(Integer tem_ept_id, Integer tem_ept_stock) {
+        this.tem_ept_id = tem_ept_id;
+        this.tem_ept_stock = tem_ept_stock;
+    }
+
+    public TeamEpt() {
+    }
 }

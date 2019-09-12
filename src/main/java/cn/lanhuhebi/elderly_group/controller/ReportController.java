@@ -31,8 +31,6 @@ public class ReportController {
     @Resource
     private ReportService reportService;
 
-    @Autowired
-    private ScheduleManager scheduleManager;
 
     @GetMapping("/toAreaReport")
     public String toAreaReport(HttpServletRequest request){

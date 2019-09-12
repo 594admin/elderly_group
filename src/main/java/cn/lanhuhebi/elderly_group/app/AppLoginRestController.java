@@ -61,7 +61,7 @@ public class AppLoginRestController {
         if (flagPhone) {
             Integer preRoleId = personnleOne.getPreRoleId();
             if (preRoleId != auth) {
-                data = "登录角色不符";
+                return "登录角色不符";
             }
             if (Arrays.asList(roles).contains(preRoleId)) {
                 //组装信息

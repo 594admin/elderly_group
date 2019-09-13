@@ -54,6 +54,20 @@
         SELECT tem_id teamId,tem_name teamName,pre_name leaderName,SUM(or_ept_num) installCount
         FROM team
         LEFT JOIN personnel ON tem_lead=pre_id
+        LEFT JOIN family ON fly_tem_id=tem_id
+        LEFT JOIN purchase ON purse_fly_id=fly_id
+        <if test="start !=null and start !=''">
+        AND purse_instDate&gt;=#{start}
+        </if>
+        <if test="end !=null and end !=''">
+        AND purse_instDate&lt;=#{end}
+        </if>
+        LEFT JOIN `order` ON or_purse_id=purse_id
+        GROUP BY tem_id
+
+        <!--SELECT tem_id teamId,tem_name teamName,pre_name leaderName,SUM(or_ept_num) installCount
+        FROM team
+        LEFT JOIN personnel ON tem_lead=pre_id
         LEFT JOIN family ON tem_id=fly_tem_id
         LEFT JOIN purchase ON purse_fly_id=fly_id
         LEFT JOIN `order` ON or_purse_id=purse_id
@@ -65,6 +79,6 @@
         <if test="end !=null and end !=''">
             AND ill_installDate&lt;=#{end}
         </if>
-        GROUP BY tem_id
+        GROUP BY tem_id-->
     </select>
 </mapper>

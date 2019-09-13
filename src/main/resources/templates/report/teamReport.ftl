@@ -81,14 +81,16 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>张三</td>
-                                                    <td>57</td>
-                                                    <td>23</td>
-                                                    <td>23</td>
-                                                    <td>23</td>
-                                                </tr>
+                                                <#list t as o>
+                                                    <tr>
+                                                        <td>${o.teamName}</td>
+                                                        <td>${o.leaderName}</td>
+                                                        <td>${o.recordCount}</td>
+                                                        <td>${o.payCount}</td>
+                                                        <td>${o.outCount}</td>
+                                                        <td>${o.installCount}</td>
+                                                    </tr>
+                                                </#list>
                                                 </tbody>
                                                 <tfoot>
                                                 <tr class="count">
@@ -185,11 +187,19 @@
         }
 
 
+        var obj = eval('${jd}');
+        var series1 = new Array();
+        var datas = new Array();
+        for (var i = 0; i < obj.length;i++){
+            datas[i] = obj[i].name
+            series1[i] = obj[i]
+        }
+
         var pieChart = echarts.init(document.getElementById("echarts-pie-chart"));
         var pieoption = {
             title: {
                 text: '工程小组完成占比',
-                subtext: '2019-08-31~2019-09-02',
+                subtext: '${start}~${end}',
                 x: 'center'
             },
             tooltip: {
@@ -199,7 +209,7 @@
             legend: {
                 orient: 'vertical',
                 x: 'left',
-                data: ['一组', '二组', '三组', '四组', '五组']
+                data: datas
             },
             calculable: true,
             series: [
@@ -209,13 +219,7 @@
                     radius: '55%',
                     center: ['50%', '60%'],
                     cursor: 'pointer',
-                    data: [
-                        {value: 335, name: '一组'},
-                        {value: 310, name: '二组'},
-                        {value: 234, name: '三组'},
-                        {value: 135, name: '四组'},
-                        {value: 1548, name: '五组'}
-                    ]
+                    data: series1
                 }
             ]
         };

@@ -1,9 +1,6 @@
 package cn.lanhuhebi.elderly_group.controller;
 
-import cn.lanhuhebi.elderly_group.model.dto.teamReport.insVO;
-import cn.lanhuhebi.elderly_group.model.dto.teamReport.outVO;
-import cn.lanhuhebi.elderly_group.model.dto.teamReport.payVO;
-import cn.lanhuhebi.elderly_group.model.dto.teamReport.recordVO;
+import cn.lanhuhebi.elderly_group.model.dto.teamReport.*;
 import cn.lanhuhebi.elderly_group.service.TeamReportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,22 +23,23 @@ public class TeamReportController {
 
     @RequestMapping("/toTeamReport")
     public String toTeamReport(Model model){
-        List<recordVO> rvList=teamReportService.getRecordCount(null,null);
-        List<outVO> ovList=teamReportService.getOutCount(null,null);
-        List<payVO> pvList=teamReportService.getPayCount(null,null);
-        List<insVO> ivList=teamReportService.getInstallCount(null,null);
-        model.addAttribute("rv",rvList);
-        model.addAttribute("ov",ovList);
-        model.addAttribute("pv",pvList);
-        model.addAttribute("iv",ivList);
-
+        List<teamReportVO> t=teamReportService.getTeamReport(null,null);
+        model.addAttribute("t",t);
+        model.addAttribute("start","");
+        model.addAttribute("end","");
+        model.addAttribute("jd",teamReportService.getTeamReportJSON(t));
         return "report/teamReport";
     }
 
     @RequestMapping(value = "/getTeamReport")
-    public String getTeamReport(String start,String end){
-        System.err.println("============"+start);
-        System.err.println("============"+end);
+    public String getTeamReport(String start,String end,Model model){
+        List<teamReportVO> t=teamReportService.getTeamReport(start,end);
+        model.addAttribute("t",t);
+        String start1=start.substring(0,10);
+        String end1=end.substring(0,10);
+        model.addAttribute("start",start1);
+        model.addAttribute("end",end1);
+        model.addAttribute("jd",teamReportService.getTeamReportJSON(t));
         return "report/teamReport";
     }
 

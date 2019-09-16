@@ -10,64 +10,59 @@ import java.util.Date;
 public class Dist {
 
     //分配记录ID
-    private Integer distId;
+    private Integer dist_id;
 
     //户信息ID
-    private Integer distFlyId;
+    private Integer dist_fly_id;
 
     //分配时间
-    private Date distDistDate;
+    private Date dist_distDate;
 
     //分配状态
-    private Integer distStatus;
+    private Integer dist_status;
 
     //安装工(员工ID数组)
-    private String distInstaller;
+    private String dist_installer;
 
     //get set 方法
-    public Dist setDistId (Integer distId){
-        this.distId=distId;
-        return this;
+
+    public Integer getDist_id() {
+        return dist_id;
     }
 
-    public Integer getDistId(){
-        return this.distId;
+    public void setDist_id(Integer dist_id) {
+        this.dist_id = dist_id;
     }
 
-    public Dist setDistFlyId (Integer distFlyId){
-        this.distFlyId=distFlyId;
-        return this;
+    public Integer getDist_fly_id() {
+        return dist_fly_id;
     }
 
-    public Integer getDistFlyId(){
-        return this.distFlyId;
+    public void setDist_fly_id(Integer dist_fly_id) {
+        this.dist_fly_id = dist_fly_id;
     }
 
-    public Dist setDistDistDate (Date distDistDate){
-        this.distDistDate=distDistDate;
-        return this;
+    public Date getDist_distDate() {
+        return dist_distDate;
     }
 
-    public Date getDistDistDate(){
-        return this.distDistDate;
+    public void setDist_distDate(Date dist_distDate) {
+        this.dist_distDate = dist_distDate;
     }
 
-    public Dist setDistStatus (Integer distStatus){
-        this.distStatus=distStatus;
-        return this;
+    public Integer getDist_status() {
+        return dist_status;
     }
 
-    public Integer getDistStatus(){
-        return this.distStatus;
+    public void setDist_status(Integer dist_status) {
+        this.dist_status = dist_status;
     }
 
-    public Dist setDistInstaller (String distInstaller){
-        this.distInstaller=distInstaller;
-        return this;
+    public String getDist_installer() {
+        return dist_installer;
     }
 
-    public String getDistInstaller(){
-        return this.distInstaller;
+    public void setDist_installer(String dist_installer) {
+        this.dist_installer = dist_installer;
     }
-
 }

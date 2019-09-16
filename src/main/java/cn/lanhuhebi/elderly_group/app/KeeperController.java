@@ -183,7 +183,7 @@ public class KeeperController {
 
 //    修改设备库存
     @RequestMapping(value="updateStock")
-    public Integer updateStock(@RequestParam(value = "num") Integer num, @RequestParam(value = "temEptId") Integer temEptId,@RequestAttribute(value = "personnelVo") PersonnelVo personnelVo){
+    public Integer updateStock(@RequestParam(value = "num") Integer num, @RequestParam(value = "temEptId") Integer temEptId,@RequestAttribute("personnelVo") PersonnelVo personnelVo){
         System.out.println("id==="+temEptId+",num==="+num);
         System.out.println(",lib_opera===="+personnelVo.getPreId());
         return teamEptService.updateStockByTemeptid(num, temEptId,personnelVo.getPreId());
@@ -204,7 +204,7 @@ public class KeeperController {
 //    添加出库记录
     @RequestMapping(value="addChuku")
     public Integer addChuku(@RequestParam(value = "purse_fly_id") Integer purse_fly_id, @RequestParam(value = "tem_ept_id") List<Integer> tem_ept_id,
-                            @RequestParam(value = "num") List<Integer> num,@RequestParam(value = "purse_id") List<Integer> purse_id,@RequestAttribute(value = "personnelVo") PersonnelVo personnelVo,
+                            @RequestParam(value = "num") List<Integer> num,@RequestParam(value = "purse_id") List<Integer> purse_id,@RequestAttribute("personnelVo") PersonnelVo personnelVo,
                             @RequestParam(value = "kid") List<Integer>kid){
         System.out.println("=============================");
         System.out.println("purCon====="+purse_fly_id);

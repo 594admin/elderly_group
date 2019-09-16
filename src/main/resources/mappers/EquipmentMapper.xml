@@ -15,6 +15,10 @@
         UPDATE equipment SET ept_stock = #{eptStock} WHERE ept_id = #{eptId}
     </update>
 
+    <update id="updStock">
+        UPDATE equipment SET ept_stock = ept_stock-#{ept_stock} WHERE ept_id = #{ept_id}
+    </update>
+
     <select id="getEptPrice" parameterType="Equipment" resultMap="ept">
         SELECT ept_id, ept_price FROM equipment WHERE ept_type = #{eptType} AND ept_facty = #{eptFacty} AND ept_model = #{eptModel}
     </select>

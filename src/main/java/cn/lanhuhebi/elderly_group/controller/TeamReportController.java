@@ -33,13 +33,21 @@ public class TeamReportController {
 
     @RequestMapping(value = "/getTeamReport")
     public String getTeamReport(String start,String end,Model model){
-        List<teamReportVO> t=teamReportService.getTeamReport(start,end);
-        model.addAttribute("t",t);
-        String start1=start.substring(0,10);
-        String end1=end.substring(0,10);
-        model.addAttribute("start",start1);
-        model.addAttribute("end",end1);
-        model.addAttribute("jd",teamReportService.getTeamReportJSON(t));
+        if (start==null||start.equals("")||end==null||end.equals("")){
+            model.addAttribute("start",null);
+            model.addAttribute("end",null);
+            List<teamReportVO> t=teamReportService.getTeamReport(null,null);
+            model.addAttribute("t",t);
+            model.addAttribute("jd",teamReportService.getTeamReportJSON(t));
+        }else{
+            List<teamReportVO> t=teamReportService.getTeamReport(start,end);
+            model.addAttribute("t",t);
+            String start1=start.substring(0,10);
+            String end1=end.substring(0,10);
+            model.addAttribute("start",start1);
+            model.addAttribute("end",end1);
+            model.addAttribute("jd",teamReportService.getTeamReportJSON(t));
+        }
         return "report/teamReport";
     }
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.TeamReportDao">
+
+    <select id="getRecordCount" resultType="cn.lanhuhebi.elderly_group.model.dto.teamReport.recordVO">
+        SELECT tem_id teamId,tem_name teamName,pre_name leaderName,COUNT(fly_tem_id) recordCount
+        FROM team
+        LEFT JOIN personnel ON tem_lead=pre_id
+        LEFT JOIN family ON fly_tem_id=tem_id
+        AND fly_status=1
+        <if test="start !=null and start !=''">
+            AND fly_date &gt;= #{start}
+        </if>
+        <if test="end !=null and end !=''">
+            AND fly_date &lt;= #{end}
+        </if>
+        GROUP BY tem_id
+    </select>
+
+    <select id="getPayCount" resultType="cn.lanhuhebi.elderly_group.model.dto.teamReport.payVO">
+        SELECT tem_id teamId,tem_name teamName,pre_name leaderName,COUNT(purse_payDate) payCount
+        FROM team
+        LEFT JOIN family ON fly_tem_id=tem_id
+        LEFT JOIN personnel ON tem_lead=pre_id
+        LEFT JOIN purchase ON purse_fly_id=fly_id
+        AND purse_status=1
+        <if test="start !=null and start !=''">
+            AND purse_payDate&gt;=#{start}
+        </if>
+        <if test="end !=null and end !=''">
+            AND purse_payDate&lt;=#{end}
+        </if>
+        GROUP BY tem_id
+    </select>
+
+    <select id="getOutCount" resultType="cn.lanhuhebi.elderly_group.model.dto.teamReport.outVO">
+        SELECT tem_id teamId,tem_name teamName,pre_name leaderName,SUM(tem_lib_num) outCount
+        FROM team
+        LEFT JOIN personnel ON tem_lead=pre_id
+        LEFT JOIN member ON mem_tem_id=tem_id
+        LEFT JOIN team_liblog ON tem_lib_operator=mem_mem
+        AND tem_lib_type=1
+        <if test="start !=null and start !=''">
+            AND tem_lib_creaDate&gt;=#{start}
+        </if>
+        <if test="end !=null and end !=''">
+            AND tem_lib_creaDate&lt;=#{end}
+        </if>
+        GROUP BY tem_id
+    </select>
+
+    <select id="getInstallCount" resultType="cn.lanhuhebi.elderly_group.model.dto.teamReport.insVO">
+        SELECT tem_id teamId,tem_name teamName,pre_name leaderName,SUM(or_ept_num) installCount
+        FROM team
+        LEFT JOIN personnel ON tem_lead=pre_id
+        LEFT JOIN family ON fly_tem_id=tem_id
+        LEFT JOIN purchase ON purse_fly_id=fly_id
+        <if test="start !=null and start !=''">
+        AND purse_instDate&gt;=#{start}
+        </if>
+        <if test="end !=null and end !=''">
+        AND purse_instDate&lt;=#{end}
+        </if>
+        LEFT JOIN `order` ON or_purse_id=purse_id
+        GROUP BY tem_id
+
+        <!--SELECT tem_id teamId,tem_name teamName,pre_name leaderName,SUM(or_ept_num) installCount
+        FROM team
+        LEFT JOIN personnel ON tem_lead=pre_id
+        LEFT JOIN family ON tem_id=fly_tem_id
+        LEFT JOIN purchase ON purse_fly_id=fly_id
+        LEFT JOIN `order` ON or_purse_id=purse_id
+        LEFT JOIN `install` ON ill_purse_id=purse_id
+        AND ill_status=1
+        <if test="start !=null and start !=''">
+            AND ill_installDate&gt;=#{start}
+        </if>
+        <if test="end !=null and end !=''">
+            AND ill_installDate&lt;=#{end}
+        </if>
+        GROUP BY tem_id-->
+    </select>
+</mapper>

@@ -93,7 +93,7 @@
                         </li>
                         <li><a class="J_menuItem" href="/toChangjia">厂家统计</a>
                         </li>
-                        <li><a class="J_menuItem" href="#">工程统计</a>
+                        <li><a class="J_menuItem" href="/toTeamReport">工程统计</a>
                         </li>
                     </ul>
                 </li>

@@ -1,10 +1,8 @@
 package cn.lanhuhebi.elderly_group.service.impl;
 
-import cn.lanhuhebi.elderly_group.dao.KeeperDao;
-import cn.lanhuhebi.elderly_group.dao.LiblogsDao;
-import cn.lanhuhebi.elderly_group.dao.PurchaseDao;
-import cn.lanhuhebi.elderly_group.dao.TeameptDao;
+import cn.lanhuhebi.elderly_group.dao.*;
 import cn.lanhuhebi.elderly_group.model.pojo.TeamEpt;
+import cn.lanhuhebi.elderly_group.service.EquipmentService;
 import cn.lanhuhebi.elderly_group.service.TeamEptService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,9 +19,13 @@ public class TeamEptServiceImpl implements TeamEptService {
     @Resource
     private PurchaseDao purchaseDao;
     @Resource
-    private LiblogsDao liblogsDao;
+    private TeamlLibLogsDao teamlLibLogsDao;
     @Resource
     private KeeperDao keeperDao;
+    @Resource
+    private EquipmentDao equipmentDao;
+    @Resource
+    private DistDao distDao;
 
     @Override
     public List<TeamEpt> queryAll() {
@@ -39,8 +41,9 @@ public class TeamEptServiceImpl implements TeamEptService {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int updateStockByTemeptid(Integer num, Integer temEptId,Integer lib_operator) {
         int a = teameptDao.updateStockByTemeptid(num, temEptId);
-        int b = liblogsDao.addLogs(2, lib_operator, 0);
-        if (a > 0 && b > 0) {
+        int b = teamlLibLogsDao.addLogs(2, lib_operator,0,temEptId,num);
+        int c = equipmentDao.updStock(num, temEptId);
+        if (a > 0 && b > 0 && c > 0) {
             return 1;
         }
         return 0;
@@ -57,11 +60,12 @@ public class TeamEptServiceImpl implements TeamEptService {
         int a = 0;
         int b = 0;
         int c = 0;
+        int d = 0;
 //        List<Integer> chuKu = new ArrayList<>();
         boolean flag = true;
         for (int i = 0; i < tem_ept_id.size(); i++) {
-            System.out.println("stock======" + detailStock(tem_ept_id.get(i)));
-            System.out.println("temid======" + tem_ept_id.get(i)+",num======"+num.get(i));
+            System.out.println("purse_fly_id======" + purse_fly_id);
+//            System.out.println("temid======" + tem_ept_id.get(i)+",num======"+num.get(i));
 
             if (detailStock(tem_ept_id.get(i)) <= 0 && detailStock(tem_ept_id.get(i)) < num.get(i)) {
                 flag = false;
@@ -72,13 +76,14 @@ public class TeamEptServiceImpl implements TeamEptService {
                     b = teameptDao.updChuKu(num.get(i), tem_ept_id.get(i));
 //                    a = purchaseDao.updateStatus(purse_fly_id,purse_id.get(i));
                     a = keeperDao.updateKeeper(1, kid.get(i));
-                    c = liblogsDao.addLogs(1, lib_operator, purse_id.get(i));
+                    c = teamlLibLogsDao.addLogs(1, lib_operator, purse_id.get(i),tem_ept_id.get(i),num.get(i));
 //                    chuKu.add(detailStock(tem_ept_id.get(i)));
+                    d = distDao.addDist(purse_fly_id);
                     flag = true;
                 }
             }
         }
-            if (a > 0 && b > 0 && c > 0) {
+            if (a > 0 && b > 0 && c > 0 && d > 0) {
                 flag = true;
         }
         return flag;

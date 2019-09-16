@@ -17,7 +17,7 @@ public class FeedbackVo {
     private Integer fbk_person;
 
     //联系方式
-    private String pre_phone;
+    private String fbk_phone;
 
     //反馈人姓名
     private String pre_name;
@@ -49,12 +49,12 @@ public class FeedbackVo {
         this.fbk_person = fbk_person;
     }
 
-    public String getPre_phone() {
-        return pre_phone;
+    public String getFbk_phone() {
+        return fbk_phone;
     }
 
-    public void setPre_phone(String pre_phone) {
-        this.pre_phone = pre_phone;
+    public void setFbk_phone(String fbk_phone) {
+        this.fbk_phone = fbk_phone;
     }
 
     public String getPre_name() {

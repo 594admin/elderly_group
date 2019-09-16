@@ -9,7 +9,7 @@ import cn.lanhuhebi.elderly_group.service.OrderService;
 import cn.lanhuhebi.elderly_group.service.PurchaseService;
 import cn.lanhuhebi.elderly_group.util.IdWorker;
 import cn.lanhuhebi.elderly_group.util.RedisUtils;
-import cn.lanhuhebi.elderly_group.util.TencentCOS;
+import cn.lanhuhebi.elderly_group.util.TencentFanmilyCOS;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ public class AppMessengerRestController {
     @Autowired
     private RedisUtils redisUtils;
 
-    private String purl = "https://sxd-1258987597.cos.ap-chengdu.myqcloud.com/";
+    private String purl = "https://five-1258991825.cos.ap-beijing.myqcloud.com/";
 
     @PostMapping("listFly")
     public ResponseEntity<List<Family>> listfamily(@RequestAttribute("personnelVo") PersonnelVo personnelVo) {
@@ -183,6 +183,7 @@ public class AppMessengerRestController {
     }
 
     @RequestMapping(value = "upLoadData")
+    @Transactional
     public String upLoadData(@RequestParam("images") MultipartFile images
             ,@RequestParam("purseFlyId")Integer fly_id,
                              @RequestParam("i") String i,
@@ -208,8 +209,8 @@ public class AppMessengerRestController {
             // 将MultipartFile转为File
             images.transferTo(excelFile);
             //调用腾讯云工具上传文件
-            fileName = TencentCOS.uploadfile(excelFile);
-            sb.append(purl).append(fileName).append(",");
+            fileName = TencentFanmilyCOS.uploadfile(excelFile);
+            sb.append(purl).append(fileName);
         }
         String pic = sb.toString();
         redisUtils.set(i, pic);
@@ -225,23 +226,8 @@ public class AppMessengerRestController {
                 redisUtils.delete(String.valueOf(index));
             }
             System.out.println("family: " + family);
-//            familyService.updateFamilyData(family);
+            familyService.updateFamilyData(family);
         }
-//        System.out.println(imageList.getOriginalFilename());
-//
-//        String url=str+String.valueOf(index);
-//        try {
-//            family.getClass().getMethod(url,cn.lanhuhebi.elderly_group.model.pojo.Family.class).invoke(imageList.getOriginalFilename());
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        }
-//        family.setFly_id(fly_id.get(0));
-
-
         return "";
 
     }

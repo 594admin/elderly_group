@@ -66,7 +66,7 @@
                             <#list pageInfo as f>
                                 <tr class="gradeA">
                                     <td>${f.fbk_creaDate}</td>
-                                    <td>${f.pre_phone}</td>
+                                    <td>${f.fbk_phone}</td>
                                     <td>${f.fbk_data}</td>
                                     <td class="center">
                                         <#list f.fbk_pic?split(',') as pk>

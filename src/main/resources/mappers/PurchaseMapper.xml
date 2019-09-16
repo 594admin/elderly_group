@@ -48,34 +48,34 @@
 
     <!-- 查询个人名下的已安装详情-->
     <select id="detailPurchaseVo1" resultType="cn.lanhuhebi.elderly_group.model.dto.PurchaseVo">
-        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,te. tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total,per.`pre_name`,lib.`lib_creaDate`
+        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,te. tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total,per.`pre_name`,tlib.`tem_lib_creaDate`
         FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
         JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
         JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
         JOIN team_ept te ON k.`k_ept_id`=te.`tem_ept_id`
-        JOIN liblogs lib ON p.`purse_id`=lib.`lib_pur_id`
-        JOIN personnel per ON per.`pre_id`=lib.`lib_operator`
+        JOIN team_liblog tlib ON p.`purse_id`=tlib.`tem_lib_pur_id`
+        JOIN personnel per ON per.`pre_id`=tlib.`tem_lib_operator`
         WHERE  k.`k_status`=1 AND f.`fly_id`=#{fly_id}
         GROUP BY f.`fly_id`,te.`tem_ept_model`,te.`tem_ept_type`,te.`tem_ept_facty`
     </select>
 
     <!--查询出库状态为1-->
     <select id="queryAll1" resultType="cn.lanhuhebi.elderly_group.model.dto.PurchaseVo">
-        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total,per.`pre_name`,lib.`lib_creaDate`
+        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,f.fly_area_id,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total,per.`pre_name`,tlib.`tem_lib_creaDate`
         FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
         JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
         JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
         JOIN team_ept te ON k.`k_ept_id`=te.`tem_ept_id`
-        JOIN liblogs lib ON p.`purse_id`=lib.`lib_pur_id`
-        JOIN personnel per ON per.`pre_id`=lib.`lib_operator`
+        JOIN team_liblog tlib ON p.`purse_id`=tlib.`tem_lib_pur_id`
+        JOIN personnel per ON per.`pre_id`=tlib.`tem_lib_operator`
         WHERE  k.`k_status`=1
         GROUP BY f.`fly_id`
-        order BY f.`fly_id`
+        ORDER BY f.`fly_id`
     </select>
 
     <!--查询出库状态为0-->
     <select id="queryAll0" resultType="cn.lanhuhebi.elderly_group.model.dto.PurchaseVo">
-        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total
+        SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,f.fly_area_id,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total
         FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
         JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
         JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
@@ -87,13 +87,13 @@
 
     <!--统计出库状态为1的户总数量-->
     <select id="searchCountByStatus1" resultType="java.lang.Integer">
-        SELECT COUNT(*) num FROM(SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total,per.`pre_name`,lib.`lib_creaDate`
+        SELECT COUNT(*) num FROM(SELECT f.`fly_id`,f.`fly_name`,f.`fly_phone`,CONCAT(f.`fly_address`,f.fly_doorNum) fly_address,p.`purse_id`,k.kid,k.`k_status`,p.`purse_instPtl`,te.tem_ept_id,te.`tem_ept_type`,GROUP_CONCAT(te.`tem_ept_model`) tem_ept_model,te.`tem_ept_facty`,SUM(k.`k_ept_num`) total,per.`pre_name`,tlib.`tem_lib_creaDate`
         FROM family f JOIN team t ON f.`fly_tem_id`=t.`tem_id`
         JOIN  purchase p ON f.`fly_id`=p.`purse_fly_id`
         JOIN keeper k ON p.`purse_id`=k.`k_purse_id`
         JOIN team_ept te ON k.`k_ept_id`=te.`tem_ept_id`
-        JOIN liblogs lib ON p.`purse_id`=lib.`lib_pur_id`
-        JOIN personnel per ON per.`pre_id`=lib.`lib_operator`
+        JOIN team_liblog tlib ON p.`purse_id`=tlib.`tem_lib_pur_id`
+        JOIN personnel per ON per.`pre_id`=tlib.`tem_lib_operator`
         WHERE  k.`k_status`=1
         GROUP BY f.`fly_id`
         ORDER BY f.`fly_id`)a

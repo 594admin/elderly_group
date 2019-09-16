@@ -15,7 +15,7 @@ public class PurchaseVo {
     private Timestamp fly_birthday;
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Timestamp lib_creaDate;
+    private Timestamp tem_lib_creaDate;
     private Integer k_status,total,tem_ept_id,purse_id,k_ept_id,kid,k_ept_num,k_purse_id;
     private String purse_instPtl,purse_ept_No,purse_photo,tem_ept_facty,tem_ept_model,tem_ept_type,pre_name;
 
@@ -107,12 +107,12 @@ public class PurchaseVo {
         this.pre_name = pre_name;
     }
 
-    public Timestamp getLib_creaDate() {
-        return lib_creaDate;
+    public Timestamp getTem_lib_creaDate() {
+        return tem_lib_creaDate;
     }
 
-    public void setLib_creaDate(Timestamp lib_creaDate) {
-        this.lib_creaDate = lib_creaDate;
+    public void setTem_lib_creaDate(Timestamp tem_lib_creaDate) {
+        this.tem_lib_creaDate = tem_lib_creaDate;
     }
 
     public Integer getTotal() {

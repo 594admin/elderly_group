@@ -25,7 +25,7 @@
 
     <!--添加意见反馈-->
     <insert id="addFeedback">
-        insert into feedback values(default,#{fbk_person},#{fbk_data},#{fbk_pic},NOW())
+        insert into feedback values(default,#{fbk_person},#{fbk_phone},#{fbk_data},#{fbk_pic},NOW())
     </insert>
 
     <!--修改意见反馈-->

@@ -85,7 +85,6 @@ public class AppMyRestController {
             pic = pic.substring(0, pic.length() - 1);
             Feedback feedback = new Feedback();
             feedback.setFbk_person(personnelVo.getPreId());
-            feedback.setFbk_name(personnelVo.getPreName());
             feedback.setFbk_phone(phone);
             feedback.setFbk_data(content);
             feedback.setFbk_pic(pic);

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.lanhuhebi.elderly_group.dao.AllocationDao">
+    <select id="getAllocationInfoByTeamLeaderId" resultType="cn.lanhuhebi.elderly_group.model.pojo.Family">
+        SELECT fly_id,fly_name,fly_phone,fly_IDcard,fly_doorNum,fly_birthday
+        FROM family,team
+        WHERE fly_tem_id=tem_id
+        AND tem_lead=#{teamLeaderId}
+        AND fly_id  IN (SELECT dist_fly_id FROM dist)
+        <if test="areaId != null and areaId != ''">
+            AND fly_area_id = #{areaId}
+        </if>
+    </select>
+
+    <select id="getUnAllocationInfoByTeamLeaderId" resultType="cn.lanhuhebi.elderly_group.model.pojo.Family">
+        SELECT fly_id,fly_name,fly_phone,fly_IDcard,fly_doorNum,fly_birthday
+        FROM family,team
+        WHERE fly_tem_id=tem_id
+        AND tem_lead=#{teamLeaderId}
+        AND fly_id  NOT IN (SELECT dist_fly_id FROM dist)
+        <if test="areaId != null and areaId != ''">
+            AND fly_area_id = #{areaId}
+        </if>
+    </select>
+
+    <select id="getAlcFamilyVOByfId" resultType="cn.lanhuhebi.elderly_group.model.dto.allocation.AlcFamilyVO">
+        SELECT fly_name,fly_area_id,fly_address,fly_phone,purse_instPtl
+        FROM family,purchase
+        WHERE purse_fly_id=fly_id
+        AND fly_id=#{fid}
+    </select>
+    
+    <select id="getUnAlcInstallerByfId" resultType="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
+        SELECT pre_id,pre_name
+        FROM personnel,family,member
+        WHERE fly_tem_id=mem_tem_id
+        AND pre_id=mem_mem
+        AND pre_role_id=4
+        AND fly_id=#{fid}
+    </select>
+
+    <select id="getAlcInstallers" resultType="java.lang.String">
+        SELECT dist_installer FROM dist
+        WHERE dist_fly_id=#{fid}
+    </select>
+
+    <select id="getInstallerNameByPid" resultType="cn.lanhuhebi.elderly_group.model.pojo.Personnel">
+        SELECT pre_id,pre_name FROM personnel
+        WHERE pre_id=#{pid}
+    </select>
+
+    <select id="getAlcInfo" resultType="cn.lanhuhebi.elderly_group.model.dto.allocation.AlcDistVO">
+        SELECT pre_name,dist_distDate
+        FROM personnel,dist,family,team
+        WHERE dist_fly_id=fly_id
+        AND fly_tem_id=tem_id
+        AND tem_lead=pre_id
+        AND dist_fly_id=#{fid}
+    </select>
+
+    <insert id="alloctionInstaller">
+        INSERT INTO dist(dist_fly_id,dist_distDate,dist_installer)
+        VALUES (#{fid},SYSDATE(),#{installers})
+    </insert>
+
+    <update id="updAlcInstaller">
+        UPDATE dist SET dist_installer=#{installers},dist_distDate=SYSDATE() WHERE dist_fly_id=#{fid}
+    </update>
+</mapper>

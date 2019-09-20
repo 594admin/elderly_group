@@ -24,6 +24,7 @@ public class Dist {
     //安装工(员工ID数组)
     private String distInstaller;
 
+
     //get set 方法
     public Dist setDistId (Integer distId){
         this.distId=distId;

@@ -43,6 +43,7 @@ public class ShiroConfig {
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/login/*", "anon");
         filterMap.put("/install/*", "anon");
+        filterMap.put("/allocation/*", "anon");
         filterMap.put("/messenger/*", "anon");
         filterMap.put("/statistics/*", "anon");
         filterMap.put("/address/*", "anon");
